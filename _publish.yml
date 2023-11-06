@@ -1,0 +1,4 @@
+- source: 03_segundo_informe_nudos.qmd
+  quarto-pub:
+    - id: c96281c0-2b8b-497d-931c-e1cd9fe33ae7
+      url: 'https://nicolastobarj.quarto.pub/informe_1_nudos'

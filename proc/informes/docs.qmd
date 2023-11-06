@@ -1,0 +1,426 @@
+---
+title: "Más allá del desempeño. Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos"
+author: Juan Carlos Castillo, Daniel Miranda y Nicolás Tobar
+bibliography: ../../input/bib/icils_nudos.bib 
+csl: ../../input/bib/apa.csl
+
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+      
+format: 
+  revealjs:
+    logo: images/banner_nudos.jpg
+    slide-number: true
+    theme: [pp.scss]
+    title-slide-attributes:
+      data-background-image: images/portada.jpg
+      data-background-size: cover
+      
+editor: visual
+---
+
+```{r}
+options(digits = 2) #round results to 2 digits
+
+nudos_color_binary <- c("#5f5758","#ff3057") #Nudos theme
+
+pacman::p_load(tidyverse, #Data manipulation
+               stargazer, #Descriptive tables
+               sjmisc, #Descriptive tables
+               knitr, #Markdown
+               corrr, #Correlation matrix
+               sjlabelled, #Labels manipulation
+               sjPlot, #View_df table
+               Hmisc, #Manipulate labels
+               ggplot2, #Plots
+               hrbrthemes, #Plot themes
+               labelled, #Manipulate labels
+               ggExtra, #Marginal plots
+               gt, #Tables
+               googlesheets4, #open sheets google
+               summarytools, #Summary tables
+               haven, #read_sav
+               corrplot, #Plot corr
+               lme4, #Multilevel modelo
+               interactions #View multilevel interactions
+               )
+
+data <- readRDS("../../input/proc_data/03_student_proc_2018.rds")
+
+#Student level
+student <- data %>% select(starts_with("s_"))
+
+#School level
+school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>% 
+                  summarise(across(everything(),~ mean(.x, na.rm = TRUE))) %>% ungroup() %>%
+                  select(-idschool)
+```
+
+
+# Introducción
+
+## Problema {.smaller}
+
+::: {.incremental}
+
+-   Digitalización del mundo e integración desde las TIC: Diagnóstico de las brechas de género en los 90’s.
+-   Las brechas han ido disminuyendo dada la masificación de TICS [@hargittaiDifferencesActualPerceived2006].
+-   Algunos autores proponen que más bien ahora se producen diferencias de uso de las tecnologías por género: Hombres más usos técnicos operativos, mujeres más usos comunicacionales-sociales [@punterGenderDifferencesComputer2017].
+-   Encuesta ICILS IEA [@gebhardtGenderDifferencesComputer2019]: 
+    -   Estudio a nivel internacional para medir y evaluar la alfabetización computacional y el manejo de información de los estudiantes de 8ºgrado (13-14 años).
+    -   Dos instrumentos: Test de pensamiento computacional y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
+    -   En 2013 Y 2018 las mujeres lograron puntajes más altos que los hombres. **En Chile estas diferencias tienden a no ser significativas**.
+    -   Hombres reportan mayor autoeficacia avanzada, pero correlaciona menos con el puntaje del test que en las mujeres.
+    -   Pareciera que los hombres sobreestiman sus capacidades con las TIC mientras que las mujeres se subestiman. Además presentan mayores niveles de interés y motivación sobre las tecnologías.
+-   Aproximarse a brechas en las actitudes y motivaciones respecto a las tecnologías antes que a su desempeño.
+    -   Autoeficacia no solo es buen predictora del desempeño del puntaje de la prueba ICILS, sino también de los tipos de uso y las actitudes sobre las tecnologías.
+
+:::
+
+
+## Relaciones logradas con las TIC
+
+::: {.incremental}
+
+-   @rosaResonanciaSociologiaRelacion2019 argumenta que la sociología ha estado excesivamente centrada en los recursos como habilitantes del desempeño social del individuo. La pregunta moral ha dejado de lado la pregunta ética: Crear relaciones logradas con el mundo.
+-   Una relación resonante es donde se refuerzan las expectativas de autoeficacia y la motivación intrínseca de las acciones de nuestra vida [@ryanSelfdeterminationTheoryFacilitation2000]. Esto permite una mayor valoración del entorno y autodeterminación individual.
+-   Si en términos de desempeño no hay brechas, y pareciera que los temas de acceso y uso ya están menos latentes en los niños ¿Por qué no explorar “brechas” de autoeficacia, motivación y valoración de las tecnolgoías?
+
+:::
+
+## Identidad, grupos de referencia y estereotipo {.smaller}
+
+::: {.incremental}
+-   La concepción del estatus está anclada a comparaciones con grupos de referencia. Interpretamos nuestro valor según nuestros relativamente iguales y distintos [@turnerSocialIdentityTheory2004].   
+-   La teoría de la amenaza del estereotipo de @steeleStereotypeThreatIntellectual1995 explica que las personas realizan peor una tarea cuando se les recuerda que el grupo al que pertenecen suele obtener un rendimiento bajo. 
+-   Sistemáticamente, las mujeres se suelen subestimar en actividades laborales y académicas en tanto se comparan con los hombres. Se reciben incentivos sociales para ello [@kirschGenderCompositionCorporate2018].
+-   @vekiriGenderIssuesTechnology2008 muestran que los niños reciben mayor apoyo de padres y de sus compañeros que las niñas. Como consecuencia, se sienten más capaces en el uso de tecnologías, crecen con mayor valoración social de ellas  y tienen mayor motivación hacia las tecnologías que sus compañeras. 
+-   ¿Se refuerza esta tendencia cuando las y los estudiantes están rodeados de gente de su mismo género?
+    -   Estudios de composición de género: Hallazgos demuestran que las mujeres aumentan su rendimiento y satisfacción laboral y académica cuando están rodeadas de directivas y colegas mujeres.
+    -   Ausencia de estudios de composición con ICILS y oportunidad de aproximarse a este efecto multinivel.
+    
+:::
+
+# Pregunta 
+
+**¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?**
+
+## Objetivos, hipótesis y análisis
+
+```{r}
+gs4_auth(path = "nudos-393317-b5d45882cdbc.json")
+read_sheet("https://docs.google.com/spreadsheets/d/1JGt9ZF-ZP6XL9xd0O3ZRu-BkbT2KEsYQAppnZISEQgU/edit?usp=sharing") %>%
+  gt()
+  
+```
+
+
+# Variables
+
+## Base de datos ICILS Chile
+-   Medición durante 
+
+
+## Autoeficacia {.smaller}
+
+::: {.column-body}
+
+*¿En qué medida puedes realizar cada una de estas tareas utilizando las TIC?*
+
+Respuestas:
+
+1. Sé cómo realizarlo.
+2. Nunca lo he hecho antes pero podría realizarlo.
+3. No creo que podría realizarlo.
+:::
+
+::: columns
+
+::: {.column width="50%"}
+
+**Autoeficacia General**
+
+-   Editar fotografías digitales
+-   Escribir o editar textos para una tarea escolar
+-   Encontrar información relevante para un proyecto escolar en internet
+-   Crear una presentación multimedia
+-   Subir textos, imágenes o videos en un perfil online
+-   Insertar una imagen en un documento o mensaje
+-   Instalar un programa en el computador
+-   Juzgar cuando la información que encuentro en internet es confiable
+:::
+
+::: {.column width="50%"}
+
+**Autoeficacia específica**
+
+-   Crear una base de datos
+-   Construir o editar un sitio web
+-   Crear una aplicación o programa para el computador
+-   Configurar la conexión a internet local de dispositivos computacionales
+
+:::
+
+:::
+
+## Independientes nivel estudiantes {.smaller .scrollable}
+
+```{r}
+student %>% select(s_sex,
+                   s_ictpos,s_ictneg,s_ictfut,
+                   s_usestd,s_useinf,s_accont,s_usecom) %>% 
+  mutate(s_sex=as.factor(s_sex))%>%
+  view_df(show.id = FALSE,show.values = FALSE,show.na = T,show.type = T)
+```
+        
+
+## Independientes nivel escuela
+
+```{r}
+label(school[["c_f_ratio_grade"]]) <- "School proportion of females students in eigth grade (estimation)"
+label(school[["c_p_sex"]]) <- "Directive school gender"
+
+school %>% select(c_p_sex,c_f_ratio_grade) %>% 
+  mutate(c_p_sex=as.factor(c_p_sex))%>%
+  view_df(show.id = FALSE,show.values = FALSE,show.na = T,show.type = T)
+```
+     
+## Modelo Analítico   
+```{mermaid}
+flowchart LR
+  subgraph Escuela
+    F["Ratio de mujeres escuela"] -. "Moderación" .-> A
+    E["Género directivo (Mujer)"] -. "Moderación" .-> A
+    subgraph Estudiante
+      A{"Género (Binaria)"} -- "(+)" --> B(["Mujer (1)"])
+      A -- "(-)" --> C(["Hombre/otro (0)"])
+      B -- "(-)" --> D["Autoeficacia (General y Específica)"]
+      C -- "(+)" --> D
+      H["Actitudes Negativas"] -- "(-)" --> D
+      I["Actitudes Positivas"] -- "(+)" --> D
+      J["Expectativa Uso futuro"] -- "(+)" --> D
+      end
+  end
+```
+      
+# Nivel 1: Estudiantes
+      
+## Variación por año de expectativas de autoeficacia {.smaller}
+```{r}
+
+#Crear tabla manual
+data.frame(variable=c("General","General","General","Específica","Específica","Específica",
+                         "General","General","General","Específica","Específica","Específica"),
+              Genero=c("Hombres","Mujeres","Brecha","Hombres","Mujeres","Brecha",
+                       "Hombres","Mujeres","Brecha","Hombres","Mujeres","Brecha"),
+              año=c(2013,2013,2013,2013,2013,2013,2018,2018,2018,2018,2018,2018),
+              Puntaje=c(52,54,2,53,50,-3,51,52,1,52,50,-2)) %>%
+  gt(rowname_col = "variable",
+     groupname_col = "año")%>%
+  data_color(
+    columns = Puntaje,
+    rows = Puntaje == 2 | 1 ,
+    method = "numeric",
+    palette = c("#ff3057","#5f5758")) %>%
+
+  as_raw_html()
+```
+
+## Género, autoeficacia y valoración social
+
+```{r}
+data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
+  summarise_at(c(uso_comunicacion_social="s_usecom",uso_intercambiar_informacion="s_useinf",
+                 uso_acceder_contenido="s_accont",uso_estudio="s_usestd",
+                 autoeficacia_general="s_geneff",autoeficacia_especifica="s_speceff",
+                 ict_positiva="s_ictpos",ict_negativa="s_ictneg",ict_futuro="s_ictfut"),
+                 mean, na.rm = TRUE)%>%
+  pivot_longer(cols = starts_with(c("auto","ict","uso")),
+               names_to = "indicadores",
+               values_to = "puntaje")%>%
+  mutate(indicadores=factor(indicadores, levels=c("uso_comunicacion_social",
+                                                  "uso_intercambiar_informacion",
+                                                  "uso_acceder_contenido",
+                                                  "uso_estudio",
+                                                  "ict_negativa",
+                                                  "ict_positiva",
+                                                  "ict_futuro",
+                                                  "autoeficacia_general",
+                                                  "autoeficacia_especifica"),
+                                          labels=c("Uso para la comunicación social",
+                                                   "Uso para intercambiar información",
+                                                   "Uso para acceder a contenido en internet",
+                                                   "Uso para estudiar",
+                                                   "Valoración social negativa",
+                                                   "Valoración social positiva",
+                                                   "Expectativas de uso laboral o académico futuro",
+                                                   "Autoeficacia en aplicaciones generales",
+                                                   "Autoeficacia en aplicaciones específicas")))%>%
+  
+  ggplot(aes(x=to_label(puntaje),y=to_label(indicadores),color=gender))+
+    geom_line(aes(group=to_label(indicadores)),color="#E7E7E7",linewidth=2.0)+
+    geom_point(size=6)+
+    theme_ipsum()+
+    labs(x="Puntaje promedio",y="Indicadores",color="Género")+
+    scale_color_manual(values=nudos_color_binary)+
+    theme(legend.position = "top")+
+    scale_y_discrete(labels=function(x) str_wrap(x,width = 40))
+```
+
+## Relaciones de varianza
+
+```{r}
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Hombres"
+#|   - "Mujeres"
+student %>% filter(s_sex==0) %>% 
+  select(s_geneff, s_speceff,
+         s_ictpos,s_ictneg,s_ictfut,
+         s_usecom,s_useinf,s_accont)%>%drop_na()%>%
+  cor()%>%
+  corrplot(method="square",diag = FALSE,type = "lower")
+
+student %>% filter(s_sex==1) %>% 
+  select(s_geneff, s_speceff,
+         s_ictpos,s_ictneg,s_ictfut,
+         s_usecom,s_useinf,s_accont)%>%drop_na()%>%
+  cor()%>%
+  corrplot(method="square",diag = FALSE,type = "lower")
+```
+
+
+# Nivel 2: Escuelas
+
+## Autoeficacia y establecimientos {.smaller}
+
+::: {.panel-tabset}
+
+#### Autoeficacia General
+```{r}
+ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>%
+             ggplot(aes(x=c_f_ratio_grade,y=c_geneff,color=c_p_sex))+
+             geom_point()+
+             scale_color_manual(values = nudos_color_binary)+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Ratio de mujeres 8vo básico (estimado)",
+                  y = "Promedio por escuela de autoeficacia general",
+                  color= "Género directivo")+
+             theme(legend.position = "bottom")+
+             scale_x_continuous(labels = scales::percent_format(scale = 100)),
+           type = "boxplot")
+```
+
+#### Autoeficacia específica
+```{r}
+ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>%
+             ggplot(aes(x=c_f_ratio_grade,y=c_speceff,color=c_p_sex))+
+             geom_point()+
+             scale_colour_manual(values=nudos_color_binary)+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Ratio de mujeres 8vo básico (estimado)",
+                  y = "Promedio por escuela autoeficacia específica",
+                  color= "Género directivo")+
+             theme(legend.position = "bottom")+
+             scale_x_continuous(labels = scales::percent_format(scale = 100)),
+           type = "boxplot")
+```
+:::
+
+# Modelos multinivel
+
+## Modelos nulos {.smaller}
+```{r, results='asis'}
+m0_geneff <- lmer(s_geneff ~ 1  +  (1 | idschool),  data=data)
+m0_speceff <- lmer(s_speceff ~ 1  +  (1 | idschool),  data=data)
+m0_ictfut <- lmer(s_ictfut ~ 1  +  (1 | idschool),  data=data)
+m0_ictpos <- lmer(s_ictpos ~ 1  +  (1 | idschool),  data=data)
+m0_ictneg <- lmer(s_ictneg ~ 1  +  (1 | idschool),  data=data)
+m0_usecom <- lmer(s_usecom ~ 1  +  (1 | idschool),  data=data)
+m0_useinf <- lmer(s_useinf ~ 1  +  (1 | idschool),  data=data)
+m0_usestd <- lmer(s_usestd ~ 1  +  (1 | idschool),  data=data)
+m0_accont <- lmer(s_accont ~ 1  +  (1 | idschool),  data=data)
+
+
+
+sjPlot::tab_model(m0_geneff, m0_speceff, 
+                  m0_ictfut, m0_ictpos, m0_ictneg,
+                  m0_usecom,m0_useinf,m0_usestd,m0_accont,
+                  show.ci = FALSE)
+
+```
+
+
+## Efectos fijos {.smaller .scrollable}
+```{r, results='asis'}
+m1_geneff <- lmer(s_geneff ~ 
+                  s_sex + c_p_sex + c_f_ratio_grade + 
+                  s_speceff + 
+                  s_ictfut + s_ictpos + s_ictneg +
+                  s_usecom + s_useinf + s_usestd + s_accont + 
+                  (1 | idschool),  data=data)
+
+m1_speceff <- lmer(s_speceff ~ 
+                  s_sex + c_f_ratio_grade + c_p_sex +
+                  s_geneff + 
+                  s_ictfut + s_ictpos + s_ictneg +
+                  s_usecom + s_useinf + s_usestd + s_accont + 
+                  (1 | idschool),  data=data)
+
+tab_model(m1_geneff, m1_speceff, 
+          show.ci = FALSE, auto.label = TRUE)
+
+```
+
+## Pendiente aleatoria con moderación {.smaller .scrollable}
+```{r, results='asis'}
+data <- data %>% mutate_all(as.numeric)
+
+m2_geneff <- lmer(s_geneff ~ 
+                  s_sex*c_f_ratio_grade + s_sex + c_f_ratio_grade + 
+                  s_speceff +
+                  s_ictfut + s_ictpos + s_ictneg +
+                  s_usecom + s_useinf + s_usestd + s_accont +
+                  (1 + s_sex| idschool), data=data)
+
+m2_speceff <- lmer(s_speceff ~ 
+                  s_sex*c_f_ratio_grade + s_sex + c_f_ratio_grade + 
+                  s_geneff +
+                  s_ictfut + s_ictpos + s_ictneg +
+                  s_usecom + s_useinf + s_usestd + s_accont +
+                  (1 +s_sex| idschool), data=data)
+
+tab_model(m2_geneff, m2_speceff, 
+          show.ci = FALSE, auto.label = TRUE)
+```
+## ¿Es relevante la composición de género? {.smaller}
+
+::: {.panel-tabset}
+#### Autoeficacia General
+```{r, results='markup'}
+interactions::interact_plot(m2_geneff, pred = s_sex, modx = c_f_ratio_grade)+
+  labs(x="Ratio Mujeres", y="Género")
+```
+
+
+#### Autoeficacia Específica
+```{r, results='markup'}
+interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade)+
+  labs(x="Ratio Mujeres", y="Género")
+```
+:::
+
+## Conclusiones
+
+-   fsd
+
+## Referencias
+
+::: {#refs}
+:::

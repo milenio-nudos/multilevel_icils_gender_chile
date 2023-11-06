@@ -1,0 +1,540 @@
+---
+title: "Una aproximación multinivel a la exploración de las diferencias de uso de las TIC por género en el sistema educativo chileno a través de ICILS 2013"
+author: NUDOS
+bibliography: ../input/bib/informe1.bib 
+csl: ../input/bib/apa.csl
+format:
+  html:
+    embed-resources: true
+    toc: true
+    number-sections: false
+    highlight-style: github
+    code-fold: true
+    comments: 
+      hypothesis: true
+---
+
+# Introducción
+
+A través de este documento se presentan las primeras líneas de la agenda de investigación ICILS de NUDOS. En esta página se pueden encontrar un esbozo del problema que estamos armando, así como una breve y descriptiva exploración de los datos de ICILS. La idea es que pueda servir como una guía escrita que nos permita tener un respaldo a la hora de ir pensando el proyecto en el que estamos trabajando.
+
+El primer acuerdo como equipo fue trabajar temas de género en ICILS, pues los resultados del desempeño de la prueba son contraintuitivos. Las mujeres obtienen mayores calificaciones que los hombres. A partir de la revisión de literatura, encontré que este hecho ha sido ampliamente estudiado, por lo que no me parece tan original buscar explicaciones al puntaje de la prueba por género. Lo que no se ha abordado tanto es el comportamiento de otras variables que generalmente son usadas como predictores. Mi propuesta entonces, es armar un problema que nos permita explicar las diferencias de género en otras variables como autoeficacia o motivación intrínseca con el uso de dispositivos TIC. A continuación se presenta esta idea.
+
+# Problema
+
+En las formaciones sociales tardomodernas, las Tecnologías de la información y las comunicaciones (TIC) se han vuelto un elemento central en la vida cotidiana de las personas. Las *relaciones con el mundo* del trabajo, la política e incluso la familia se tornan cada vez más mediadas por las TIC. Un espacio central para la formación de individuos eficaces e interesados en estas esferas es la educación. En el sistema educativo primario y secundario se supone que los niños y jóvenes adquieren habilidades y motivaciones digitales para el buen desenvolvimiento de su vida en la sociedad. Desde principios del siglo XXI, las escuelas de todo el mundo han tratado de incorporar en sus programas curriculares la enseñanza y promoción de habilidades tecnológicas con tal de facilitar la integración de los individuos en la era digital  [@fraillonPreparingLifeDigital2014;@strokovDigitalizationEducationProblems2020].
+
+Por supuesto, el grado de incorporación de la enseñanza y promoción de habilidades digitales no ha sido equitativa. Las desigualdades sociales, culturales y económicas que se mantienen latentes en los sistemas educativos también se expresan en el grado de alfabetización computacional que tienen los estudiantes. Ante este hecho, la *Agencia Internacional de la Educación (IEA)* ha levantado un estudio internacional denominado *International Computer and Information Literacy Study (ICILS)* con el objetivo de medir y evaluar la capacidad que tienen los sistemas educativos de países occidentales en preparar a los estudiantes para estudiar, trabajar y vivir en la era digital.
+
+El estudio ICILS ha sido ampliamente visitado por investigadores de las Ciencias Sociales. Un resultado contraintuitivo que se repite alrededor de los principales análisis que se han hecho estas bases de datos guarda relación con las diferencias de género en el puntaje de alfabetización computacional. A pesar de que los estudiantes hombres autoreportan mayores competencias digitales y mayor interés en el uso de tecnologías de información que las estudiantes mujeres, en la gran mayoría de los sistemas educativos medidos las estudiantes mujeres obtienen un puntaje significativamente mayor en alfabetización computacional y de información.  [@fraillonPreparingLifeDigital2014;@gebhardtGenderDifferencesComputer2019].
+
+La investigaciones de @punterGenderDifferencesComputer2017 y @hargittaiDifferencesActualPerceived2006 demuestran que este hecho se podría explicar por la masificación del uso de TIC en la sociedad, que ha ido disminuyendo las brechas de acceso y uso de dispositivos digitales principalmente en los tramos jóvenes de la sociedad. En cambio, en vez de desigualdades o inequidades, las diferencias de género con las TIC estarían marcadas por diferentes relaciones de aproximación con el mundo digital; Los hombres estarían mayormente interesados en desarrollar habilidades técnico-operativas con las tecnologías de información (Videojuegos, programación y competencias laborales), mientras que las mujeres se ven motivadas por las oportunidades de comunicación social que abren estas tecnologías (Uso de redes sociales y diseño digital).
+
+A pesar de la baja intensidad de las brechas que existen en términos de recursos y habilidades digitales, la mayoría de las aproximaciones sociológicas sobre el efecto de la recepción de las tecnologías computacionales y de información en el sistema educativo están centradas las inequidades de acceso, uso y competencias que tienen las y los estudiantes, dando poco espacio a variables como la sensación de goce o interés genuino que tienen las estudiantes mujeres y hombres por las tecnologías[@siddiqTakingFuturePerspective2016;@aesaertGenderSocioeconomicRelated2015]. Este es un problema que no solo está anclado en este tema de estudio, sino en el enfoque teórico de la sociología en general.
+
+La influyente teoría de la Resonancia de Hartmut Rosa sugiere que la sociología reciente ha estado primordialmente centrada en la pregunta moral por la justicia social, lo que ha dejado de lado la preocupación ética por las *relaciones logradas con el mundo* [@rosaResonanciaSociologiaRelacion2019]. Como consecuencia, las investigaciones empíricas tradicionales se centran en la distribución de recursos sociales, económicos y culturales para aproximarse al grado de integración social del sujeto, pero dejan en segundo plano las *aspiraciones de buena vida* que en última instancia es lo que permite realizar a las personas en sociedad.
+
+Con el objetivo de detener esta inercia, la propuesta de @rosaResonanciaSociologiaRelacion2019 toma categorías de la teoría psicológica de la autodeterminación [@ryanSelfdeterminationTheoryFacilitation2000] y afirma que las *relaciones logradas con el mundo* son todas aquellas en que la motivación intrínseca por la actividad que el sujeto realiza se ve reforzada con las expectativas de autoeficacia de los mismos. En otras palabras, los seres humanos aumentan su sentimiento de realización personal en tanto sienten que llevan a cabo acciones sin propósitos instrumentales extrínsecos (que buscan algo a cambio) y se autoperciben como agentes competentes en las tareas que requieren esas acciones.
+
+Desde este punto vista, los estudios de las diferencias digitales de género deberían otorgar un mayor foco a las causas de la motivación intrínseca en el uso de las TIC, y verificar si efectivamente esta se ve reforzada por mayores percepciones de autoeficacia en las actividades digitales. La mayoría de los estudios que usan los datos de ICILS 2013 determinan como variable dependiente el puntaje de la prueba de alfabetización computacional, pero en este caso, pareciera fundamental explicar las variaciones por género del índice de interés y entretenimiento que tiene el respectivo estudio, así como verificar si existe un efecto de las expectativas de autoeficacia como lo propone @ryanSelfdeterminationTheoryFacilitation2000.
+
+La literatura del área demuestra que los estudiantes hombres autoreportan mayores grados de autoeficacia en tareas avanzadas que las estudiantes mujeres, mientras que no existen diferencias significativas en autoeficacia de tareas básicas en la mayoría de los países [@gebhardtGenderDifferencesComputer2019]. Asimismo, en términos de la motivación intrínseca, Chile y Korea del Sur son un caso llamativo, pues son los únicos sistemas educativos en donde los hombres y las mujeres no presentan diferencias significativas. La indagación de @claroAssessment21stCentury2012 con adolescentes chilenos de 15 años en datos de otros estudios tampoco encontró diferencias significativas por género en el interés y uso recreacional de las tecnologías computacionales.
+
+Se nota entonces, que las particularidades de Chile incentivan un estudio de caso de los determinantes de género de las relaciones de resonancia con las tecnologías de computacionales y de información que tiene su sistema educativo. Sin embargo, no se hallaron estudios del país que estudien esta cuestión desde un enfoque multinivel, siendo que la base de datos ICILS permite utilizar estos métodos ya que tiene contiene los datos de las y los estudiantes anidados a las escuelas donde estudian al momento de la medición.
+
+El estudio de @vekiriGenderIssuesTechnology2008 recaban como antecedente de que los estudiantes secundarios hombres de Grecia reciben mayor apoyo de sus compañeros de clase y de sus padres en el uso de computadoras que sus pares mujeres, lo que provoca que tengan mayores niveles de autoeficacia y valoración social y personal de las tecnologías. Como demuestra @hargittaiDifferencesActualPerceived2006, es probable que estas diferencias se vean reforzadas por el hecho de que la mayor cantidad de usuarios en línea son hombres. Que el individuo tenga un mayor contacto con personas de su género podría reforzar el interés intrínseco en las tecnologías computacionales y viceversa.
+
+En este sentido ¿Puede ser que las estudiantes mujeres se sientan más inseguras, desmotivadas y menos competentes con las tecnologías si se ven mayormente rodeadas por pares hombres que por mujeres en la escuela? ¿Y si los hombres refuerzan su confianza con las tecnologías al estar rodeados con hombres? De ahí la necesidad de un enfoque multinivel.
+
+# Objetivos e Hipótesis
+
+Con el problema anterior en consideración, el presente informe se propone *explicar de qué manera la composición de género de las escuelas del sistema educativo chileno determinan las diferencias de género en las relaciones de resonancia con las tecnologías computacionales y de información en las y los estudiantes de octavo básico en 2013 en Chile*. Se explora solo la base del año 2013 por falta de tiempo. Se espera en las próximas semanas ver el comportamiento de estas variables en el año 2018.
+
+Se determinan cuatro objetivos específicos de investigación:
+
+1.    Explorar la distribución de las expectativas de autoeficacia y motivación intrínseca con las TIC según el género (nivel 1) y el tipo de establecimiento (nivel 2) al que asisten las y los estudiantes de octavo básico en 2013 en Chile.
+2.    Relacionar la variación de las expectativas de autoeficacia con la variación de la motivación intrínseca en las TIC según el género de las y los estudiantes de octavo básico en 2013 en Chile (nivel 1).
+3.    Relacionar la variación de la motivación intrínseca y las expectativas de autoeficacia de las TIC con la variación de la proporción de estudiantes mujeres y el género de los directivos de los establecimientos educacionales de Chile en el año 2013 (nivel 2).
+4.    Determinar el efecto que tienen la composición de género del establecimiento educacional y las expectativas de autoeficacia en la motivación intrínseca de las y los estudiantes de octavo básico en Chile en el año 2013 (Multinivel)^[Este objetivo no es desarrollado en esta exploración, pues más bien refiere al modelo explicativo posterior en el análisis].
+
+Las hipótesis son las siguienes:
+
+-   Las y los estudiantes (hombres y mujeres) aumentan su nivel de motivación intrínseca cada vez que aumentan sus expectativas de autoeficacia con el uso de las TIC. 
+-   La tamaño de efecto positivo entre motivación intrínseca y expectativas de autoeficacia con las TIC es más intenso en los estudiantes hombres que en las estudiantes mujeres.
+-   Las estudiantes mujeres presentan mayores niveles de motivación intrínseca y expectativas de autoeficacia con las tecnologías computacionales y de información en los establecimientos educacionales donde son mayoría y tienen directora mujer.
+-   La presencia de una directora mujer, el aumento de pares mujeres y del promedio de expectativas de autoeficacia en el establecimiento educacional, en conjunto con el aumento de expectativas de autoeficacia a nivel personal favorece la motivación intrínseca de las estudiantes mujeres.^[Esta hipótesis no es probada en esta exploración, pues más bien refiere al modelo multinivel posterior]
+
+
+# Método
+
+El estudio ICILS 2013 contiene cinco mediciones: 
+
+1.    Una prueba que evalua alfabetización computacional y de información,
+2.    Una encuesta a estudiantes de octavo básico sobre comportamiento y actitudes relacionadas al uso de tecnologías computacionales y de información. 
+3.    Una encuesta a profesores de básica sobre conocimientos y actitudes sobre las tecnologías computacionales y de información.
+3.    Una encuesta al encargado informático del establecimiento escolar sobre implemenación de infraestructura de tecnologías computacionales y de información en la escuela.
+4.    Una encuesta al director o directa del establecimiento escolar sobre las características generales del establecimiento.
+
+La medición fue realizada en más de 21 países. En este caso, se decide trabajar solo con la base de datos de Chile, considerando la encuesta de estudiantes (nivel 1) y la encuesta al director/a (nivel 2). En bruto, la base de datos de estudiantes cuenta con 3180 observaciones, mientras que la de colegios con 174 establecimientos. En el procesamiento, se eliminaron 11 establecimientos de la base porque no reportaron la cantidad de estudiantes hombres y mujeres, por lo que los datos trabajados refieren a 163 establecimientos y 2989 estudiantes en Chile.
+
+Las principales variables utilizadas son índices de entre 4 a 7 ítems construidas por el mismo equipo de IEA. Estas son:
+
+```{r}
+pacman::p_load(sjPlot,tidyverse)
+readRDS("../../input/proc_data/01_student_proc_2013.rds")%>%
+  view_df()
+```
+
+Las preguntas de los tres índices principales son las siguientes:
+
+:::{.panel-tabset}
+
+### Autoeficacia básica
+```{r,warning=FALSE,results='asis'}
+pacman::p_load(haven, #Abrir bb.dd
+               summarytools, #Exploración de datos
+               sjPlot, #Visualizaciones 
+               tidyverse, #Procesamiento
+               janitor, #Procesamiento
+               sjmisc, #Manipulación etiquetas
+               Hmisc, #Manipulación etiquetas
+               knitr, #Markdown
+               kableExtra, #Markdown
+               summarytools #Tabla descriptiva
+               ) 
+
+read_sav("../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G25A, IS1G25C, IS1G25E, IS1G25F, IS1G25L, IS1G25M)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Indicadores autoeficacia básica',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### Autoeficacia avanzada
+```{r,warning=FALSE,results='asis'}
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G25B, IS1G25D, IS1G25G, IS1G25H, IS1G25I, IS1G25J, IS1G25K)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Indicadores autoeficacia avanzada',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### Motivación intrínseca
+```{r,warning=FALSE,results='asis'}
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G26A, IS1G26C, IS1G26E, IS1G26F, IS1G26H, IS1G26J, IS1G26K)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Indicadores autoeficacia avanzada',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+:::
+
+La técnicas de análisis utilizadas implican una exploración estadística descriptiva y correlacional de los datos. Se espera ir definiendo mejor el problema para dar paso a técnicas explicativas como las regresiones multinivel.
+
+# Procesamiento base de datos
+
+En la presente sección se despliega el código de preparación de la base de datos que luego fue usada en el análisis. Se ruega revisar en caso de encontrar algo contradictorio o inconsistente.
+
+### Preparación
+```{r}
+rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
+options(scipen=999) # valores sin notación científica
+
+#Abrir bases de datos
+bsgchli1 <- read_sav("../../input/raw_data/2013/BSGCHLI1.sav") #Base de estudiantes
+bcgchli1 <- read_sav("../../input/raw_data/2013/BCGCHLI1.sav") #Base de colegios
+```
+
+### Construcción base de primer nivel
+
+```{r}
+dim(bsgchli1) #Dimension de la base
+
+bsgchli1 <- bsgchli1%>%clean_names() #Nombres en minúscula
+                           
+#Selección de las variables a trabajar
+base <- bsgchli1 %>% select (idstud, idschool, #ID nivel 1 y 2
+                     s_sex, #Género del estudiante
+                     s_adveff, s_baseff, s_intrst) #Variables de autoeficacia y motivación
+
+
+#Agregación de variables nivel 1 a 2
+base <- base %>% group_by(idschool) %>% 
+                  mutate(c_adveff=round(mean(s_adveff, na.rm=TRUE),2), #promedio autoeficacia avanzada por colegio
+                         c_baseff=round(mean(s_baseff, na.rm=TRUE),2), #promedio autoeficacia básica por colegio
+                         c_intrst=round(mean(s_intrst, na.rm=TRUE),2) #promedio interés y motivación por colegio
+                         )
+
+#Tenemos las variables de nivel 2 que pueden conformarse desde la base de estudiantes.
+#Sin embargo, también necesitamos variables de nivel 2 que están solo en la base de colegios.
+#Por lo que a continuación se unifican ambas bases.
+```
+
+### Construcción base de segundo nivel
+```{r}
+#Revisamos si hay NA en las variables de cantidad de hombres y mujeres total y en 8vo
+sum(is.na(bcgchli1$IP1G03A))
+sum(is.na(bcgchli1$IP1G03B))
+sum(is.na(bcgchli1$IP1G04A))
+sum(is.na(bcgchli1$IP1G04B))
+
+#Hacemos vectores con el id de las escuelas que tienen NA
+deleted_schools_03a <- bcgchli1[which(is.na(bcgchli1$IP1G03A)),]$IDSCHOOL
+deleted_schools_03b <- bcgchli1[which(is.na(bcgchli1$IP1G03B)),]$IDSCHOOL
+deleted_schools_04a <- bcgchli1[which(is.na(bcgchli1$IP1G04A)),]$IDSCHOOL
+deleted_schools_04b <- bcgchli1[which(is.na(bcgchli1$IP1G04B)),]$IDSCHOOL
+
+`%!in%` = Negate(`%in%`) #Crear función de exclusión conjunta
+
+#Eliminamos filas con NA para poder calcular los ratios de composición de género
+bcgchli1 <- filter(bcgchli1, IDSCHOOL %!in% c(deleted_schools_03a,
+                                              deleted_schools_03b,
+                                              deleted_schools_04a,
+                                              deleted_schools_04b))
+
+#Verificar
+sum(is.na(bcgchli1$IP1G03A))
+sum(is.na(bcgchli1$IP1G04A))
+sum(is.na(bcgchli1$IP1G03B))
+sum(is.na(bcgchli1$IP1G04B))
+
+#Calculamos el ratio de genero total y de 8vo básico por escuela.
+#Para evitar números indefinidos, se pide que si no hay mujeres en la escuela, ponga valor 0
+# Si no hay hombres, ponga valor 100. 
+school_data<- bcgchli1 %>% clean_names() %>% 
+  mutate(gen_ratio_total = ifelse(ip1g03a==0,0,
+                           round(ip1g03a/(ip1g03a+ip1g03b),2)),
+         gen_ratio_grade = ifelse(ip1g04a==0,0,
+                           round(ip1g04a/(ip1g04a+ip1g04b),2))) %>%
+  select(idschool, gen_ratio_total, gen_ratio_grade, p_sex,p_priv) #Seleccionar variables a fundir con base de estudiantes
+
+#También se elimina de la base original las escuelas con NA en ratio de genero
+base <- filter(base, idschool %!in% c(deleted_schools_03a,
+                                      deleted_schools_03b,
+                                      deleted_schools_04a,
+                                      deleted_schools_04b))
+
+#Unir ambas bases de datos a partir de id de escuelas
+base <- merge(base, school_data, by = "idschool", all.x = TRUE)
+
+#Agregar etiquetas variables de nivel 2
+label(base[["c_adveff"]]) <- "School mean advanced self-efficacy"
+label(base[["c_baseff"]]) <- "School mean basic self-efficacy"
+label(base[["c_intrst"]]) <- "School mean interest and enjoyment ICT"
+label(base[["gen_ratio_total"]]) <- "Ratio of total women students"
+label(base[["gen_ratio_grade"]]) <- "Ratio of 8th grade women students"
+
+#Guardar base de datos
+saveRDS(base,file="../../input/proc_data/base_proc.rds")
+```
+
+# Resultados
+
+### Preparación
+```{r}
+rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
+options(scipen=999) # valores sin notación científica
+
+pacman::p_load(lme4, #multilevel analysis
+               descr, #Graficos descriptivos
+               ggplot2, #Gráficos
+               sjmisc, #Manipulación de etiquetas
+               naniar, #Manipulación de casos perdidos
+               hrbrthemes, #Themes de los gráficos
+               tidyverse, #Manipulación bb.dd
+               stargazer, #Descriptive table
+               ggExtra, #Marginales plots
+               reghelper, #Correlación intraclase
+               texreg, #Ver resultados lm
+               knitr #Markdown
+               )
+
+base <- readRDS(file="../../input/proc_data/01_student_proc_2013.rds")
+```
+
+### Distribución descriptiva de las variables
+La base de datos disponible tiene una leve menor cantidad de estudiantes mujeres de las que busca representar. En específico, del total de casos un 48,5% son mujeres, mientras que en los establecimientos tanto en total como en octavo básico son 50%. Resulta interesante, que un 46% del total de directivos son mujeres, lo cual es un número alto considerando las brechas de género que hay respecto a los altos mandos en el mercado laboral chileno.
+
+A pesar de ese pequeño sesgo muestral, se observa que los puntajes de autoeficacia básica y avanzada, más la motivación intrínseca obtienen valores parecidos en el nivel 1 y nivel 2. Asimismo, se nota que la distribución de la autoeficacia avanzada y la motivación intrínseca presenta mayores niveles de dispersión que la autoeficacia básica.
+
+```{r, results='asis'}
+stargazer(base%>%select(-c(idschool,idstud)), title = "Descriptivos generales",type="html")
+```
+
+El siguiente conjunto de gráficos muestra la distribución de las variables de interés en los estudiantes, cruzadas por el género del estudiante y si es que la mayoría de sus pares son hombres o mujeres. Los resultados no demuestran diferencias en las distribuciones, salvo que los hombres aumentan su concentración en los valores más altos cuando están rodeados de más pares mujeres. Probablemente los hombres tienden a sobre-estimarse más cuando pueden compararse con sus compañeras. Esto es contradictorio con la hipótesis inicial, donde se espera que las mujeres refuerzen sus relaciones logradas con las TIC toda vez que se rodean más con ellas mismas.
+
+::: {.panel-tabset}
+
+```{r,warning=FALSE,message=FALSE}
+#Se crea una base de datos del nivel 2 para hacer gráficos descriptivos
+school_level <- base %>%
+  group_by(idschool)%>%
+  summarise(gen_ratio_total=mean(gen_ratio_total),
+            gen_ratio_grade=mean(gen_ratio_grade),
+            p_priv=as.character(mean(p_priv)),
+            p_sex=as.character(mean(p_sex)),
+            c_adveff=mean(c_adveff),
+            c_baseff=mean(c_baseff),
+            c_intrst=mean(c_intrst))%>%
+  mutate(p_sex = case_when(
+                  p_sex == 0 ~ "Hombre",
+                  p_sex == 1 ~ "Mujer"))
+``` 
+
+#### Autoeficacia básica
+```{r,warning=FALSE,message=FALSE}
+base%>%
+  mutate(prop_distinct = case_when(
+                         gen_ratio_total > 0.5 ~ "Mayoría hombres",
+                         gen_ratio_total <= 0.5 ~ "Mayoría mujeres"))%>%
+  ggplot(aes(x=s_baseff))+
+  geom_histogram( color="#e9ecef",fill="#69b3a2", alpha=0.6, position = 'identity') +
+  theme_ipsum()+
+  facet_grid(prop_distinct~to_label(s_sex))+
+  labs(x="Puntaje indicador",y="Frecuencia",
+       title="Distribución estudiantil de género")
+```
+
+#### Autoeficacia avanzada
+```{r,warning=FALSE,message=FALSE}
+base%>%
+  mutate(prop_distinct = case_when(
+    gen_ratio_total > 0.5 ~ "Mayoría hombres",
+    gen_ratio_total <= 0.5 ~ "Mayoría mujeres"))%>%
+  ggplot(aes(x=s_adveff))+
+  geom_histogram( color="#e9ecef",fill="#69b3a2", alpha=0.6, position = 'identity') +
+  theme_ipsum()+
+  facet_grid(prop_distinct~to_label(s_sex))+
+  labs(x="Puntaje indicador",y="Frecuencia",
+       title="Distribución composición estudiantil de género")
+```
+
+#### Motivación intrínseca
+```{r,warning=FALSE,message=FALSE}
+base%>%
+  mutate(prop_distinct = case_when(
+    gen_ratio_total > 0.5 ~ "Mayoría hombres",
+    gen_ratio_total <= 0.5 ~ "Mayoría mujeres"))%>%
+  ggplot(aes(x=s_intrst))+
+  geom_histogram( color="#e9ecef",fill="#69b3a2", alpha=0.6, position = 'identity') +
+  theme_ipsum()+
+  facet_grid(prop_distinct~to_label(s_sex))+
+  labs(x="Puntaje indicador",y="Frecuencia",
+       title="Distribución composición estudiantil de género")
+```
+:::
+
+Los gráficos a continuación exploran la influencia en las diferencias de género en el promedio de las viarbles de interés según el tipo de establecimiento. En este caso, no se encuentra ninguna tendencia relevante de reportar.
+
+::: {.panel-tabset}
+#### Autoeficacia básica
+```{r,warning=FALSE,message=FALSE}
+#Explorar cruce de género con variables de interés
+base%>%
+  drop_na(p_priv)%>% #Eliminar establecimientos con casos perdidos en sostenedor
+  mutate(gender_by_school= case_when(
+    p_sex == 0 & p_priv == 0 ~ "Público con director hombre",
+    p_sex == 1 & p_priv == 0 ~ "Público con directora mujer",
+    p_sex == 0 & p_priv == 1 ~ "Privado con director hombre",
+    p_sex == 1 & p_priv == 1 ~ "Privado con directora mujer"))%>%
+  group_by(s_sex,gender_by_school)%>%
+  summarise(s_baseff=mean(s_baseff,na.rm=T))%>%
+
+    ggplot(aes(x=to_label(s_sex), y=s_baseff, fill=to_label(s_sex)))+
+    geom_bar(stat = "identity",position = "dodge", color="black", width = 0.6) + 
+    facet_wrap(~to_label(gender_by_school))+
+    theme(axis.text=element_text(size=5),
+          axis.title=element_text(size=10,face="bold"),
+          legend.position = "none") + 
+    labs(x="Género del estudiante", y="Puntaje",
+        title = "Por género de directivo y sostenedor del establecimiento")+
+    theme_ipsum()+
+    guides(fill=FALSE)
+```
+
+#### Autoeficacia avanzada
+```{r,warning=FALSE,message=FALSE}
+base%>%
+  drop_na(p_priv)%>% #Eliminar establecimientos con casos perdidos en sostenedor
+  mutate(gender_by_school= case_when(
+    p_sex == 0 & p_priv == 0 ~ "Público con director hombre",
+    p_sex == 1 & p_priv == 0 ~ "Público con directora mujer",
+    p_sex == 0 & p_priv == 1 ~ "Privado con director hombre",
+    p_sex == 1 & p_priv == 1 ~ "Privado con directora mujer"))%>%
+  group_by(s_sex,gender_by_school)%>%
+  summarise(s_adveff=mean(s_adveff,na.rm=T))%>%
+  
+  ggplot(aes(x=to_label(s_sex), y=s_adveff, fill=to_label(s_sex)))+
+  geom_bar(stat = "identity",position = "dodge", color="black", width = 0.6) + 
+  facet_wrap(~to_label(gender_by_school))+
+  theme(axis.text=element_text(size=5),
+        axis.title=element_text(size=10,face="bold"),
+        legend.position = "none") + 
+  labs(x="Género del estudiante", y="Puntaje",
+       title = "Por género de directivo y sostenedor del establecimiento")+
+  theme_ipsum()+
+  guides(fill=FALSE)
+```
+
+#### Motivación intrínseca
+```{r,warning=FALSE,message=FALSE}
+base%>%
+  drop_na(p_priv)%>% #Eliminar establecimientos con casos perdidos en sostenedor
+  mutate(gender_by_school= case_when(
+    p_sex == 0 & p_priv == 0 ~ "Público con director hombre",
+    p_sex == 1 & p_priv == 0 ~ "Público con directora mujer",
+    p_sex == 0 & p_priv == 1 ~ "Privado con director hombre",
+    p_sex == 1 & p_priv == 1 ~ "Privado con directora mujer"))%>%
+  group_by(s_sex,gender_by_school)%>%
+  summarise(s_adveff=mean(s_adveff,na.rm=T))%>%
+  
+  ggplot(aes(x=to_label(s_sex), y=s_adveff, fill=to_label(s_sex)))+
+  geom_bar(stat = "identity",position = "dodge", color="black",width = 0.6) + 
+  facet_wrap(~to_label(gender_by_school))+
+  theme(axis.text=element_text(size=5),
+        axis.title=element_text(size=10,face="bold"),
+        legend.position = "none") + 
+  labs(x="Género del estudiante", y="Puntaje",
+       title = "Por género de directivo y sostenedor del establecimiento")+
+  theme_ipsum()+
+  guides(fill=FALSE)
+```
+:::
+
+### Relaciones entre variables nivel 1
+
+Los 2 gráficos que se despliegan a continuación exponen la relación lineal que hay entre las variables de interés según el género de las y los estudiantes. Ambos tipos de expectativas de autoeficacia tienen una relación positiva o ascendente, sin embargo se nota que la autoeficacia avanzada tiene un tamaño de efecto mayor que la dedicada para tareas básicas con las tecnologías. No se hallan patrones en la distribución de casos por género.
+
+::: {.panel-tabset}
+#### Autoeficacia básica
+```{r,warning=FALSE,message=FALSE}
+ggMarginal(base%>%
+             ggplot(aes(x=s_baseff,y=s_intrst,color=to_label(s_sex)))+
+             geom_point()+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Expectativas de autoeficacia básica",
+                  y = "Motivación intrínseca",
+                  color= "Género del estudiante")+
+             theme(legend.position = "bottom"),
+           type = "boxplot")
+```
+
+#### Autoeficacia avanzada
+```{r,warning=FALSE,message=FALSE}
+ggMarginal(base%>%
+  ggplot(aes(x=s_adveff,y=s_intrst,color=to_label(s_sex)))+
+  geom_point()+
+  geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+  theme_ipsum()+
+  labs(x = "Expectativas de autoeficacia avanzada",
+       y = "Motivación intrínseca",
+       color= "Género del estudiante")+
+    theme(legend.position = "bottom"),
+  type = "boxplot")
+```
+:::
+
+Para verificar las relaciones según el género, se decide someter las variables a una matriz correlaciones de Pearson. Se nota que el tamaño de efecto entre las variables de autoeficacia es mayor que el cruce de cada una con la motivación intrínseca, aunque en general tienen valores medianamente altos. Sin embargo, en las mujeres disminuyen relevantemente, sobre todo la autoeficacia en actividades básicas. Pareciera que como las mujeres no se autoperciben como capaces de desarrollar actividades complejas al nivel de los hombres, sus competencias en actividades básicas no son suficientes para despertar un interés en las tecnologías.
+
+::: {.panel-tabset}
+
+#### Hombres
+```{r}
+filter(base, s_sex==0) %>% select(s_adveff,s_baseff, s_intrst)%>% tab_corr()
+```
+
+#### Mujeres
+```{r}
+filter(base, s_sex==1) %>% select(s_adveff,s_baseff, s_intrst)%>% tab_corr()
+```
+:::
+
+### Relaciones entre variables de nivel 2
+
+Se busca verificar si existen relaciones entre la distribución por género de estudiantes de los establecimientos y la motivación intrínseca de los estudiantes. Los resultados muestran que no existen tendencias notorias entre la proporción de estudiantes mujeres y el índice de interés y entretenimiento con las tecnologías. El tipo de directivo tampoco pareciera afectar en la distribución.
+
+:::{.panel-tabset}
+
+#### Ratio Total
+```{r,warning=FALSE,message=FALSE}
+ggMarginal(school_level%>%
+             ggplot(aes(x=gen_ratio_total,y=c_intrst,color=to_label(p_sex)))+
+             geom_point()+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Ratio de mujeres total",
+                  y = "Motivación intrínseca",
+                  color= "Género directivo")+
+             theme(legend.position = "bottom"),
+           type = "boxplot")
+```
+
+#### Ratio Octavo básico
+```{r,warning=FALSE,message=FALSE}
+ggMarginal(school_level%>%
+             ggplot(aes(x=gen_ratio_grade,y=c_intrst,color=to_label(p_sex)))+
+             geom_point()+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Ratio de mujeres total",
+                  y = "Motivación intrínseca",
+                  color= "Género directivo")+
+             theme(legend.position = "bottom"),
+           type = "boxplot")
+```
+:::
+
+De todas formas, se profundiza el análisis con una matriz de correlaciones entre las variables de nivel 2. Los resultados muestran que, si bien los puntajes de los índices de autoeficacia y motivación intrínseca agregados cambian, se mantiene la tendencia de que la autoeficacia avanzada tiene un mayor tamaño de efecto sobre la motivación intrínseca. El tamaño de efecto de la proporción de mujeres y la motivación intrínseca positivo pero bajo en los hombres. Sin embargo, contraintuitivo a las hipótesis propuestas, en las mujeres este tamaño de efecto resulta ser negativo, aunque también leve.
+
+:::{.panel-tabset}
+#### Hombres
+```{r,warning=FALSE,message=FALSE}
+filter(school_level, p_sex=="Hombre") %>% select(c_adveff,c_baseff, c_intrst,
+                                  gen_ratio_total,gen_ratio_grade)%>% tab_corr(triangle="lower")
+```
+#### Mujeres
+```{r,warning=FALSE,message=FALSE}
+filter(school_level, p_sex=="Mujer") %>% select(c_adveff,c_baseff, c_intrst,
+                                  gen_ratio_total,gen_ratio_grade)%>% tab_corr(triangle="lower")
+```
+:::
+
+# Acuerdos y observaciones
+
+Este documento contempla una exploración inicial de un trabajo de largo plazo más amplio. En ese sentido, está lleno de límites y cuestiones más amplias que estudiar. En primer lugar, la muestra es solo a nivel nacional. Se puede replicar este estudio añadiendo un tercer nivel: País. Asimismo, se puede explorar las brechas de género entre profesores, aunque la literatura sugiera que no hay diferencias significativas. 
+
+Ya fue mencionado que tampoco se exploró la base de datos del año 2018. En esta base no hay variables de motivación intrínseca, pero sí variables respecto a la *valoración social que tienen los estudiantes sobre las tecnologías*, esto es, su percepción sobre si las TIC son buenas o malas para el desarrollo de la sociedad. Es interesante, pues esta variable también podría dar cuenta de *relaciones logradas con las tecnologías* y existen antecedentes de que los hombres, por el apoyo que reciben, son menos adversos que las mujeres a la implementación de las TIC en la vida social.
+
+Además de lo anterior, a percepción personal, hace falta una mayor indagación en la literatura del TIC y educación en Chile. Mi trabajo fue enfocado principalmente en lo que se ha escrito sobre ICILS en general, y es necesario rescatar con mayor particularidad el estado del arte en nuestro país, si queremos centrarnos en el.
+
+Una vez presentados estos resultados, el equipo de trabajo intercambió puntos de vista. A continuación se narran los principales acuerdos:
+
+-   La teoría de la resonancia puede dar un buen hincapié al problema, sin embargo, se trata de un concepto demasiado amplio y abstracto. Debemos recurrir a teorías de alcance medio que permitan aproximarse de manera más cercana a la relación entre autoeficacia y motivación intrínseca según el contexto del sujeto. Se decide darle una mirada a las siguientes lecturas:
+    -  Teoría de la amenaza del estereotipo.
+    -  Teoría de la identidad social.
+    -  Teoría del contacto social.
+    -  Efectos de composición (Buscar estudios según género).
+    -  Teoría del valor del estátus.
+-   Falta explorar variables socioeconómicas que entreguen un tinte estructural a las diferencias entre colegios. De lo contrario, caemos en una orientación psicologizante del problema. En la exploración solo se distingue entre escuela pública o privada. No hay variables sociodemográficas de nivel 1.
+-   No es complejo usar bases de datos antiguas, pero sí cuando se trata de tecnología y sociedad, que es una cuestión que cambia aceleradamente. Esto nos puede servir como respaldo, pero hay que buscar estrategias de investigación para la base 2018 y prepararnos para la base 2023.
+-   No es mala idea comenzar a explorar los índices que tiene ICILS sobre actividades de uso de las TIC. Por ejemplo, hay índices que distinguen intensidad de uso para actividades recreacionales, comunicación social, estudio académico, etc. Estas pueden ser un buen proxy a la autoeficacia y motivación intrínseca, y la literatura sugiere que hay diferencias consistentes según género.
+
+
+
+

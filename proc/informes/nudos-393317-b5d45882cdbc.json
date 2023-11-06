@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nudos-393317",
+  "private_key_id": "b5d45882cdbc1b343a2ecc1dde02e242558722bf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQClhdroNJ1fDh6C\nhyufEIMo6lIv4WMH9pqCS4XhncOWXvO++8xFO1GZHvjV/J+HyMCGmueXAB05fC0Z\nqFzwGdx/sELY3dAIZK9yfbDR6cd+hfDpXeFEj/Nz9dQ1lZmXQ2Mz+pNv2dFHEuCM\nyVwusqQo5PMAr8UtwWiiZlMHObkF3S/sVvV/Uu4CitpQzRSoCD/grw/lYxg58CY6\nfQdGmvSOqBa939dojW6QCpMrCbCqrWwCeBBmrY2/hw9MzJpr0+tLFZuHav4eTDlc\nSZq+c/TT35i/hrN8jy7REli5/Faxuv3KhVaU0//JH8CqxbMKPLzb1QBs2vp9ozos\nUc4yhpIJAgMBAAECggEAHiLMxFIwBMpxS5qImqFK//wJkqYafaysXOSbL4Slw47u\nGeuGOWSfap10+KDR+srWIqu5VoiyyXCOVYmNwjkzKBxTT2CzK5QJTXMM6msB40tH\nnXV2OiFrVcWAKXFfUWb3fNM2XLrvm10YfQl8OxRTRw7IH2vhHn+EKW0v2LTttt9P\nbu8uqndeQaDy8hkWHKN43CwSZN+b4z3Z0TlOX8c8p/OaJdciDxP8iQk+juHWys3r\nWx27LAD3qKFWM2nwSnsOEnGQGp/kxOuTBFwSqaADrEQrwH1L+b/YP8MS+Dien4Q+\nEhGlIDJIUziS0CEd67byIXLFp2n1SkTTine0ZTIuwQKBgQDajhrqI77CLJuF6J47\n9qsRSKVHyycgm0UJxnrVmT1cRqm1npK/56m4l2jrkr+VmqtltnOmKsmg5fn4Sobe\nnXR2zcH33vPQi5eXHh7/lrIz9aDMDIuU/sdIQ8awz9cTUNQbn/Gc4+/QD/5z4ibF\nzhODLUD06fSM7YsDGeNVwYUOtQKBgQDB4b1tEijLnEf4FeGasaxcg9nA35OSon40\naqxMFh3oSFTXLdztfX+nRiya+gePP59fGRpV8XtRe2K4VW27Xjh7Jr4WOShSoTOl\n7ztcpGU2Q24V+ZaHTC5TjSNvCAUFEg7XY6c5Q+nA5dKlP6d29StqwyfYfNCzVFGW\n8pvOwbT2hQKBgHgLR9NFUPjcgYwayhcLlMjIiygU+OfbAR+uaje6lM6DbaH5eId5\n2moumA2UrDCjJPOYNIuXwunih9uOK+hIufiraZgZWPg6REhX3hTrE/SgPPL3DRAI\npTMXLyJc9riAVBDcWFyhgk5ZCp1iIYPSfjs19xDPFGj37LwGUyz+P3RlAoGAZJQE\nvqZi/21tcGd5h9SQA9ZqikHxvmoJaovEIhx/G1canB4wtAscw9wFm8gFT+zDcoQF\nQ3xoatbFWbcHm+G/DzQD/GdeYa86qeQ3OVIXJ1VHsKKv0jRU/AcF0L2qTP0XMemC\ngJSYmPcglZU1/OImydW/v/DQG5esU9A7v8CBbjkCgYAwMWL9WRf8/slQq4z6P8jS\no9NyCFONG92zufIlJvGi1ACXuvdaaoa02B0nmWgEVLkWfDwfh6kIdne8pJmtOMy1\nuGGOxNKt936c9a54zvbkTyOS5U4pH26HjS/iV2eULcFBJ6Yb+/pE/yp7qY4pJI9+\nAerQaK6fOag71WjFSrMeWg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "nicolas-tobar-nudos@nudos-393317.iam.gserviceaccount.com",
+  "client_id": "109661422202197821533",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nicolas-tobar-nudos%40nudos-393317.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

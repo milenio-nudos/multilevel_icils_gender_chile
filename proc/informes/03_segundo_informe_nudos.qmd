@@ -1,0 +1,240 @@
+---
+title: "Nueva exploración multinivel de diferencias de uso de TIC por género en el sistema educativo chileno (ICILS 2013)"
+author: NUDOS
+date: 14-10-2023
+bibliography: ../../input/bib/informe1.bib 
+csl: ../../input/bib/apa.csl
+format:
+  html:
+    embed-resources: true
+    toc: true
+    number-sections: false
+    highlight-style: github
+    code-fold: true
+    comments: 
+      hypothesis: true
+---
+
+## Introducción
+
+En el informe anterior exploramos la literatura sobre ICILS 2013 y la variable género, para luego entrar a explorar la distribución de los datos respecto al refuerzo de la motivación intrínseca y las expectativas de autoeficacia con las TIC de niños y niñas según la proporción de niñas que hay en la escuela. Los resultados muestran que la proporción de género en el colegio no tiene un impacto determinante en niñas respecto a la motivación intrínseca y expectativas de autoeficacia con las TIC, pero sí en los niños, quienes aumentan su puntaje cuando están más rodeados de mujeres.
+
+En este segundo informe se avanza en dos cosas por paralelo para terminar la exploración de ICILS 2013 y comenzar a revisar datos más actualizados con la base de 2018. En primer lugar se explora el comportamiento de los indicadores de tipos de uso o actividades con la TIC en ICILS por género a nivel estudiante y escuela. En segundo lugar, se profundiza en las expectativas de autoeficacia por género de los profesores según la composición de género de los establecimientos. 
+
+```{r}
+#0. Preparación ----
+
+rm(list=ls())       # borrar todos los objetos en el espacio de trabajo
+options(scipen=999) # valores sin notación científica
+
+pacman::p_load(tidyverse, # Procesamiento
+               ggplot2, # Visualización
+               ggExtra, #Marginales plots
+               stargazer, # Tablas
+               knitr, #Markdown
+               kableExtra, #Markdown
+               summarytools, #Tablas resumen
+               haven, #Leer spss data
+               sjmisc, #Manipulacion etiquetas
+               sjPlot, #Correlaciones
+               hrbrthemes #Theme_ipsum
+               )
+
+base <- readRDS(file="../../input/proc_data/01_student_proc_2013.rds")
+teacher <- readRDS(file="../../input/proc_data/02_teach_proc_2013.rds")
+
+```
+
+## Presentación de índices de Actividades digitales
+
+La siguiente tabla contiene todos los índices de actividades digitales:
+
+```{r}
+base%>% select(s_baseff, s_adveff, s_intrst,
+               s_tsklrn, s_useapp, s_uselrn, s_userec,
+               s_usestd, s_usecom, s_useinf)%>%
+  view_df()
+```
+
+
+A continuación se presentan los ítems que componen cada uno de los índices de actividades de uso de las TIC:
+
+:::{.panel-tabset}
+
+### S_TSKLRN
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G23A, IS1G23B, IS1G23C, IS1G23D, IS1G23E, IS1G23F, IS1G23G, IS1G23H)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Learning ICT tasks at schools',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USEAPP
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G18A, IS1G18B, IS1G18C, IS1G18D, IS1G18E, IS1G18F, IS1G18G)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of specific ICT applications',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USELRN
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G22A, IS1G22B, IS1G22C, IS1G22D, IS1G22E)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of ICT during lessons at school',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USEREC
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G20A, IS1G20B, IS1G20D, IS1G20E, IS1G20F)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of ICT for recreation',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USESTD
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select( IS1G21A, IS1G21B, IS1G21C, IS1G21D, IS1G21E, IS1G21F, IS1G21G, IS1G21H)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of ICT for study purposes',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USECOM
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G19C, IS1G19D, IS1G19H, IS1G19I)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of ICT for social communication',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+
+### S_USEINF
+```{r,warning=FALSE,results='asis'}
+
+read_sav("../../input/raw_data/2013/BSGCHLI1.sav") %>% 
+  select(IS1G20A, IS1G20B, IS1G20D, IS1G20E, IS1G20F)%>%
+  mutate_all(to_label)%>%
+
+dfSummary()%>% select(Variable,Label,"Stats / Values") %>%
+  
+  kbl(format = "markdown", align= "c", caption = 'Use of ICT for exchanging information.',
+      booktabs = TRUE, longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header","hold_position"),
+                bootstrap_options = "bordered",font_size = 5,full_width = T)
+```
+:::
+
+# Exploración correlacional por género
+
+En este informe no se incluyen visualizaciones pues las variables son muchas y no son tan prioritarias como las anteriores. En cambio, se lleva a cabo un análisis correlacional para indagar en cómo aproximarnos al fenómeno.
+
+## Nivel 1
+
+En general, las correlaciones de nuestras variables dependientes con los tipos de uso obtienen un tamaño de efecto medianamente bajo tanto en hombres como mujeres, siendo los más altos los que tienen que ver con habilidades operacionales, de comunicación social y de recreación en ambos grupos. En general, las mujeres poseen tamaños de efecto mayores que el de los hombres en estos indicadores.
+
+Una cuestión llamativa es que La correlación de los hombres entre autoeficacia avanzada es llamativamente mayor con el uso de TIC para intercambiar información, mientras que la correlación de autoeficacia avanzada y uso de TIC para la comunicación social es llamativamente mayor en las mujeres. Asimismo, pareciera que el aumento de autoeficacia hace más propensas a las mujeres que a los hombres de aprender habilidades con las TIC en las escuelas.
+
+::: {.panel-tabset}
+
+#### Hombres
+```{r}
+filter(base, s_sex==0) %>% select(s_baseff, s_adveff, s_intrst,
+                                  s_tsklrn, s_useapp, s_uselrn, s_userec,
+                                  s_usestd, s_usecom, s_useinf)%>% tab_corr()
+```
+
+#### Mujeres
+```{r}
+filter(base, s_sex==1) %>% select(s_baseff, s_adveff, s_intrst,
+                                  s_tsklrn, s_useapp, s_uselrn, s_userec,
+                                  s_usestd, s_usecom, s_useinf)%>% tab_corr()
+```
+:::
+
+## Nivel 2
+
+Una vez que los datos están agregados, se calcula el tamaño de efecto del ratio de mujeres en las actividades de uso de TIC según género. Se observa que donde existe más impacto en la media de uso de TIC para la comunicación social de los estudiantes, superando el 0.180 en ambos coeficientes, y con significancia estadística. En el resto no se encuentran cifras llamativas.
+
+```{r}
+base %>% select(gen_ratio_total, gen_ratio_grade,
+                                  c_tsklrn, c_useapp, c_uselrn, c_userec,
+                                  c_usestd, c_usecom, c_useinf)%>% 
+ tab_corr()
+```
+
+# Exploración de profesores
+
+En el informe anterior se revisó la distribución de los indicadores según el género del director del establecimiento, pero  no se ahondó en el impacto del género del encargado de TIC ni de los profesores. La presente sección está dedicada a indagar en este ámbito.
+
+Con el presente gráfico se muestra que practicamente no existe relación entre el ratio de estudiantes y las expectativas de autoeficacia de los profesores, aunque si se nota que los hombres se concentran en los valores mayores.
+
+```{r, warning=FALSE}
+ggMarginal(teacher%>%
+
+             ggplot(aes(x=t_eff,y=gen_ratio_grade,color=to_label(t_sex)))+
+             geom_point()+
+             geom_smooth(method=lm , color="red", se=TRUE,fill="#69b3a2")+
+             theme_ipsum()+
+             labs(x = "Expectativas de autoeficacia",
+                  y = "Ratio estudiantes mujeres",
+                  color= "Género del profesor")+
+             theme(legend.position = "bottom"),
+            
+        type = "boxplot")
+```
+
+
+Se comprueba esto último viendo las medias de autoeficacia por género. No hay diferencias mayores, lo cual es consistente con la literatura.
+
+```{r, warning=FALSE,error=FALSE,message=FALSE}
+teacher %>% group_by(to_label(t_sex)) %>% summarise(media_autoeficacia=mean(t_eff, na.rm=T))%>%rename(sexo_profesor="to_label(t_sex)")%>%kable()
+  
+```
+
+# Presentación de variables 2018
+
+
+

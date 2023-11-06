@@ -1,0 +1,156 @@
+---
+title: "Factores explicativos de las brechas de autoeficacia tecnológica por género en el sistema educativo chileno"
+author: NUDOS
+date: 26-10-2023
+bibliography: ../../input/bib/informe1.bib 
+csl: ../../input/bib/apa.csl
+
+format:
+  html:
+    embed-resources: true
+    toc: true
+    number-sections: false
+    highlight-style: github
+    code-fold: true
+    comments: 
+      hypothesis: true
+            
+execute: 
+  error: false
+  warning: false
+  message: false
+---
+
+# Introduction
+
+```{r}
+#0. Preparation ----
+
+options(digits = 2) #round results to 2 digits
+
+nudos_color_binary <- c("#5f5758","#ff3057") #Nudos theme
+
+pacman::p_load(tidyverse, #Data manipulation
+               stargazer, #Descriptive tables
+               sjmisc, #Descriptive tables
+               knitr, #Markdown
+               corrr, #Correlation matrix
+               sjlabelled, #Labels manipulation
+               sjPlot, #View_df table
+               Hmisc, #Manipulate labels
+               ggplot2, #Plots
+               hrbrthemes, #Plot themes
+               labelled #Manipulate labels
+               )
+
+data <- readRDS("../../input/proc_data/03_student_proc_2018.rds")
+
+#Student level
+student <- data %>% select(starts_with("s_"))
+
+#School level
+school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>% 
+                  summarise(across(everything(),~ mean(.x, na.rm = TRUE))) %>% ungroup() %>%
+                  select(-idschool)
+
+```
+
+## Index presentations
+
+La medición del año 2018 tiene 4 tipos de indicadores que pueden ser útiles como predictores de autoeficacia:
+  
+-   Actitudes hacia las tecnologías.
+-   Actividades digitales fuera de la escuela.    
+-   Actividades digitales dentro de la escuela.
+-   Puntaje de la prueba.
+
+:::{.panel-tabset}
+
+#### Student Level
+```{r,results='asis'}
+student%>% mutate(s_sex=as_factor(s_sex))%>%
+  view_df(show.id = F, show.values = F, show.type = T,show.labels = F)
+```
+
+
+#### School Level
+```{r,results='asis'}
+label(school[["c_t_eff"]]) <- "School mean teacher ICT self-efficacy"
+label(school[["c_t_vwpos"]]) <- "School mean teacher positive ICT views"
+label(school[["c_t_vwneg"]]) <- "School mean teacher negative ICT views"
+label(school[["c_speceff"]]) <- "School mean specific self-efficacy"
+label(school[["c_geneff"]]) <- "School mean general self-efficacy"
+label(school[["c_ictneg"]]) <- "School mean negative ICT percepctions"
+label(school[["c_ictpos"]]) <- "School mean positive ICT perceptions"
+label(school[["c_ictlrn"]]) <- "School mean learning tsks ICT at school"
+label(school[["c_usestd"]]) <- "School mean use ICT study purposes"
+label(school[["c_ictfut"]]) <- "School mean expectations ICT work-study"
+label(school[["c_speclass"]]) <- "School mean specialist application ICT in class"
+label(school[["c_genclass"]]) <- "School mean general applications ICT in class"
+label(school[["c_codlrn"]]) <- "School mean Learning coding in class"
+label(school[["c_pv1cil"]]) <- "School mean score CIL Test"
+label(school[["c_f_ratio_grade"]]) <- "School proportion of females students in eigth grade"
+label(school[["c_p_sex"]]) <- "Principal School sex"
+label(school[["c_usecom"]]) <- "School mean use ICT social communication"
+label(school[["c_useinf"]]) <- "School mean use ICT for information"
+label(school[["c_accont"]]) <- "School mean use ICT accesing content"
+
+
+school%>%
+  view_df(show.id = F, show.values = F, show.type = T,show.labels = F)
+```
+:::
+
+# Data distribution
+
+## Descriptive summary
+:::{.panel-tabset}
+
+#### Student level
+```{r, results='asis'}
+student %>% 
+  sjmisc::descr(show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+  kable()
+```
+
+#### School level
+
+```{r, results='asis'}
+sjmisc::descr(school%>%select(-c_accont,-c_p_sex),show = c("label","range", "mean", "sd", "NA.prc", "n"))%>%
+kable("markdown")
+```
+:::
+
+## Gap of second order
+```{r}
+
+student %>% 
+  group_by(to_label(s_sex)) %>%
+  summarise_at(c("s_geneff", "s_speceff",
+                 "s_ictpos","s_ictneg","s_ictfut",
+                 "s_usecom","s_useinf","s_accont"), 
+                 mean, na.rm = TRUE) %>%
+
+  rename(Gender="to_label(s_sex)") %>%
+  pivot_longer(cols = starts_with("s_"),
+               names_to="variables") %>%
+  
+  ggplot(aes(x=value,y=variables,color=Gender))+
+  geom_point(size=6)+
+  theme_ipsum()+
+  labs(x="Value",y="Indicator",color="Gender")+
+  scale_color_manual(values=nudos_color_binary)
+  
+```
+
+
+## Self-efficacy and attitudes to ICT variance relations
+```{r,results='asis'}
+student %>% select(s_geneff, s_speceff,
+                 s_ictpos,s_ictneg,s_ictfut,
+                 s_usecom,s_useinf,s_accont)%>%
+  tab_corr()
+```
+
+
+

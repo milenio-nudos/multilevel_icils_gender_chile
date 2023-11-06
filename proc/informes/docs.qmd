@@ -238,7 +238,9 @@ m0_speceff <- lmer(s_speceff ~ 1  +  (1 | idschool),  data=data)
 
 sjPlot::tab_model(m0_geneff, m0_speceff, 
                   show.ci = FALSE, p.style = "stars",
-                  collapse.se = TRUE)
+                  show.re.var = FALSE,
+                  collapse.se = TRUE,
+                  show.r2 = FALSE)
 ```
 
 ## Nivel 1 {.smaller .scrollable}
@@ -251,12 +253,13 @@ m1_geneff <- lmer(s_geneff ~
 
 m1_speceff <- lmer(s_speceff ~ 
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
-                  
+                  s_hisced + s_homlit +
                   (1 | idschool),  data=data)
 
 tab_model(m1_geneff, m1_speceff, 
           show.ci = FALSE, auto.label = TRUE,
-          p.style = "stars",collapse.se = TRUE)
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = FALSE)
 
 ```
 
@@ -277,7 +280,8 @@ m1_1_speceff <- lmer(s_speceff ~
 
 tab_model(m1_1_geneff, m1_1_speceff, 
           show.ci = FALSE, auto.label = TRUE,
-          p.style = "stars",collapse.se = TRUE)
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = FALSE)
 
 ```
 
@@ -300,7 +304,10 @@ m2_speceff <- lmer(s_speceff ~
 
 tab_model(m2_geneff, m2_speceff, 
           show.ci = FALSE, auto.label = TRUE,
-          p.style = "stars", collapse.se = TRUE)
+          p.style = "stars", collapse.se = TRUE,
+          terms = c("s_sex","c_f_ratio_grade",
+                    "s_sex:c_f_ratio_grade",
+                    "s_sex:c_p_sex"))
 ```
 
 ## ¿Es relevante la composición de género? {.smaller}
@@ -309,15 +316,29 @@ tab_model(m2_geneff, m2_speceff,
 
 ```{r, results='markup'}
 
-interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade)+
+interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
+                            colors = nudos_color_binary,legend.main = "Proporción femenina")+
   labs(x="Género", y="Puntaje A. Específica")
 
 ```
 :::
 
+## Confirmación Hipótesis
+
+*Agregar Modelo con hipótesis rechazadas/aprobadas*
+
 ## Conclusiones
 
 *Escribir conclusiones*
+
+## Discusión
+
+-   Limitaciones
+    -   Composición de mujeres como categórica
+    -   Presentación explorativa (Causalidad actitudes-autoeficacia)
+-   Nuevas agendas
+    -   Explicar variación de actitudes por género
+    -   Añadir tipos de usos y desempeño en la prueba (behavioral perspective)
 
 ## Referencias
 

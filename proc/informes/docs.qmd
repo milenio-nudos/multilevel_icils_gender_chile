@@ -58,6 +58,9 @@ student <- data %>% select(starts_with("s_"))
 school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>% 
                   summarise(across(everything(),~ mean(.x, na.rm = TRUE))) %>% ungroup() %>%
                   select(-idschool)
+
+#Recode HISCED
+student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 ```
 
 # Introducción
@@ -93,11 +96,16 @@ school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>%
 
 ## Modelo Analítico
 
+<div style="text-align: center;">
 ![](images/nivel1_diagram.png)
+</div>
 
 ## Modelo Analítico
 
+<div style="text-align: center;">
 ![](images/multilevel_diagram.png)
+</div>
+
 
 # Nivel 1: Estudiantes
 
@@ -213,78 +221,103 @@ school %>%
 ## Modelos nulos {.smaller}
 
 ```{r, results='asis'}
+data <- data %>% mutate_all(as.numeric)
+label(data[["s_geneff"]]) <- "Autoeficacia General"
+label(data[["s_speceff"]]) <- "Autoeficacia Específica"
+label(data[["s_sex"]]) <- "Género Estudiante (mujer=1)"
+label(data[["s_ictfut"]]) <- "Expectativa uso futuro"
+label(data[["s_ictpos"]]) <- "Valoración positiva"
+label(data[["s_ictneg"]]) <- "Valoración negativa"
+label(data[["s_hisced"]]) <- "Nivel Educacional padres (superior=1)"
+label(data[["s_homlit"]]) <- "Alfabetización del hogar"
+label(data[["c_f_ratio_grade"]]) <- "Proporción Femenina"
+label(data[["c_p_sex"]]) <- "Género directivo (mujer=1)"
+
 m0_geneff <- lmer(s_geneff ~ 1  +  (1 | idschool),  data=data)
 m0_speceff <- lmer(s_speceff ~ 1  +  (1 | idschool),  data=data)
-m0_ictfut <- lmer(s_ictfut ~ 1  +  (1 | idschool),  data=data)
-m0_ictpos <- lmer(s_ictpos ~ 1  +  (1 | idschool),  data=data)
-m0_ictneg <- lmer(s_ictneg ~ 1  +  (1 | idschool),  data=data)
 
 sjPlot::tab_model(m0_geneff, m0_speceff, 
-                  m0_ictfut, m0_ictpos, m0_ictneg,
-                  show.ci = FALSE)
-
+                  show.ci = FALSE, p.style = "stars",
+                  collapse.se = TRUE)
 ```
 
-## Efectos fijos {.smaller .scrollable}
+## Nivel 1 {.smaller .scrollable}
 
 ```{r, results='asis'}
 m1_geneff <- lmer(s_geneff ~ 
-                  s_sex + c_f_ratio_grade + c_p_sex+
-                  s_ictfut + s_ictpos + s_ictneg +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  s_hisced + s_homlit +
                   (1 | idschool),  data=data)
 
 m1_speceff <- lmer(s_speceff ~ 
-                  s_sex + c_f_ratio_grade + c_p_sex +
-                  s_ictfut + s_ictpos + s_ictneg +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  
                   (1 | idschool),  data=data)
 
 tab_model(m1_geneff, m1_speceff, 
-          show.ci = FALSE, auto.label = TRUE)
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars",collapse.se = TRUE)
+
+```
+
+## Multinivel pendiente fija {.smaller .scrollable}
+
+```{r, results='asis'}
+m1_1_geneff <- lmer(s_geneff ~ 
+                  c_f_ratio_grade + c_p_sex +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  s_hisced + s_homlit +
+                  (1 | idschool),  data=data)
+
+m1_1_speceff <- lmer(s_speceff ~ 
+                  c_f_ratio_grade + c_p_sex +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  s_hisced + s_homlit +
+                  (1 | idschool),  data=data)
+
+tab_model(m1_1_geneff, m1_1_speceff, 
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars",collapse.se = TRUE)
 
 ```
 
 ## Pendiente aleatoria con moderación {.smaller .scrollable}
 
 ```{r, results='asis'}
-data <- data %>% mutate_all(as.numeric)
-
 m2_geneff <- lmer(s_geneff ~ 
-                  s_sex*c_f_ratio_grade + s_sex + c_f_ratio_grade + 
-                  s_ictfut + s_ictpos + s_ictneg +
+                  s_sex*c_f_ratio_grade + s_sex*c_p_sex +
+                  c_f_ratio_grade + c_p_sex +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  s_hisced + s_homlit +
                   (1 + s_sex| idschool), data=data)
 
 m2_speceff <- lmer(s_speceff ~ 
                   s_sex*c_f_ratio_grade + s_sex*c_p_sex +
-                  s_sex  + 
-                  s_ictfut + s_ictpos + s_ictneg +
-                  (1 +s_sex| idschool), data=data)
+                  c_f_ratio_grade + c_p_sex +
+                  s_sex + s_ictfut + s_ictpos + s_ictneg +
+                  s_hisced + s_homlit +
+                  (1 + s_sex| idschool), data=data)
 
 tab_model(m2_geneff, m2_speceff, 
-          show.ci = FALSE, auto.label = TRUE)
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars", collapse.se = TRUE)
 ```
 
 ## ¿Es relevante la composición de género? {.smaller}
 
-::: panel-tabset
-#### Autoeficacia General
-
-```{r, results='markup'}
-interactions::interact_plot(m2_geneff, pred = s_sex, modx = c_f_ratio_grade)+
-  labs(x="Ratio Mujeres", y="Género")
-```
-
 #### Autoeficacia Específica
 
 ```{r, results='markup'}
+
 interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade)+
-  labs(x="Ratio Mujeres", y="Género")
-  
+  labs(x="Género", y="Puntaje A. Específica")
+
 ```
 :::
 
 ## Conclusiones
 
--   fsd
+*Escribir conclusiones*
 
 ## Referencias
 

@@ -27,7 +27,9 @@ bcgchli2 <- bcgchli2%>%clean_names()
 student_data <- bsgchli2 %>% select (#Demográficas/ID
                                          idschool, idstud, s_sex,
                                          #Self-efficacy
-                                         s_speceff, s_geneff, 
+                                         s_speceff, s_geneff,
+                                         #Demographics
+                                         s_hisced,s_homlit,
                                          #Attitudes
                                          s_ictneg, s_ictpos, s_ictfut,
                                          #Digital activities (out of school)
@@ -54,7 +56,7 @@ student_data <- student_data %>% group_by(idschool) %>%
          c_speclass=round(mean(s_speclass, na.rm=TRUE),2),
          c_genclass=round(mean(s_genclass, na.rm=TRUE),2),
          c_codlrn=round(mean(s_codlrn, na.rm=TRUE),2),
-         c_pv1cil=round(mean(s_pv1cil, na.rm=TRUE),2)
+         c_pv1cil=round(mean(s_pv1cil, na.rm=TRUE),2),
          )
 
 # La base pública de 2018 no contiene la proporción de hombres y mujeres por escuela.
@@ -88,6 +90,7 @@ label(base[["c_genclass"]]) <- "School mean general applications ICT in class"
 label(base[["c_codlrn"]]) <- "School mean Learning coding in class"
 label(base[["c_pv1cil"]]) <- "School mean score CIL Test"
 label(base[["c_f_ratio_grade"]]) <- "School proportion of females students in eigth grade"
+
 
 #3. Agregar datos de profesores ----
 teacher_data <- btgchli2 %>% clean_names() %>% #Nombres en minúscula

@@ -70,11 +70,11 @@ student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 
 ::: incremental
 -   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006;@punterGenderDifferencesComputer2017].
+-   La sociología de brechas digitales enfocadas en recursos y desempeño. @rosaResonanciaSociologiaRelacion2019 enfatiza en las relaciones logradas con las TIC.
+-   Rol de expectativas de autoeficacia en la autodeterminación individual y la valoración del entorno [@ryanSelfdeterminationTheoryFacilitation2000].
 -   Encuesta ICILS IEA [@gebhardtGenderDifferencesComputer2019]:
     -   En 2013 Y 2018 las mujeres lograron puntajes más altos que los hombres. **En Chile estas diferencias tienden a no ser significativas**.
     -   Hombres reportan mayor autoeficacia avanzada, pero correlaciona menos con el puntaje del test que en las mujeres. Subestimación femenina.
--   La sociología de brechas digitales enfocadas en recursos y desempeño. @rosaResonanciaSociologiaRelacion2019 enfatiza en las relaciones logradas con las TIC.
--   Rol de expectativas de autoeficacia en la autodeterminación individual y la valoración del entorno [@ryanSelfdeterminationTheoryFacilitation2000].
 
 :::
 
@@ -410,4 +410,29 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ## Referencias
 
 ::: {#refs}
+:::
+
+# Anexo
+
+## Items de Indicadores
+
+::: panel-tabset
+
+#### Autoeficacia General
+![](images/s_geneff.png)
+
+#### Autoeficacia Específica
+![](images/s_speceff.png)
+
+
+#### Expectativas uso futuro
+
+![](images/s_ictfut.png)
+
+#### Valoración social positiva
+![](images/s_ictpos.png)
+
+#### Valoración social negativa
+![](images/s_ictneg.png)
+
 :::

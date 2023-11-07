@@ -398,7 +398,7 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 </div>
 
 ## Discusión
-
+-   ¿Qué hay entre medio de la moderación negativa en autoeficacia específica?
 -   Limitaciones
     -   Composición de mujeres como categórica
     -   Factores de expansión

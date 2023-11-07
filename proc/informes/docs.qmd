@@ -46,7 +46,8 @@ pacman::p_load(tidyverse, #Data manipulation
                haven, #read_sav
                corrplot, #Plot corr
                lme4, #Multilevel modelo
-               interactions #View multilevel interactions
+               interactions, #View multilevel interactions
+               skimr #Descriptive tables
                )
 
 data <- readRDS("../../input/proc_data/03_student_proc_2018.rds")
@@ -65,26 +66,24 @@ student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 
 # Introducción
 
-## Problema {.smaller}
+## Problema
 
 ::: incremental
 -   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006;@punterGenderDifferencesComputer2017].
 -   Encuesta ICILS IEA [@gebhardtGenderDifferencesComputer2019]:
-    -   Estudio a nivel internacional para medir y evaluar la alfabetización computacional y el manejo de información de los estudiantes de 8ºgrado (13-14 años).
-    -   Dos instrumentos: Test de pensamiento computacional y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
     -   En 2013 Y 2018 las mujeres lograron puntajes más altos que los hombres. **En Chile estas diferencias tienden a no ser significativas**.
     -   Hombres reportan mayor autoeficacia avanzada, pero correlaciona menos con el puntaje del test que en las mujeres. Subestimación femenina.
--   La sociología de brechas digitales se ha enfocado en cómo los recursos habilitan el desempeño. @rosaResonanciaSociologiaRelacion2019 enfatiza en la pregunta ética: Relaciones logradas con las TIC.
--   El rol de la expectativas de autoeficacia en la autodeterminación individual y la valoración del entorno [@ryanSelfdeterminationTheoryFacilitation2000].
+-   La sociología de brechas digitales enfocadas en recursos y desempeño. @rosaResonanciaSociologiaRelacion2019 enfatiza en las relaciones logradas con las TIC.
+-   Rol de expectativas de autoeficacia en la autodeterminación individual y la valoración del entorno [@ryanSelfdeterminationTheoryFacilitation2000].
 
 :::
 
-## Identidad, grupos de referencia y estereotipo {.smaller}
+## Identidad, grupos de referencia y estereotipo
 
 ::: incremental
 
--   Teorías de Grupos de referencia y Amenaza del esterotipo [@turnerSocialIdentityTheory2004;@steeleStereotypeThreatIntellectual1995] explican que las personas disminuyen su desempeño cuando se les recuerda que pertenecen a un grupo desfavorecido.
--   @vekiriGenderIssuesTechnology2008 muestran que los niños reciben mayor apoyo de padres y de sus compañeros que las niñas. Como consecuencia, se sienten más capaces en el uso de tecnologías, crecen con mayor valoración social de ellas y tienen mayor motivación hacia las tecnologías que sus compañeras.
+-   Teorías de Grupos de referencia y Amenaza del esterotipo [@turnerSocialIdentityTheory2004;@steeleStereotypeThreatIntellectual1995].
+-   Evidencia de refuerzo parental y estudiantil del estereotipo de género con las tecnologías en Grecia [@vekiriGenderIssuesTechnology2008]. Valoración social de las tecnologías.
 -   Estudios de composición de género: Hallazgos demuestran que las mujeres aumentan su rendimiento y satisfacción laboral y académica cuando están rodeadas de directivas y colegas mujeres [@kirschGenderCompositionCorporate2018].
     -   Ausencia de estudios de composición con ICILS y oportunidad de aproximarse a este efecto multinivel.
     
@@ -94,20 +93,80 @@ student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 
 **¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?**
 
-## Modelo Analítico
+## Modelo Analítico {.smaller}
 
 <div style="text-align: center;">
 ![](images/nivel1_diagram.png)
 </div>
 
-## Modelo Analítico
+## Modelo Analítico {.smaller}
 
 <div style="text-align: center;">
 ![](images/multilevel_diagram.png)
 </div>
 
+## Datos ICILS
+::: columns
+
+:::{.column width="40%"}
+-   Medición en noviembre 2017, Publicación 2018.
+-   Participan 46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países[^1].
+-   Muestra compleja trietápica.
+-   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
+
+:::
+
+:::{.column width="60%"}
+
+```{r}
+rbind(
+skim(student[,1:8])%>%as.data.frame()%>%
+  select(Variable=skim_variable,"Media/%"=numeric.mean,"Sd"=numeric.sd,
+         P25=numeric.p25,P75=numeric.p75,
+         Hist=numeric.hist,Missing=n_missing)%>%
+  mutate_at(c("Sd","P25","P75","Hist"),~ifelse(Variable%in%c("s_sex","s_hisced"),NA,.))%>%
+  mutate(Variable=dplyr::recode(Variable,
+                                     "s_sex"="Sexo estudiante (1=mujer)",
+                                     "s_geneff"="Autoeficacia General",
+                                     "s_speceff"="Autoeficacia Específica",
+                                     "s_hisced"="Nivel educacional parental (1=profesional)",
+                                     "s_homlit"="Nivel alfabetización del hogar",
+                                     "s_ictneg"="Valoración social negativa",
+                                     "s_ictpos"="Valoración social positiva",
+                                     "s_ictfut"="Expectativas de uso futuro"),
+         Missing=paste0(round(Missing/3092*100,2),"%")),
+  
+ 
+
+skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
+  select(Variable=skim_variable,"Media/%"=numeric.mean,"Sd"=numeric.sd,
+         P25=numeric.p25,P75=numeric.p75,
+         Hist=numeric.hist,Missing=n_missing)%>%
+  mutate_at(c("Sd","P25","P75","Hist"),~ifelse(Variable=="c_p_sex",NA,.))%>%
+  mutate(Variable=dplyr::recode(Variable,
+                                     "c_f_ratio_grade"="Proporción femenina de estudiantes",
+                                     "c_p_sex"="Género directivo (1=mujer)"),
+         Missing=paste0(round(Missing/178*100,2),"%")))%>%
+  
+  gt()%>%
+  sub_missing(missing_text = "") %>%
+  tab_header(title = "Resumen descriptivo de variables")%>%
+  tab_options(column_labels.font.size = 13,
+              table.font.size = 13) %>%
+  tab_row_group(label = "Nivel 2: Colegios (N=178)",
+                rows = 9:10) %>%
+  tab_row_group(label = "Nivel 1: Estudiantes (N=3092)",
+                rows = 1:8) %>%
+  tab_footnote(
+    "Nota: Las cifras de 'Missing' se presentan como porcentajes del total de observaciones.",
+    locations = cells_column_labels(columns = Missing))
+```
+:::
+:::
+[^1]: Chile, Dinamarca, Finlandia, Francia, Alemania, Italia, Kazajistán, Korea del sur, Portugal, Estados Unidos, Portugal y Uruguay.
 
 # Nivel 1: Estudiantes
+
 
 ## Género, autoeficacia y valoración social
 
@@ -246,24 +305,23 @@ sjPlot::tab_model(m0_geneff, m0_speceff,
 ## Nivel 1 {.smaller .scrollable}
 
 ```{r, results='asis'}
-m1_geneff <- lmer(s_geneff ~ 
+m1_geneff <- lm(s_geneff ~ 
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
-                  s_hisced + s_homlit +
-                  (1 | idschool),  data=data)
+                  s_hisced + s_homlit,  data=data)
 
-m1_speceff <- lmer(s_speceff ~ 
+m1_speceff <- lm(s_speceff ~ 
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
-                  s_hisced + s_homlit +
-                  (1 | idschool),  data=data)
+                  s_hisced + s_homlit,  data=data)
 
 tab_model(m1_geneff, m1_speceff, 
           show.ci = FALSE, auto.label = TRUE,
           p.style = "stars",collapse.se = TRUE,
-          show.re.var = FALSE)
+          show.re.var = FALSE,show.icc = FALSE,
+          show.obs = FALSE,show.ngroups = FALSE)
 
 ```
 
-## Multinivel pendiente fija {.smaller .scrollable}
+## Multinivel pendiente fija {.smaller}
 
 ```{r, results='asis'}
 m1_1_geneff <- lmer(s_geneff ~ 
@@ -281,9 +339,15 @@ m1_1_speceff <- lmer(s_speceff ~
 tab_model(m1_1_geneff, m1_1_speceff, 
           show.ci = FALSE, auto.label = TRUE,
           p.style = "stars",collapse.se = TRUE,
-          show.re.var = FALSE)
+          show.re.var = FALSE,show.icc = FALSE,
+          show.obs = FALSE,show.ngroups = FALSE,
+          terms = c("c_f_ratio_grade","c_p_sex","s_sex",
+                    "s_ictfut","s_ictpos","s_ictneg"))
 
 ```
+::: aside
+Nota: Se excluyen variables de control en la tabla.
+:::
 
 ## Pendiente aleatoria con moderación {.smaller .scrollable}
 
@@ -305,10 +369,14 @@ m2_speceff <- lmer(s_speceff ~
 tab_model(m2_geneff, m2_speceff, 
           show.ci = FALSE, auto.label = TRUE,
           p.style = "stars", collapse.se = TRUE,
-          terms = c("s_sex","c_f_ratio_grade",
+          terms = c("s_sex","c_f_ratio_grade","c_p_sex",
                     "s_sex:c_f_ratio_grade",
                     "s_sex:c_p_sex"))
 ```
+::: aside
+Nota: El modelo contiene todas las variables presentadas anteriormente, pero se excluyen de la tabla para facilitar entendimiento.
+:::
+
 
 ## ¿Es relevante la composición de género? {.smaller}
 
@@ -323,18 +391,17 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ```
 :::
 
-## Confirmación Hipótesis
+## Verificación Hipótesis
 
-*Agregar Modelo con hipótesis rechazadas/aprobadas*
-
-## Conclusiones
-
-*Escribir conclusiones*
+<div style="text-align: center;">
+![](images/conclusions.png)
+</div>
 
 ## Discusión
 
 -   Limitaciones
     -   Composición de mujeres como categórica
+    -   Factores de expansión
     -   Presentación explorativa (Causalidad actitudes-autoeficacia)
 -   Nuevas agendas
     -   Explicar variación de actitudes por género

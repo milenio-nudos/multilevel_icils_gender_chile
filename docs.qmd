@@ -1,8 +1,8 @@
 ---
 pagetitle: "Más allá del desempeño. Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos"
 author: Juan Carlos Castillo, Daniel Miranda y Nicolás Tobar
-bibliography: ../../input/bib/icils_nudos.bib 
-csl: ../../input/bib/apa.csl
+bibliography: input/bib/icils_nudos.bib 
+csl: input/bib/apa.csl
 
 knitr:
   opts_chunk: 
@@ -13,7 +13,7 @@ knitr:
       
 format: 
   revealjs:
-    logo: images/banner_nudos.jpg
+    logo: input/images/banner_nudos.jpg
     slide-number: true
     theme: [pp.scss]
     title-slide-attributes:
@@ -23,11 +23,6 @@ format:
     auto-play-media: true
 editor: visual
 ---
-
-```{r setup, include=FALSE, cache = FALSE}
-library(knitr)
-opts_chunk$set(cache = TRUE)
-```
 
 ```{r}
 options(digits = 2) #round results to 2 digits
@@ -56,7 +51,7 @@ pacman::p_load(tidyverse, #Data manipulation
                skimr #Descriptive tables
                )
 
-data <- readRDS("../../input/proc_data/03_student_proc_2018.rds")
+data <- readRDS("input/proc_data/03_student_proc_2018.rds")
 
 #Student level
 student <- data %>% select(starts_with("s_"))
@@ -70,49 +65,41 @@ school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>%
 student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 ```
 
-
-
-
-:::: {.columns .v-center-container}
-
+::: {.columns .v-center-container}
 ::: {.column width="10%"}
-
-
-
 :::
 
 ::: {.column width="90%"}
-
 <br>
 
-# **Más allá del desempeño:** 
+# **Más allá del desempeño:**
+
 ### Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos
 
-----
+------------------------------------------------------------------------
 
 Juan Carlos Castillo, Daniel Miranda, Teresa Correa y Nicolás Tobar
 
 #### Nucleo Mileno de Desigualdades y Oportunidades Digitales
+
 ### **nudos.cl**
 
 Conferencia **COES**, Noviembre 2023
 :::
+:::
 
-::::
+# 
 
-#
+![](input/images/banner_nudos.jpg){width="80%" fig-align="center"}
 
-![](images/banner_nudos.jpg){width=80% fig-align="center"}
-
-![](images/lineas-nudos.png)
+![](input/images/lineas-nudos.png)
 
 # Introducción
 
 ::: {style="font-size: 140%;"}
-
 -   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006; @punterGenderDifferencesComputer2017].
 
-- Autoeficacia:  "_a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary_" (Bandura, 2006)
+-   Autoeficacia: "*a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary*" (Bandura, 2006)
 
 -   Relevancia de las expectativas de autoeficacia en la agencia individual [@ryanSelfdeterminationTheoryFacilitation2000].
 :::
@@ -120,46 +107,69 @@ Conferencia **COES**, Noviembre 2023
 ## Identidad, grupos y estereotipos
 
 ::: {style="font-size: 140%;"}
-
 -   Teorías de grupos de referencia y amenaza del esterotipo [@turnerSocialIdentityTheory2004; @steeleStereotypeThreatIntellectual1995].
 
--   Evidencia de refuerzo parental y estudiantil del estereotipo de género en relación a tecnologías [@vekiriGenderIssuesTechnology2008]. 
+-   Evidencia de refuerzo parental y estudiantil del estereotipo de género en relación a tecnologías [@vekiriGenderIssuesTechnology2008].
 
 -   Efectos composición: mujeres aumentan rendimiento y satisfacción cuando están rodeadas de mujeres [@kirschGenderCompositionCorporate2018].
 :::
 
+## **¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?** {data-background-color="#5f5758"}
 
-## **¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?** {data-background-color=black}
-
-#
+## Autoeficacia {.smaller}
 
 ::: {style="text-align: center;"}
-![](images/nivel1_diagram.png){width=65%}
+¿En qué medida puedes realizar cada una de estas tareas utilizando las TIC?
+
+Respuestas: 1. Muy de acuerdo. 2. De acuerdo. 3. En desacuerdo. 4. Muy en desacuerdo.
 :::
 
-#
+::: columns
+::: {.column width="50%"}
+#### General
+
+-   Editar fotografías digitales u otras imágenes gráficas.
+-   Escribir o editar texto para un trabajo escolar.
+-   Buscar y encontrar en Internet información relevante para un proyecto escolar.
+-   Crear una presentación multimedia (con sonido, imágenes o vídeo).
+-   Cargar texto, imágenes o vídeo en un perfil en línea.\
+-   Insertar una imagen en un documento o mensaje.
+-   Instalar un programa o \[app\].
+-   Juzgar si puede confiar en la información que encuentra en Internet.
+:::
+
+::: {.column width="50%"}
+#### Específica
+
+-   Crear una base de datos (por ejemplo, utilizando \[Microsoft Access®\]).
+-   Construir o editar una página web.
+-   Crear un programa informático, macro o \[app\] (por ejemplo, en \[Basic, Visual Basic\]).
+-   Configurar una red de área local de ordenadores u otras TIC.
+:::
+:::
+
+# 
 
 ::: {style="text-align: center;"}
-![](images/multilevel_diagram.png){width=90%}
+![](input/images/multilevel_diagram.png){width="90%"}
 :::
 
 ## Datos ICILS
 
 ::: {style="font-size: 140%;"}
-
 -   Medición en noviembre 2017, Publicación 2018.
--   Participan 46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
+-   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
+-   3092 estudiantes y 178 escuelas en Chile.
 -   Muestra compleja trietápica.
 -   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
-
 :::
 
-# {.smaller .scrollable}
+# 
 
 ```{r}
 rbind(
 skim(student[,1:8])%>%as.data.frame()%>%
-  select(Variable=skim_variable,"Media/%"=numeric.mean,"Sd"=numeric.sd,
+  select(Variable=skim_variable,"Media/Prop"=numeric.mean,"Sd"=numeric.sd,
          P25=numeric.p25,P75=numeric.p75,
          Hist=numeric.hist,Missing=n_missing)%>%
   mutate_at(c("Sd","P25","P75","Hist"),~ifelse(Variable%in%c("s_sex","s_hisced"),NA,.))%>%
@@ -167,15 +177,15 @@ skim(student[,1:8])%>%as.data.frame()%>%
                                      "s_sex"="Sexo estudiante (1=mujer)",
                                      "s_geneff"="Autoeficacia General",
                                      "s_speceff"="Autoeficacia Específica",
+                                     "s_ictneg"="Percepción consecuencias negativas",
+                                     "s_ictpos"="Percepción consecuencias positivas",
+                                     "s_ictfut"="Expectativas de uso futuro",
                                      "s_hisced"="Nivel educacional parental (1=profesional)",
-                                     "s_homlit"="Nivel alfabetización del hogar",
-                                     "s_ictneg"="Valoración social negativa",
-                                     "s_ictpos"="Valoración social positiva",
-                                     "s_ictfut"="Expectativas de uso futuro"),
+                                     "s_homlit"="Nivel alfabetización del hogar"),
          Missing=paste0(round(Missing/3092*100,2),"%")),
 
 skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
-  select(Variable=skim_variable,"Media/%"=numeric.mean,"Sd"=numeric.sd,
+  select(Variable=skim_variable,"Media/Prop"=numeric.mean,"Sd"=numeric.sd,
          P25=numeric.p25,P75=numeric.p75,
          Hist=numeric.hist,Missing=n_missing)%>%
   mutate_at(c("Sd","P25","P75","Hist"),~ifelse(Variable=="c_p_sex",NA,.))%>%
@@ -187,8 +197,8 @@ skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
   gt()%>%
   sub_missing(missing_text = "") %>%
   tab_header(title = "Resumen descriptivo de variables")%>%
-  tab_options(column_labels.font.size = 6,
-              table.font.size = 6) %>%
+  tab_options(column_labels.font.size = 18,
+              table.font.size = 18) %>%
   tab_row_group(label = "Nivel 2: Colegios (N=178)",
                 rows = 9:10) %>%
   tab_row_group(label = "Nivel 1: Estudiantes (N=3092)",
@@ -198,10 +208,7 @@ skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
     locations = cells_column_labels(columns = Missing))
 ```
 
-
-# Nivel 1: Estudiantes
-
-## Género, autoeficacia y valoración social
+## Género, autoeficacia y consecuencias sociales
 
 ```{r}
 data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
@@ -216,8 +223,8 @@ data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
                                                   "ict_futuro",
                                                   "autoeficacia_general",
                                                   "autoeficacia_especifica"),
-                                          labels=c("Valoración social negativa",
-                                                   "Valoración social positiva",
+                                          labels=c("Percepción consecuencias negativas",
+                                                   "Percepción consecuencias positivas",
                                                    "Expectativas de uso laboral o académico futuro",
                                                    "Autoeficacia en aplicaciones generales",
                                                    "Autoeficacia en aplicaciones específicas")))%>%
@@ -231,32 +238,6 @@ data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
     theme(legend.position = "top")+
     scale_y_discrete(labels=function(x) str_wrap(x,width = 40))
 ```
-
-## Correlaciones
-
-::: panel-tabset
-###### Hombres
-
-```{r}
-student %>% filter(s_sex==0) %>% 
-  select("A. General"=s_geneff, "A. Específica"=s_speceff, "Expectativas uso futuro"=s_ictfut,
-         "Valoración positiva"=s_ictpos,"Valoración negativa"=s_ictneg)%>%drop_na()%>%
-  cor()%>%
-  corrplot(method="square",diag = FALSE,type = "lower",addCoef.col = "#5f5758")
-```
-
-###### Mujeres
-
-```{r}
-student %>% filter(s_sex==1) %>% 
-  select("A. General"=s_geneff, "A. Específica"=s_speceff, "Expectativas uso futuro"=s_ictfut,
-         "Valoración positiva"=s_ictpos,"Valoración negativa"=s_ictneg)%>%drop_na()%>%
-  cor()%>%
-  corrplot(method="square",diag = FALSE,type = "lower",addCoef.col = "#5f5758")
-```
-:::
-
-# Nivel 2: Escuelas
 
 ## Autoeficacia y establecimientos {.smaller}
 
@@ -298,63 +279,21 @@ ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>%
 ```
 :::
 
-## Correlaciones
+## Modelo Multinivel {.smaller}
 
 ```{r}
-school %>% 
-  select("A. General"=c_geneff, "A. Específica"=c_speceff, "Proporción femenina"=c_f_ratio_grade,
-         "Género directivo"=c_p_sex)%>%drop_na()%>%
-  cor()%>%
-  corrplot(method="square",diag = FALSE,type = "lower",addCoef.col = "#5f5758")
-```
-
-# Modelos multinivel
-
-## Modelos nulos {.smaller}
-
-```{r, results='asis'}
 data <- data %>% mutate_all(as.numeric)
 label(data[["s_geneff"]]) <- "Autoeficacia General"
 label(data[["s_speceff"]]) <- "Autoeficacia Específica"
 label(data[["s_sex"]]) <- "Género Estudiante (mujer=1)"
 label(data[["s_ictfut"]]) <- "Expectativa uso futuro"
-label(data[["s_ictpos"]]) <- "Valoración positiva"
-label(data[["s_ictneg"]]) <- "Valoración negativa"
+label(data[["s_ictpos"]]) <- "Percepción de consecuencias positivas"
+label(data[["s_ictneg"]]) <- "Percepción de consecuencias negativas"
 label(data[["s_hisced"]]) <- "Nivel Educacional padres (superior=1)"
 label(data[["s_homlit"]]) <- "Alfabetización del hogar"
 label(data[["c_f_ratio_grade"]]) <- "Proporción Femenina"
 label(data[["c_p_sex"]]) <- "Género directivo (mujer=1)"
-
-m0_geneff <- lmer(s_geneff ~ 1  +  (1 | idschool),  data=data)
-m0_speceff <- lmer(s_speceff ~ 1  +  (1 | idschool),  data=data)
-
-sjPlot::tab_model(m0_geneff, m0_speceff, 
-                  show.ci = FALSE, p.style = "stars",
-                  show.re.var = FALSE,
-                  collapse.se = TRUE,
-                  show.r2 = FALSE)
 ```
-
-## Nivel 1 {.smaller .scrollable}
-
-```{r, results='asis'}
-m1_geneff <- lm(s_geneff ~ 
-                  s_sex + s_ictfut + s_ictpos + s_ictneg +
-                  s_hisced + s_homlit,  data=data)
-
-m1_speceff <- lm(s_speceff ~ 
-                  s_sex + s_ictfut + s_ictpos + s_ictneg +
-                  s_hisced + s_homlit,  data=data)
-
-tab_model(m1_geneff, m1_speceff, 
-          show.ci = FALSE, auto.label = TRUE,
-          p.style = "stars",collapse.se = TRUE,
-          show.re.var = FALSE,show.icc = FALSE,
-          show.obs = FALSE,show.ngroups = FALSE)
-
-```
-
-## Multinivel pendiente fija {.smaller}
 
 ```{r, results='asis'}
 m1_1_geneff <- lmer(s_geneff ~ 
@@ -380,10 +319,11 @@ tab_model(m1_1_geneff, m1_1_speceff,
 ```
 
 ::: aside
-Nota: Se excluyen variables de control en la tabla.
+-   Nota 1: Se excluyen variables de control en la tabla.
+-   ICC: A. General (0.05)/ A. Específica (0.06).
 :::
 
-## Pendiente aleatoria con moderación {.smaller .scrollable}
+## Moderación {.smaller}
 
 ```{r, results='asis'}
 m2_geneff <- lmer(s_geneff ~ 
@@ -403,8 +343,8 @@ m2_speceff <- lmer(s_speceff ~
 tab_model(m2_geneff, m2_speceff, 
           show.ci = FALSE, auto.label = TRUE,
           p.style = "stars", collapse.se = TRUE,
-          terms = c("s_sex","c_f_ratio_grade","c_p_sex",
-                    "s_sex:c_f_ratio_grade",
+          show.icc = FALSE,
+          terms = c("s_sex:c_f_ratio_grade",
                     "s_sex:c_p_sex"))
 ```
 
@@ -429,22 +369,24 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ## Verificación Hipótesis
 
 ::: {style="text-align: center;"}
-![](images/conclusions.png)
+![](input/images/conclusions.png)
 :::
 
-## Conclusiones {data-background-color=black}
+## Conclusiones {data-background-color="black"}
 
 ::: {style="font-size: 120%;"}
-- Work in progress
+-   Work in progress
 
-- Limitaciones: 
-  - causalidad
-  - disponibilidad variables ICILS para investigación social
+-   Limitaciones:
 
-- Proyecciones
-  - comparación temporal 2013-2018-2023
-  - incluir prueba de desempeño como predictor
-  - comparación internacional
+    -   causalidad
+    -   disponibilidad variables ICILS para investigación social
+
+-   Proyecciones
+
+    -   comparación temporal 2013-2018-2023
+    -   incluir prueba de desempeño como predictor
+    -   comparación internacional
 :::
 
 ## Referencias
@@ -454,26 +396,18 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 
 # Anexo
 
-## Items de Indicadores
+## Items de independientes
 
 ::: panel-tabset
-#### Autoeficacia General
-
-![](images/s_geneff.png)
-
-#### Autoeficacia Específica
-
-![](images/s_speceff.png)
-
 #### Expectativas uso futuro
 
-![](images/s_ictfut.png)
+![](input/images/s_ictfut.png)
 
 #### Valoración social positiva
 
-![](images/s_ictpos.png)
+![](input/images/s_ictpos.png)
 
 #### Valoración social negativa
 
-![](images/s_ictneg.png)
+![](input/images/s_ictneg.png)
 :::

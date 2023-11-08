@@ -60,3 +60,11 @@ $selectionColor: #fff;
 #title-slide > .author:first-of-type {
   margin-top: 320px;
 }
+
+
+.v-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}

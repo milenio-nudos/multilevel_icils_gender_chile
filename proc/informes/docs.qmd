@@ -1,5 +1,5 @@
 ---
-title: "Más allá del desempeño. Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos"
+pagetitle: "Más allá del desempeño. Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos"
 author: Juan Carlos Castillo, Daniel Miranda y Nicolás Tobar
 bibliography: ../../input/bib/icils_nudos.bib 
 csl: ../../input/bib/apa.csl
@@ -17,11 +17,17 @@ format:
     slide-number: true
     theme: [pp.scss]
     title-slide-attributes:
-      data-background-image: images/portada.jpg
-      data-background-size: cover
-      
+      visibility: false
+#      data-background-image: images/portada.jpg
+#      data-background-size: cover
+    auto-play-media: true
 editor: visual
 ---
+
+```{r setup, include=FALSE, cache = FALSE}
+library(knitr)
+opts_chunk$set(cache = TRUE)
+```
 
 ```{r}
 options(digits = 2) #round results to 2 digits
@@ -64,59 +70,91 @@ school <- data %>% select(starts_with("c_"),idschool) %>% group_by(idschool) %>%
 student <- student %>% mutate(s_hisced=ifelse(to_numeric(s_hisced)==4,1,0))
 ```
 
+
+
+
+:::: {.columns .v-center-container}
+
+::: {.column width="10%"}
+
+
+
+:::
+
+::: {.column width="90%"}
+
+<br>
+
+# **Más allá del desempeño:** 
+### Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos
+
+----
+
+Juan Carlos Castillo, Daniel Miranda, Teresa Correa y Nicolás Tobar
+
+#### Nucleo Mileno de Desigualdades y Oportunidades Digitales
+### **nudos.cl**
+
+Conferencia **COES**, Noviembre 2023
+:::
+
+::::
+
+#
+
+![](images/banner_nudos.jpg){width=80% fig-align="center"}
+
+![](images/lineas-nudos.png)
+
 # Introducción
 
-## Problema
+::: {style="font-size: 140%;"}
 
-::: incremental
--   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006;@punterGenderDifferencesComputer2017].
--   La sociología de brechas digitales enfocadas en recursos y desempeño. @rosaResonanciaSociologiaRelacion2019 enfatiza en las relaciones logradas con las TIC.
--   Rol de expectativas de autoeficacia en la autodeterminación individual y la valoración del entorno [@ryanSelfdeterminationTheoryFacilitation2000].
--   Encuesta ICILS IEA [@gebhardtGenderDifferencesComputer2019]:
-    -   En 2013 Y 2018 las mujeres lograron puntajes más altos que los hombres. **En Chile estas diferencias tienden a no ser significativas**.
-    -   Hombres reportan mayor autoeficacia avanzada, pero correlaciona menos con el puntaje del test que en las mujeres. Subestimación femenina.
+-   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006; @punterGenderDifferencesComputer2017].
 
+- Autoeficacia:  "_a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary_" (Bandura, 2006)
+
+-   Relevancia de las expectativas de autoeficacia en la agencia individual [@ryanSelfdeterminationTheoryFacilitation2000].
 :::
 
-## Identidad, grupos de referencia y estereotipo
+## Identidad, grupos y estereotipos
 
-::: incremental
+::: {style="font-size: 140%;"}
 
--   Teorías de Grupos de referencia y Amenaza del esterotipo [@turnerSocialIdentityTheory2004;@steeleStereotypeThreatIntellectual1995].
--   Evidencia de refuerzo parental y estudiantil del estereotipo de género con las tecnologías en Grecia [@vekiriGenderIssuesTechnology2008]. Valoración social de las tecnologías.
--   Estudios de composición de género: Hallazgos demuestran que las mujeres aumentan su rendimiento y satisfacción laboral y académica cuando están rodeadas de directivas y colegas mujeres [@kirschGenderCompositionCorporate2018].
-    -   Ausencia de estudios de composición con ICILS y oportunidad de aproximarse a este efecto multinivel.
-    
+-   Teorías de grupos de referencia y amenaza del esterotipo [@turnerSocialIdentityTheory2004; @steeleStereotypeThreatIntellectual1995].
+
+-   Evidencia de refuerzo parental y estudiantil del estereotipo de género en relación a tecnologías [@vekiriGenderIssuesTechnology2008]. 
+
+-   Efectos composición: mujeres aumentan rendimiento y satisfacción cuando están rodeadas de mujeres [@kirschGenderCompositionCorporate2018].
 :::
 
-# Pregunta
 
-**¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?**
+## **¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?** {data-background-color=black}
 
-## Modelo Analítico {.smaller}
+#
 
-<div style="text-align: center;">
-![](images/nivel1_diagram.png)
-</div>
+::: {style="text-align: center;"}
+![](images/nivel1_diagram.png){width=65%}
+:::
 
-## Modelo Analítico {.smaller}
+#
 
-<div style="text-align: center;">
-![](images/multilevel_diagram.png)
-</div>
+::: {style="text-align: center;"}
+![](images/multilevel_diagram.png){width=90%}
+:::
 
 ## Datos ICILS
-::: columns
 
-:::{.column width="40%"}
+::: {style="font-size: 140%;"}
+
 -   Medición en noviembre 2017, Publicación 2018.
--   Participan 46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países[^1].
+-   Participan 46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
 -   Muestra compleja trietápica.
 -   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
 
 :::
 
-:::{.column width="60%"}
+# {.smaller .scrollable}
 
 ```{r}
 rbind(
@@ -135,8 +173,6 @@ skim(student[,1:8])%>%as.data.frame()%>%
                                      "s_ictpos"="Valoración social positiva",
                                      "s_ictfut"="Expectativas de uso futuro"),
          Missing=paste0(round(Missing/3092*100,2),"%")),
-  
- 
 
 skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
   select(Variable=skim_variable,"Media/%"=numeric.mean,"Sd"=numeric.sd,
@@ -151,8 +187,8 @@ skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
   gt()%>%
   sub_missing(missing_text = "") %>%
   tab_header(title = "Resumen descriptivo de variables")%>%
-  tab_options(column_labels.font.size = 13,
-              table.font.size = 13) %>%
+  tab_options(column_labels.font.size = 6,
+              table.font.size = 6) %>%
   tab_row_group(label = "Nivel 2: Colegios (N=178)",
                 rows = 9:10) %>%
   tab_row_group(label = "Nivel 1: Estudiantes (N=3092)",
@@ -161,12 +197,9 @@ skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
     "Nota: Las cifras de 'Missing' se presentan como porcentajes del total de observaciones.",
     locations = cells_column_labels(columns = Missing))
 ```
-:::
-:::
-[^1]: Chile, Dinamarca, Finlandia, Francia, Alemania, Italia, Kazajistán, Korea del sur, Portugal, Estados Unidos, Portugal y Uruguay.
+
 
 # Nivel 1: Estudiantes
-
 
 ## Género, autoeficacia y valoración social
 
@@ -199,11 +232,11 @@ data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
     scale_y_discrete(labels=function(x) str_wrap(x,width = 40))
 ```
 
-## Relaciones de varianza
+## Correlaciones
 
 ::: panel-tabset
-
 ###### Hombres
+
 ```{r}
 student %>% filter(s_sex==0) %>% 
   select("A. General"=s_geneff, "A. Específica"=s_speceff, "Expectativas uso futuro"=s_ictfut,
@@ -213,6 +246,7 @@ student %>% filter(s_sex==0) %>%
 ```
 
 ###### Mujeres
+
 ```{r}
 student %>% filter(s_sex==1) %>% 
   select("A. General"=s_geneff, "A. Específica"=s_speceff, "Expectativas uso futuro"=s_ictfut,
@@ -220,7 +254,6 @@ student %>% filter(s_sex==1) %>%
   cor()%>%
   corrplot(method="square",diag = FALSE,type = "lower",addCoef.col = "#5f5758")
 ```
-
 :::
 
 # Nivel 2: Escuelas
@@ -265,7 +298,7 @@ ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>%
 ```
 :::
 
-## Relaciones de varianza
+## Correlaciones
 
 ```{r}
 school %>% 
@@ -345,6 +378,7 @@ tab_model(m1_1_geneff, m1_1_speceff,
                     "s_ictfut","s_ictpos","s_ictneg"))
 
 ```
+
 ::: aside
 Nota: Se excluyen variables de control en la tabla.
 :::
@@ -373,10 +407,10 @@ tab_model(m2_geneff, m2_speceff,
                     "s_sex:c_f_ratio_grade",
                     "s_sex:c_p_sex"))
 ```
+
 ::: aside
 Nota: El modelo contiene todas las variables presentadas anteriormente, pero se excluyen de la tabla para facilitar entendimiento.
 :::
-
 
 ## ¿Es relevante la composición de género? {.smaller}
 
@@ -389,23 +423,29 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
   labs(x="Género", y="Puntaje A. Específica")
 
 ```
+
 :::
 
 ## Verificación Hipótesis
 
-<div style="text-align: center;">
+::: {style="text-align: center;"}
 ![](images/conclusions.png)
-</div>
+:::
 
-## Discusión
--   ¿Qué hay entre medio de la moderación negativa en autoeficacia específica?
--   Limitaciones
-    -   Composición de mujeres como categórica
-    -   Factores de expansión
-    -   Presentación explorativa (Causalidad actitudes-autoeficacia)
--   Nuevas agendas
-    -   Explicar variación de actitudes por género
-    -   Añadir tipos de usos y desempeño en la prueba (behavioral perspective)
+## Conclusiones {data-background-color=black}
+
+::: {style="font-size: 120%;"}
+- Work in progress
+
+- Limitaciones: 
+  - causalidad
+  - disponibilidad variables ICILS para investigación social
+
+- Proyecciones
+  - comparación temporal 2013-2018-2023
+  - incluir prueba de desempeño como predictor
+  - comparación internacional
+:::
 
 ## Referencias
 
@@ -417,22 +457,23 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ## Items de Indicadores
 
 ::: panel-tabset
-
 #### Autoeficacia General
+
 ![](images/s_geneff.png)
 
 #### Autoeficacia Específica
-![](images/s_speceff.png)
 
+![](images/s_speceff.png)
 
 #### Expectativas uso futuro
 
 ![](images/s_ictfut.png)
 
 #### Valoración social positiva
+
 ![](images/s_ictpos.png)
 
 #### Valoración social negativa
-![](images/s_ictneg.png)
 
+![](images/s_ictneg.png)
 :::

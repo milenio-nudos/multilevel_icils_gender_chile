@@ -239,46 +239,6 @@ data %>% group_by(to_label(s_sex)) %>% rename(gender="to_label(s_sex)")%>%
     scale_y_discrete(labels=function(x) str_wrap(x,width = 40))
 ```
 
-## Autoeficacia y establecimientos {.smaller}
-
-::: panel-tabset
-#### Autoeficacia General
-
-```{r}
-ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>% drop_na(c_p_sex)%>%
-             ggplot(aes(x=c_f_ratio_grade,y=c_geneff,color=c_p_sex))+
-             geom_point(color="grey")+
-             scale_color_manual(values = nudos_color_binary)+
-             geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
-             method.args = list(start = list(a = 0.1, b = 0.1)))+    
-             theme_ipsum()+
-             labs(x = "Ratio de mujeres 8vo básico (estimado)",
-                  y = "Promedio por escuela de autoeficacia general",
-                  color= "Género directivo")+
-             theme(legend.position = "bottom")+
-             scale_x_continuous(labels = scales::percent_format(scale = 100)),
-           type = "boxplot")
-```
-
-#### Autoeficacia específica
-
-```{r}
-ggMarginal(school%>%mutate(c_p_sex=recode(c_p_sex,"1"="Mujer","0"="Hombre")) %>% drop_na(c_p_sex)%>%
-             ggplot(aes(x=c_f_ratio_grade,y=c_speceff,color=c_p_sex))+
-             geom_point(color="grey")+
-             scale_color_manual(values = nudos_color_binary)+
-             geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
-             method.args = list(start = list(a = 0.1, b = 0.1)))+    
-             theme_ipsum()+
-             labs(x = "Ratio de mujeres 8vo básico (estimado)",
-                  y = "Promedio por escuela de autoeficacia general",
-                  color= "Género directivo")+
-             theme(legend.position = "bottom")+
-             scale_x_continuous(labels = scales::percent_format(scale = 100)),
-           type = "boxplot")
-```
-:::
-
 ## Modelo Multinivel {.smaller}
 
 ```{r}
@@ -319,7 +279,7 @@ tab_model(m1_1_geneff, m1_1_speceff,
 ```
 
 ::: aside
--   Nota 1: Se excluyen variables de control en la tabla.
+-   Nota 1: Se excluyen variables de control SE en la tabla.
 -   ICC: A. General (0.05)/ A. Específica (0.06).
 :::
 
@@ -349,7 +309,8 @@ tab_model(m2_geneff, m2_speceff,
 ```
 
 ::: aside
-Nota: El modelo contiene todas las variables presentadas anteriormente, pero se excluyen de la tabla para facilitar entendimiento.
+-   c_f_ratio_grade = Proporción femenina
+-   c_p_sex = Género directivo
 :::
 
 ## ¿Es relevante la composición de género? {.smaller}
@@ -359,12 +320,16 @@ Nota: El modelo contiene todas las variables presentadas anteriormente, pero se 
 ```{r, results='markup'}
 
 interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
-                            colors = nudos_color_binary,legend.main = "Proporción femenina")+
+                            colors = nudos_color_binary,legend.main = "Proporción femenina",
+                            modx.labels = c("+1 SD (68%)","Media (50%)","-1 SD (42%)"))+
   labs(x="Género", y="Puntaje A. Específica")
 
 ```
 
+::: aside
+0 = Hombre; 1 = Mujer
 :::
+
 
 ## Verificación Hipótesis
 

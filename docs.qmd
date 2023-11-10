@@ -21,6 +21,7 @@ format:
 #      data-background-image: images/portada.jpg
 #      data-background-size: cover
     auto-play-media: true
+
 editor: visual
 ---
 
@@ -99,7 +100,7 @@ Conferencia **COES**, Noviembre 2023
 ::: {style="font-size: 140%;"}
 -   Masificación TICS y diferencias de uso por género [@hargittaiDifferencesActualPerceived2006; @punterGenderDifferencesComputer2017].
 
--   Autoeficacia: "*a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary*" (Bandura, 2006)
+-   Autoeficacia: "*a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary*" [@banduraPsychologyHumanAgency2006]
 
 -   Relevancia de las expectativas de autoeficacia en la agencia individual [@ryanSelfdeterminationTheoryFacilitation2000].
 :::
@@ -114,7 +115,17 @@ Conferencia **COES**, Noviembre 2023
 -   Efectos composición: mujeres aumentan rendimiento y satisfacción cuando están rodeadas de mujeres [@kirschGenderCompositionCorporate2018].
 :::
 
-## **¿Cómo la composición de género del establecimiento y las actitudes hacia las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile?** {data-background-color="#5f5758"}
+## ¿Cómo la composición de género del establecimiento y las percepciones de las tecnologías afectan las expectativas de autoeficacia sobre las tecnologías de los hombres y las mujeres estudiantes de octavo básico en Chile? {data-background-color="#5f5758"}
+
+## Datos ICILS
+
+::: {style="font-size: 140%;"}
+-   Medición en noviembre 2017, Publicación 2018.
+-   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
+-   3092 estudiantes y 178 escuelas en Chile.
+-   Muestra compleja trietápica.
+-   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
+:::
 
 ## Autoeficacia {.smaller}
 
@@ -152,16 +163,6 @@ Respuestas: 1. Muy de acuerdo. 2. De acuerdo. 3. En desacuerdo. 4. Muy en desacu
 
 ::: {style="text-align: center;"}
 ![](input/images/multilevel_diagram.png){width="90%"}
-:::
-
-## Datos ICILS
-
-::: {style="font-size: 140%;"}
--   Medición en noviembre 2017, Publicación 2018.
--   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
--   3092 estudiantes y 178 escuelas en Chile.
--   Muestra compleja trietápica.
--   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
 :::
 
 # 
@@ -321,7 +322,7 @@ tab_model(m2_geneff, m2_speceff,
 
 interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
                             colors = nudos_color_binary,legend.main = "Proporción femenina",
-                            modx.labels = c("+1 SD (68%)","Media (50%)","-1 SD (42%)"))+
+                            modx.labels = c("-1 SD (42%)","Media (50%)","+1 SD (68%)"))+
   labs(x="Género", y="Puntaje A. Específica")
 
 ```

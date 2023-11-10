@@ -3,11 +3,11 @@
 ### Más allá del desempeño. 
 #### Brechas de Autoeficacia y composición de género en contextos escolares chilenos
 
-::: {style="text-align: center;"}
+<div style="text-align: center;">
 10 de noviembre de 2023
 
 Juan Carlos Castillo, Daniel Miranda, Teresa Correa y Nicolás Tobar
-:::
+</div>
 
 El siguiente repositorio diseñado por el equipo de la línea social de NUDOS contiene los primeros avances de la agenda ICILS de NUDOS. En este caso, se cristalizan los pasos iniciales de la investigación sobre brechas tecnológicas de género en establecimientos escolares, los cuales fueron presentados en la *X Conferencia internacional COES: La gran transformación. pasado, presente y futuro del conflicto y la cohesión social*. 
 

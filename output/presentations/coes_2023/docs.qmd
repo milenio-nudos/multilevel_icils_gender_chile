@@ -1,8 +1,8 @@
 ---
 pagetitle: "Más allá del desempeño. Brechas de autoeficacia tecnológica y composición de género en contextos escolares chilenos"
 author: Juan Carlos Castillo, Daniel Miranda y Nicolás Tobar
-bibliography: input/bib/icils_nudos.bib 
-csl: input/bib/apa.csl
+bibliography: ../../../input/bib/icils_nudos.bib 
+csl: ../../../input/bib/apa.csl
 
 knitr:
   opts_chunk: 
@@ -13,7 +13,7 @@ knitr:
       
 format: 
   revealjs:
-    logo: input/images/banner_nudos.jpg
+    logo: images/banner_nudos.jpg
     slide-number: true
     theme: [pp.scss]
     title-slide-attributes:
@@ -52,7 +52,7 @@ pacman::p_load(tidyverse, #Data manipulation
                skimr #Descriptive tables
                )
 
-data <- readRDS("input/proc_data/03_student_proc_2018.rds")
+data <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
 
 #Student level
 student <- data %>% select(starts_with("s_"))
@@ -330,7 +330,6 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ::: aside
 0 = Hombre; 1 = Mujer
 :::
-
 
 ## Verificación Hipótesis
 

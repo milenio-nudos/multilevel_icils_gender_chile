@@ -91,9 +91,9 @@ Conferencia **COES**, Noviembre 2023
 
 # 
 
-![](input/images/banner_nudos.jpg){width="80%" fig-align="center"}
+![](images/banner_nudos.jpg){width="80%" fig-align="center"}
 
-![](input/images/lineas-nudos.png)
+![](images/lineas-nudos.png)
 
 # Introducción
 
@@ -162,7 +162,7 @@ Respuestas: 1. Muy de acuerdo. 2. De acuerdo. 3. En desacuerdo. 4. Muy en desacu
 # 
 
 ::: {style="text-align: center;"}
-![](input/images/multilevel_diagram.png){width="90%"}
+![](images/multilevel_diagram.png){width="90%"}
 :::
 
 # 
@@ -185,13 +185,13 @@ skim(student[,1:8])%>%as.data.frame()%>%
                                      "s_homlit"="Nivel alfabetización del hogar"),
          Missing=paste0(round(Missing/3092*100,2),"%")),
 
-skim(school%>%select(c_f_ratio_grade,c_p_sex))%>%as.data.frame()%>%
+skim(school%>%select(c_s_f_ratio,c_p_sex))%>%as.data.frame()%>%
   select(Variable=skim_variable,"Media/Prop"=numeric.mean,"Sd"=numeric.sd,
          P25=numeric.p25,P75=numeric.p75,
          Hist=numeric.hist,Missing=n_missing)%>%
   mutate_at(c("Sd","P25","P75","Hist"),~ifelse(Variable=="c_p_sex",NA,.))%>%
   mutate(Variable=dplyr::recode(Variable,
-                                     "c_f_ratio_grade"="Proporción femenina de estudiantes",
+                                     "c_s_f_ratio"="Proporción femenina de estudiantes",
                                      "c_p_sex"="Género directivo (1=mujer)"),
          Missing=paste0(round(Missing/178*100,2),"%")))%>%
   
@@ -252,19 +252,19 @@ label(data[["s_ictpos"]]) <- "Percepción de consecuencias positivas"
 label(data[["s_ictneg"]]) <- "Percepción de consecuencias negativas"
 label(data[["s_hisced"]]) <- "Nivel Educacional padres (superior=1)"
 label(data[["s_homlit"]]) <- "Alfabetización del hogar"
-label(data[["c_f_ratio_grade"]]) <- "Proporción Femenina"
+label(data[["c_s_f_ratio"]]) <- "Proporción Femenina"
 label(data[["c_p_sex"]]) <- "Género directivo (mujer=1)"
 ```
 
 ```{r, results='asis'}
 m1_1_geneff <- lmer(s_geneff ~ 
-                  c_f_ratio_grade + c_p_sex +
+                  c_s_f_ratio + c_p_sex +
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
                   s_hisced + s_homlit +
                   (1 | idschool),  data=data)
 
 m1_1_speceff <- lmer(s_speceff ~ 
-                  c_f_ratio_grade + c_p_sex +
+                  c_s_f_ratio + c_p_sex +
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
                   s_hisced + s_homlit +
                   (1 | idschool),  data=data)
@@ -274,7 +274,7 @@ tab_model(m1_1_geneff, m1_1_speceff,
           p.style = "stars",collapse.se = TRUE,
           show.re.var = FALSE,show.icc = FALSE,
           show.obs = FALSE,show.ngroups = FALSE,
-          terms = c("c_f_ratio_grade","c_p_sex","s_sex",
+          terms = c("c_s_f_ratio","c_p_sex","s_sex",
                     "s_ictfut","s_ictpos","s_ictneg"))
 
 ```
@@ -288,15 +288,15 @@ tab_model(m1_1_geneff, m1_1_speceff,
 
 ```{r, results='asis'}
 m2_geneff <- lmer(s_geneff ~ 
-                  s_sex*c_f_ratio_grade + s_sex*c_p_sex +
-                  c_f_ratio_grade + c_p_sex +
+                  s_sex*c_s_f_ratio + s_sex*c_p_sex +
+                  c_s_f_ratio + c_p_sex +
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
                   s_hisced + s_homlit +
                   (1 + s_sex| idschool), data=data)
 
 m2_speceff <- lmer(s_speceff ~ 
-                  s_sex*c_f_ratio_grade + s_sex*c_p_sex +
-                  c_f_ratio_grade + c_p_sex +
+                  s_sex*c_s_f_ratio + s_sex*c_p_sex +
+                  c_s_f_ratio + c_p_sex +
                   s_sex + s_ictfut + s_ictpos + s_ictneg +
                   s_hisced + s_homlit +
                   (1 + s_sex| idschool), data=data)
@@ -305,12 +305,12 @@ tab_model(m2_geneff, m2_speceff,
           show.ci = FALSE, auto.label = TRUE,
           p.style = "stars", collapse.se = TRUE,
           show.icc = FALSE,
-          terms = c("s_sex:c_f_ratio_grade",
+          terms = c("s_sex:c_s_f_ratio",
                     "s_sex:c_p_sex"))
 ```
 
 ::: aside
--   c_f_ratio_grade = Proporción femenina
+-   c_s_f_ratio = Proporción femenina
 -   c_p_sex = Género directivo
 :::
 
@@ -320,7 +320,7 @@ tab_model(m2_geneff, m2_speceff,
 
 ```{r, results='markup'}
 
-interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
+interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_s_f_ratio,
                             colors = nudos_color_binary,legend.main = "Proporción femenina",
                             modx.labels = c("-1 SD (42%)","Media (50%)","+1 SD (68%)"))+
   labs(x="Género", y="Puntaje A. Específica")
@@ -334,7 +334,7 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ## Verificación Hipótesis
 
 ::: {style="text-align: center;"}
-![](input/images/conclusions.png)
+![](images/conclusions.png)
 :::
 
 ## Conclusiones {data-background-color="black"}
@@ -366,13 +366,13 @@ interactions::interact_plot(m2_speceff, pred = s_sex, modx = c_f_ratio_grade,
 ::: panel-tabset
 #### Expectativas uso futuro
 
-![](input/images/s_ictfut.png)
+![](images/s_ictfut.png)
 
 #### Valoración social positiva
 
-![](input/images/s_ictpos.png)
+![](images/s_ictpos.png)
 
 #### Valoración social negativa
 
-![](input/images/s_ictneg.png)
+![](images/s_ictneg.png)
 :::

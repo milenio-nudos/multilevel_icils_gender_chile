@@ -52,6 +52,8 @@ student_data <- bsgchli2 %>%
                                          is2g27b,is2g27e,is2g27g,is2g27h,
                                          #Specialized recoded self-efficacy
                                          i27b,i27e,i27g,i27h,
+                                         #General self-efficacy items
+                                         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m,
                                          #Weights
                                          totwgts,
                                          wgtadj1s,wgtfac3s,wgtadj3s
@@ -59,20 +61,20 @@ student_data <- bsgchli2 %>%
 
 #Agregación de variables nivel 1 a 2 con factores incluidos
 student_data <- student_data %>% group_by(idschool) %>% 
-  mutate(c_speceff=round(weighted.mean(s_speceff, w=wgtadj3s, na.rm=TRUE),2), 
-         c_geneff=round(weighted.mean(s_geneff, w=wgtadj3s, na.rm=TRUE),2),
-         c_ictneg=round(weighted.mean(s_ictneg, w=wgtadj3s, na.rm=TRUE),2),
-         c_ictpos=round(weighted.mean(s_ictpos, w=wgtadj3s, na.rm=TRUE),2),
-         c_ictfut=round(weighted.mean(s_ictfut, w=wgtadj3s, na.rm=TRUE),2),
-         c_usecom=round(weighted.mean(s_usecom, w=wgtadj3s, na.rm=TRUE),2),
-         c_useinf=round(weighted.mean(s_useinf, w=wgtadj3s, na.rm=TRUE),2),
-         c_accont=round(weighted.mean(s_accont, w=wgtadj3s, na.rm=TRUE),2),
-         c_usestd=round(weighted.mean(s_usestd, w=wgtadj3s, na.rm=TRUE),2),
-         c_ictlrn=round(weighted.mean(s_ictlrn, w=wgtadj3s, na.rm=TRUE),2),
-         c_speclass=round(weighted.mean(s_speclass, w=wgtadj3s, na.rm=TRUE),2),
-         c_genclass=round(weighted.mean(s_genclass, w=wgtadj3s, na.rm=TRUE),2),
-         c_codlrn=round(weighted.mean(s_codlrn, w=wgtadj3s, na.rm=TRUE),2),
-         c_pv1cil=round(weighted.mean(s_pv1cil, w=wgtadj3s, na.rm=TRUE),2),
+  mutate(c_speceff=round(mean(s_speceff, na.rm=TRUE),2), 
+         c_geneff=round(mean(s_geneff, na.rm=TRUE),2),
+         c_ictneg=round(mean(s_ictneg, na.rm=TRUE),2),
+         c_ictpos=round(mean(s_ictpos, na.rm=TRUE),2),
+         c_ictfut=round(mean(s_ictfut, na.rm=TRUE),2),
+         c_usecom=round(mean(s_usecom, na.rm=TRUE),2),
+         c_useinf=round(mean(s_useinf, na.rm=TRUE),2),
+         c_accont=round(mean(s_accont, na.rm=TRUE),2),
+         c_usestd=round(mean(s_usestd, na.rm=TRUE),2),
+         c_ictlrn=round(mean(s_ictlrn, na.rm=TRUE),2),
+         c_speclass=round(mean(s_speclass, na.rm=TRUE),2),
+         c_genclass=round(mean(s_genclass, na.rm=TRUE),2),
+         c_codlrn=round(mean(s_codlrn, na.rm=TRUE),2),
+         c_pv1cil=round(mean(s_pv1cil, na.rm=TRUE),2),
          )
 
 # La base pública de 2018 no contiene la proporción de hombres y mujeres por escuela.
@@ -120,9 +122,9 @@ teacher_data <- btgchli2 %>% clean_names() %>% #Nombres en minúscula
          wgtadj1t,wgtadj2t,wgtfac1,
          wgtfac2t,wgtfac3t) %>%
   group_by(idschool) %>%
-  mutate(c_t_eff = round(weighted.mean(t_icteff,w=wgtfac3t,na.rm=T),2),
-         c_t_vwpos = round(weighted.mean(t_vwpos,w=wgtfac3t,na.rm=T),2),
-         c_t_vwneg = round(weighted.mean(t_vwneg,w=wgtfac3t,na.rm=T),2))%>%
+  mutate(c_t_eff = round(mean(t_icteff,na.rm=T),2),
+         c_t_vwpos = round(mean(t_vwpos,na.rm=T),2),
+         c_t_vwneg = round(mean(t_vwneg,na.rm=T),2))%>%
   mutate(c_t_f_ratio= sum(t_sex,na.rm = T),
          c_t_f_ratio=c_t_f_ratio/n(),
          c_t_f_ratio=round(c_t_f_ratio,2)) %>%

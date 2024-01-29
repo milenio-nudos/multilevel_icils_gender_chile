@@ -1,0 +1,954 @@
+---
+title: "Report Analysis Self-efficacy and gender differences, ICILS 2018"
+author: "Nicolas Tobar"
+format: 
+  html:
+    echo: false
+    warning: false
+editor: visual
+---
+
+```{r setup}
+
+options(scipen=999) #No scientific notation
+options(digits = 2) #Round results two decimals
+
+nudos_color_binary <- c("#5f5758","#ff3057") #Nudos theme
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg, #Best fit model
+               responsePatterns, #Check item
+               ggrepel, #labels plots
+               ggpubr, #arrange plots
+               ggExtra #marginal plots
+               )
+
+#Chile ICILS 2018 data
+student_proc_2018 <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
+
+#Select variables
+data <- student_proc_2018 |> 
+  select(
+    #ID
+    idschool,idstud,
+    #Student level
+    s_sex,s_pv1cil,s_speceff,s_geneff,
+    #School level
+    c_pv1cil,c_s_f_ratio,c_speceff,c_geneff,
+    #Control variables
+    s_hisced,s_homlit,
+    #Items specific self-efficacy
+    is2g27b,is2g27e,is2g27g,is2g27h,
+    #Items general self-efficacy
+    is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m,
+    #Weights
+    starts_with(c("wg","tot"))
+    )
+
+#Delete missing data labels
+val_label(data$s_sex,8) <- NULL
+val_label(data$s_sex,9) <- NULL
+val_label(data$is2g27b,8) <- NULL
+val_label(data$is2g27b,9) <- NULL
+val_label(data$is2g27e,8) <- NULL
+val_label(data$is2g27e,9) <- NULL
+val_label(data$is2g27g,8) <- NULL
+val_label(data$is2g27g,9) <- NULL
+val_label(data$is2g27h,8) <- NULL
+val_label(data$is2g27h,9) <- NULL
+val_label(data$is2g27a, 8) <- NULL
+val_label(data$is2g27a, 9) <- NULL
+val_label(data$is2g27c, 8) <- NULL
+val_label(data$is2g27c, 9) <- NULL
+val_label(data$is2g27d, 8) <- NULL
+val_label(data$is2g27d, 9) <- NULL
+val_label(data$is2g27i, 8) <- NULL
+val_label(data$is2g27i, 9) <- NULL
+val_label(data$is2g27j, 8) <- NULL
+val_label(data$is2g27j, 9) <- NULL
+val_label(data$is2g27k, 8) <- NULL
+val_label(data$is2g27k, 9) <- NULL
+val_label(data$is2g27l, 8) <- NULL
+val_label(data$is2g27l, 9) <- NULL
+val_label(data$is2g27m, 8) <- NULL
+val_label(data$is2g27m, 9) <- NULL
+
+#Change labels geneff items
+var_label(data) <- list(
+  is2g27a = "Edit graphic images",
+  is2g27c = "Write or edit text",
+  is2g27d = "Search and find information on internet",
+  is2g27i = "Create multi-media presentation",
+  is2g27j = "Upload multimedia to an online profile",
+  is2g27k = "Insert an image into a document/message",
+  is2g27l = "Install a program/app",
+  is2g27m = "Judge internet information veracity"
+)
+
+#Change labels speceff items
+var_label(data) <- list(
+  is2g27b = "Create a database",
+  is2g27e = "Build a webpage",
+  is2g27g = "Create a computer program/app",
+  is2g27h = "Set up a local area network"
+)
+
+```
+
+# Introduction
+
+The next report contains the method section and the diverse analysis made for the article of the social line of NUDOS.
+
+## Method
+
+As an exploratory study conducted by researchers originating from Chile, our analysis focused exclusively on the Chilean subset of the ICILS 2018 dataset. The raw sample comprised 3,092 students, distributed across 175 schools. The sample was meticulously designed using a multistage stratified cluster design, ensuring that both student and school levels are representative of the broader Chilean population.
+
+ICILS utilized various measurement instruments to collect data. Initially, participants underwent a Computer Literacy test, consisting of tasks with multiple-choice items. Based on their responses, each individual student was assigned a score for Computer and Information Literacy (CIL from now on). Subsequently, students completed a questionnaire, which inquired about their home background, values, beliefs, attitudes, and behaviors related to Computer and Information technologies. Following the questionnaire session, students responded to a Computational Thinking test (CT hereafter), featuring multiple-choice items. In Chile wasn't applied this last test.
+
+### Variables
+
+#### Sex of Student
+
+#### ICT Self-efficacy (Individual level)
+
+::: columns
+::: {.column .v-center-text}
+The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using different items from the same battery of questions. The phrasing of the battery was as follows: 'How well can you do each of these tasks when using ICT?' Participants were presented with three response categories:
+
+I do not think I could do this. I have never done this, but I could work out how to do this. I know how to do this. Due to the extended length of the labels for items related to ICT self-efficacy, we made the decision to truncate them. This modification was made to facilitate the inclusion of these labels in graphical plots, without altering the intended meaning of the phrases. The @tbl-labels section illustrates both the original and the summarized labels for the items comprising both indexes
+:::
+
+::: column
+```{r}
+#| label: tbl-labels
+#| tbl-cap: "Change of labels"
+
+rbind(
+data.frame(
+  item=c("is2g27a","is2g27c","is2g27d","is2g27i","is2g27j","is2g27k",
+         "is2g27l","is2g27m"),
+  old_label=c(
+  "Edit digital photographs or other graphic images",
+  "Write or edit text for a school assignment",
+  "Search for and find relevant information for a school project	
+  on the Internet",
+  "Create a multi-media presentation (with sound, pictures, or video)",
+  "Upload text, images, or video to an online profile",
+  "Insert an image into a document or message",
+  "Install a program or [app]",
+  "Judge whether you can trust information you find on the Internet"),
+  new_label=c(
+    "Edit graphic images",
+    "Write or edit text",
+    "Search and find information on internet",
+    "Create multi-media presentation",
+    "Upload multimedia to an online profile",
+    "Insert an image into a document/message",
+    "Install a program/app",
+    "Judge internet information veracity")
+),
+
+data.frame(
+  item=c("is2g27b","is2g27e","is2g27g","is2g27h"),
+  old_label=c(
+  "Create a database (e.g. using [Microsoft Access ®])",
+  "Build or edit a webpage",
+  "Create a computer program, macro, or [app]",
+  "Set up a local area network of computers or other ICT"),
+  new_label=c(
+  "Create a database",
+  "Build a webpage",
+  "Create a computer program/app",
+  "Set up a local area network")
+)
+) |>
+  gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 10
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )) |>
+    tab_row_group(
+    label = md("*Specialized Self-efficacy*"),
+    rows = 9:12
+  ) |>
+  tab_row_group(
+    label = md("*General Self-efficacy*"),
+    rows = 1:8
+  )|>
+  cols_label(
+    item=md("**Item**"),
+    old_label=md("**Original label**"),
+    new_label=md("**Summarised label**")
+  )
+  
+```
+:::
+:::
+
+Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.
+
+In Chile, the General ICT self-efficacy index has a mean of `r mean(data$s_geneff, na.rm = TRUE) |> round(2)`, with a standard deviation of `r sd(data$s_geneff, na.rm = TRUE) |> round(2)`. The minium and maxium values for this index are `r min(data$s_geneff, na.rm = TRUE) |> round(2)` and `r max(data$s_geneff, na.rm = TRUE) |> round(2)`, respectively.
+
+For Specialized ICT self-efficacy in Chile, the mean is `r mean(data$s_speceff, na.rm = TRUE) |> round(2)`, with a standard deviation of `r sd(data$s_speceff, na.rm = TRUE) |> round(2)`. The range of minium and maxium values for this index are `r min(data$s_speceff, na.rm = TRUE) |> round(2)` and `r max(data$s_speceff, na.rm = TRUE) |> round(2)`, respectively.
+
+The @tbl-efficacy-na table includes missing values for each item and the total missing values for both indexes. It is important to note that the missing data presented here will not be included in the subsequent analyses as part of the N.
+
+```{r}
+#| label: tbl-efficacy-na
+#| tbl-cap: "NA's by item Self-efficacy indexes"
+
+geneff_plot <- data |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27a=to_label(is2g27a),
+         is2g27c=to_label(is2g27c),
+         is2g27d=to_label(is2g27d),
+         is2g27i=to_label(is2g27i),
+         is2g27j=to_label(is2g27j),
+         is2g27k=to_label(is2g27k),
+         is2g27l=to_label(is2g27l),
+         is2g27m=to_label(is2g27m))
+
+speceff_plot <- data |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27a=to_label(is2g27a),
+         is2g27c=to_label(is2g27c),
+         is2g27d=to_label(is2g27d),
+         is2g27i=to_label(is2g27i))
+
+na_table<-rbind(
+  geneff_plot|>count(variable=is2g27a)|>
+    mutate(prop=n/sum(n),
+           name="Edit graphic images"),
+  geneff_plot|>count(variable=is2g27c)|>
+    mutate(prop=n/sum(n),
+           name="Write or edit text"),
+  geneff_plot|>count(variable=is2g27d)|>
+    mutate(prop=n/sum(n),
+           name="Search and find information on internet"),
+  geneff_plot|>count(variable=is2g27i)|>
+    mutate(prop=n/sum(n),
+           name="Create multi-media presentation"),
+  geneff_plot|>count(variable=is2g27j)|>
+    mutate(prop=n/sum(n),
+           name="Upload multimedia to an online profile"),
+  geneff_plot|>count(variable=is2g27k)|>
+    mutate(prop=n/sum(n),
+           name="Insert an image into a document/message"),
+  geneff_plot|>count(variable=is2g27l)|>
+    mutate(prop=n/sum(n),
+           name="Install a program/app"),
+  geneff_plot|>count(variable=is2g27m)|>
+    mutate(prop=n/sum(n),
+           name="Judge internet information veracity"),
+  speceff_plot|>count(variable=is2g27a)|>
+    mutate(prop=n/sum(n),
+           name="Create a database"),
+  speceff_plot|>count(variable=is2g27c)|>
+    mutate(prop=n/sum(n),
+           name="Build a webpage"),
+  speceff_plot|>count(variable=is2g27d)|>
+    mutate(prop=n/sum(n),
+           name="Create a computer program/app"),
+  speceff_plot|>count(variable=is2g27i)|>
+    mutate(prop=n/sum(n),
+           name="Set up a local area network")
+  ) |>
+  mutate(prop=paste0(prop|>round(2)*100,"%"))
+
+na_table$variable <- na_table$variable |> str_replace_na("Missing value")
+
+na_table |> filter(variable=="Missing value") |>
+  select(name,n,prop)|>
+  gt()|>
+    tab_row_group(
+    label = md("*Specialized Self-efficacy*"),
+    rows = 9:12
+  ) |>
+  tab_row_group(
+    label = md("*General Self-efficacy*"),
+    rows = 1:8
+  ) |>
+  cols_label(
+    name=md("**Item**"),
+    n=md("**Missing values (n)**"),
+    prop=md("**Proportion**")
+  )|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))
+```
+
+#### ICT Self-efficacy (School level)
+
+To explore the distribution of data at the school level, both self-efficacy indexes were aggregated using means. The code for constructing the aggregated variables is accessible on the [GitHub repository of the study](https://github.com/milenio-nudos/multilevel_icils_gender_chile/blob/main/proc/02_procesamiento_2018.R).
+
+#### Computer and Information Literacy
+
+#### Computer and Information Literacy (School level)
+
+To explore the distribution of CIL at school level, the score were aggregated using means. The code for constructing the aggregated variables is accessible on the [GitHub repository of the study](https://github.com/milenio-nudos/multilevel_icils_gender_chile/blob/main/proc/02_procesamiento_2018.R).
+
+#### Gender composition
+
+#### Socioeconomics variables (Control)
+
+# Analysis
+
+## Descriptive analysis
+
+### Self-efficacy items
+
+@fig-barplot-general explores the distribution of responses for General ICT Self-efficacy items. Notably, across all tasks, a significant proportion of students---no less than 65%---expressed confidence in their ability to perform these tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy.
+
+However, subtle differences emerge when examining individual items, revealing a nuanced trend. *Items associated with judging information or manipulating multimedia documents tended to yield lower levels of self-efficacy compared to those related to text documents, internet searching, and downloading of information*. Specifically, creating a multi-media presentation, judging internet information veracity, and editing graphic images received the lowest scores in the positive response category (67%, 71%, and 76% respectively), while garnering the highest scores in the intermediate category (26%, 24%, and 19% respectively). On the contrary, writing or editing a text, searching and finding information, inserting an image into a document/message, and installing a program/app achieved the highest scores in the positive response category (88%, 87%, 84%, and 84% respectively), with the lowest scores in the intermediate category (10%, 10%, 12%, and 11% respectively).
+
+*This first approach suggests that the sample presents greater efficacy around operational tasks than communicative or social activites with digital technologies.*
+
+```{r}
+#| label: fig-barplot-general
+#| fig-cap: "Barplot Relative Frequency Items General ICT Self-efficacy"
+    
+rbind(
+  geneff_plot|>count(variable=is2g27a)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Edit graphic images"),
+  geneff_plot|>count(variable=is2g27c)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Write or edit text"),
+  geneff_plot|>count(variable=is2g27d)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Search and find information on internet"),
+  geneff_plot|>count(variable=is2g27i)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Create multi-media presentation"),
+  geneff_plot|>count(variable=is2g27j)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Upload multimedia to an online profile"),
+  geneff_plot|>count(variable=is2g27k)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Insert an image into a document/message"),
+  geneff_plot|>count(variable=is2g27l)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Install a program/app"),
+  geneff_plot|>count(variable=is2g27m)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Judge internet information veracity")
+  ) |>
+  mutate(name=factor(name,
+                     levels=c(
+                       "Write or edit text",
+                       "Search and find information on internet",
+                      "Insert an image into a document/message",
+                       "Install a program/app",
+                       "Upload multimedia to an online profile",
+                       "Edit graphic images",
+                       "Judge internet information veracity",
+                       "Create multi-media presentation")))|>
+  mutate(prop=round(prop,2)) |>
+  ggplot(aes(x=name,y=prop,fill=variable))+
+  geom_bar(position = "fill",stat="identity",color="black")+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(title="General Self-efficacy",
+       subtitle="How well can you do each of these tasks when using ICT?",
+       x="",y="",fill="",
+       caption="Note: The percentages are rounded with 2 decimals. If values don't sum 100% is because the rounding")+
+  theme_minimal()+
+  theme(legend.position = "top")+ 
+  scale_fill_manual(values = c("#ff3057","#fdffde","#5f5758"),
+                    labels = ~ stringr::str_wrap(.x, width = 30))+
+  scale_y_continuous(labels = scales::percent)+
+  geom_text(aes(label=paste0(prop*100,"%")),hjust=0.5,size=3)
+```
+
+The @fig-barplot-specialized illustrates the distribution of responses for items that constitute the Specialized ICT Self-efficacy index. Notably, over 85% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program. However, this percentage decreases by more than 10% when it comes to tasks like creating a database or setting up a local area network. *This pattern suggests that students tend to perceive a higher level of proficiency in activities related to software and webpage development, while expressing less confidence in activities centered around data manipulation or network connectivity.*
+
+```{r}
+#| label: fig-barplot-specialized
+#| fig-cap: "Barplot Relative Frequency Items Specialized ICT Self-efficacy"
+
+rbind(
+  speceff_plot|>count(variable=is2g27a)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Create a database"),
+  speceff_plot|>count(variable=is2g27c)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Build a webpage"),
+  speceff_plot|>count(variable=is2g27d)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Create a computer program/app"),
+  speceff_plot|>count(variable=is2g27i)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Set up a local area network")
+) |>
+  mutate(prop=round(prop,2)) |>
+  ggplot(aes(x=name,y=prop,fill=variable))+
+  geom_bar(position = "fill",stat="identity",color="black",width=0.6)+
+  scale_fill_manual(values = c("#ff3057","#fdffde","#5f5758"),
+                    labels = ~ stringr::str_wrap(.x, width = 30))+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(title="Specialized Self-efficacy",
+       subtitle="How well can you do each of these tasks when using ICT?",
+       x="",y="",fill="",
+       caption="Note: The percentages are rounded with 2 decimals. If values don't sum 100% is because the rounding")+
+  theme_minimal()+
+  theme(legend.position = "top")+ 
+  scale_y_continuous(labels = scales::percent)+
+  geom_text(aes(label=paste0(prop*100,"%")),hjust=0.5,size=3)
+```
+
+@fig-lollipop-gender presents mean differences in gender ICT self-efficacy by item. Notably, all items contributing to general self-efficacy exhibit statistically significant differences in favor of boys, with the exception of 'install a program/app,' which shows significant differences in favor of girls, and 'judge internet information veracity,' which does not exhibit significant differences. However, it's important to note that *the magnitude of the gender gap in all items is relatively narrow when compared to the specialized self-efficacy items*.
+
+All specialized self-efficacy items score higher than their general self-efficacy counterparts, indicating a greater proficiency in advanced computational tasks for both boys and girls Nevertheless, within specialized self-efficacy, there are notable gaps, some double or even triple than those observed in general self-efficacy. As expected, these gaps favor males and occur specifically in 'Set up a local area network' and 'Create a computer program/app,' while 'Build a webpage' and 'Create a database' show no significant gender differences.
+
+Therefore, it can be concluded that *gender differences in self-efficacy are not consistent across all dimensions of the concept but rather manifest in specific areas*. Particularly in advanced self-efficacy, where two items exhibit significant gaps, while two others show no significant differences. Additionally, *the overall trend suggests that girls may have a slight advantage over boys in general tasks, whereas boys demonstrate a more significant advantage in specialized technological tasks*."
+
+```{r}
+#| label: fig-lollipop-gender
+#| fig-cap: "Cleveland Gender Self-efficacy differences by Items"
+#| warning: false
+
+
+#There's a problem with gender in this plot
+
+data |>
+  group_by(s_sex) |>
+  mutate(s_sex=to_label(s_sex))|>
+  rename(gender=s_sex)|>
+  summarise(across(starts_with("is2g"),
+                 mean, na.rm = TRUE)) |>
+  pivot_longer(cols = starts_with(c("is2g")),
+               names_to = "items",
+               values_to = "puntaje") |>
+  mutate(type=ifelse(items%in%c("is2g27b","is2g27e",
+                                "is2g27g","is2g27h"),
+                                "Specialized ICT self-efficacy",
+                                "General ICT self-efficacy")) |>
+  mutate(gender=dplyr::recode(gender,
+                             "Boy"="Girl",
+                             "Girl"="Boy"))|>
+  mutate(items=
+  factor(items,
+  levels=c(
+  "is2g27a",
+  "is2g27c",
+  "is2g27d",
+  "is2g27i",
+  "is2g27j",
+  "is2g27k",
+  "is2g27l",
+  "is2g27m",
+  "is2g27b",
+  "is2g27e",
+  "is2g27g",
+  "is2g27h"),
+  labels=c(
+  "Edit graphic images***",
+  "Write or edit text***",
+  "Search and find information on internet**",
+  "Create multi-media presentation**",
+  "Upload multimedia to an online profile**",
+  "Insert an image into a document/message***",
+  "Install a program/app*",
+  "Judge internet information veracity",
+  "Create a database",
+  "Build a webpage",
+  "Create a computer program/app***",
+  "Set up a local area network***"  
+  )))|>
+  
+  ggplot(aes(x=to_label(puntaje),y=to_label(items),color=gender))+
+    geom_line(aes(group=to_label(items)),color="#E7E7E7",linewidth=2.0)+
+    geom_point(size=6)+
+    theme_minimal()+
+    labs(x="Mean score",y="",color="Gender",
+         caption= "Signif. codes: <0.001 = ***, <0.01 = **, <0.05 = *")+
+    scale_color_manual(values=c("#ff3057","#5f5758"))+
+    theme(legend.position = "top")+
+    scale_y_discrete(labels=function(x) str_wrap(x,width = 50))+
+    facet_wrap(~type,ncol=1,scales="free_y")
+```
+
+### Indexes distribution and gender differences
+
+@tbl-indexes-gender explores the distribution of the key variables utilized in this study based on gender. The results indicate that girls exhibit a significant mean advantage over boys in the Computer Literacy test. Conversely, boys demonstrate a significant mean advantage in specialized self-efficacy. Notably, there are no significant differences in general ICT self-efficacy. This allow to speculate that the *overestimation of boys and underestimation of girls is primarily occurring in specialized ICT tasks*.
+
+It is essential to mention that both self-efficacy indexes have, at least, 93 missing values.
+
+```{r}
+#| label: tbl-indexes-gender
+#| tbl-cap: "Table of gender indexes differences"
+
+data |> 
+  mutate(s_sex=to_label(s_sex)) |>
+  tbl_summary(include = c(s_pv1cil,s_geneff,s_speceff),
+              by = s_sex,
+              missing = "no",
+              statistic = list(
+                all_continuous() ~ "{mean} ({sd})",
+                all_categorical() ~ "{n} / {N} ({p}%)")
+              ) |>
+  add_p() |>
+  add_n() |>
+  modify_header(label="**Variables**") |>
+  add_overall()|>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))
+```
+
+Despite having negligible differences in statistical measures, both self-efficacy indexes exhibit distinct internal distributions. As illustrated in @fig-histogram-indexes, *General ICT Self-efficacy demonstrates an increasing distribution toward higher values (similar to chi-square). Conversely, ICT Specialized Self-efficacy has a shape that closely resembles a normal distribution*.
+
+In simpler terms, for General Self-efficacy, responses tend to be concentrated at the higher end of the spectrum. In contrast, for Specialized Self-efficacy, values are concentrated around the middle, showcasing a relatively symmetrical dispersion in both tails.
+
+```{r}
+#| label: fig-histogram-indexes
+#| fig-cap: "Histogram ICT Self-efficacy indexes at individual level"
+
+data |>
+  ggplot(aes(x=x))+
+  geom_histogram(aes(x=s_geneff,y=..density..),fill="#5f5758")+
+  geom_label( aes(x=25, y=0.10, label="General Self-efficacy"), color="#5f5758") +
+  geom_histogram( aes(x = s_speceff, y = -..density..), fill= "#ff3057") +
+  geom_label( aes(x=25, y=-0.10, label="Specialized ICT Self-efficacy"), color="#ff3057") +
+  theme_minimal()+
+  labs(title = "ICT Self-efficacy indexes distribution",
+       x="Score",
+       y="Proportion")
+```
+
+Despite the notable differences in means, the observation of identical standard deviations in both distributions raises questions. The @fig-boxplot-gender-indexes provides additional insights into the gender distribution of both indexes. While the median remains consistent for both genders, boys exhibit a greater dispersion, characterized by a larger interquartile range and a more pronounced gap between the mean and the median. In the case of General Self-efficacy, girls have a slightly larger proportion of values towards the top of the plot. However, in Specialized Self-efficacy, girls exhibit more values towards the lower end and more outliers in both the top and bottom extremes. Consequently, *it can be inferred that, even though there are no significant differences in General Self-efficacy, the disparity in Specialized self-efficacy occurs in centralized data, with males having more cases in the top values and girls displaying more outlier cases in both tails of the index*.
+
+It is crucial to emphasize that the index figures are not directly comparable with each other, as they are standardized according to the distribution of scores across the measured countries.
+
+```{r}
+#| label: fig-boxplot-gender-indexes
+#| fig-cap: "Boxplot Gender ICT Self-efficacy indexes differences"
+
+ggarrange(
+data |>
+  ggplot(aes(x=to_label(s_sex), y=s_geneff, fill=to_label(s_sex))) + 
+  geom_boxplot() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=6, color="#fdffde",fill="red") +
+  scale_fill_manual(values=c("#5f5758","#ff3057"))+
+  theme_minimal() +
+  labs(x="",y="",
+       title="General ICT Self-efficacy",
+       fill="Gender")+
+  theme(legend.position = "top"),
+
+
+data |>
+  ggplot(aes(x=to_label(s_sex), y=s_speceff, fill=to_label(s_sex))) + 
+  geom_boxplot() +
+  stat_summary(fun.y=mean, geom="point", shape=20, size=6, color="#fdffde",fill="red") +
+  scale_fill_manual(values=c("#5f5758","#ff3057"))+
+  theme_minimal()+
+  labs(x="",y="",
+       title="Specialized ICT Self-efficacy",
+       fill="Gender")+
+  theme(legend.position = "top"),
+
+ncol=2, common.legend=TRUE,legend="top")
+
+```
+
+### School level variables description
+
+After exploring the individual level, understanding the behavior of this data at an aggregated level by school becomes crucial. @tbl-school-variables provides key statistics for the aggregated variables utilized in this analysis. The values align closely with those observed at the individual level, except for the CIL score, which now aligns more closely with the average score of boys. The last variable is intrinsic to the school level, showcasing the ratio of girls to boys students in each school. As expected, schools tend to have a relatively balanced gender composition, hovering around the 50/50 mark.
+
+```{r}
+#| label: tbl-school-variables
+#| tbl-cap: "Table of school aggregated variables"
+
+
+list_school <- list(aggregate(s_geneff ~ idschool, data=data, mean),
+     aggregate(s_speceff ~ idschool, data=data, mean),
+     aggregate(s_pv1cil ~ idschool, data=data, mean),
+     aggregate(c_s_f_ratio ~ idschool, data=data, mean))
+
+Reduce(function(x,y) merge(x,y, all=TRUE),
+        list_school) |>
+  
+  rename("General ICT Self-efficacy aggregated by school"=s_geneff,
+         "Specialized ICT Self-efficacy aggregated by school"=s_speceff,
+         "CIL Score aggregated by school"=s_pv1cil,
+         "Proportion of girl students"=c_s_f_ratio) |>
+  
+    tbl_summary(include = c("General ICT Self-efficacy aggregated by school",
+         "Specialized ICT Self-efficacy aggregated by school",
+         "CIL Score aggregated by school",
+         "Proportion of girl students"),
+              missing = "no",
+              statistic = list(
+              all_continuous() ~ "{mean} ({sd}) [{median}]"
+              )) |>
+  modify_header(label="**Variables**") |>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))
+  
+```
+
+To assess the distribution of all mentioned variables, refer to the @fig-histograms-school. The plots reveal the following observations:
+
+-   Both self-efficacy indexes exhibit a similar score distribution at the school level.
+-   The distribution of the proportion of girls in schools is effectively divided into three categories: co-educational, boys', and girls' schools. *This suggests the potential utility of treating this variable in a categorical manner*.
+-   The CIL score variable displays an anomalous case in the lower tail, contributing to a distortion in the graph. However, the majority of cases are concentrated in the low-intermediate and upper-intermediate values.
+
+```{r}
+#| label: fig-histograms-school
+#| fig-cap: "School level variables distribution"
+#| fig-subcap: 
+#|   - "General ICT Self-efficacy"
+#|   - "Specialized ICT Self-efficacy"
+#|   - "School girl students proportion"
+#|   - "CIL mean score"
+#| layout-ncol: 2
+
+data |>
+  group_by(idschool) |>
+  summarise(c_geneff=mean(s_geneff)) |>
+  as.data.frame() |>
+  ggplot(aes(x=c_geneff))+
+  geom_histogram(fill="#ff3057", color="#5f5758", alpha=0.8)+
+  theme_minimal()+
+  labs(x="Score",
+       y="n")
+
+data |>
+  group_by(idschool) |>
+  summarise(c_speceff=mean(s_speceff)) |>
+  as.data.frame() |>
+  ggplot(aes(x=c_speceff))+
+  geom_histogram(fill="#ff3057", color="#5f5758", alpha=0.8)+
+  theme_minimal()+
+  labs(x="Score",
+       y="n")
+
+
+data |>
+  group_by(idschool) |>
+  summarise(c_s_f_ratio=mean(c_s_f_ratio)) |>
+  as.data.frame() |>
+  ggplot(aes(x=c_s_f_ratio))+
+  geom_histogram(fill="#ff3057", color="#5f5758", alpha=0.8)+
+  theme_minimal()+
+  labs(x="Ratio",
+       y="n")
+
+data |>
+  group_by(idschool) |>
+  summarise(c_pv1cil=mean(c_pv1cil)) |>
+  as.data.frame() |>
+  ggplot(aes(x=c_pv1cil))+
+  geom_histogram(fill="#ff3057", color="#5f5758", alpha=0.8)+
+  theme_minimal()+
+  labs(x="Score",
+       y="n")
+```
+
+## Relation between variables
+
+After completing the univariate exploration, it is crucial to investigate how the variance of variables is interrelated. This section encompasses bivariate and correlation analyses to unveil potential associations between variables.
+
+### Correlation graph
+
+To provide an overview of the relationships between variables, a correlogram of all explored variables is presented in @fig-corrgram. Key findings include:
+
+-   There is a relatively intermediately-high positive effect size between both Self-efficacy indexes (0.44).
+-   A considerable positive effect size is observed between General ICT Self-efficacy and the CIL score (0.33).
+-   Counter-intuitively, the effect size between Specialized Self-efficacy and CIL Score is slightly negative (-0.11).
+-   The sex of the student (managed as dummy) exhibits little effect size with all variables.
+-   At school level, the effect size of variables are similar, except of self-efficacy indexes relation, which is 0.20 points lower.
+
+In essence, these results suggest that *General and Specialized ICT Self-efficacy reinforce each other at the individual level. Students reporting higher General Self-efficacy tend to have advantages on CIL test over those with lower scores in that index. Additionally, an intriguing finding is that individuals with lower scores on the CIL test tend to report higher Specialized Self-efficacy. One possible explanation could be that as students progress beyond general ICT knowledge and delve into advanced topics, they become more aware of concepts and processes they do not know.* Consequently, they may rely less on their computer literacy. This phenomenon aligns with the notion of underestimation, rooted in the 'I know that I don't know' logic.
+
+```{r}
+#| label: fig-corrgram
+#| fig-cap: "Correlogram principal variables"
+
+data_corr <- data |> select(s_sex,s_hisced,
+                            s_geneff,s_speceff,s_pv1cil,
+                            c_geneff,c_speceff,c_pv1cil
+                            )
+
+data_corr <- rcorr(as.matrix(data_corr))
+
+corrplot(data_corr$r, p.mat = data_corr$P, method = 'circle', type = 'lower', insig='blank',
+         addCoef.col ='black', number.cex = 0.8, order = 'AOE', diag=FALSE,
+         sig.level = 0.05)
+```
+
+### Gender reinforcement
+
+Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. @tbl-gender-reinforcement encapsulates the differences in bivariate relations within the data by gender group.
+
+As illustrated, boys tend to exhibit a more positive effect size in Self-efficacy indexes and between General Self-efficacy and CIL score (0.09 points and 0.04 points, respectively). Notably, the effect size between specialized self-efficacy and CIL score is more negative for girls than boys, registering at -0.04 points.
+
+This final result raises speculation about the impact of underestimation due to advanced knowledge ('Know that I don't know'), which seems to be more pronounced in females. It suggests that *girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills*.
+
+```{r}
+#| label: tbl-gender-reinforcement
+#| tbl-cap: "Table of Gender correlation differences"
+
+merge(
+  
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_geneff,s_speceff,use="complete.obs")|>
+                     round(3)),
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_geneff,s_pv1cil,use="complete.obs")|>
+                     round(3)),
+by="to_label(s_sex)"
+)|>
+merge(
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_speceff,s_pv1cil,use="complete.obs")|>
+                     round(3))
+) |>
+  gt() |>
+  tab_header("Gender Reinforcement effect between variables",
+             subtitle = "Correlation by gender (Pearson Score)") |>
+  cols_label(corr.x=md("**General-Specialized**"),
+             corr.y=md("**General-CIL**"),
+             corr=md("**Specialized-CIL**"),
+             "to_label(s_sex)"="Student Sex")
+```
+
+### School composition Self-efficacy reinforcement
+
+The scatter plots in @fig-scatter-school vividly illustrate how the gender composition of schools shapes the reinforcement between the three principal aggregated variables explored.
+
+In the first plot, it's evident that in schools with a higher proportion of male students, there is a much stronger reinforcement between the two self-efficacy indices compared to mixed or feminized schools.
+
+Contrastingly, the second plot, which examines the relationship between general self-efficacy and the computer literacy test, reveals no marked differences based on the gender composition of the school.
+
+Lastly, in the plot depicting the interaction between specific self-efficacy and the school's score on the computer literacy test, it's notable that the similar negative slope observed in co-educational and feminized schools is attenuated for masculinized schools.
+
+In essence, these findings suggest two important tendencies. *Firstly, students appear to reinforce their sense of self-efficacy when predominantly surrounded by male peers. Secondly, the sense of ignorance associated with the acquisition of advanced computer technology skills is less pronounced when students are mostly surrounded by boys.*
+
+```{r}
+#| label: fig-scatter-school
+#| fig-cap: "School Gender composition reinforcement effect"
+#| fig-subcap: 
+#|   - "General-Specialized"
+#|   - "General-CIL"
+#|   - "Specialized-CIL"
+#| layout-ncol: 1
+
+data <- data |>
+  mutate(c_gender_type=case_when(
+    c_s_f_ratio <= 0.35 ~"Masculinized school (0-35% girls)",
+    c_s_f_ratio > 0.35 & c_s_f_ratio < 0.65 ~"Mixed school (36%-64% girls)",
+    c_s_f_ratio >= 0.65 ~"Feminized school (65%-100% girls)"
+  )) 
+
+agg_data <- data |>
+  group_by(idschool,c_gender_type)|>
+  summarise_at(c("c_geneff",
+                 "c_speceff",
+                 "c_pv1cil"),
+               mean, na.rm=T) |>
+  mutate(c_gender_type=factor(c_gender_type,
+                              levels=c("Masculinized school (0-35% girls)",
+                                       "Mixed school (36%-64% girls)",
+                                       "Feminized school (65%-100% girls)"))
+         )
+
+agg_data |>  
+ggplot(aes(x=c_geneff,y=c_speceff))+
+  geom_point(aes(color=c_gender_type))+
+  theme_minimal()+
+  labs(x="General ICT Self-efficacy (Agg.)",
+       y="Specialized ICT Self-efficacy (Agg.)",
+       color="")+
+  geom_smooth(method=lm , aes(color=c_gender_type),
+              se=FALSE)+
+  theme(legend.position="top")
+
+agg_data |>  
+ggplot(aes(x=c_geneff,y=c_pv1cil))+
+  geom_point(aes(color=c_gender_type))+
+  theme_minimal()+
+  labs(y="Specialized ICT Self-efficacy (Agg.)",
+       x="CIL Score (Agg.)",
+       color="")+
+  geom_smooth(method=lm , aes(color=c_gender_type),
+              se=FALSE)+
+  theme(legend.position = "top")
+
+agg_data |>  
+ggplot(aes(x=c_speceff,y=c_pv1cil))+
+  geom_point(aes(color=c_gender_type))+
+  theme_minimal()+
+  labs(y="Specialized ICT Self-efficacy (Agg.)",
+       x="CIL Score (Agg.)",
+       color="")+
+  geom_smooth(method=lm , aes(color=c_gender_type),
+              se=FALSE)+
+  theme(legend.position = "top")
+```
+
+## Measurement Model
+
+## Multilevel models
+
+# Conclusions
+
+In this descriptive exploration, it could be concluded the next statements: 
+
+-   All ICT Self-efficacy items have between 70 and 90% of participants declaring they know how to do the task proposed. Could be bluff from students o measurement error from the questionnaire. 
+-   General ICT Self-efficacy items related with operational tasks present greater score than items related with communicative and social skills. 
+-   Specialized ICT Self-efficacy items related with database or network manipulation have less score than software or webpage development. 
+-   Gender differences on Specialized ICT Self-efficacy items are larger than on General ICT Self-efficacy items. Girls are slight advantages general tasks, whereas boys are strongly advantages in specialized tasks. The differences are not consistent across all dimensions of the indexes. 
+-   There's no significative mean differences between girls and boys in General ICT Self-efficacy, but yes in Specialized and CIL score. The underestimation of girls is principally occurring in specialized tasks expectation. 
+-   Specialized ICT Self-efficacy distribution of data is different between boys and girls. The firsts' have higher dispersion than the seconds'. But the latter have a larger amount of outliers. 
+-   Level 2 Girl ratio composition of school should be treated as categorical data. 
+-   General and Specialized ICT Self-efficacy reinforces strongly each other. The first one have a positive strong relation with CIL, but the second have a slightly negative relation with CIL. Paradoxically, the last finding suggest when student have more awareness about technologies, they feel lower computer competences. 
+-   The sense of ignorance is stronger in girls than in boys (Girls have a higher negative effect size between Specialized Self-efficacy and CIL). 
+-   Apparently, Mixed and feminized schools have similar levels of reinforcement between Self-efficacies and CIL. But masculinized schools have greater positive levels of reinforcements between Self-efficacy indexes and lower negative levels of reinforcements between Specialized Self-efficacy and CIL score. In other words, Students' levels of both self-efficacy levels are higher when they are surrounded by more boys, and their sense of ignorance associated with acquiring advanced computer skills is attenuated when there are more boys in the classroom.

@@ -4,7 +4,8 @@ pacman::p_load(tidyverse,
                labelled, #Label manipulation
                summarytools,
                sjPlot,
-               effects
+               effects,
+               responsePatterms
                )
 
 student_proc_2018 <- readRDS("input/proc_data/03_student_proc_2018.rds")

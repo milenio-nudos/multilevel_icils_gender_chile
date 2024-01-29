@@ -1,0 +1,4 @@
+- source: docs.qmd
+  quarto-pub:
+    - id: bb184730-3d50-4569-b38c-6699cd0af523
+      url: 'https://nudos.quarto.pub/report-january-icils-2018'

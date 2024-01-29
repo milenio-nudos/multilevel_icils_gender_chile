@@ -96,21 +96,6 @@ school_data<- bcgchli2 %>%
 #Unir ambas bases de datos a partir de id de escuelas
 base <- merge(student_data, school_data, by = "idschool", all.x = TRUE)
 
-#Agregar etiquetas variables de nivel 2
-label(base[["c_speceff"]]) <- "School mean specific self-efficacy"
-label(base[["c_geneff"]]) <- "School mean general self-efficacy"
-label(base[["c_ictneg"]]) <- "School mean negative ICT percepctions"
-label(base[["c_ictpos"]]) <- "School mean positive ICT perceptions"
-label(base[["c_ictlrn"]]) <- "School mean learning tsks ICT at school"
-label(base[["c_usestd"]]) <- "School mean use ICT study purposes"
-label(base[["c_ictfut"]]) <- "School mean expectations ICT work-study"
-label(base[["c_speclass"]]) <- "School mean specialist application ICT in class"
-label(base[["c_genclass"]]) <- "School mean general applications ICT in class"
-label(base[["c_codlrn"]]) <- "School mean Learning coding in class"
-label(base[["c_pv1cil"]]) <- "School mean score CIL Test"
-label(base[["c_s_f_ratio"]]) <- "School proportion of females students in eigth grade"
-
-
 #3. Agregar datos agregados de profesores ----
 teacher_data <- btgchli2 %>% clean_names() %>% #Nombres en minúscula
   select(idschool,idteach,
@@ -137,6 +122,18 @@ base <- merge(base,
               by="idschool",all.x = TRUE, all.y = FALSE)
 
 #Label new variables
+label(base[["c_speceff"]]) <- "School mean specific self-efficacy"
+label(base[["c_geneff"]]) <- "School mean general self-efficacy"
+label(base[["c_ictneg"]]) <- "School mean negative ICT percepctions"
+label(base[["c_ictpos"]]) <- "School mean positive ICT perceptions"
+label(base[["c_ictlrn"]]) <- "School mean learning tsks ICT at school"
+label(base[["c_usestd"]]) <- "School mean use ICT study purposes"
+label(base[["c_ictfut"]]) <- "School mean expectations ICT work-study"
+label(base[["c_speclass"]]) <- "School mean specialist application ICT in class"
+label(base[["c_genclass"]]) <- "School mean general applications ICT in class"
+label(base[["c_codlrn"]]) <- "School mean Learning coding in class"
+label(base[["c_pv1cil"]]) <- "School mean score CIL Test"
+label(base[["c_s_f_ratio"]]) <- "School proportion of females students in eigth grade"
 label(base[["c_t_eff"]]) <- "School mean teacher ICT self-efficacy"
 label(base[["c_t_vwpos"]]) <- "School mean teacher positive ICT views"
 label(base[["c_t_vwneg"]]) <- "School mean teacher negative ICT views"

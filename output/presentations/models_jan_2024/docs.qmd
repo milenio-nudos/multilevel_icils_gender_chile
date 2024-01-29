@@ -1,0 +1,458 @@
+---
+title: "Presentación de avances Modelos ICILS 2018"
+format: 
+  revealjs:
+    theme: defaults.scss
+editor: visual
+---
+
+```{r setup}
+options(scipen=999) #No scientific notation
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg #Best fit model
+               )
+
+#Chile ICILS 2018 data
+student_proc_2018 <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
+
+#Select variables
+data <- student_proc_2018 |> 
+  select(
+    #ID
+    idschool,idstud,
+    #Student level
+    s_sex,s_pv1cil,s_speceff,s_geneff,
+    #School level
+    c_pv1cil,c_s_f_ratio,
+    #Control variables
+    s_hisced,s_homlit,
+    #Items specific self-efficacy
+    is2g27b,is2g27e,is2g27g,is2g27h,
+    #Items general self-efficacy
+    is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m,
+    #Weights
+    starts_with(c("wg","tot"))
+    )
+
+#Delete missing data labels
+val_label(data$s_sex,8) <- NULL
+val_label(data$s_sex,9) <- NULL
+val_label(data$is2g27b,8) <- NULL
+val_label(data$is2g27b,9) <- NULL
+val_label(data$is2g27e,8) <- NULL
+val_label(data$is2g27e,9) <- NULL
+val_label(data$is2g27g,8) <- NULL
+val_label(data$is2g27g,9) <- NULL
+val_label(data$is2g27h,8) <- NULL
+val_label(data$is2g27h,9) <- NULL
+val_label(data$is2g27a, 8) <- NULL
+val_label(data$is2g27a, 9) <- NULL
+val_label(data$is2g27c, 8) <- NULL
+val_label(data$is2g27c, 9) <- NULL
+val_label(data$is2g27d, 8) <- NULL
+val_label(data$is2g27d, 9) <- NULL
+val_label(data$is2g27i, 8) <- NULL
+val_label(data$is2g27i, 9) <- NULL
+val_label(data$is2g27j, 8) <- NULL
+val_label(data$is2g27j, 9) <- NULL
+val_label(data$is2g27k, 8) <- NULL
+val_label(data$is2g27k, 9) <- NULL
+val_label(data$is2g27l, 8) <- NULL
+val_label(data$is2g27l, 9) <- NULL
+val_label(data$is2g27m, 8) <- NULL
+val_label(data$is2g27m, 9) <- NULL
+
+
+#Change labels speceff items
+var_label(data) <- list(
+  is2g27b = "How well can you do/Create a database (e.g. using [Microsoft Access ®])",
+  is2g27e = "How well can you do/Build or edit a webpage",
+  is2g27g = "How well can you do/Create a computer program, macro, or [app]",
+  is2g27h = "How well can you do/Set up a local area network of computers or other ICT"
+)
+
+#Change labels geneff items
+var_label(data) <- list(
+  is2g27a = "Edit digital photographs or other graphic images",
+  is2g27c = "Write or edit text for a school assignment",
+  is2g27d = "Search for and find relevant information for a school project	
+  on the Internet",
+  is2g27i = "Create a multi-media presentation (with sound, pictures, or video)",
+  is2g27j = "Upload text, images, or video to an online profile",
+  is2g27k = "Insert an image into a document or message",
+  is2g27l = "Install a program or [app]",
+  is2g27m = "Judge whether you can trust information you find on the Internet	"
+)
+```
+
+# Objetivo {background-color="#5F5758"}
+
+Hacer un repaso general general del proyecto inicial del estudio en cuestión, y presentar los avances de los modelos multinivel.
+
+## Breve repaso {.smaller}
+
+-   Dilema de la subestimación femenina.
+-   La literatura encuentra explicaciones actitudinales e infraestructurales.
+-   Necesidad de revisar efectos de composición de nivel 2 (Profesores, estudiantes, competencias).
+-   Amenaza del estereotipo y grupos de referencia.
+
+![](images/hypothesis.png)
+
+## Resultados descriptivos {.smaller}
+
+-   Escalas distintas CIL/Autoeficacia (Reescalar modelos)
+-   Diferencias de grupo en A. especializada
+-   Distribución más disperas de hombres, pero más outliers femeninos.
+
+```{r}
+#Differences by group table
+data |> 
+  mutate(s_sex=to_label(s_sex)) |>
+  tbl_summary(include = c(s_pv1cil,s_geneff,s_speceff),
+              by = s_sex,
+              missing = "no") |>
+  add_p() |>
+  add_n() |>
+  modify_header(label="**Variables**")
+```
+
+::: columns
+::: column
+```{r}
+#Plot differences
+data |>
+  ggplot(aes(x=to_label(s_sex), y=s_speceff, fill=to_label(s_sex))) + 
+  geom_boxplot(width=0.3) +
+  labs(title="Specialized Self-efficacy",x="",y="",fill="")+
+  stat_summary(fun.y=mean, geom="point", shape=20, size=6, color="green",fill="red")
+```
+:::
+
+::: column
+```{r}
+data |>
+  ggplot(aes(x=to_label(s_sex), y=s_geneff, fill=to_label(s_sex))) + 
+  geom_boxplot(width=0.3) +
+  labs(title="General Self-efficacy",x="",y="",fill="")+
+  stat_summary(fun.y=mean, geom="point", shape=20, size=6, color="green",fill="red") 
+```
+:::
+:::
+
+## Resultados correlacionales {.smaller}
+
+-   Las autoeficacias se refuerzan (0.44)
+-   Relación negativa entre A. Específica y alfabetización computacional (-0.11) y positiva con A. General (0.34)
+-   Refuerzo autoeficacia-competencias es más positivo en los hombres.
+
+::: columns
+::: {.column width="60%"}
+```{r}
+#Correlation
+data_corr <- data |> select(-c(idschool,idstud,
+                               starts_with(c("is2","tot","wgt"))))
+
+data_corr <- rcorr(as.matrix(data_corr))
+
+corrplot(data_corr$r, p.mat = data_corr$P, method = 'circle', type = 'lower', insig='blank',
+         addCoef.col ='black', number.cex = 0.8, order = 'AOE', diag=FALSE,
+         sig.level = 0.05)
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_speceff,s_pv1cil,use="complete.obs")|>
+                     round(3)) |>
+  gt() |>
+  tab_header("Reinforcement between ICT competences and specialized self-efficacy",
+             subtitle = "Correlation by gender") |>
+  cols_label(corr=md("**Pearson score**"))
+
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_geneff,s_pv1cil,use="complete.obs")|>
+                     round(3)) |>
+  gt() |>
+  tab_header("Reinforcement between ICT competences and general self-efficacy",
+             subtitle = "Correlation by gender") |>
+  cols_label(corr=md("**Pearson score**"))
+```
+:::
+:::
+
+# Modelos {background-color="#5F5758"}
+
+# Autoeficacia especializada {background-color="#FF3057"}
+
+```{r}
+#Rescale test score (500 points) and change class of categoricals
+data <- data |> mutate (s_sex=to_label(s_sex),
+                        s_pv1cil=scale(s_pv1cil)) 
+
+#Relabel variable
+label(data[["s_pv1cil"]]) <- "Computer and Information Literacy Score"
+```
+
+## Modelo nulo
+
+Un 6% de la varianza de autoeficacia especializada se asocia a la pertenencia de escuela del estudiante.
+
+```{r}
+#| echo: true
+
+##2.1 Specialized self-efficacy ----
+
+# Null Model
+m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data)
+
+ICC(m0_speceff)
+```
+
+## Código Modelos
+
+```{r}
+#| echo: true
+
+# Level 1 fixed effects
+m1_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex +
+                     (1 | idschool),  
+                   data=data) 
+
+m1_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     (1 | idschool),  
+                   data=data) 
+
+m1_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     s_sex*s_pv1cil +
+                     (1 | idschool),  
+                   data=data) 
+
+# Level 2 fixed effects
+m2_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_s_f_ratio +
+                     (1 | idschool),  
+                   data=data)
+
+
+m2_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil +
+                     (1 | idschool),  
+                   data=data)
+
+m2_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil+ c_s_f_ratio +
+                     (1 | idschool),  
+                   data=data)
+
+# Test random effects
+m3_a_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       (1 + s_sex| idschool),  
+                     data=data)
+
+m3_b_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       (1 + s_pv1cil| idschool),  
+                     data=data)
+```
+
+## Pruebas Desvianza
+
+No se hallaron diferencias significativas entre-escuelas. Se rechazan hipótesis de moderación.
+
+```{r}
+#| echo: true
+
+anova(m1_b_speceff,m3_a_speceff)
+```
+
+```{r}
+#| echo: true
+
+anova(m1_b_speceff,m3_b_speceff)
+```
+
+## Tabla final {.smaller .scrollable}
+
+-   Varianza explicada pequeña.
+-   Ser mujer y tener puntaje alto disminuye autoeficacia especializada. A nivel individual y agregado.
+-   Aunque no significativo, las mujeres, en promedio, tienen una relación más negativa entre alfabetización computacional y autoeficacia especializada que los hombres (interacción).
+-   Control de promedio agregado CIL modifica efecto de composición de género.
+
+```{r}
+#Final table
+tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
+          m2_a_speceff,m2_b_speceff,m2_c_speceff,
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = FALSE,show.icc = TRUE,
+          show.obs = FALSE,show.ngroups = FALSE,
+          dv.labels = c("Only sex","Sex+CIL","Int. Lev.1",
+                        "+ women ratio", "+ mean CIL", "Complete"))
+```
+
+## Hipótesis
+
+![](images/r_speceff.png)
+
+# Autoeficacia general {background-color="#FF3057"}
+
+Ante el desafío de expandir explicaciones y contraste, se decide volver a explorar la autoeficacia general, donde las diferencias de género son prácticamente nulas.
+
+## Modelo Nulo
+
+Un 5% de la varianza de autoeficacia especializada se asocia a la pertenencia de escuela del estudiante.
+
+```{r}
+#| echo: true
+m0_geneff <- lmer(s_geneff ~ 1 + (1 | idschool), data=data)
+ICC(m0_geneff) 
+```
+
+## Código Modelos
+
+```{r}
+#| echo: true
+#Level 1 fixed effects
+m1_a_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex +
+                       (1 | idschool),  
+                     data=data) 
+
+m1_b_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       (1 | idschool),  
+                     data=data) 
+
+m1_c_geneff <- lmer(s_geneff ~ 1 +
+                        s_sex + s_pv1cil +
+                        s_sex*s_pv1cil +
+                        (1 | idschool),  
+                      data=data) 
+
+
+# Level 2 fixed effects
+m2_a_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_s_f_ratio +
+                       (1 | idschool),  
+                     data=data)
+
+
+m2_b_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil +
+                       (1 | idschool),  
+                     data=data)
+
+m2_c_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_s_f_ratio +
+                       (1 | idschool),  
+                     data=data)
+
+#Test Random Effects
+m3_a_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       (1 + s_sex| idschool),  
+                     data=data)
+
+m3_b_geneff <- lmer(s_geneff ~ 1 +
+                      s_sex + s_pv1cil +
+                      (1 + s_pv1cil| idschool),  
+                    data=data)
+```
+
+## Test de desvianza
+
+Se encuentra pendiente aleatoria en el puntaje de la prueba (diferencia entre-escuelas)
+
+```{r}
+#| echo: true
+anova(m1_b_geneff,m3_a_geneff) #No random slope
+```
+
+```{r}
+#| echo: true
+anova(m1_b_geneff,m3_b_geneff) #Random slope!
+```
+
+## Más códigos
+
+```{r}
+#| echo: true
+#Random effects CIL level 2
+m4_x_geneff <- lmer(s_geneff ~ 1 +
+                      s_sex + s_pv1cil+
+                      c_s_f_ratio + c_pv1cil +
+                      (1 + s_pv1cil| idschool),
+                    data = data)
+
+m4_a_geneff <- lmer(s_geneff ~ 1 +
+                      s_sex + s_pv1cil+
+                      c_s_f_ratio + c_pv1cil +
+                      c_s_f_ratio*s_pv1cil+
+                      (1 + s_pv1cil| idschool),
+                    data = data)
+
+m4_b_geneff <- lmer(s_geneff ~ 1 +
+                      s_sex + s_pv1cil+
+                      c_s_f_ratio + c_pv1cil +
+                      c_pv1cil*s_pv1cil+
+                      (1 + s_pv1cil| idschool),
+                    data = data)
+```
+
+## Tabla final {.smaller .scrollable}
+
+```{r}
+tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
+          m2_a_geneff,m2_b_geneff,m2_c_geneff,
+          m4_a_geneff,m4_b_geneff,
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = FALSE,show.icc = TRUE,
+          show.obs = FALSE,show.ngroups = FALSE,
+          dv.labels = c("Only sex","Sex+CIL","Int. Lev.1",
+                        "+ women ratio", "+ mean CIL", "Complete",
+                        "Mod. CIL*WR","Mod CIL*C_CIL"))
+```
+
+## Hipótesis
+
+![](images/r_geneff.png)
+
+# Hallazgos {background-color="#FF3057"}
+
+-   H1: Ser mujer tiene un efecto positivo en General, pero negativo en específica.
+-   H2: A mayor competencias, menor autoeficacia específica (saber que no se sabe).
+-   H3: Se cumple la interacción para autoeficacia general.
+-   H4 y H5: No se logran probar las moderaciones por ausencia de aleatoriedad.
+
+# Reflexiones
+
+-   Variable de pensamiento computacional y autoeficacia específica.
+-   Incluir Tipo de escuela, variables sociodemográficas, actitudinales.
+-   ¿Desviación del foco inicial? Explicar la subestimación femenina.
+-   Estudio exploratorio: Tipologizar las mujeres que más se subestiman de las que menos ¿Qué comparten las mujeres que tienen mayor brecha entre la prueba y autoeficacia?

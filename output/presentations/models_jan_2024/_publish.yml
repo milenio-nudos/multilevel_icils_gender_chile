@@ -1,0 +1,4 @@
+- source: docs.qmd
+  quarto-pub:
+    - id: 8fda77fd-853f-4bf1-848c-215d8078d82e
+      url: 'https://nudos.quarto.pub/advances_icils_jan_2024'

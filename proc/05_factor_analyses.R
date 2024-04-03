@@ -4,12 +4,13 @@ pacman::p_load(tidyverse,
                labelled, #Label manipulation
                summarytools,
                sjPlot,
-               effects,
-               responsePatterms
+               effects
+               #responsePatterms
                )
 
+student_proc_2018 <- readRDS("/Users/daniel/Dropbox (Personal)/github/multilevel_icils_gender_chile/input/proc_data/03_student_proc_2018.rds")
 
-student_proc_2018 <- readRDS("input/proc_data/03_student_proc_2018.rds")
+
 
 base<- student_proc_2018 |> 
   select(s_sex,

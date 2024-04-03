@@ -1,0 +1,361 @@
+---
+title: "Factor Analyses: ICILS 2018 General and Specialized Self Efficacy"
+author: "Daniel Miranda"
+
+date: "`r Sys.Date()`"
+
+output:
+  rmdformats::robobook:
+    code_folding: show
+    self_contained: true
+    thumbnails: false
+    lightbox: true
+    gallery: false
+    use_bookdown: true
+pkgdown:
+  as_is: true
+  
+
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+	error = TRUE,
+	message = FALSE,
+	warning = FALSE,
+	echo= FALSE
+)
+```
+
+
+```{r , echo=FALSE}
+pacman::p_load(tidyverse,
+               gtsummary,
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               summarytools,
+               sjPlot,
+               effects,
+               #responsePatterms
+               stargazer, # Reporte a latex
+                sjPlot, sjmisc, # reporte y gráficos
+                corrplot, # grafico correlaciones
+                xtable, # Reporte a latex
+                Hmisc, # varias funciones
+                psych, # fa y principal factors
+                psy, # scree plot function
+                nFactors, # parallel
+                GPArotation, devtools, # rotación
+               table1,
+               xtable,
+               apaTables, kableExtra
+               )
+
+
+student_proc_2018 <- readRDS("/Users/daniel/Dropbox (Personal)/github/multilevel_icils_gender_chile/input/proc_data/03_student_proc_2018.rds")
+```
+
+## Variables
+
+How well can you do each of these tasks when using ICT? (Please mark one choice in each row)
+
+Specialized ICT Self-efficacy
+
+- Create a database (e.g., using [Microsoft Access®])	IS2G27B
+ 
+- Build or edit a webpage	IS2G27E
+
+- Create a computer program, macro, or [app] (e.g., in [Basic, Visual Basic])	IS2G27G
+
+- Set up a local area network of computers or other ICT	IS2G27H
+
+
+```{r}
+#Plot items Specialized Self-efficacy
+speceff_plot <- student_proc_2018 |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27a=to_label(is2g27b),
+         is2g27c=to_label(is2g27e),
+         is2g27d=to_label(is2g27g),
+         is2g27i=to_label(is2g27h))
+
+m1=rbind(
+  speceff_plot|>count(variable=is2g27b)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="b.Create a database"),
+  speceff_plot|>count(variable=is2g27e)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="e.Build or edit a webpage"),
+  speceff_plot|>count(variable=is2g27g)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="g.Create a computer program, macro, or [app]"),
+  speceff_plot|>count(variable=is2g27h)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="h.Set up a local area network")
+) |>
+  mutate(prop=round(prop,2)) 
+#View(m1)
+#str(m1)
+m1$variable=as.factor(m1$variable)
+
+  ggplot(m1, aes(x=name,y=prop,fill=variable))+
+ geom_bar(position = "fill",stat="identity",color="black")+
+  scale_fill_manual(values = c("black","grey50","grey95"),
+                    labels = c("I know how", "I never done but I could", "I think I couldn't" ))+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(title="Specialized Self-efficacy",
+       subtitle="How well can you do each of these tasks when using ICT?",
+       x="",y="",fill="")+
+  theme(legend.position = "top")+
+  guides(fill = guide_legend(reverse=TRUE))+
+  scale_y_continuous(labels = scales::percent)
+```
+
+
+General ICT Self-efficacy
+
+- Edit digital photographs or other graphic images	IS2G27A
+
+- Write or edit text for a school assignment	IS2G27C
+
+- Search for and find relevant information for a school project on the Internet	IS2G27D
+
+- Create a multi-media presentation (with sound, pictures, or video)	IS2G27I
+
+- Upload text, images, or video to an online profile	IS2G27J
+
+- Insert an image into a document or message	IS2G27K
+
+- Install a program or [app]	IS2G27L
+
+- Judge whether you can trust information you find on the Internet	IS2G27M
+
+```{r}
+#Plot items General self-efficacy
+geneff_plot <- student_proc_2018 |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27a=to_label(is2g27a),
+         is2g27c=to_label(is2g27c),
+         is2g27d=to_label(is2g27d),
+         is2g27i=to_label(is2g27i),
+         is2g27j=to_label(is2g27j),
+         is2g27k=to_label(is2g27k),
+         is2g27l=to_label(is2g27l),
+         is2g27m=to_label(is2g27m))
+
+
+m=rbind(
+  geneff_plot|>count(variable=is2g27a)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="a.Edit digital photographs"),
+  geneff_plot|>count(variable=is2g27c)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="c.Write or edit text"),
+  geneff_plot|>count(variable=is2g27d)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="d.Search for and find relevant information"),
+  geneff_plot|>count(variable=is2g27i)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="i.Create a multi-media presentation"),
+  geneff_plot|>count(variable=is2g27j)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="j.Upload text, images, or video"),
+  geneff_plot|>count(variable=is2g27k)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="k.Insert an image"),
+  geneff_plot|>count(variable=is2g27l)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="l.Install a program or [app]"),
+  geneff_plot|>count(variable=is2g27m)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="m.Judge whether you can trust information")
+  ) |>
+  mutate(prop=round(prop,2)) 
+#View(m)
+
+  ggplot(m, aes(x=name,y=prop,fill=variable))+
+  geom_bar(position = "fill",stat="identity",color="black")+
+  scale_fill_manual(values = c("black","grey50","grey95"),
+                    labels = c("I know how", "I never done but I could", "I think I couldn't" ))+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(title="General Self-efficacy",
+       subtitle="How well can you do each of these tasks when using ICT?",
+       x="",y="",fill="")+
+  theme(legend.position = "top")+
+  guides(fill = guide_legend(reverse=TRUE))+
+  scale_y_continuous(labels = scales::percent)
+```
+
+
+
+```{r , echo=FALSE}
+base <- student_proc_2018 |> 
+  select(#s_sex,
+         #s_speceff,s_geneff,
+         #Items specific self-efficacy
+         is2g27b,is2g27e,is2g27g,is2g27h,
+         #Items general self-efficacy
+         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m)
+
+baserev <-base |> 
+       mutate_at(vars(starts_with("is2g")),
+                 ~4-.)
+
+#variables
+baserev=baserev |>
+  mutate(database=is2g27b,
+         webpage=is2g27e,
+         app=is2g27g,
+         network=is2g27h,
+         editphoto=is2g27a,
+         edittext=is2g27c,
+         findinfo=is2g27d,
+         multimedia=is2g27i,
+         uploadfile=is2g27j,
+         insertimage=is2g27k,
+         install=is2g27l,
+         judgeinfo=is2g27m
+         ) |>
+  select(database, webpage, app, network, editphoto, edittext, findinfo, multimedia, uploadfile, insertimage, install, judgeinfo)
+
+```
+
+
+
+## Correlation matrix: assuming continuous 
+
+```{r}
+#Test correlation (Now is positive between items and index, and negativa between items and cil)
+mat = round(cor(baserev, use="complete.obs"),3)
+#mat
+
+#Hide lower triangle
+lower<-mat
+lower[lower.tri(mat, diag=TRUE)]<-""
+lower<-as.data.frame(lower)
+
+```
+
+```{r, results='asis'}
+#Table using kableExtra
+lower |>
+  kable() |>
+#kbl(caption = "Recreating booktabs style table") |>
+  kable_classic()
+
+```
+
+## Correlation matrix: assuming categorical
+
+```{r}
+#Polychoric correlations
+m=psych::polychoric(baserev)
+polmat=m$rho
+
+#Hide lower triangle
+lowerpol<-round(polmat, 3)
+lowerpol[lower.tri(polmat, diag=TRUE)]<-""
+lowerpol<-as.data.frame(lowerpol)
+
+
+```
+
+```{r}
+#Table using kableExtra
+lowerpol |>
+kable() |>
+  kable_classic_2()
+```
+
+```{r}
+#Correlations graph
+corrplot(polmat, type="lower") #lower x bajo diagonal
+
+cor.plot(m$rho, numbers=T, upper=FALSE, main = "Polychoric Correlation", show.legend = FALSE)
+```
+
+## Paralel Analyses
+```{r}
+save(polmat, file = "polychoric")
+
+# Factor analyses: 3 factors
+load("polychoric")
+fa.parallel(polmat, fm="pa", fa="fa", main = "Scree Plot", n.obs=3092)
+```
+
+## EFA considering four factors
+```{r}
+poly_model4 = fa(baserev, nfactor=4, cor="poly", fm="pa", rotate = "oblimin")
+
+save(poly_model4, file = "poly_model4")
+
+poly_model4$loadings
+#help(tab_fa)
+
+```
+
+```{r}
+sjPlot::tab_fa(poly_model4,
+                title = "",
+     #show.comm = TRUE,
+     alternate.rows = FALSE,
+     fctr.load.tlrn = 0.0)
+
+#help(sjPlot::tab_fa)
+```
+
+```{r}
+# Cluster analysis plot
+fa.diagram(poly_model4)
+```
+
+## EFA considering three factors
+```{r}
+poly_model3 = fa(baserev, nfactor=3, cor="poly", fm="pa", rotate = "oblimin")
+
+save(poly_model3, file = "poly_model3")
+
+poly_model3$loadings
+#help(tab_fa)
+
+```
+
+```{r}
+sjPlot::tab_fa(poly_model3,
+               title = "",
+     #show.comm = TRUE,
+     alternate.rows = FALSE,
+     fctr.load.tlrn = 0.0)
+```
+
+```{r}
+fa.diagram(poly_model3)
+```
+
+## EFA considering two factors
+```{r}
+poly_model2 = fa(baserev, nfactor=2, cor="poly", fm="pa", rotate = "oblimin")
+
+save(poly_model2, file = "poly_model2")
+
+poly_model2$loadings
+#help(tab_fa)
+
+```
+
+```{r}
+sjPlot::tab_fa(poly_model2)
+```
+
+```{r}
+fa.diagram(poly_model2,
+           title = "",
+     #show.comm = TRUE,
+     alternate.rows = FALSE,
+     fctr.load.tlrn = 0.0)
+```
+
+
+

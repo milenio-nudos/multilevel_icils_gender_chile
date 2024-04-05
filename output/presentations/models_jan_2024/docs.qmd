@@ -295,10 +295,7 @@ anova(m1_b_speceff,m3_b_speceff)
 
 ## Tabla final {.smaller .scrollable}
 
--   Varianza explicada pequeña.
--   Ser mujer y tener puntaje alto disminuye autoeficacia especializada. A nivel individual y agregado.
--   Aunque no significativo, las mujeres, en promedio, tienen una relación más negativa entre alfabetización computacional y autoeficacia especializada que los hombres (interacción).
--   Control de promedio agregado CIL modifica efecto de composición de género.
+
 
 ```{r}
 #Final table

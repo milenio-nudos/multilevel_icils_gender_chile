@@ -27,6 +27,7 @@ bcgchli2 <- bcgchli2%>%clean_names()
 
 
 student_data <- bsgchli2 %>% 
+  #Change direction of Self-efficacy items
   mutate(i27b=4-is2g27b,
          i27e=4-is2g27e,
          i27g=4-is2g27g,
@@ -37,7 +38,7 @@ student_data <- bsgchli2 %>%
                                          #Self-efficacy
                                          s_speceff, s_geneff,s_speceff2,
                                          #Demographics
-                                         s_hisced,s_homlit,
+                                         s_hisced,s_homlit,s_hisei,s_nisb,
                                          #Attitudes
                                          s_ictneg, s_ictpos, s_ictfut,
                                          #Digital activities (out of school)

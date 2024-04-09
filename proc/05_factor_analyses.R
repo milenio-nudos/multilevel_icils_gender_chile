@@ -1,4 +1,4 @@
-pacman::p_load(tidyverse,
+ pacman::p_load(tidyverse,
                gtsummary,
                sjmisc, #Label manipulation
                labelled, #Label manipulation
@@ -20,7 +20,7 @@ pacman::p_load(tidyverse,
                apaTables, kableExtra
                )
 
-student_proc_2018 <- readRDS("/Users/daniel/Dropbox (Personal)/github/multilevel_icils_gender_chile/input/proc_data/03_student_proc_2018.rds")
+student_proc_2018 <- readRDS("input/proc_data/03_student_proc_2018.rds")
 
 dim(student_proc_2018)
 
@@ -144,8 +144,10 @@ kable() |>
   kable_classic_2()
 
 #Correlations graph
-corrplot(polmat, type="upper") #lower x bajo diagonal
-
+corrplot(polmat, method = 'color', type = 'lower', insig='blank',
+         tl.col = "black",bg="white",na.label="-",
+         addCoef.col ='black', number.cex = 0.8, diag=FALSE,
+         sig.level = 0.05)
 cor.plot(m$rho, numbers=T, upper=FALSE, main = "Polychoric Correlation", show.legend = FALSE)
 
 save(polmat, file = "polychoric")

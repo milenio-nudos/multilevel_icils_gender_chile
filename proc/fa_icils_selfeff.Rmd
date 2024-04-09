@@ -52,7 +52,7 @@ pacman::p_load(tidyverse,
                )
 
 
-student_proc_2018 <- readRDS("/Users/daniel/Dropbox (Personal)/github/multilevel_icils_gender_chile/input/proc_data/03_student_proc_2018.rds")
+student_proc_2018 <- readRDS("../input/proc_data/03_student_proc_2018.rds")
 ```
 
 ## Variables
@@ -227,15 +227,33 @@ baserev=baserev |>
 ## Correlation matrix: assuming continuous 
 
 ```{r}
+colnames(baserev)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
 #Test correlation (Now is positive between items and index, and negativa between items and cil)
 mat = round(cor(baserev, use="complete.obs"),3)
 #mat
+
+
+colnames(mat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
 
 #Hide lower triangle
 lower<-mat
 lower[lower.tri(mat, diag=TRUE)]<-""
 lower<-as.data.frame(lower)
-
 ```
 
 ```{r, results='asis'}
@@ -254,11 +272,28 @@ lower |>
 m=psych::polychoric(baserev)
 polmat=m$rho
 
+rownames(polmat)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
+colnames(polmat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
+
 #Hide lower triangle
 lowerpol<-round(polmat, 3)
 lowerpol[lower.tri(polmat, diag=TRUE)]<-""
 lowerpol<-as.data.frame(lowerpol)
-
 
 ```
 
@@ -271,7 +306,10 @@ kable() |>
 
 ```{r}
 #Correlations graph
-corrplot(polmat, type="lower") #lower x bajo diagonal
+corrplot(polmat, method = 'color', type = 'lower', insig='blank',
+         tl.col = "black",bg="white",na.label="-",
+         addCoef.col ='black', number.cex = 0.8, diag=FALSE,
+         sig.level = 0.05)
 
 cor.plot(m$rho, numbers=T, upper=FALSE, main = "Polychoric Correlation", show.legend = FALSE)
 ```

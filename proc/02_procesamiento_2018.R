@@ -153,4 +153,3 @@ label(base_2[["c_t_f_ratio"]]) <- "School female gender teacher ratio"
 saveRDS(base,file="input/proc_data/03_student_proc_2018.rds")
 #Guardar base de datos profesor-colegio
 saveRDS(base_2,file="input/proc_data/04_teach_proc_2018.rds")
-

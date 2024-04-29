@@ -335,7 +335,21 @@ na_table<-rbind(
 na_table$variable <- na_table$variable |> str_replace_na("Missing value")
 
 na_table |> filter(variable=="Missing value") |>
-  select(name,n,prop)|>
+  mutate(old_label=c(
+  "Edit digital photographs or other graphic images",
+  "Write or edit text for a school assignment",
+  "Search for and find relevant information for a school project	
+  on the Internet",
+  "Create a multi-media presentation (with sound, pictures, or video)",
+  "Upload text, images, or video to an online profile",
+  "Insert an image into a document or message",
+  "Install a program or [app]",
+  "Judge whether you can trust information you find on the Internet",
+  "Create a database (e.g. using [Microsoft Access ®])",
+  "Build or edit a webpage",
+  "Create a computer program, macro, or [app]",
+  "Set up a local area network of computers or other ICT"))|>
+  select(old_label,name,n,prop)|>
   gt()|>
     tab_row_group(
     label = md("*Specialized Self-efficacy*"),
@@ -346,6 +360,7 @@ na_table |> filter(variable=="Missing value") |>
     rows = 1:8
   ) |>
   cols_label(
+    old_label=md("**Old label**"),
     name=md("**Item**"),
     n=md("**Missing values (n)**"),
     prop=md("**Proportion**")
@@ -1276,9 +1291,9 @@ data |>
   mutate(c_gender_type=
            factor(c_gender_type,
               levels=c(
-             "Feminized school (65%-100% girls)",
-             "Mixed school (36%-64% girls)",
-             "Masculinized school (0-35% girls)")  
+             "Feminized school (67%-100% girls)",
+             "Mixed school (34%-66% girls)",
+             "Masculinized school (0-33% girls)") 
              )
            )|>
   group_by(c_gender_type,s_sex) |>

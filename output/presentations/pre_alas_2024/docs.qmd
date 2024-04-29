@@ -1,0 +1,770 @@
+---
+pagetitle: "Las estudiantes mujeres subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital alrededor de las escuelas de Chile"
+author: Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
+bibliography: ../../../input/bib/icils_nudos.bib 
+csl: ../../../input/bib/apa.csl
+
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+      
+format: 
+  revealjs:
+    logo: images/banner_nudos.jpg
+    slide-number: true
+    theme: [pp.scss]
+    title-slide-attributes:
+      visibility: false
+#      data-background-image: images/portada.jpg
+#      data-background-size: cover
+    auto-play-media: true
+
+editor: visual
+---
+
+```{r setup}
+
+options(scipen=999) #No scientific notation
+options(digits = 2) #Round results two decimals
+
+nudos_color_binary <- c("#5f5758","#ff3057") #Nudos theme
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg, #Best fit model
+               responsePatterns, #Check items
+               ggrepel, #labels plots
+               ggpubr, #arrange plots
+               ggExtra #marginal plots
+               )
+
+#Chile ICILS 2018 data
+student_proc_2018 <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
+
+#Select variables
+data <- student_proc_2018 |> 
+  select(
+    #ID
+    idschool,idstud,
+    #Student level
+    s_sex,s_pv1cil,s_speceff,s_geneff,
+    #School level
+    c_pv1cil,c_s_f_ratio,c_speceff,c_geneff,
+    #Control variables
+    s_hisced,s_homlit,s_hisei,s_nisb,
+    #Items specific self-efficacy
+    is2g27b,is2g27e,is2g27g,is2g27h,
+    #Items general self-efficacy
+    is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m,
+    #Weights
+    starts_with(c("wg","tot"))
+    )
+
+#Delete missing data labels
+val_label(data$s_sex,8) <- NULL
+val_label(data$s_sex,9) <- NULL
+val_label(data$is2g27b,8) <- NULL
+val_label(data$is2g27b,9) <- NULL
+val_label(data$is2g27e,8) <- NULL
+val_label(data$is2g27e,9) <- NULL
+val_label(data$is2g27g,8) <- NULL
+val_label(data$is2g27g,9) <- NULL
+val_label(data$is2g27h,8) <- NULL
+val_label(data$is2g27h,9) <- NULL
+val_label(data$is2g27a, 8) <- NULL
+val_label(data$is2g27a, 9) <- NULL
+val_label(data$is2g27c, 8) <- NULL
+val_label(data$is2g27c, 9) <- NULL
+val_label(data$is2g27d, 8) <- NULL
+val_label(data$is2g27d, 9) <- NULL
+val_label(data$is2g27i, 8) <- NULL
+val_label(data$is2g27i, 9) <- NULL
+val_label(data$is2g27j, 8) <- NULL
+val_label(data$is2g27j, 9) <- NULL
+val_label(data$is2g27k, 8) <- NULL
+val_label(data$is2g27k, 9) <- NULL
+val_label(data$is2g27l, 8) <- NULL
+val_label(data$is2g27l, 9) <- NULL
+val_label(data$is2g27m, 8) <- NULL
+val_label(data$is2g27m, 9) <- NULL
+
+#Change labels geneff items
+var_label(data) <- list(
+  is2g27a = "Editar imágenes gráficas",
+  is2g27c = "Escribir o editar texto",
+  is2g27d = "Buscar y encontrar información en internet",
+  is2g27i = "Crear una presentación multimedia",
+  is2g27j = "Cargar información multimedia a un perfil online",
+  is2g27k = "Insertar una imagen en un documento/mensaje",
+  is2g27l = "Instalar un programa/aplicación",
+  is2g27m = "Juzgar la veracidad de la información en internet"
+)
+
+#Change labels speceff items
+var_label(data) <- list(
+  is2g27b = "Crear una base de datos",
+  is2g27e = "Construir una página web",
+  is2g27g = "Crear un programa computacional",
+  is2g27h = "Configurar una red local"
+)
+
+# Create gender composition categorical variable
+data <- data |>
+  mutate(c_gender_type=case_when(
+    c_s_f_ratio <= 0.33 ~"Escuela masculinizada (0-33% de niñas)",
+    c_s_f_ratio > 0.34 & c_s_f_ratio < 0.66 ~"Escuelas mixtas (34%-66% de niñas)",
+    c_s_f_ratio >= 0.67 ~"Escuela feminizada (67%-100% de niñas)"
+  )) 
+
+# Recode CIL
+data <- data |>
+  mutate(s_pv1cil=s_pv1cil*0.1,
+         c_pv1cil=c_pv1cil*0.1)
+
+var_label(data)<- list(
+  s_pv1cil = "Puntaje Alfabetizacion Computacional",
+  s_geneff = "Autoeficacia digital básica",
+  s_speceff = "Autoeficacia digital avanzada",
+  s_sex = "Género del estudiante (Niña=1)",
+  s_nisb = "Índice de nivel socioeconómico del Hogar",
+  c_pv1cil = "Promedio escolar Alfabetización computacional",
+  c_gender_type = "Composición de género escuela"
+)
+
+# Delete less than 10 schools
+perdidos<-data |> 
+  group_by(idschool)|>
+  summarise(num_casos = n()) %>%
+  filter(num_casos < 10)
+
+'%!in%' <- function(x,y)!('%in%'(x,y))
+
+data <- data |>
+  filter(idschool %!in% perdidos$idschool)
+
+```
+
+::: {.columns .v-center-container}
+::: {.column width="10%"}
+:::
+
+::: {.column width="90%"}
+<br>
+
+## **Las estudiantes subestiman sus habilidades tecnológicas?**
+
+### Diferencias de género en autoeficacia digital en contextos escolares chilenos
+
+------------------------------------------------------------------------
+
+Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
+
+#### Nucleo Mileno de Desigualdades y Oportunidades Digitales (*nudos.cl*)
+
+**Congreso de Sociología** de Chile, Mayo 2024
+:::
+:::
+
+# 
+
+![](images/banner_nudos.jpg){width="80%" fig-align="center"}
+
+![](images/lineas-nudos.png)
+
+## Introducción
+
+::: {style="font-size: 130%;"}
+-   Masificación TICS han matizado diferencias de uso por género [@hargittaiDifferencesActualPerceived2006].
+
+-   Escolares mujeres presentan mayor alfabetización pero menos confianza en sus capacidades que los hombres [@punterGenderDifferencesComputer2017].
+
+-   Autoeficacia: "*a functional self-awareness in which students reflect on their personal efficacy, thoughts, actions, the meaning of their pursuits, and make corrective adjustments if necessary*" [@banduraPsychologyHumanAgency2006].
+:::
+
+## ¿Por qué las niñas se subestiman?
+::: {style="font-size: 130%;"}
+-   Amenaza del estereotipo femenino tecnológico [@turnerSocialIdentityTheory2004; @steeleStereotypeThreatIntellectual1995]. ¿Se mantiene cuando mujeres aumentan alfabetización?
+
+-   Evidencia atribuye desigualdad actitudinal a factores externos a la escuela [@vekiriGenderIssuesTechnology2008].
+
+-   Efectos composición: mujeres aumentan rendimiento y satisfacción cuando están rodeadas de mujeres [@kirschGenderCompositionCorporate2018]. ¿Girls support girls?
+:::
+
+## ¿Cómo la composición de género del establecimiento y el nivel de alfabetización digital afectan los niveles de autoeficacia tecnológica de las estudiantes de octavo básico en Chile? {data-background-color="#5f5758"}
+
+## Hipótesis
+
+![](images/hypothesis.png){width="90%" fig-align="center"}
+
+## Datos ICILS
+
+::: {style="font-size: 120%;"}
+-   Medición en noviembre 2017, Publicación 2018.
+-   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
+-   3092 estudiantes y 178 escuelas en Chile. 
+-   Muestra compleja trietápica.
+-   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
+-   Se eliminan 14 escuelas y 86 estudiantes por n<10.
+:::
+
+## Variable Autoeficacia {.smaller}
+
+::: {style="text-align: center;"}
+
+¿En qué medida puedes realizar cada una de estas tareas utilizando las TIC?
+
+Respuestas: 1. Sé como realizarlo. 2. No sé realizarlo pero me siento capaz de aprenderlo. 3. No no me siento capaz de aprenderlo.
+:::
+::: columns
+::: {.column width="50%"}
+#### Básica
+
+-   Editar fotografías digitales u otras imágenes gráficas.
+-   Escribir o editar texto para un trabajo escolar.
+-   Buscar y encontrar en Internet información relevante para un proyecto escolar.
+-   Crear una presentación multimedia (con sonido, imágenes o vídeo).
+-   Cargar texto, imágenes o vídeo en un perfil en línea.\
+-   Insertar una imagen en un documento o mensaje.
+-   Instalar un programa o \[app\].
+-   Juzgar si puede confiar en la información que encuentra en Internet.
+:::
+
+::: {.column width="50%"}
+#### Avanzada
+
+-   Crear una base de datos (por ejemplo, utilizando \[Microsoft Access®\]).
+-   Construir o editar una página web.
+-   Crear un programa informático, macro o \[app\] (por ejemplo, en \[Basic, Visual Basic\]).
+-   Configurar una red de área local de ordenadores u otras TIC.
+:::
+:::
+
+#
+```{r}
+#| label: tbl-student-variables
+#| tbl-cap: "Estadísticos descriptivos por nivel"
+#| tbl-subcap: 
+#| - "Nivel estudiante"
+#| - "Nivel escuela"
+#| layout-ncol: 2
+
+data |> 
+  select(
+  s_sex,
+  s_geneff,
+  s_speceff,
+  s_pv1cil,
+  s_nisb
+) |>
+  mutate(
+    s_sex=to_label(s_sex))|>
+  tbl_summary(
+    statistic = list(
+              all_continuous() ~ "{mean} ({sd}) [{median}]",
+              all_categorical() ~ "{n} / {N} ({p}%)"
+              ),
+    include = everything(),
+    missing_text = "Missing values (NA)"
+  )|>
+  modify_header(label="**Variables**") |>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))
+
+list_school <- list(
+     aggregate(s_pv1cil ~ idschool, data=data, mean),
+     aggregate(c_s_f_ratio ~ idschool, data=data, mean),
+     data|>distinct(idschool,c_gender_type)
+)
+
+Reduce(function(x,y) merge(x,y, all=TRUE),
+        list_school) |>
+  
+  rename("Promedio Alfabetización digital"=s_pv1cil,
+         "Tipo de composición de género (Categórica)"=c_gender_type) |>
+  
+    tbl_summary(include = c("Promedio Alfabetización digital",
+         "Tipo de composición de género (Categórica)"),
+              statistic = list(
+              all_continuous() ~ "{mean} ({sd}) [{median}]",
+              all_categorical() ~ "{n} / {N} ({p}%)"
+              )) |>
+  modify_header(label="**Variables**") |>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))
+  
+```
+
+## Autoeficacia
+-   Los ítems se distribuyen relativamente igual entre ambas dimensiones. Los niveles de autoeficacia en tareas generales son mayores.
+-   Se hizo un análisis factorial confirmatorio que sugirió 2 factores. Se ajusta con lo propuesto por ICILS.
+```{r}
+#| label: fig-efficacy-distribution
+#| fig-cap: "Distribución de frecuencias"
+#| fig-subcap: 
+#| - "Autoeficacia General"
+#| - "Autoeficacia Específica"
+#| layout-ncol: 2
+
+geneff_plot <- data |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27a=to_label(is2g27a),
+         is2g27c=to_label(is2g27c),
+         is2g27d=to_label(is2g27d),
+         is2g27i=to_label(is2g27i),
+         is2g27j=to_label(is2g27j),
+         is2g27k=to_label(is2g27k),
+         is2g27l=to_label(is2g27l),
+         is2g27m=to_label(is2g27m))
+
+speceff_plot <- data |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27b=to_label(is2g27b),
+         is2g27e=to_label(is2g27e),
+         is2g27g=to_label(is2g27g),
+         is2g27h=to_label(is2g27h))
+
+rbind(
+  geneff_plot|>count(variable=is2g27a)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Editar imágenes gráficas"),
+  geneff_plot|>count(variable=is2g27c)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Escribir o editar texto"),
+  geneff_plot|>count(variable=is2g27d)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Buscar y encontrar información en internet"),
+  geneff_plot|>count(variable=is2g27i)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Crear una presentación multimedia"),
+  geneff_plot|>count(variable=is2g27j)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Cargar multimedia a un perfil online"),
+  geneff_plot|>count(variable=is2g27k)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Insertar una imagen en un documento/mensaje"),
+  geneff_plot|>count(variable=is2g27l)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Instalar un programa/aplicación"),
+  geneff_plot|>count(variable=is2g27m)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Juzgar la veracidad de la información de internet")
+  ) |>
+  mutate(name=factor(name,
+                     levels=c(
+                       "Escribir o editar texto",
+                       "Buscar y encontrar información en internet",
+                      "Insertar una imagen en un documento/mensaje",
+                       "Instalar un programa/aplicación",
+                       "Cargar multimedia a un perfil online",
+                       "Editar imágenes gráficas",
+                       "Juzgar la veracidad de la información de internet",
+                       "Crear una presentación multimedia")),
+         variable=factor(variable,levels = c(
+  "I do not think I could do this.",
+  "I have never done this but I could work out how to do this.",
+  "I know how to do this."
+  )
+         )
+         )|>
+  mutate(prop=round(prop,2)) |>
+  ggplot(aes(x=name,y=prop,fill=variable))+
+  geom_bar(position = "fill",stat="identity",color="black")+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(x="",y="",fill="",
+       caption="Note: The percentages are rounded with 2 decimals. If values don't sum 100% is because the rounding")+
+  theme_minimal()+
+  theme(legend.position = "top")+ 
+  scale_fill_manual(
+    values=c("#ff3057","#5f5758","white"),
+    limits=c(
+  "I know how to do this.",
+  "I have never done this but I could work out how to do this.",
+  "I do not think I could do this."
+  ),
+    labels = ~ stringr::str_wrap(.x, width = 30))+
+  scale_y_continuous(labels = scales::percent)+
+  geom_text(aes(label=paste0(prop*100,"%")),position = position_fill(vjust=0.5))
+
+rbind(
+  speceff_plot|>count(variable=is2g27b)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Crear una base de datos"),
+  speceff_plot|>count(variable=is2g27e)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Construir una página web"),
+  speceff_plot|>count(variable=is2g27g)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Crear un programa/aplicación"),
+  speceff_plot|>count(variable=is2g27h)|>drop_na()|>
+    mutate(prop=n/sum(n),
+           name="Configurar una red local")
+) |>
+  mutate(prop=round(prop,2)) |>
+  mutate(name=factor(name,levels=c(
+    "Crear una base de datos",
+    "Configurar una red local",
+    "Construir una página web",
+    "Crear un programa/aplicación"
+  )),
+  variable=factor(variable,levels = c(
+  "I do not think I could do this.",
+  "I have never done this but I could work out how to do this.",
+  "I know how to do this."
+  )
+  )
+  )|>
+  ggplot(aes(x=name,y=prop,fill=variable))+
+  geom_bar(position = "fill",stat="identity",color="black",width=0.6)+
+  scale_fill_manual(
+    values=c("#ff3057","#5f5758","white"),
+    limits=c(
+  "I know how to do this.",
+  "I have never done this but I could work out how to do this.",
+  "I do not think I could do this."
+  ),
+    labels = ~ stringr::str_wrap(.x, width = 30))+
+  coord_flip()+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 25))+
+  labs(x="",y="",fill="",
+       caption="Note: The percentages are rounded with 2 decimals. If values don't sum 100% is because the rounding")+
+  theme_minimal()+
+  theme(legend.position = "top")+ 
+  scale_y_continuous(labels = scales::percent)+
+  geom_text(aes(label=paste0(prop*100,"%")),position = position_fill(vjust=0.5))
+```
+## Items de autoeficacia por género
+
+```{r}
+data |>
+  mutate(s_sex=to_label(s_sex))|>
+  mutate_at(vars(starts_with("is2g")), ~ 
+            ifelse(.==1,1,0)) |> #Dummy
+  rename(gender=s_sex)|>
+  group_by(gender) |>
+  summarise(across(starts_with("is2g"),
+                 mean, na.rm = TRUE)) |>
+  pivot_longer(cols = starts_with(c("is2g")),
+               names_to = "items",
+               values_to = "puntaje") |>
+  mutate(type=ifelse(items%in%c("is2g27b","is2g27e",
+                                "is2g27g","is2g27h"),
+                                "Specialized ICT self-efficacy",
+                                "General ICT self-efficacy")) |>
+
+  mutate(items=
+  factor(items,
+  levels=c(
+  "is2g27b",
+  "is2g27h",
+  "is2g27e",
+  "is2g27g",
+  "is2g27c",
+  "is2g27d",
+  "is2g27k",
+  "is2g27l",
+  "is2g27j",
+  "is2g27a",
+  "is2g27m",
+  "is2g27i"),
+  labels=c(
+  "Crear una base de datos",
+  "Configurar una red de área local***",
+  "Construir una página web",
+  "Crear un programa/aplicación informática***",
+  "Escribir o editar texto***",
+  "Buscar y encontrar información en internet**",
+  "Insertar una imagen en un documento/mensaje***",
+  "Instalar un programa/aplicación*",
+  "Subir multimedia a un perfil en línea**",
+  "Editar imágenes gráficas***",
+  "Evaluar la veracidad de la información en internet",
+  "Crear una presentación multimedia**"
+)))|>
+
+  ggplot(aes(x=to_label(puntaje),y=to_label(items)))+
+    geom_line(aes(group=to_label(items)),color="#E7E7E7",linewidth=2.0)+
+    geom_point(aes(shape=gender,color=gender),size=4)+
+    theme_minimal()+
+    labs(x="Proporción de 'Sé como hacerlo'",y="",color="Gender",
+         caption= "Signif. codes: <0.001 = ***, <0.01 = **, <0.05 = *")+
+    scale_color_manual(values = c("#5f5758","#ff3057"))+
+    theme(legend.position = "top")+
+    scale_y_discrete(labels=function(x) str_wrap(x,width = 50))+
+    facet_wrap(~type,ncol=1,scales="free_y")+
+    guides(shape=guide_legend(title="Gender"))
+```
+
+## Diferencias de medias en índices
+-   Existen diferencias significativas en alfabetización (CIL) y autoeficacia avanzada.
+-   Las niñas tienden a obtener un puntaje más alto en la prueba, pero los niños declaran tener mayores habilidades en tareas especializadas
+```{r}
+data |> 
+  mutate(s_sex=to_label(s_sex)) |>
+  tbl_summary(include = c(s_pv1cil,s_geneff,s_speceff),
+              by = s_sex,
+              missing = "no",
+              statistic = list(
+                all_continuous() ~ "{mean} ({sd})",
+                all_categorical() ~ "{n} / {N} ({p}%)")
+              ) |>
+  add_p() |>
+  add_n() |>
+  modify_header(label="**Variables**") |>
+  add_overall()|>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))|>
+  tab_header(
+    title="Diferencias significativas de medias por género")
+```
+
+## Correlaciones: ¿Efecto Dunning-Kruger?
+-   A medida que los estudiantes más saben, tienden a subestimar sus habilidades avanzadas. Este efecto es aún más fuerte en las mujeres.
+
+```{r}
+#| label: fig-corr
+#| fig-cap: "Gráficos de correlaciones"
+#| fig-subcap: 
+#| - "Correlaciones generales"
+#| - "Refuerzo de correlaciones por género"
+#| layout-ncol: 2
+
+data_corr <- data |> select(s_sex,
+                            s_geneff,s_speceff,
+                            s_pv1cil
+                            )
+
+data_corr <- rcorr(as.matrix(data_corr))
+
+rownames(data_corr$r)<-c(
+  "A. Género (1=Girl)",
+  "B. Autoeficacia básica",
+  "C. Autoeficacia avanzada",
+  "D. Alfabetización computacional"
+)
+
+colnames(data_corr$r) <-c("1=Girl", "(B)","(C)","(D)")
+
+corrplot(data_corr$r, p.mat = data_corr$P, method = 'color', type = 'lower', insig='blank',
+         tl.col = "black",bg="white",na.label="-",
+         addCoef.col ='black', number.cex = 0.8, diag=FALSE,
+         sig.level = 0.05)
+
+rbind(
+  
+data |>
+  group_by(s_sex) |>
+  dplyr::summarize(corr=cor(s_geneff,s_pv1cil,use="complete.obs")|>
+                     round(2))|>
+  mutate(group="Autoeficacia Básica - Alfabetización")|>
+  to_label(s_sex),
+
+data |>
+  group_by(s_sex) |>
+  dplyr::summarize(corr=cor(s_speceff,s_pv1cil,use="complete.obs")|>
+                     round(2))|>
+  mutate(group="Autoeficacia Avanzada - Alfabetización")|>
+  to_label(s_sex)
+) |>
+  ggplot(aes(x=group,y=corr,color=s_sex))+
+  geom_point()+
+  geom_text(aes(label=corr, vjust=1.2),size=4.5)+
+  theme_minimal()+
+  scale_color_manual(values = c("#5f5758","#ff3057"))+
+  scale_y_continuous(limits = c(-0.2,0.4))+
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank())+
+  labs(color="Gender",
+       title= "Correlación Autoeficacia - Alfabetización por género")
+```
+
+## Modelos multinivel
+
+
+```{r}
+m1_1_geneff <- lmer(s_geneff ~ 
+                  s_sex + s_pv1cil +
+                  c_gender_type + c_pv1cil + 
+                  s_nisb +
+                  (1 | idschool),  data=data)
+
+m1_1_speceff <- lmer(s_speceff ~ 
+                  s_sex + s_pv1cil +
+                  c_gender_type + c_pv1cil + 
+                  s_nisb +
+                  (1 | idschool),  data=data)
+
+sjPlot::plot_models(m1_1_geneff,m1_1_speceff,
+                    wrap.labels = 20,
+                    show.p = T,
+                    show.values = T,
+                    show.intercept = T,
+                    colors = c("#5f5758","#ff3057")) +
+  theme_minimal()
+```
+::: aside
+-   ICC: A. General (0.05)/ A. Específica (0.06).
+:::
+
+## Interacción Sexo-CIL {.smaller}
+-   Se hallaron interacciones significativas en autoeficacia básica.
+```{r}
+m2_geneff <- lm(s_geneff ~ 
+                  s_sex + s_pv1cil +
+                  s_sex*s_pv1cil +
+                  s_nisb,  data=data)
+  
+m2_speceff <- lm(s_speceff ~ 
+                  s_sex + s_pv1cil +
+                  s_sex*s_pv1cil +
+                  s_nisb,  data=data)
+
+tab_model(m2_geneff,m2_speceff,
+          show.ci = FALSE, auto.label = TRUE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE)
+```
+
+## Resultados Autoeficacia Básica
+
+![](images/geneff.png){width="90%" fig-align="center"}
+
+## Resultados Autoeficacia Avanzada
+
+![](images/speceff.png){width="90%" fig-align="center"}
+
+## Conclusiones {data-background-color="black"}
+
+::: {style="font-size: 120%;"}
+-   Limitaciones:
+
+    -   Causalidad.
+    -   Proporción de mujeres estimados de la muestra.
+    -   Control socioeconómico.
+
+-   Proyecciones
+
+    -   Comparación temporal 2013-2018-2023.
+    -   Comparación internacional.
+    -   Cruce datos SIMCE.
+:::
+
+## Referencias
+
+

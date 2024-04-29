@@ -1,0 +1,4 @@
+- source: docs.qmd
+  quarto-pub:
+    - id: f404e138-ef29-477a-8aaf-f9559c45468d
+      url: 'https://nicolastobarj.quarto.pub/docs-f9c4'

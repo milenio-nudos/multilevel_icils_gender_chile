@@ -17,6 +17,8 @@ This repository contains all the analyses and processing done by the NUDOS socia
 | ├─── presentations: Presentations for congresses, conferences, among others.
 | ├─── pre_registration: prerregistations of academic articles.
 | ├─── articles: Academic articles written in markdown.
+```
+
 
 # Presentations
 

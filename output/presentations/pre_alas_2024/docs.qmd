@@ -1,6 +1,6 @@
 ---
-pagetitle: "Las estudiantes mujeres subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital alrededor de las escuelas de Chile"
-author: Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
+pagetitle: "¿Las estudiantes mujeres subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital alrededor de las escuelas de Chile"
+author: Juan Carlos Castillo, Daniel Miranda, Teresa Correa, Nicolás Tobar & Ingrid Bachmann
 bibliography: ../../../input/bib/icils_nudos.bib 
 csl: ../../../input/bib/apa.csl
 
@@ -184,6 +184,8 @@ Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
 
 ![](images/lineas-nudos.png)
 
+# [nudos.cl](https://www.nudos.cl)
+
 ## Introducción
 
 ::: {style="font-size: 130%;"}
@@ -213,11 +215,11 @@ Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
 
 ::: {style="font-size: 120%;"}
 -   Medición en noviembre 2017, Publicación 2018.
--   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.
+-   46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países. Muestra compleja trietápica.
 -   3092 estudiantes y 178 escuelas en Chile. 
--   Muestra compleja trietápica.
 -   Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.
 -   Se eliminan 14 escuelas y 86 estudiantes por n<10.
+-   Exploración con modelos de regresión multinivel (Consideran variables de contexto)
 :::
 
 ## Variable Autoeficacia {.smaller}
@@ -252,14 +254,8 @@ Respuestas: 1. Sé como realizarlo. 2. No sé realizarlo pero me siento capaz de
 :::
 :::
 
-#
+## Descriptivos nivel 1
 ```{r}
-#| label: tbl-student-variables
-#| tbl-cap: "Estadísticos descriptivos por nivel"
-#| tbl-subcap: 
-#| - "Nivel estudiante"
-#| - "Nivel escuela"
-#| layout-ncol: 2
 
 data |> 
   select(
@@ -316,7 +312,11 @@ data |>
       columns = everything(),
       rows = everything()
     ))
+  
+```
 
+## Descriptivos nivel 2
+```{r}
 list_school <- list(
      aggregate(s_pv1cil ~ idschool, data=data, mean),
      aggregate(c_s_f_ratio ~ idschool, data=data, mean),
@@ -372,19 +372,11 @@ Reduce(function(x,y) merge(x,y, all=TRUE),
       columns = everything(),
       rows = everything()
     ))
-  
 ```
 
-## Autoeficacia
--   Los ítems se distribuyen relativamente igual entre ambas dimensiones. Los niveles de autoeficacia en tareas generales son mayores.
--   Se hizo un análisis factorial confirmatorio que sugirió 2 factores. Se ajusta con lo propuesto por ICILS.
+
+## Items Autoeficacia Básica
 ```{r}
-#| label: fig-efficacy-distribution
-#| fig-cap: "Distribución de frecuencias"
-#| fig-subcap: 
-#| - "Autoeficacia General"
-#| - "Autoeficacia Específica"
-#| layout-ncol: 2
 
 geneff_plot <- data |>
   mutate(s_sex=to_label(s_sex),
@@ -396,13 +388,6 @@ geneff_plot <- data |>
          is2g27k=to_label(is2g27k),
          is2g27l=to_label(is2g27l),
          is2g27m=to_label(is2g27m))
-
-speceff_plot <- data |>
-  mutate(s_sex=to_label(s_sex),
-         is2g27b=to_label(is2g27b),
-         is2g27e=to_label(is2g27e),
-         is2g27g=to_label(is2g27g),
-         is2g27h=to_label(is2g27h))
 
 rbind(
   geneff_plot|>count(variable=is2g27a)|>drop_na()|>
@@ -467,6 +452,17 @@ rbind(
   scale_y_continuous(labels = scales::percent)+
   geom_text(aes(label=paste0(prop*100,"%")),position = position_fill(vjust=0.5))
 
+```
+
+## Items Autoeficacia Avanzada
+```{r}
+speceff_plot <- data |>
+  mutate(s_sex=to_label(s_sex),
+         is2g27b=to_label(is2g27b),
+         is2g27e=to_label(is2g27e),
+         is2g27g=to_label(is2g27g),
+         is2g27h=to_label(is2g27h))
+
 rbind(
   speceff_plot|>count(variable=is2g27b)|>drop_na()|>
     mutate(prop=n/sum(n),
@@ -513,7 +509,9 @@ rbind(
   theme(legend.position = "top")+ 
   scale_y_continuous(labels = scales::percent)+
   geom_text(aes(label=paste0(prop*100,"%")),position = position_fill(vjust=0.5))
+
 ```
+
 ## Items de autoeficacia por género
 
 ```{r}
@@ -576,62 +574,106 @@ data |>
     guides(shape=guide_legend(title="Gender"))
 ```
 
-## Diferencias de medias en índices
--   Existen diferencias significativas en alfabetización (CIL) y autoeficacia avanzada.
--   Las niñas tienden a obtener un puntaje más alto en la prueba, pero los niños declaran tener mayores habilidades en tareas especializadas
+## Modelos Regresión multinivel (Forest Plot){.smaller}
+
 ```{r}
-data |> 
-  mutate(s_sex=to_label(s_sex)) |>
-  tbl_summary(include = c(s_pv1cil,s_geneff,s_speceff),
-              by = s_sex,
-              missing = "no",
-              statistic = list(
-                all_continuous() ~ "{mean} ({sd})",
-                all_categorical() ~ "{n} / {N} ({p}%)")
-              ) |>
-  add_p() |>
-  add_n() |>
-  modify_header(label="**Variables**") |>
-  add_overall()|>
-  as_gt()|>
-  tab_options(
-    table.border.top.color = "white",
-    heading.title.font.size = px(16),
-    column_labels.border.top.width = 3,
-    column_labels.border.top.color = "black",
-    column_labels.border.bottom.width = 3,
-    column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black",
-    table.border.bottom.color = "white",
-    table.width = pct(100),
-    table.background.color = "white",
-    table.font.size = 15
-  ) |>
-  # center column text
-  cols_align(align="center")|>
-  tab_style(
-    style = list(
-      # remove horizontal lines
-      cell_borders(
-        sides = c("top", "bottom"),
-        color = "white",
-        weight = px(1)
-      ),
-      #center text
-      cell_text(
-        align="center"
-      ),
-    # remove row striping in Markdown documents
-    cell_fill(color = "white", alpha = NULL)
-      ),
-      #do this for all columns and rows
-    locations = cells_body(
-      columns = everything(),
-      rows = everything()
-    ))|>
-  tab_header(
-    title="Diferencias significativas de medias por género")
+m1_1_geneff <- lmer(s_geneff ~ 
+                  s_sex + s_pv1cil +
+                  c_gender_type + c_pv1cil + 
+                  s_nisb +
+                  (1 | idschool),  data=data)
+
+sjPlot::plot_model(m1_1_geneff,
+                   wrap.labels = 20,
+                    show.p = T,
+                    show.values = T,
+                    show.intercept = T,
+                    colors = c("#ff3057","#ff3057")) +
+  theme_minimal()
 ```
+
+## Modelos Regresión multinivel (Forest Plot){.smaller}
+
+```{r}
+m1_1_geneff <- lmer(s_geneff ~ 
+                  s_sex + s_pv1cil +
+                  c_gender_type + c_pv1cil + 
+                  s_nisb +
+                  (1 | idschool),  data=data)
+
+m1_1_speceff <- lmer(s_speceff ~ 
+                  s_sex + s_pv1cil +
+                  c_gender_type + c_pv1cil + 
+                  s_nisb +
+                  (1 | idschool),  data=data)
+
+sjPlot::plot_models(m1_1_geneff,m1_1_speceff,
+                    wrap.labels = 20,
+                    show.p = T,
+                    show.values = T,
+                    show.intercept = T,
+                    colors = c("#5f5758","#ff3057")) +
+  theme_minimal()
+```
+::: aside
+-   ICC: A. General (0.05)/ A. Específica (0.06).
+:::
+
+## Interacción Sexo-CIL Autoeficacia Básica{.smaller}
+```{r}
+m2_geneff <- lm(s_geneff ~ 
+                  s_sex + s_pv1cil +
+                  s_sex*s_pv1cil +
+                  s_nisb,  data=data)
+
+plot_model(m2_geneff, type = "pred", terms = c("s_pv1cil", "s_sex"))+
+  theme_minimal()+
+  labs(title="")
+
+```
+
+## Interacción Sexo-CIL Autoeficacia Avanzada{.smaller}
+
+```{r}
+m2_speceff <- lm(s_speceff ~ 
+                  s_sex + s_pv1cil +
+                  s_sex*s_pv1cil +
+                  s_nisb,  data=data)
+
+plot_model(m2_speceff, type = "pred", terms = c("s_pv1cil", "s_sex"))+
+  theme_minimal()+
+  labs(title="")
+
+```
+
+## Resultados Autoeficacia Básica
+
+![](images/geneff.png){width="90%" fig-align="center"}
+
+## Resultados Autoeficacia Avanzada
+
+![](images/speceff.png){width="90%" fig-align="center"}
+
+## Conclusiones {data-background-color="black"}
+
+::: {style="font-size: 120%;"}
+-   Limitaciones:
+
+    -   Causalidad.
+    -   Proporción de mujeres estimados de la muestra.
+
+-   Proyecciones
+
+    -   Comparación temporal 2013-2018-2023.
+    -   Comparación internacional.
+    -   Cruce datos SIMCE.
+:::
+
+# ¡Muchas Gracias!
+-   **Página web NUDOS:** [www.nudos.cl](https://www.nudos.cl/)
+-   **Repositorio Github del proyecto:** [https://github.com/milenio-nudos/multilevel_icils_gender_chile](https://github.com/milenio-nudos/multilevel_icils_gender_chile)
+
+# Anexo
 
 ## Correlaciones: ¿Efecto Dunning-Kruger?
 -   A medida que los estudiantes más saben, tienden a subestimar sus habilidades avanzadas. Este efecto es aún más fuerte en las mujeres.
@@ -693,78 +735,62 @@ data |>
        title= "Correlación Autoeficacia - Alfabetización por género")
 ```
 
-## Modelos multinivel
-
-
+## Diferencias de medias en índices
+-   Existen diferencias significativas en alfabetización (CIL) y autoeficacia avanzada.
+-   Las niñas tienden a obtener un puntaje más alto en la prueba, pero los niños declaran tener mayores habilidades en tareas especializadas
 ```{r}
-m1_1_geneff <- lmer(s_geneff ~ 
-                  s_sex + s_pv1cil +
-                  c_gender_type + c_pv1cil + 
-                  s_nisb +
-                  (1 | idschool),  data=data)
-
-m1_1_speceff <- lmer(s_speceff ~ 
-                  s_sex + s_pv1cil +
-                  c_gender_type + c_pv1cil + 
-                  s_nisb +
-                  (1 | idschool),  data=data)
-
-sjPlot::plot_models(m1_1_geneff,m1_1_speceff,
-                    wrap.labels = 20,
-                    show.p = T,
-                    show.values = T,
-                    show.intercept = T,
-                    colors = c("#5f5758","#ff3057")) +
-  theme_minimal()
+data |> 
+  mutate(s_sex=to_label(s_sex)) |>
+  tbl_summary(include = c(s_pv1cil,s_geneff,s_speceff),
+              by = s_sex,
+              missing = "no",
+              statistic = list(
+                all_continuous() ~ "{mean} ({sd})",
+                all_categorical() ~ "{n} / {N} ({p}%)")
+              ) |>
+  add_p() |>
+  add_n() |>
+  modify_header(label="**Variables**") |>
+  add_overall()|>
+  as_gt()|>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))|>
+  tab_header(
+    title="Diferencias significativas de medias por género")
 ```
-::: aside
--   ICC: A. General (0.05)/ A. Específica (0.06).
-:::
-
-## Interacción Sexo-CIL {.smaller}
--   Se hallaron interacciones significativas en autoeficacia básica.
-```{r}
-m2_geneff <- lm(s_geneff ~ 
-                  s_sex + s_pv1cil +
-                  s_sex*s_pv1cil +
-                  s_nisb,  data=data)
-  
-m2_speceff <- lm(s_speceff ~ 
-                  s_sex + s_pv1cil +
-                  s_sex*s_pv1cil +
-                  s_nisb,  data=data)
-
-tab_model(m2_geneff,m2_speceff,
-          show.ci = FALSE, auto.label = TRUE,
-          p.style = "stars",collapse.se = TRUE,
-          show.re.var = TRUE,show.icc = FALSE,
-          show.obs = TRUE,show.ngroups = TRUE)
-```
-
-## Resultados Autoeficacia Básica
-
-![](images/geneff.png){width="90%" fig-align="center"}
-
-## Resultados Autoeficacia Avanzada
-
-![](images/speceff.png){width="90%" fig-align="center"}
-
-## Conclusiones {data-background-color="black"}
-
-::: {style="font-size: 120%;"}
--   Limitaciones:
-
-    -   Causalidad.
-    -   Proporción de mujeres estimados de la muestra.
-    -   Control socioeconómico.
-
--   Proyecciones
-
-    -   Comparación temporal 2013-2018-2023.
-    -   Comparación internacional.
-    -   Cruce datos SIMCE.
-:::
 
 ## Referencias
-
 

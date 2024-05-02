@@ -10,8 +10,8 @@
 <link href="docs_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.361">
 
-  <meta name="author" content="Juan Carlos Castillo, Daniel Miranda &amp; Nicolás Tobar">
-  <title>Las estudiantes mujeres subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital alrededor de las escuelas de Chile</title>
+  <meta name="author" content="Juan Carlos Castillo, Daniel Miranda, Teresa Correa, Nicolás Tobar &amp; Ingrid Bachmann">
+  <title>¿Las estudiantes mujeres subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital alrededor de las escuelas de Chile</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -362,7 +362,6 @@
 </div>
 </div>
 </section>
-<section>
 <section id="section" class="title-slide slide level1 center">
 <h1></h1>
 <div class="quarto-figure quarto-figure-center">
@@ -371,6 +370,12 @@
 </figure>
 </div>
 <p><img data-src="images/lineas-nudos.png"></p>
+</section>
+
+<section>
+<section id="nudos.cl" class="title-slide slide level1 center">
+<h1><a href="https://www.nudos.cl">nudos.cl</a></h1>
+
 </section>
 <section id="introducción" class="slide level2">
 <h2>Introducción</h2>
@@ -404,11 +409,11 @@
 <div style="font-size: 120%;">
 <ul>
 <li>Medición en noviembre 2017, Publicación 2018.</li>
-<li>46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países.</li>
+<li>46.561 estudiantes 8vo básico de 2226 colegios alrededor de 12 países. Muestra compleja trietápica.</li>
 <li>3092 estudiantes y 178 escuelas en Chile.</li>
-<li>Muestra compleja trietápica.</li>
 <li>Test CIL y cuestionario sobre acceso, uso, percepciones y actitudes a las TIC.</li>
 <li>Se eliminan 14 escuelas y 86 estudiantes por n&lt;10.</li>
+<li>Exploración con modelos de regresión multinivel (Consideran variables de contexto)</li>
 </ul>
 </div>
 </section>
@@ -442,34 +447,29 @@
 </ul>
 </div>
 </div>
-</section></section>
-<section>
-<section id="section-1" class="title-slide slide level1 center">
-<h1></h1>
-<div id="tbl-student-variables" class="cell tbl-parent quarto-layout-panel">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;1: Estadísticos descriptivos por nivel</p>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-student-variables-1" class="quarto-layout-cell quarto-layout-cell-subref" data-ref-parent="tbl-student-variables" style="flex-basis: 50.0%;justify-content: center;">
+</section>
+<section id="descriptivos-nivel-1" class="slide level2">
+<h2>Descriptivos nivel 1</h2>
+<div class="cell">
+<div class="cell-output-display">
 
-<div id="fwwiqdwkze" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fwwiqdwkze table {
+<div id="wybnznsplg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wybnznsplg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fwwiqdwkze thead, #fwwiqdwkze tbody, #fwwiqdwkze tfoot, #fwwiqdwkze tr, #fwwiqdwkze td, #fwwiqdwkze th {
+#wybnznsplg thead, #wybnznsplg tbody, #wybnznsplg tfoot, #wybnznsplg tr, #wybnznsplg td, #wybnznsplg th {
   border-style: none;
 }
 
-#fwwiqdwkze p {
+#wybnznsplg p {
   margin: 0;
   padding: 0;
 }
 
-#fwwiqdwkze .gt_table {
+#wybnznsplg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -495,12 +495,12 @@
   border-left-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_caption {
+#wybnznsplg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fwwiqdwkze .gt_title {
+#wybnznsplg .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -512,7 +512,7 @@
   border-bottom-width: 0;
 }
 
-#fwwiqdwkze .gt_subtitle {
+#wybnznsplg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -524,7 +524,7 @@
   border-top-width: 0;
 }
 
-#fwwiqdwkze .gt_heading {
+#wybnznsplg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -536,13 +536,13 @@
   border-right-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_bottom_border {
+#wybnznsplg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_col_headings {
+#wybnznsplg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -557,7 +557,7 @@
   border-right-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_col_heading {
+#wybnznsplg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -577,7 +577,7 @@
   overflow-x: hidden;
 }
 
-#fwwiqdwkze .gt_column_spanner_outer {
+#wybnznsplg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -589,15 +589,15 @@
   padding-right: 4px;
 }
 
-#fwwiqdwkze .gt_column_spanner_outer:first-child {
+#wybnznsplg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fwwiqdwkze .gt_column_spanner_outer:last-child {
+#wybnznsplg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fwwiqdwkze .gt_column_spanner {
+#wybnznsplg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -609,11 +609,11 @@
   width: 100%;
 }
 
-#fwwiqdwkze .gt_spanner_row {
+#wybnznsplg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fwwiqdwkze .gt_group_heading {
+#wybnznsplg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +639,7 @@
   text-align: left;
 }
 
-#fwwiqdwkze .gt_empty_group_heading {
+#wybnznsplg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -654,15 +654,15 @@
   vertical-align: middle;
 }
 
-#fwwiqdwkze .gt_from_md > :first-child {
+#wybnznsplg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fwwiqdwkze .gt_from_md > :last-child {
+#wybnznsplg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fwwiqdwkze .gt_row {
+#wybnznsplg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -681,7 +681,7 @@
   overflow-x: hidden;
 }
 
-#fwwiqdwkze .gt_stub {
+#wybnznsplg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -694,7 +694,7 @@
   padding-right: 5px;
 }
 
-#fwwiqdwkze .gt_stub_row_group {
+#wybnznsplg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -708,15 +708,15 @@
   vertical-align: top;
 }
 
-#fwwiqdwkze .gt_row_group_first td {
+#wybnznsplg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fwwiqdwkze .gt_row_group_first th {
+#wybnznsplg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fwwiqdwkze .gt_summary_row {
+#wybnznsplg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -726,16 +726,16 @@
   padding-right: 5px;
 }
 
-#fwwiqdwkze .gt_first_summary_row {
+#wybnznsplg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_first_summary_row.thick {
+#wybnznsplg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fwwiqdwkze .gt_last_summary_row {
+#wybnznsplg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,7 +745,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_grand_summary_row {
+#wybnznsplg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -755,7 +755,7 @@
   padding-right: 5px;
 }
 
-#fwwiqdwkze .gt_first_grand_summary_row {
+#wybnznsplg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -765,7 +765,7 @@
   border-top-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_last_grand_summary_row_top {
+#wybnznsplg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -775,11 +775,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_striped {
+#wybnznsplg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fwwiqdwkze .gt_table_body {
+#wybnznsplg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -788,7 +788,7 @@
   border-bottom-color: #000000;
 }
 
-#fwwiqdwkze .gt_footnotes {
+#wybnznsplg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -802,7 +802,7 @@
   border-right-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_footnote {
+#wybnznsplg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -811,7 +811,7 @@
   padding-right: 5px;
 }
 
-#fwwiqdwkze .gt_sourcenotes {
+#wybnznsplg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -825,7 +825,7 @@
   border-right-color: #D3D3D3;
 }
 
-#fwwiqdwkze .gt_sourcenote {
+#wybnznsplg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -833,67 +833,67 @@
   padding-right: 5px;
 }
 
-#fwwiqdwkze .gt_left {
+#wybnznsplg .gt_left {
   text-align: left;
 }
 
-#fwwiqdwkze .gt_center {
+#wybnznsplg .gt_center {
   text-align: center;
 }
 
-#fwwiqdwkze .gt_right {
+#wybnznsplg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fwwiqdwkze .gt_font_normal {
+#wybnznsplg .gt_font_normal {
   font-weight: normal;
 }
 
-#fwwiqdwkze .gt_font_bold {
+#wybnznsplg .gt_font_bold {
   font-weight: bold;
 }
 
-#fwwiqdwkze .gt_font_italic {
+#wybnznsplg .gt_font_italic {
   font-style: italic;
 }
 
-#fwwiqdwkze .gt_super {
+#wybnznsplg .gt_super {
   font-size: 65%;
 }
 
-#fwwiqdwkze .gt_footnote_marks {
+#wybnznsplg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fwwiqdwkze .gt_asterisk {
+#wybnznsplg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fwwiqdwkze .gt_indent_1 {
+#wybnznsplg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fwwiqdwkze .gt_indent_2 {
+#wybnznsplg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fwwiqdwkze .gt_indent_3 {
+#wybnznsplg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fwwiqdwkze .gt_indent_4 {
+#wybnznsplg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fwwiqdwkze .gt_indent_5 {
+#wybnznsplg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>(a) <p>Nivel estudiante</p> </caption>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
     
     <tr class="gt_col_headings">
@@ -932,25 +932,30 @@
 </table>
 </div>
 </div>
-<div id="tbl-student-variables-2" class="quarto-layout-cell quarto-layout-cell-subref" data-ref-parent="tbl-student-variables" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+</section>
+<section id="descriptivos-nivel-2" class="slide level2">
+<h2>Descriptivos nivel 2</h2>
+<div class="cell">
+<div class="cell-output-display">
 
-<div id="djymcnpwmo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#djymcnpwmo table {
+<div id="bmvlupfjzk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bmvlupfjzk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#djymcnpwmo thead, #djymcnpwmo tbody, #djymcnpwmo tfoot, #djymcnpwmo tr, #djymcnpwmo td, #djymcnpwmo th {
+#bmvlupfjzk thead, #bmvlupfjzk tbody, #bmvlupfjzk tfoot, #bmvlupfjzk tr, #bmvlupfjzk td, #bmvlupfjzk th {
   border-style: none;
 }
 
-#djymcnpwmo p {
+#bmvlupfjzk p {
   margin: 0;
   padding: 0;
 }
 
-#djymcnpwmo .gt_table {
+#bmvlupfjzk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -976,12 +981,12 @@
   border-left-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_caption {
+#bmvlupfjzk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#djymcnpwmo .gt_title {
+#bmvlupfjzk .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -993,7 +998,7 @@
   border-bottom-width: 0;
 }
 
-#djymcnpwmo .gt_subtitle {
+#bmvlupfjzk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1005,7 +1010,7 @@
   border-top-width: 0;
 }
 
-#djymcnpwmo .gt_heading {
+#bmvlupfjzk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1017,13 +1022,13 @@
   border-right-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_bottom_border {
+#bmvlupfjzk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_col_headings {
+#bmvlupfjzk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -1038,7 +1043,7 @@
   border-right-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_col_heading {
+#bmvlupfjzk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1058,7 +1063,7 @@
   overflow-x: hidden;
 }
 
-#djymcnpwmo .gt_column_spanner_outer {
+#bmvlupfjzk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1070,15 +1075,15 @@
   padding-right: 4px;
 }
 
-#djymcnpwmo .gt_column_spanner_outer:first-child {
+#bmvlupfjzk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#djymcnpwmo .gt_column_spanner_outer:last-child {
+#bmvlupfjzk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#djymcnpwmo .gt_column_spanner {
+#bmvlupfjzk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -1090,11 +1095,11 @@
   width: 100%;
 }
 
-#djymcnpwmo .gt_spanner_row {
+#bmvlupfjzk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#djymcnpwmo .gt_group_heading {
+#bmvlupfjzk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1120,7 +1125,7 @@
   text-align: left;
 }
 
-#djymcnpwmo .gt_empty_group_heading {
+#bmvlupfjzk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1135,15 +1140,15 @@
   vertical-align: middle;
 }
 
-#djymcnpwmo .gt_from_md > :first-child {
+#bmvlupfjzk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#djymcnpwmo .gt_from_md > :last-child {
+#bmvlupfjzk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#djymcnpwmo .gt_row {
+#bmvlupfjzk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1162,7 +1167,7 @@
   overflow-x: hidden;
 }
 
-#djymcnpwmo .gt_stub {
+#bmvlupfjzk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1175,7 +1180,7 @@
   padding-right: 5px;
 }
 
-#djymcnpwmo .gt_stub_row_group {
+#bmvlupfjzk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1189,15 +1194,15 @@
   vertical-align: top;
 }
 
-#djymcnpwmo .gt_row_group_first td {
+#bmvlupfjzk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#djymcnpwmo .gt_row_group_first th {
+#bmvlupfjzk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#djymcnpwmo .gt_summary_row {
+#bmvlupfjzk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1207,16 +1212,16 @@
   padding-right: 5px;
 }
 
-#djymcnpwmo .gt_first_summary_row {
+#bmvlupfjzk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_first_summary_row.thick {
+#bmvlupfjzk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#djymcnpwmo .gt_last_summary_row {
+#bmvlupfjzk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1226,7 +1231,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_grand_summary_row {
+#bmvlupfjzk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1236,7 +1241,7 @@
   padding-right: 5px;
 }
 
-#djymcnpwmo .gt_first_grand_summary_row {
+#bmvlupfjzk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1246,7 +1251,7 @@
   border-top-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_last_grand_summary_row_top {
+#bmvlupfjzk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,11 +1261,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_striped {
+#bmvlupfjzk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#djymcnpwmo .gt_table_body {
+#bmvlupfjzk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1269,7 +1274,7 @@
   border-bottom-color: #000000;
 }
 
-#djymcnpwmo .gt_footnotes {
+#bmvlupfjzk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1283,7 +1288,7 @@
   border-right-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_footnote {
+#bmvlupfjzk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1292,7 +1297,7 @@
   padding-right: 5px;
 }
 
-#djymcnpwmo .gt_sourcenotes {
+#bmvlupfjzk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1306,7 +1311,7 @@
   border-right-color: #D3D3D3;
 }
 
-#djymcnpwmo .gt_sourcenote {
+#bmvlupfjzk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1314,67 +1319,67 @@
   padding-right: 5px;
 }
 
-#djymcnpwmo .gt_left {
+#bmvlupfjzk .gt_left {
   text-align: left;
 }
 
-#djymcnpwmo .gt_center {
+#bmvlupfjzk .gt_center {
   text-align: center;
 }
 
-#djymcnpwmo .gt_right {
+#bmvlupfjzk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#djymcnpwmo .gt_font_normal {
+#bmvlupfjzk .gt_font_normal {
   font-weight: normal;
 }
 
-#djymcnpwmo .gt_font_bold {
+#bmvlupfjzk .gt_font_bold {
   font-weight: bold;
 }
 
-#djymcnpwmo .gt_font_italic {
+#bmvlupfjzk .gt_font_italic {
   font-style: italic;
 }
 
-#djymcnpwmo .gt_super {
+#bmvlupfjzk .gt_super {
   font-size: 65%;
 }
 
-#djymcnpwmo .gt_footnote_marks {
+#bmvlupfjzk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#djymcnpwmo .gt_asterisk {
+#bmvlupfjzk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#djymcnpwmo .gt_indent_1 {
+#bmvlupfjzk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#djymcnpwmo .gt_indent_2 {
+#bmvlupfjzk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#djymcnpwmo .gt_indent_3 {
+#bmvlupfjzk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#djymcnpwmo .gt_indent_4 {
+#bmvlupfjzk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#djymcnpwmo .gt_indent_5 {
+#bmvlupfjzk .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>(b) <p>Nivel escuela</p> </caption>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
     
     <tr class="gt_col_headings">
@@ -1404,42 +1409,109 @@
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="autoeficacia" class="slide level2">
-<h2>Autoeficacia</h2>
-<ul>
-<li>Los ítems se distribuyen relativamente igual entre ambas dimensiones. Los niveles de autoeficacia en tareas generales son mayores.</li>
-<li>Se hizo un análisis factorial confirmatorio que sugirió 2 factores. Se ajusta con lo propuesto por ICILS.</li>
-</ul>
-<div id="fig-efficacy-distribution" class="cell quarto-layout-panel">
-<figure>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-efficacy-distribution-1" class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="docs_files/figure-revealjs/fig-efficacy-distribution-1.png" data-ref-parent="fig-efficacy-distribution" width="960"></p>
-<figcaption>(a) Autoeficacia General</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-efficacy-distribution-2" class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="docs_files/figure-revealjs/fig-efficacy-distribution-2.png" data-ref-parent="fig-efficacy-distribution" width="960"></p>
-<figcaption>(b) Autoeficacia Específica</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p></p><figcaption>Figure&nbsp;1: Distribución de frecuencias</figcaption><p></p>
-</figure>
-</div>
-</section>
+<section id="items-autoeficacia-básica" class="slide level2">
+<h2>Items Autoeficacia Básica</h2>
+
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="items-autoeficacia-avanzada" class="slide level2">
+<h2>Items Autoeficacia Avanzada</h2>
+
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="items-de-autoeficacia-por-género" class="slide level2">
 <h2>Items de autoeficacia por género</h2>
 
-<img data-src="docs_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="modelos-regresión-multinivel-forest-plot" class="slide level2 smaller">
+<h2>Modelos Regresión multinivel (Forest Plot)</h2>
+
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="modelos-regresión-multinivel-forest-plot-1" class="slide level2 smaller">
+<h2>Modelos Regresión multinivel (Forest Plot)</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="docs_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+
+<aside><div>
+<ul>
+<li>ICC: A. General (0.05)/ A. Específica (0.06).</li>
+</ul>
+</div></aside></section>
+<section id="interacción-sexo-cil-autoeficacia-básica" class="slide level2 smaller">
+<h2>Interacción Sexo-CIL Autoeficacia Básica</h2>
+
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="interacción-sexo-cil-autoeficacia-avanzada" class="slide level2 smaller">
+<h2>Interacción Sexo-CIL Autoeficacia Avanzada</h2>
+
+<img data-src="docs_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="resultados-autoeficacia-básica" class="slide level2">
+<h2>Resultados Autoeficacia Básica</h2>
+
+<img data-src="images/geneff.png" style="width:90.0%" class="r-stretch quarto-figure-center"></section>
+<section id="resultados-autoeficacia-avanzada" class="slide level2">
+<h2>Resultados Autoeficacia Avanzada</h2>
+
+<img data-src="images/speceff.png" style="width:90.0%" class="r-stretch quarto-figure-center"></section>
+<section id="conclusiones" class="slide level2" data-background-color="black">
+<h2>Conclusiones</h2>
+<div style="font-size: 120%;">
+<ul>
+<li><p>Limitaciones:</p>
+<ul>
+<li>Causalidad.</li>
+<li>Proporción de mujeres estimados de la muestra.</li>
+</ul></li>
+<li><p>Proyecciones</p>
+<ul>
+<li>Comparación temporal 2013-2018-2023.</li>
+<li>Comparación internacional.</li>
+<li>Cruce datos SIMCE.</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section id="muchas-gracias" class="title-slide slide level1 center">
+<h1>¡Muchas Gracias!</h1>
+<p><strong>Página web NUDOS:</strong> <a href="https://www.nudos.cl/">www.nudos.cl</a> <strong>Repositorio Github del proyecto:</strong> <a href="https://github.com/milenio-nudos/multilevel_icils_gender_chile">https://github.com/milenio-nudos/multilevel_icils_gender_chile</a></p>
+</section>
+
+<section>
+<section id="anexo" class="title-slide slide level1 center">
+<h1>Anexo</h1>
+
+</section>
+<section id="correlaciones-efecto-dunning-kruger" class="slide level2">
+<h2>Correlaciones: ¿Efecto Dunning-Kruger?</h2>
+<ul>
+<li>A medida que los estudiantes más saben, tienden a subestimar sus habilidades avanzadas. Este efecto es aún más fuerte en las mujeres.</li>
+</ul>
+<div id="fig-corr" class="cell quarto-layout-panel">
+<figure>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-corr-1" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="docs_files/figure-revealjs/fig-corr-1.png" data-ref-parent="fig-corr" width="960"></p>
+<figcaption>(a) Correlaciones generales</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-corr-2" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="docs_files/figure-revealjs/fig-corr-2.png" data-ref-parent="fig-corr" width="960"></p>
+<figcaption>(b) Refuerzo de correlaciones por género</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption>Figure&nbsp;1: Gráficos de correlaciones</figcaption><p></p>
+</figure>
+</div>
+</section>
 <section id="diferencias-de-medias-en-índices" class="slide level2">
 <h2>Diferencias de medias en índices</h2>
 <ul>
@@ -1449,23 +1521,23 @@
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="qjxnxsbwxl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qjxnxsbwxl table {
+<div id="pxulfqdsnc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pxulfqdsnc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qjxnxsbwxl thead, #qjxnxsbwxl tbody, #qjxnxsbwxl tfoot, #qjxnxsbwxl tr, #qjxnxsbwxl td, #qjxnxsbwxl th {
+#pxulfqdsnc thead, #pxulfqdsnc tbody, #pxulfqdsnc tfoot, #pxulfqdsnc tr, #pxulfqdsnc td, #pxulfqdsnc th {
   border-style: none;
 }
 
-#qjxnxsbwxl p {
+#pxulfqdsnc p {
   margin: 0;
   padding: 0;
 }
 
-#qjxnxsbwxl .gt_table {
+#pxulfqdsnc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1491,12 +1563,12 @@
   border-left-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_caption {
+#pxulfqdsnc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qjxnxsbwxl .gt_title {
+#pxulfqdsnc .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -1508,7 +1580,7 @@
   border-bottom-width: 0;
 }
 
-#qjxnxsbwxl .gt_subtitle {
+#pxulfqdsnc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1520,7 +1592,7 @@
   border-top-width: 0;
 }
 
-#qjxnxsbwxl .gt_heading {
+#pxulfqdsnc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1532,13 +1604,13 @@
   border-right-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_bottom_border {
+#pxulfqdsnc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_col_headings {
+#pxulfqdsnc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -1553,7 +1625,7 @@
   border-right-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_col_heading {
+#pxulfqdsnc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1573,7 +1645,7 @@
   overflow-x: hidden;
 }
 
-#qjxnxsbwxl .gt_column_spanner_outer {
+#pxulfqdsnc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1585,15 +1657,15 @@
   padding-right: 4px;
 }
 
-#qjxnxsbwxl .gt_column_spanner_outer:first-child {
+#pxulfqdsnc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qjxnxsbwxl .gt_column_spanner_outer:last-child {
+#pxulfqdsnc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qjxnxsbwxl .gt_column_spanner {
+#pxulfqdsnc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -1605,11 +1677,11 @@
   width: 100%;
 }
 
-#qjxnxsbwxl .gt_spanner_row {
+#pxulfqdsnc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qjxnxsbwxl .gt_group_heading {
+#pxulfqdsnc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1635,7 +1707,7 @@
   text-align: left;
 }
 
-#qjxnxsbwxl .gt_empty_group_heading {
+#pxulfqdsnc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1650,15 +1722,15 @@
   vertical-align: middle;
 }
 
-#qjxnxsbwxl .gt_from_md > :first-child {
+#pxulfqdsnc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qjxnxsbwxl .gt_from_md > :last-child {
+#pxulfqdsnc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qjxnxsbwxl .gt_row {
+#pxulfqdsnc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1677,7 +1749,7 @@
   overflow-x: hidden;
 }
 
-#qjxnxsbwxl .gt_stub {
+#pxulfqdsnc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1690,7 +1762,7 @@
   padding-right: 5px;
 }
 
-#qjxnxsbwxl .gt_stub_row_group {
+#pxulfqdsnc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1704,15 +1776,15 @@
   vertical-align: top;
 }
 
-#qjxnxsbwxl .gt_row_group_first td {
+#pxulfqdsnc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qjxnxsbwxl .gt_row_group_first th {
+#pxulfqdsnc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qjxnxsbwxl .gt_summary_row {
+#pxulfqdsnc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1722,16 +1794,16 @@
   padding-right: 5px;
 }
 
-#qjxnxsbwxl .gt_first_summary_row {
+#pxulfqdsnc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_first_summary_row.thick {
+#pxulfqdsnc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qjxnxsbwxl .gt_last_summary_row {
+#pxulfqdsnc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1741,7 +1813,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_grand_summary_row {
+#pxulfqdsnc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1751,7 +1823,7 @@
   padding-right: 5px;
 }
 
-#qjxnxsbwxl .gt_first_grand_summary_row {
+#pxulfqdsnc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1761,7 +1833,7 @@
   border-top-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_last_grand_summary_row_top {
+#pxulfqdsnc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1771,11 +1843,11 @@
   border-bottom-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_striped {
+#pxulfqdsnc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qjxnxsbwxl .gt_table_body {
+#pxulfqdsnc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1784,7 +1856,7 @@
   border-bottom-color: #000000;
 }
 
-#qjxnxsbwxl .gt_footnotes {
+#pxulfqdsnc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1798,7 +1870,7 @@
   border-right-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_footnote {
+#pxulfqdsnc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1807,7 +1879,7 @@
   padding-right: 5px;
 }
 
-#qjxnxsbwxl .gt_sourcenotes {
+#pxulfqdsnc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1821,7 +1893,7 @@
   border-right-color: #D3D3D3;
 }
 
-#qjxnxsbwxl .gt_sourcenote {
+#pxulfqdsnc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1829,63 +1901,63 @@
   padding-right: 5px;
 }
 
-#qjxnxsbwxl .gt_left {
+#pxulfqdsnc .gt_left {
   text-align: left;
 }
 
-#qjxnxsbwxl .gt_center {
+#pxulfqdsnc .gt_center {
   text-align: center;
 }
 
-#qjxnxsbwxl .gt_right {
+#pxulfqdsnc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qjxnxsbwxl .gt_font_normal {
+#pxulfqdsnc .gt_font_normal {
   font-weight: normal;
 }
 
-#qjxnxsbwxl .gt_font_bold {
+#pxulfqdsnc .gt_font_bold {
   font-weight: bold;
 }
 
-#qjxnxsbwxl .gt_font_italic {
+#pxulfqdsnc .gt_font_italic {
   font-style: italic;
 }
 
-#qjxnxsbwxl .gt_super {
+#pxulfqdsnc .gt_super {
   font-size: 65%;
 }
 
-#qjxnxsbwxl .gt_footnote_marks {
+#pxulfqdsnc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qjxnxsbwxl .gt_asterisk {
+#pxulfqdsnc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qjxnxsbwxl .gt_indent_1 {
+#pxulfqdsnc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qjxnxsbwxl .gt_indent_2 {
+#pxulfqdsnc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qjxnxsbwxl .gt_indent_3 {
+#pxulfqdsnc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qjxnxsbwxl .gt_indent_4 {
+#pxulfqdsnc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qjxnxsbwxl .gt_indent_5 {
+#pxulfqdsnc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1936,159 +2008,6 @@
 </table>
 </div>
 </div>
-</div>
-</section>
-<section id="correlaciones-efecto-dunning-kruger" class="slide level2">
-<h2>Correlaciones: ¿Efecto Dunning-Kruger?</h2>
-<ul>
-<li>A medida que los estudiantes más saben, tienden a subestimar sus habilidades avanzadas. Este efecto es aún más fuerte en las mujeres.</li>
-</ul>
-<div id="fig-corr" class="cell quarto-layout-panel">
-<figure>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-corr-1" class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="docs_files/figure-revealjs/fig-corr-1.png" data-ref-parent="fig-corr" width="960"></p>
-<figcaption>(a) Correlaciones generales</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-corr-2" class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="docs_files/figure-revealjs/fig-corr-2.png" data-ref-parent="fig-corr" width="960"></p>
-<figcaption>(b) Refuerzo de correlaciones por género</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p></p><figcaption>Figure&nbsp;2: Gráficos de correlaciones</figcaption><p></p>
-</figure>
-</div>
-</section>
-<section id="modelos-multinivel" class="slide level2">
-<h2>Modelos multinivel</h2>
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="docs_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
-</div>
-</div>
-
-<aside><div>
-<ul>
-<li>ICC: A. General (0.05)/ A. Específica (0.06).</li>
-</ul>
-</div></aside></section>
-<section id="interacción-sexo-cil" class="slide level2 smaller">
-<h2>Interacción Sexo-CIL</h2>
-<ul>
-<li>En un modelo lineal simple no se hallaron interacciones significativas.</li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<table data-quarto-postprocess="true" style="border-collapse:collapse; border:none;">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
-<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Autoeficacia digital<br>
-básica</td>
-<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Autoeficacia digital<br>
-avanzada</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">33.19 <sup>***</sup><br>
-(1.31)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">55.92 <sup>***</sup><br>
-(1.45)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Género del<br>
-estudiante(Niña=1)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4.00 <sup>*</sup><br>
-(1.80)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06 <sup></sup><br>
-(1.99)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Puntaje Alfabetizacion<br>
-Computacional</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.38 <sup>***</sup><br>
-(0.03)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup>*</sup><br>
-(0.03)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Índice de nivel<br>
-socioeconómico del Hogar</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup><br>
-(0.15)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.37 <sup>*</sup><br>
-(0.17)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">s_sex:s_pv1cil</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.08 <sup>*</sup><br>
-(0.04)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup><br>
-(0.04)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">2908</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">2905</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.113 / 0.112</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.025 / 0.023</td>
-</tr>
-<tr class="even">
-<td colspan="3" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-</div>
-</section>
-<section id="resultados-autoeficacia-básica" class="slide level2">
-<h2>Resultados Autoeficacia Básica</h2>
-
-<img data-src="images/geneff.png" style="width:90.0%" class="r-stretch quarto-figure-center"></section>
-<section id="resultados-autoeficacia-avanzada" class="slide level2">
-<h2>Resultados Autoeficacia Avanzada</h2>
-
-<img data-src="images/speceff.png" style="width:90.0%" class="r-stretch quarto-figure-center"></section>
-<section id="conclusiones" class="slide level2" data-background-color="black">
-<h2>Conclusiones</h2>
-<div style="font-size: 120%;">
-<ul>
-<li><p>Limitaciones:</p>
-<ul>
-<li>Causalidad.</li>
-<li>Proporción de mujeres estimados de la muestra.</li>
-<li>Control socioeconómico.</li>
-</ul></li>
-<li><p>Proyecciones</p>
-<ul>
-<li>Comparación temporal 2013-2018-2023.</li>
-<li>Comparación internacional.</li>
-<li>Cruce datos SIMCE.</li>
-</ul></li>
-</ul>
 </div>
 </section>
 <section id="referencias" class="slide level2 smaller scrollable">

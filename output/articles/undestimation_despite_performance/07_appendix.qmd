@@ -1,0 +1,305 @@
+# Appendix
+
+## Data manipulation
+
+```{r}
+#| label: tbl-labels
+#| tbl-cap: "Change of labels in Self-efficacy items"
+
+rbind(
+data.frame(
+  item=c("is2g27a","is2g27c","is2g27d","is2g27i","is2g27j","is2g27k",
+         "is2g27l","is2g27m"),
+  old_label=c(
+  "Edit digital photographs or other graphic images",
+  "Write or edit text for a school assignment",
+  "Search for and find relevant information for a school project	
+  on the Internet",
+  "Create a multi-media presentation (with sound, pictures, or video)",
+  "Upload text, images, or video to an online profile",
+  "Insert an image into a document or message",
+  "Install a program or [app]",
+  "Judge whether you can trust information you find on the Internet"),
+  new_label=c(
+    "Edit graphic images",
+    "Write or edit text",
+    "Search and find information on internet",
+    "Create multi-media presentation",
+    "Upload multimedia to an online profile",
+    "Insert an image into a document/message",
+    "Install a program/app",
+    "Judge internet information veracity")
+),
+
+data.frame(
+  item=c("is2g27b","is2g27e","is2g27g","is2g27h"),
+  old_label=c(
+  "Create a database (e.g. using [Microsoft Access ®])",
+  "Build or edit a webpage",
+  "Create a computer program, macro, or [app]",
+  "Set up a local area network of computers or other ICT"),
+  new_label=c(
+  "Create a database",
+  "Build a webpage",
+  "Create a computer program/app",
+  "Set up a local area network")
+)
+) |>
+  gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 10
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )) |>
+    tab_row_group(
+   label = md("*Specialized Self-efficacy*"),
+   rows = 9:12
+     ) |>
+  tab_row_group(
+    label = md("*General Self-efficacy*"),
+    rows = 1:8
+  )|>
+  cols_label(
+    item=md("**Item**"),
+    old_label=md("**Original label**"),
+    new_label=md("**Summarised label**")
+  )
+```
+
+
+## Test statistical significant differences
+
+*Testing Gender differences in ICT Self-efficacy items (Chi-square)*
+
+```{r}
+# Perform chi-squared test for each item individually
+chisq_test_a <- chisq.test(data$is2g27a, data$s_sex)
+chisq_test_b <- chisq.test(data$is2g27b, data$s_sex)
+chisq_test_c <- chisq.test(data$is2g27c, data$s_sex)
+chisq_test_d <- chisq.test(data$is2g27d, data$s_sex)
+chisq_test_e <- chisq.test(data$is2g27e, data$s_sex)
+chisq_test_g <- chisq.test(data$is2g27g, data$s_sex)
+chisq_test_h <- chisq.test(data$is2g27h, data$s_sex)
+chisq_test_i <- chisq.test(data$is2g27i, data$s_sex)
+chisq_test_j <- chisq.test(data$is2g27j, data$s_sex)
+chisq_test_k <- chisq.test(data$is2g27k, data$s_sex)
+chisq_test_l <- chisq.test(data$is2g27l, data$s_sex)
+chisq_test_m <- chisq.test(data$is2g27m, data$s_sex)
+
+# Print the results
+print(chisq_test_a)
+print(chisq_test_b)
+print(chisq_test_c)
+print(chisq_test_d)
+print(chisq_test_e)
+print(chisq_test_g)
+print(chisq_test_h)
+print(chisq_test_i)
+print(chisq_test_j)
+print(chisq_test_k)
+print(chisq_test_l)
+print(chisq_test_m)
+
+```
+
+
+*Checking normal distribution and variance homogeneity in ICT Self-efficacy indexes and CIL*
+
+Self-efficacy indexes and CIL score gender mean differences have a normal distribution. General self-efficacy have homogeneity variance distribution, but Specialiazed self-efficacy and CIL have not a homogeneity variance distribution by gender.
+
+```{r, echo=TRUE,results='markup'}
+#| label: check-selfeff
+#| tbl-cap: "Check"
+shapiro.test(data$s_speceff[data$s_sex == 1])
+shapiro.test(data$s_geneff[data$s_sex == 0])
+shapiro.test(data$s_pv1cil[data$s_sex == 0])
+
+leveneTest(s_geneff ~ to_label(s_sex), data = data)
+leveneTest(s_speceff ~ to_label(s_sex), data = data)
+leveneTest(s_pv1cil ~ to_label(s_sex), data = data)
+
+```
+
+
+
+## ICT Self-efficacy items correlation
+
+```{r , echo=FALSE}
+base <- student_proc_2018 |> 
+  select(#s_sex,
+         #s_speceff,s_geneff,
+         #Items specific self-efficacy
+         is2g27b,is2g27e,is2g27g,is2g27h,
+         #Items general self-efficacy
+         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m)
+
+baserev <-base |> 
+       mutate_at(vars(starts_with("is2g")),
+                 ~4-.)
+
+#variables
+baserev=baserev |>
+  mutate(database=is2g27b,
+         webpage=is2g27e,
+         app=is2g27g,
+         network=is2g27h,
+         editphoto=is2g27a,
+         edittext=is2g27c,
+         findinfo=is2g27d,
+         multimedia=is2g27i,
+         uploadfile=is2g27j,
+         insertimage=is2g27k,
+         install=is2g27l,
+         judgeinfo=is2g27m
+         ) |>
+  select(database, webpage, app, network, editphoto, edittext, findinfo, multimedia, uploadfile, insertimage, install, judgeinfo)
+
+```
+
+```{r, results='asis'}
+#| label: tbl-continous_corr_selfeff
+#| tbl-cap: Correlation matrix assuming continuous
+
+colnames(baserev)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
+#Test correlation (Now is positive between items and index, and negativa between items and cil)
+mat = round(cor(baserev, use="complete.obs"),3)
+#mat
+
+
+colnames(mat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
+
+#Hide lower triangle
+lower<-mat
+lower[lower.tri(mat, diag=TRUE)]<-""
+lower<-as.data.frame(lower)
+
+#Table using kableExtra
+lower |>
+  kable() |>
+#kbl(caption = "Recreating booktabs style table") |>
+  kable_classic()
+
+```
+
+
+```{r, results='asis'}
+#| label: tbl-categorical_corr_selfeff
+#| tbl-cap: Correlation matrix assuming categorical 
+
+#Polychoric correlations
+m=psych::polychoric(baserev)
+polmat=m$rho
+
+rownames(polmat)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
+colnames(polmat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
+
+#Hide lower triangle
+lowerpol<-round(polmat, 3)
+lowerpol[lower.tri(polmat, diag=TRUE)]<-""
+lowerpol<-as.data.frame(lowerpol)
+
+
+#Table using kableExtra
+lowerpol |>
+kable() |>
+  kable_classic_2()
+```
+
+## ICT Self-efficacy items Factorial Analysis
+```{r}
+#| label: fig-elbow
+#| fig-cap: "Paralel Analysis"
+
+save(polmat, file = "polychoric")
+  
+# Factor analyses: 3 factors
+load("polychoric")
+fa.parallel(polmat, fm="pa", fa="fa", main = "Scree Plot", n.obs=3092)
+```
+
+
+```{r, results='asis'}
+#| label: fig-fa4
+#| fig-cap: "Factorial Analysis Self-efficacy items. 4 factors."
+
+poly_model4 = fa(baserev, nfactor=4, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model4)
+```
+
+
+```{r, results='asis'}
+#| label: fig-fa3
+#| fig-cap: "Factorial Analysis Self-efficacy items. 3 factors."
+poly_model3 = fa(baserev, nfactor=3, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model3)
+
+```
+
+```{r, results='asis'}
+#| label: fig-fa2
+#| fig-cap: "Factorial Analysis Self-efficacy items. 2 factors."
+
+poly_model2 = fa(baserev, nfactor=2, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model2)
+```
+

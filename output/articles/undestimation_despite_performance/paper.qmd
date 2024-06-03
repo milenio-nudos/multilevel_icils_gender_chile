@@ -1,0 +1,63 @@
+---
+format:
+  html: 
+    toc: true
+    keep-tex: true
+editor: visual
+smooth-scroll: true
+number-sections: true
+bibliography: "icils_nudos.bib"
+csl: "apa6.csl"
+link-citations: true
+mainfont: Times New Roman
+execute: 
+  echo: false
+  warning: false
+---
+
+# Underestimation despite better performance? Gender differences in general and specialized digital self-efficacy at school {.unnumbered}
+
+```{r setup}
+options(scipen=999) #No scientific notation
+options(digits = 2) #Round results two decimals
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg, #Best fit model
+               responsePatterns, #Check items
+               ggrepel, #labels plots
+               ggpubr, #arrange plots
+               ggExtra, #marginal plots
+               scales,
+               summarytools, #descriptive tables
+               knitr, #Markdown
+               kableExtra, #Markdown
+               psych, #FA Analysis
+               car
+               )
+
+#Chile ICILS 2018 data
+student_proc_2018 <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
+
+source("00_proccess.R")
+```
+
+Abstract
+
+{{< include 04_method.qmd >}}
+
+{{< include 05_results.qmd >}}
+
+{{< include 06_discussion.qmd >}}
+
+{{< include 07_appendix.qmd >}}

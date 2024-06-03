@@ -184,7 +184,7 @@ Juan Carlos Castillo, Daniel Miranda & Nicolás Tobar
 
 ![](images/lineas-nudos.png)
 
-# [nudos.cl](https://www.nudos.cl)
+# [nudos.cl](https://www.nudos.cl/sobre-nudos/)
 
 ## Introducción
 
@@ -646,11 +646,11 @@ plot_model(m2_speceff, type = "pred", terms = c("s_pv1cil", "s_sex"))+
 
 ```
 
-## Resultados Autoeficacia Básica
+## Discusiones Autoeficacia Básica
 
 ![](images/geneff.png){width="90%" fig-align="center"}
 
-## Resultados Autoeficacia Avanzada
+## Discusiones Autoeficacia Avanzada
 
 ![](images/speceff.png){width="90%" fig-align="center"}
 

@@ -43,11 +43,15 @@ pacman::p_load(tidyverse, #Data manipulation
                knitr, #Markdown
                kableExtra, #Markdown
                psych, #FA Analysis
-               car
+               car,
+               haven, #Open data
+               janitor, #Data process
+               Hmisc #Labels manipulation
                )
 
-#Chile ICILS 2018 data
-student_proc_2018 <- readRDS("../../../input/proc_data/03_student_proc_2018.rds")
+# Open student and school raw data
+bsgchli2 <- read_sav("../../../input/raw_data/2018/BSGCHLI2.sav")
+bcgchli2 <- read_sav("../../../input/raw_data/2018/BCGCHLI2.sav") 
 
 source("00_proccess.R")
 ```

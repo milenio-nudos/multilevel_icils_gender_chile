@@ -8,7 +8,7 @@ editor: visual
 
 The database to be used is the International Computer and Information Literacy (ICILS from now), study made by the International Association for the Evaluation of Educational Achievement (IEA) in 2018. The participants are students of eighth grade which were sampled using a random multistage stratified cluster design to be representative at the school and student/teacher level in all the countries measured. Schools can be referred to as the primary sampling units, and teachers and students as the secondary sampling units.
 
-In ICILS measurements, Chile tends to show one of the most considerable differences between students' parents' levels of education but ranked last positions in gender ICT attitudinal and interest gaps [@claroEndEnlaces252020;@punterGenderDifferencesComputer2017]. In that sense, intuitively, this country is a good chance to start comparing gender ICT self-efficacy differences that are relatively less influenced by socio-economic variables. Also, this study is conducted by researchers from Chile, then the analysis focuses exclusively on the Chilean subset of the ICILS 2018 dataset. The raw sample comprised 3,092 students distributed across 178 schools. Both student and school levels are representative of the broader Chilean student and school population.
+In ICILS measurements, Chile tends to show one of the most considerable differences between students' parents' levels of education but ranked last positions in gender ICT attitudinal and interest gaps [@claroEndEnlaces252020; @punterGenderDifferencesComputer2017]. In that sense, intuitively, this country is a good chance to start comparing gender ICT self-efficacy differences that are relatively less influenced by socio-economic variables. Also, this study is conducted by researchers from Chile, then the analysis focuses exclusively on the Chilean subset of the ICILS 2018 dataset. The raw sample comprised 3,092 students distributed across 178 schools. Both student and school levels are representative of the broader Chilean student and school population.
 
 ICILS utilized various measurement instruments to collect data. Initially, participants underwent a Computer Literacy test consisting of tasks with multiple-choice items. Based on their responses, each individual student was assigned a score for Computer and Information Literacy (CIL from now on). Subsequently, students completed a questionnaire about their home background, values, beliefs, attitudes, and behaviors related to Computer and Information technologies. Following the questionnaire session, students responded to a Computational Thinking test (CT hereafter) featuring multiple-choice items. In Chile, this last test was not applied. In parallel, the school's teachers are also subjected to a questionnaire to assess their values, beliefs, attitudes, and behaviors related to Computer and Information technologies and their role in teaching. Also, the principals and ICT managers of the school were surveyed to obtain information on the school's social characteristics and ICT infrastructure.
 
@@ -16,7 +16,7 @@ ICILS utilized various measurement instruments to collect data. Initially, parti
 
 ***Student level***
 
-**General and Specialized ICT Self-efficacy**: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question *How well can you do this tasks when using ICT?*.The items can be examined in @tbl-selfeff-items. 
+**General and Specialized ICT Self-efficacy**: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question *How well can you do this tasks when using ICT?*.The items can be examined in @tbl-selfeff-items.
 
 ```{r, results='asis', echo=FALSE}
 #| tbl-cap: "ICT Self-efficacy items (Dependent variables)"
@@ -71,11 +71,11 @@ selfeff_tbl$Variable <- NULL # delete variable column
 print(selfeff_tbl)
 ```
 
-[^labels_note]: Due to the extended length of the labels for items related to ICT self-efficacy, we truncated them in plots presentation. @tbl-labels illustrates both the original and the summarized labels for the items comprising both indexes and includes missing values n and missing values proportion.
+The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. However, before working with these variables, it is necessary to validate the measurement for the Chilean case. A confirmatory factor analysis between the items above was carried out for this purpose[^1]. @tbl-fa resumes a three-factor and two factor model[^2]. Two factor model suggests grouping the four items that make up the specialized self-efficacy index into a factor 2. All items in this factor receive a score greater than 0.5. In contrast, the specialised self-efficacy items are grouped between factor 1 and 3, but these, in turn, obtain a covariance of 0.8. In the two factors model, the covariance between factors decreases to 0.3, which is reasonable to assume that the latent variables are distinct. In turn, all items have factor scores greater than 0.5. Therefore, for the purposes of the research, we decided to continue working with the indices provided by IEA in this study.
 
-The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. However, before working with these variables, it is necessary to validate the measurement for the Chilean case. A confirmatory factor analysis between the items above was carried out for this purpose[^elbow]. @tbl-fa resumes a three-factor and two factor model[^labels_note]. Two factor model suggests grouping the four items that make up the specialized self-efficacy index into a factor 2. All items in this factor receive a score greater than 0.5.  In contrast, the specialised self-efficacy items are grouped between factor 1 and 3, but these, in turn, obtain a covariance of 0.8. In the two factors model, the covariance between factors decreases to 0.3, which is reasonable to assume that the latent variables are distinct. In turn, all items have factor scores greater than 0.5. Therefore, for the purposes of the research, we decided to continue working with the indices provided by IEA in this study.
+[^1]: In @fig-elbow the reader can find information about correlation between all self-efficacy items and method to decide the number of factors.
 
-[^elbow]: In @fig-elbow the reader can find information about correlation between all self-efficacy items and method to decide the number of factors.
+[^2]: Due to the extended length of the labels for items related to ICT self-efficacy, we truncated them in plots presentation. @tbl-labels illustrates both the original and the summarized labels for the items comprising both indexes and includes missing values n and missing values proportion.
 
 ```{r}
 #| label: tbl-fa
@@ -214,7 +214,7 @@ Both indexes were constructed by the IEA using the Weighted Likelihood Estimatio
 
 The five modules measured different Computer Abilities. The first one was oriented in website construction, while the second one in digital files managing and collection. The thirst challenged students to plan a school trip through database building and mapping tools. Another module included a school-based social network where students were encouraged to post and message their peers to join a board games interest group. The last module requested research information about recycling on the internet, and then designed infographics about carbon footprint awareness.
 
-The ICILS CIL reporting scale was established in ICILS 2013, with a mean of 500 (the average CIL scale score across countries in 2013) and a standard deviation of 100 for the equally weighted national samples that met IEA sample participation standards in the first cycle (2013). The ICILS database offers five possible values of the CIL score that were generated with full conditioning to derive summary student achievement statistics. Conventionally, papers based on this study usually occupy the first plausible value, which is coded "pv1cil". This research is no exception. Due to the large magnitude of the figures for this variable, the scale had to be multiplied by 0.1 to make the results more intelligible. The higher the value of the scale, the higher the CIL of the student. 
+The ICILS CIL reporting scale was established in ICILS 2013, with a mean of 500 (the average CIL scale score across countries in 2013) and a standard deviation of 100 for the equally weighted national samples that met IEA sample participation standards in the first cycle (2013). The ICILS database offers five possible values of the CIL score that were generated with full conditioning to derive summary student achievement statistics. Conventionally, papers based on this study usually occupy the first plausible value, which is coded "pv1cil". This research is no exception. Due to the large magnitude of the figures for this variable, the scale had to be multiplied by 0.1 to make the results more intelligible. The higher the value of the scale, the higher the CIL of the student.
 
 **Control variables**: The analysis includes control variables that tend to be influential in studies of educational and technological inequalities. These variables encompass family socioeconomic status - by the highest level of parental education (ISCED Scale) - and the number of books in the household.
 
@@ -283,7 +283,6 @@ tbl_school$Variable <- NULL # delete variable column
 
 print(tbl_school)
 ```
-
 
 ## Method
 

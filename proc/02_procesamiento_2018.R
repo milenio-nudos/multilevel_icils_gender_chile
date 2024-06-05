@@ -24,8 +24,6 @@ bsgchli2 <- bsgchli2%>%clean_names() #Nombres en minúscula
 btgchli2 <- btgchli2%>%clean_names()
 bcgchli2 <- bcgchli2%>%clean_names()
 
-
-
 student_data <- bsgchli2 %>% 
   #Change direction of Self-efficacy items
   mutate(i27b=4-is2g27b,
@@ -91,7 +89,8 @@ student_data <- student_data %>% group_by(idschool) %>%
 # Obtener sexo del director.
 school_data<- bcgchli2 %>%  
   select(idschool, p_sex,
-         totwgtc,wgtfac1,wgtadj1c) %>% #Seleccionar variables a fundir con base de estudiantes
+         totwgtc,wgtfac1,wgtadj1c,
+         ip2g04a,ip2g04b) %>% #Seleccionar variables a fundir con base de estudiantes
   rename(c_p_sex = p_sex) #Rename to school level
 
 #Unir ambas bases de datos a partir de id de escuelas

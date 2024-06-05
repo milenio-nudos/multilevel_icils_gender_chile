@@ -9,7 +9,7 @@ bibliography: "icils_nudos.bib"
 
 *Items ICT Self-efficacy gender distribution*
 
-@fig-barplot-general explores the distribution of responses for Self-efficacy items. Notably, across all tasks, a significant proportion of students —no less than 65%— expressed confidence in their ability to perform general tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy. In contrast, Less than 30% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program, this percentage increases a little when it comes to tasks like setting up a local area network (31%) or creating a database (35%). This pattern suggests that students tend to perceive less skills in advanced than in basic ICT tasks.
+@fig-barplot-general explores the distribution of responses for Self-efficacy items. Notably, across all tasks, a significant proportion of students ---no less than 65%--- expressed confidence in their ability to perform general tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy. In contrast, Less than 30% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program, this percentage increases a little when it comes to tasks like setting up a local area network (31%) or creating a database (35%). This pattern suggests that students tend to perceive less skills in advanced than in basic ICT tasks.
 
 ```{r}
 #| label: fig-barplot-general
@@ -142,7 +142,8 @@ relative_freq_selfeff |>
   scale_y_continuous(labels = scales::percent) +
   geom_text(aes(label = paste0(prop * 100, "%")), position = position_fill(vjust = 0.5))
 ```
-*Items ICT Self-efficacy gender differences* 
+
+*Items ICT Self-efficacy gender differences*
 
 @fig-cleveland-gender presents proportion of "I know how to do this" answers by gender ICT self-efficacy by item. Notably, the majority of items contributing to general self-efficacy exhibit statistically significant differences in favor of girls, 'judge internet information veracity' which shows significant differences in favor of boys and 'install a program/app' which does not exhibit significant differences. However, it's important to note that the magnitude of the gender gap in all items is relatively narrow when compared to the specialized self-efficacy items.
 
@@ -282,13 +283,82 @@ data |>
   )
 ```
 
+*School Gender composition analysis*
+
+At school level, @tbl-indexes-school suggests the gender composition of school have not significant mean differences in Computer Literacy and ICT Self-efficacy in overall students.
+
+```{r}
+#| label: tbl-indexes-school
+#| tbl-cap: "Gender composition differences"
+data |> 
+  mutate(c_gender_type = to_label(c_gender_type))|>
+  drop_na(c_gender_type)|>
+  group_by(idschool,c_gender_type)|>
+  summarise(
+    cil = mean(s_pv1cil, na.rm = TRUE),
+    geneff = mean(s_geneff, na.rm = TRUE),
+    speceff = mean(s_speceff, na.rm = TRUE)
+    )|>
+  tbl_summary(
+    include = c(cil, geneff, speceff),
+    by = c_gender_type,
+    missing = "no",
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    label = list(
+      cil ~ "Computer Literacy",
+      geneff ~ "ICT General Self Efficacy",
+      speceff ~ "ICT Specialized Self Efficacy"
+    )
+  ) |>
+  add_p()
+
+```
+
+
+@fig-gender-school-mean plot gender mean by the Gender composition of the school. It shows that the type of school affects girls and boys differently. As more is the proportion of girls, boys score lower and girls higher in the CIL test. But conversely, as the school increases its female enrolment, girls have lower levels of specialized self-efficacy and males have higher levels of specialized self-efficacy. In general self-efficacy no differences of considerable magnitude can be observed. It is important to note that for all three variables, the gender gap decreases in mixed schools compared to their two counterparts.
+
+Contrary to what was hypothesised, the results would suggest that girls tend to underestimate their advanced skills to a greater extent when surrounded by a larger number of female peers. Contrary to what was hypothesised, the results would suggest that girls tend to underestimate their advanced skills to a greater extent when surrounded by a larger number of female peers. Whereas boys, the more they are surrounded by girls, the more they increase their overestimation of their specialized abilities.
+
+```{r}
+#| label: fig-gender-school-mean
+#| fig-cap: "ICT Self Efficacy and CIL by Student sex and School composition"
+
+data|>
+  mutate(s_sex = to_label(s_sex),
+         c_gender_type = to_label(c_gender_type))|>
+  group_by(s_sex,c_gender_type)|>
+  drop_na(c_gender_type)|>
+  summarise(geneff = mean(s_geneff, na.rm = TRUE),
+            speceff = mean(s_speceff, na.rm = TRUE),
+            cil = mean(s_pv1cil, na.rm = TRUE))|>
+  pivot_longer(cols = c(geneff, speceff,cil), names_to = "efficacy", values_to = "mean")|>
+  
+  ggplot(aes(x = c_gender_type, y = mean)) +
+  geom_point(aes(shape = s_sex, color = s_sex))+
+  facet_wrap(~efficacy,
+             labeller = labeller( efficacy = c(
+               "geneff" = "General ICT Self efficacy",
+               "speceff" = "Specialized ICT Self efficacy",
+               "cil" = "Computer Literacy"))
+             )+
+  scale_color_grey(start=.2,end = .6)+
+  theme_minimal()+
+  labs(shape = "Gender", color = "Gender",
+       y = "Mean score", x= "",
+       title = "Gender CIL and ICT Self-efficacy by type of School")+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+```
+
+
 *Correlations*
 
 To provide an overview of the relationships between variables, a correlogram of all explored variables is presented in @fig-corrgram. The Key findings include a relatively intermediately-high positive effect size between both Self-efficacy indexes (0.44), a considerable positive effect size between General ICT Self-efficacy and the CIL score (0.33) and a counter-intuitively effect size between Specialized Self-efficacy and CIL Score, which is slightly negative (-0.11).
 
-In essence, these results suggest that students reporting higher General Self-efficacy tend to have advantages on CIL test over those with lower scores in that index, but individuals with lower scores on the CIL test tend to report higher Specialized Self-efficacy. One possible explanation could be that as students progress beyond general ICT knowledge and delve into advanced topics, they become more aware of concepts and processes they do not know.* Consequently, they may rely less on their computer literacy. This phenomenon aligns with the notion of underestimation, rooted in the 'I know that I don't know' logic.
+In essence, these results suggest that students reporting higher General Self-efficacy tend to have advantages on CIL test over those with lower scores in that index, but individuals with lower scores on the CIL test tend to report higher Specialized Self-efficacy. One possible explanation could be that as students progress beyond general ICT knowledge and delve into advanced topics, they become more aware of concepts and processes they do not know.\* Consequently, they may rely less on their computer literacy. This phenomenon aligns with the notion of underestimation, rooted in the 'I know that I don't know' logic.
 
-The sex of the student (managed as dummy) exhibits practically a neutral correlation with General ICT Self-efficay, but in the case of Specialized, the correlation is negative and with a considerable magnitude (-0.1). At school level, CIL mantains the relationship effect size and direction. No significant coefficients were found in Gender composition (treated as ordinal).
+The sex of the student (managed as dummy) exhibits practically a neutral correlation with General ICT Self-efficay, but in the case of Specialized, the correlation is negative and with a considerable magnitude (-0.1). At school level, CIL mantains effect size and direction. No significant coefficients were found in Gender composition (treated as ordinal).
 
 ```{r}
 #| label: fig-corrgram
@@ -321,7 +391,7 @@ corrplot(data_corr$r, p.mat = data_corr$P, method = 'color', type = 'lower', ins
          sig.level = 0.05)
 ```
 
-Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. @tbl-gender-reinforcement indicate that boys tend to exhibit a more positive effect size in General Self-efficacy and CIL score and a more positive effect size than girls in Specialized self-efficacy (0.04 points and -0.05 ponits respectively). The result raises speculation about the impact of underestimation due to advanced knowledge (‘Know that I don’t know’), which seems to be more pronounced in females. Girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills.
+Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. @tbl-gender-reinforcement indicate that boys tend to exhibit a more positive effect size in General Self-efficacy and CIL score and a more positive effect size than girls in Specialized self-efficacy (0.04 points and -0.05 ponits respectively). The result raises speculation about the impact of underestimation due to advanced knowledge ('Know that I don't know'), which seems to be more pronounced in females. Girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills.
 
 ```{r}
 #| label: tbl-gender-reinforcement
@@ -348,3 +418,6 @@ by="to_label(s_sex)"
 
 
 ## Models
+
+
+

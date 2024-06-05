@@ -155,17 +155,14 @@ leveneTest(s_pv1cil ~ to_label(s_sex), data = data)
 ## ICT Self-efficacy items correlation
 
 ```{r , echo=FALSE}
-base <- student_proc_2018 |> 
+baserev <- data |> 
   select(#s_sex,
          #s_speceff,s_geneff,
          #Items specific self-efficacy
          is2g27b,is2g27e,is2g27g,is2g27h,
          #Items general self-efficacy
-         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m)
-
-baserev <-base |> 
-       mutate_at(vars(starts_with("is2g")),
-                 ~4-.)
+         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m)|> 
+  mutate_at(vars(starts_with("is2g")),~4-.)
 
 #variables
 baserev=baserev |>

@@ -15,6 +15,12 @@ bibliography: "icils_nudos.bib"
 #| label: fig-barplot-general
 #| fig-cap: "Barplot Items ICT Self-efficacy"
 
+selfeff_items <- data|>
+  select(is2g27a,is2g27c,is2g27d,is2g27i,
+         is2g27j,is2g27k,is2g27l,is2g27m,
+         is2g27b,is2g27e,is2g27g,is2g27h)|>
+  to_label()
+
 selfeff_items <- to_label(selfeff_items)
 
 relative_freq_selfeff <- rbind(
@@ -312,7 +318,45 @@ data |>
       speceff ~ "ICT Specialized Self Efficacy"
     )
   ) |>
-  add_p()
+  add_p()|>
+  as_gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15,
+    table.font.names = "Times New Roman"
+  ) |>
+  # Center column text
+  cols_align(align = "center") |>
+  tab_style(
+    style = list(
+      # Remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      # Center text
+      cell_text(
+        align = "center"
+      ),
+      # Remove row striping in Markdown documents
+      cell_fill(color = "white", alpha = NULL)
+    ),
+    # Do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )
+  )
 
 ```
 

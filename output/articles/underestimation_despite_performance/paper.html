@@ -106,7 +106,11 @@ div.csl-indent {
   <li><a href="#data-variables-and-methods" id="toc-data-variables-and-methods" class="nav-link" data-scroll-target="#data-variables-and-methods"><span class="header-section-number">1</span> Data, variables and methods</a>
   <ul class="collapse">
   <li><a href="#data-and-sample" id="toc-data-and-sample" class="nav-link" data-scroll-target="#data-and-sample"><span class="header-section-number">1.1</span> Data and sample</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">1.2</span> Variables</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">1.2</span> Variables</a>
+  <ul class="collapse">
+  <li><a href="#dependent-variables" id="toc-dependent-variables" class="nav-link" data-scroll-target="#dependent-variables"><span class="header-section-number">1.2.1</span> Dependent variables</a></li>
+  <li><a href="#independent-variables" id="toc-independent-variables" class="nav-link" data-scroll-target="#independent-variables"><span class="header-section-number">1.2.2</span> Independent variables</a></li>
+  </ul></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method"><span class="header-section-number">1.3</span> Method</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">2</span> Results</a>
@@ -121,7 +125,7 @@ div.csl-indent {
   <li><a href="#data-manipulation" id="toc-data-manipulation" class="nav-link" data-scroll-target="#data-manipulation"><span class="header-section-number">5.1</span> Data manipulation</a></li>
   <li><a href="#test-statistical-significant-differences" id="toc-test-statistical-significant-differences" class="nav-link" data-scroll-target="#test-statistical-significant-differences"><span class="header-section-number">5.2</span> Test statistical significant differences</a></li>
   <li><a href="#ict-self-efficacy-items-correlation" id="toc-ict-self-efficacy-items-correlation" class="nav-link" data-scroll-target="#ict-self-efficacy-items-correlation"><span class="header-section-number">5.3</span> ICT Self-efficacy items correlation</a></li>
-  <li><a href="#ict-self-efficacy-items-factorial-analysis" id="toc-ict-self-efficacy-items-factorial-analysis" class="nav-link" data-scroll-target="#ict-self-efficacy-items-factorial-analysis"><span class="header-section-number">5.4</span> ICT Self-efficacy items Factorial Analysis</a></li>
+  <li><a href="#fa-analysis" id="toc-fa-analysis" class="nav-link" data-scroll-target="#fa-analysis"><span class="header-section-number">5.4</span> ICT Self-efficacy items Factorial Analysis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -138,725 +142,161 @@ div.csl-indent {
 <h1 data-number="1"><span class="header-section-number">1</span> Data, variables and methods</h1>
 <section id="data-and-sample" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="data-and-sample"><span class="header-section-number">1.1</span> Data and sample</h2>
-<p>The database to be used is the International Computer and Information Literacy (ICILS from now), study made by the International Association for the Evaluation of Educational Achievement (IEA) in 2018. The participants are students of eighth grade which were sampled using a random multistage stratified cluster design to be representative at the school and student/teacher level in all the countries measured. Schools can be referred to as the primary sampling units, and teachers and students as the secondary sampling units.</p>
-<p>In ICILS measurements, Chile tends to show one of the most considerable differences between students’ parents’ levels of education but ranked last positions in gender ICT attitudinal and interest gaps <span class="citation" data-cites="claroEndEnlaces252020 punterGenderDifferencesComputer2017">(<a href="#ref-claroEndEnlaces252020" role="doc-biblioref">Claro &amp; Jara, 2020</a>; <a href="#ref-punterGenderDifferencesComputer2017" role="doc-biblioref">Punter et al., 2017</a>)</span>. In that sense, intuitively, this country is a good chance to start comparing gender ICT self-efficacy differences that are relatively less influenced by socio-economic variables. Also, this study is conducted by researchers from Chile, then the analysis focuses exclusively on the Chilean subset of the ICILS 2018 dataset. The raw sample comprised 3,092 students distributed across 178 schools. Both student and school levels are representative of the broader Chilean student and school population.</p>
-<p>ICILS utilized various measurement instruments to collect data. Initially, participants underwent a Computer Literacy test consisting of tasks with multiple-choice items. Based on their responses, each individual student was assigned a score for Computer and Information Literacy (CIL from now on). Subsequently, students completed a questionnaire about their home background, values, beliefs, attitudes, and behaviors related to Computer and Information technologies. Following the questionnaire session, students responded to a Computational Thinking test (CT hereafter) featuring multiple-choice items. In Chile, this last test was not applied. In parallel, the school’s teachers are also subjected to a questionnaire to assess their values, beliefs, attitudes, and behaviors related to Computer and Information technologies and their role in teaching. Also, the principals and ICT managers of the school were surveyed to obtain information on the school’s social characteristics and ICT infrastructure.</p>
+<p>Database used is the International Computer and Information Literacy (ICILS from now) study made by the International Association for the Evaluation of Educational Achievement (IEA) in 2018. The participants are students of eighth grade which were sampled using a random multistage stratified cluster design to be representative at the school and student level in all the countries measured. Schools can be referred to as the primary sampling units, and and students as the secondary sampling units.</p>
+<p>The analysis focuses exclusively on the Chilean subset of the ICILS 2018. The sample comprised 3,092 students (1519 boys and 1573 girls) distributed across 178 schools. Both levels are representative of the broader Chilean student and school population.</p>
+<p>The students underwent a Computer Literacy test and completed a questionnaire about their home background, values, beliefs, attitudes, and behaviors related to Computer and Information technologies. Also the principals and ICT managers of the school were surveyed to obtain information on the school’s social characteristics and ICT infrastructure.</p>
 </section>
 <section id="variables" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.2</span> Variables</h2>
-<p><strong><em>Student level</em></strong></p>
-<p><strong>General and Specialized ICT Self-efficacy</strong>: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question <em>How well can you do this tasks when using ICT?</em>.The items can be examined in <a href="#tbl-selfeff-items">Table&nbsp;1</a>.</p>
-<div class="cell">
-<div id="tbl-selfeff-items" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: ICT Self-efficacy items (Dependent variables)</caption>
-<colgroup>
-<col style="width: 40%">
-<col style="width: 30%">
-<col style="width: 19%">
-<col style="width: 9%">
-</colgroup>
+<section id="dependent-variables" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="dependent-variables"><span class="header-section-number">1.2.1</span> Dependent variables</h3>
+<p><strong>General and Specialized ICT Self-efficacy</strong>: ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and other for advanced or specialized tasks. Both indices were constructed using a same battery with the question <em>How well can you do this tasks when using ICT?</em>, and the answers ‘I know how to do this’ (1), ‘I have never done this but i could work out how to do this (2)’, ‘I do not think I could do this’ (3). The items can be examined in <a href="#tbl-selfeff-items">Table&nbsp;1</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div id="tbl-selfeff-items" class="cell tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;1: ICT Self-efficacy items</p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-selfeff-items-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-selfeff-items" style="flex-basis: 100.0%;justify-content: center;">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>(a) General ICT Self efficacy</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Label</th>
-<th style="text-align: left;">Stats / Values</th>
-<th style="text-align: left;">Freqs (% of Valid)</th>
-<th style="text-align: left;">Valid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Label</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Valid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Edit graphic images (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2273 (76.0%)<br>
-571 (19.1%)<br>
-146 ( 4.9%)</td>
-<td style="text-align: left;">2990<br>
-(96.7%)</td>
+<td style="text-align: left;">Edit graphic images</td>
+<td style="text-align: left;">2990\ (96.7%)</td>
+<td style="text-align: left;">102\ (3.3%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Write or edit text (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2592 (87.5%)<br>
-295 (10.0%)<br>
-74 ( 2.5%)</td>
-<td style="text-align: left;">2961<br>
-(95.8%)</td>
+<td style="text-align: left;">Write or edit text</td>
+<td style="text-align: left;">2961\ (95.8%)</td>
+<td style="text-align: left;">131\ (4.2%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Search and find information on internet (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2584 (87.4%)<br>
-291 ( 9.8%)<br>
-81 ( 2.7%)</td>
-<td style="text-align: left;">2956<br>
-(95.6%)</td>
+<td style="text-align: left;">Search and find information on internet</td>
+<td style="text-align: left;">2956\ (95.6%)</td>
+<td style="text-align: left;">136\ (4.4%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Create multi-media presentation (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">1983 (67.2%)<br>
-772 (26.2%)<br>
-195 ( 6.6%)</td>
-<td style="text-align: left;">2950<br>
-(95.4%)</td>
+<td style="text-align: left;">Create multi-media presentation</td>
+<td style="text-align: left;">2950\ (95.4%)</td>
+<td style="text-align: left;">142\ (4.6%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Upload multimedia to an online profile (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2377 (80.9%)<br>
-419 (14.3%)<br>
-141 ( 4.8%)</td>
-<td style="text-align: left;">2937<br>
-(95.0%)</td>
+<td style="text-align: left;">Upload multimedia to an online profile</td>
+<td style="text-align: left;">2937\ (95.0%)</td>
+<td style="text-align: left;">155\ (5.0%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Insert an image into a document/message (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2441 (84.1%)<br>
-345 (11.9%)<br>
-115 ( 4.0%)</td>
-<td style="text-align: left;">2901<br>
-(93.8%)</td>
+<td style="text-align: left;">Insert an image into a document/message</td>
+<td style="text-align: left;">2901\ (93.8%)</td>
+<td style="text-align: left;">191\ (6.2%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Install a program/app (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2440 (84.2%)<br>
-332 (11.5%)<br>
-127 ( 4.4%)</td>
-<td style="text-align: left;">2899<br>
-(93.8%)</td>
+<td style="text-align: left;">Install a program/app</td>
+<td style="text-align: left;">2899\ (93.8%)</td>
+<td style="text-align: left;">193\ (6.2%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Judge internet information veracity (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2043 (71.2%)<br>
-679 (23.7%)<br>
-146 ( 5.1%)</td>
-<td style="text-align: left;">2868<br>
-(92.8%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Create a database (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">1040 (35.0%)<br>
-1475 (49.6%)<br>
-457 (15.4%)</td>
-<td style="text-align: left;">2972<br>
-(96.1%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Build a webpage (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">838 (28.3%)<br>
-1514 (51.2%)<br>
-607 (20.5%)</td>
-<td style="text-align: left;">2959<br>
-(95.7%)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Create a computer program/app (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">469 (15.8%)<br>
-1527 (51.6%)<br>
-964 (32.6%)</td>
-<td style="text-align: left;">2960<br>
-(95.7%)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Set up a local area network (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">906 (30.8%)<br>
-1263 (43.0%)<br>
-769 (26.2%)</td>
-<td style="text-align: left;">2938<br>
-(95.0%)</td>
+<td style="text-align: left;">Judge internet information veracity</td>
+<td style="text-align: left;">2868\ (92.8%)</td>
+<td style="text-align: left;">224\ (7.2%)</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. However, before working with these variables, it is necessary to validate the measurement for the Chilean case. A confirmatory factor analysis between the items above was carried out for this purpose<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <a href="#tbl-fa">Table&nbsp;2</a> resumes a three-factor and two factor model<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Two factor model suggests grouping the four items that make up the specialized self-efficacy index into a factor 2. All items in this factor receive a score greater than 0.5. In contrast, the specialised self-efficacy items are grouped between factor 1 and 3, but these, in turn, obtain a covariance of 0.8. In the two factors model, the covariance between factors decreases to 0.3, which is reasonable to assume that the latent variables are distinct. In turn, all items have factor scores greater than 0.5. Therefore, for the purposes of the research, we decided to continue working with the indices provided by IEA in this study.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-fa" class="anchored">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 
-<div id="kqzlcgvkck" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kqzlcgvkck table {
-  font-family: 'Times New Roman';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-#kqzlcgvkck thead, #kqzlcgvkck tbody, #kqzlcgvkck tfoot, #kqzlcgvkck tr, #kqzlcgvkck td, #kqzlcgvkck th {
-  border-style: none;
-}
-
-#kqzlcgvkck p {
-  margin: 0;
-  padding: 0;
-}
-
-#kqzlcgvkck .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: 100%;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #FFFFFF;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#kqzlcgvkck .gt_title {
-  color: #333333;
-  font-size: 16px;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#kqzlcgvkck .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#kqzlcgvkck .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 3px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 3px;
-  border-bottom-color: #000000;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#kqzlcgvkck .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#kqzlcgvkck .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#kqzlcgvkck .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#kqzlcgvkck .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 3px;
-  border-bottom-color: #000000;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#kqzlcgvkck .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#kqzlcgvkck .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#kqzlcgvkck .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#kqzlcgvkck .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#kqzlcgvkck .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#kqzlcgvkck .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#kqzlcgvkck .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqzlcgvkck .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#kqzlcgvkck .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#kqzlcgvkck .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#kqzlcgvkck .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqzlcgvkck .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#kqzlcgvkck .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqzlcgvkck .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#kqzlcgvkck .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-}
-
-#kqzlcgvkck .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqzlcgvkck .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#kqzlcgvkck .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqzlcgvkck .gt_left {
-  text-align: left;
-}
-
-#kqzlcgvkck .gt_center {
-  text-align: center;
-}
-
-#kqzlcgvkck .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#kqzlcgvkck .gt_font_normal {
-  font-weight: normal;
-}
-
-#kqzlcgvkck .gt_font_bold {
-  font-weight: bold;
-}
-
-#kqzlcgvkck .gt_font_italic {
-  font-style: italic;
-}
-
-#kqzlcgvkck .gt_super {
-  font-size: 65%;
-}
-
-#kqzlcgvkck .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#kqzlcgvkck .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#kqzlcgvkck .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#kqzlcgvkck .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#kqzlcgvkck .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#kqzlcgvkck .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#kqzlcgvkck .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;2:  <p>Factorial Analysis ICT Self-efficacy</p> </caption>
-  <thead>
-    
-    <tr class="gt_col_headings gt_spanner_row">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id=""></th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="Three factors model">
-        <span class="gt_column_spanner">Three factors model</span>
-      </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Two factors model">
-        <span class="gt_column_spanner">Two factors model</span>
-      </th>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 1">Factor 1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 2">Factor 2</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 3">Factor 3</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 1">Factor 1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 2">Factor 2</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Suggested as Specialized Self-efficacy">Suggested as Specialized Self-efficacy</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_center gt_stub">A. Create a database</th>
-<td headers="Suggested as Specialized Self-efficacy stub_1_1 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.20</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_1 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.49</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_1 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.47</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_1 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_1 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.49</td></tr>
-    <tr><th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub">B. Build a webpage</th>
-<td headers="Suggested as Specialized Self-efficacy stub_1_2 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.09</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_2 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_2 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.07</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_2 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.13</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_2 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.67</td></tr>
-    <tr><th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub">C. Create a computer program/app</th>
-<td headers="Suggested as Specialized Self-efficacy stub_1_3 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.00</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_3 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.91</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_3 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.07</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_3 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.10</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_3 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.93</td></tr>
-    <tr><th id="stub_1_4" scope="row" class="gt_row gt_center gt_stub">D. Set up a local area network</th>
-<td headers="Suggested as Specialized Self-efficacy stub_1_4 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.14</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_4 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_4 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.04</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_4 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.08</td>
-<td headers="Suggested as Specialized Self-efficacy stub_1_4 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Suggested as General Self-efficacy">Suggested as General Self-efficacy</th>
-    </tr>
-    <tr class="gt_row_group_first"><th id="stub_1_5" scope="row" class="gt_row gt_center gt_stub">E. Edit graphic images</th>
-<td headers="Suggested as General Self-efficacy stub_1_5 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.15</td>
-<td headers="Suggested as General Self-efficacy stub_1_5 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td>
-<td headers="Suggested as General Self-efficacy stub_1_5 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.44</td>
-<td headers="Suggested as General Self-efficacy stub_1_5 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.54</td>
-<td headers="Suggested as General Self-efficacy stub_1_5 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td></tr>
-    <tr><th id="stub_1_6" scope="row" class="gt_row gt_center gt_stub">F. Write or edit text</th>
-<td headers="Suggested as General Self-efficacy stub_1_6 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.11</td>
-<td headers="Suggested as General Self-efficacy stub_1_6 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.04</td>
-<td headers="Suggested as General Self-efficacy stub_1_6 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.80</td>
-<td headers="Suggested as General Self-efficacy stub_1_6 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.83</td>
-<td headers="Suggested as General Self-efficacy stub_1_6 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.03</td></tr>
-    <tr><th id="stub_1_7" scope="row" class="gt_row gt_center gt_stub">G. Search and find information on internet</th>
-<td headers="Suggested as General Self-efficacy stub_1_7 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.24</td>
-<td headers="Suggested as General Self-efficacy stub_1_7 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.09</td>
-<td headers="Suggested as General Self-efficacy stub_1_7 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
-<td headers="Suggested as General Self-efficacy stub_1_7 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.84</td>
-<td headers="Suggested as General Self-efficacy stub_1_7 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.09</td></tr>
-    <tr><th id="stub_1_8" scope="row" class="gt_row gt_center gt_stub">H. Create multi-media presentation</th>
-<td headers="Suggested as General Self-efficacy stub_1_8 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.46</td>
-<td headers="Suggested as General Self-efficacy stub_1_8 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.32</td>
-<td headers="Suggested as General Self-efficacy stub_1_8 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.09</td>
-<td headers="Suggested as General Self-efficacy stub_1_8 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.52</td>
-<td headers="Suggested as General Self-efficacy stub_1_8 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.30</td></tr>
-    <tr><th id="stub_1_9" scope="row" class="gt_row gt_center gt_stub">I. Upload multimedia to an online profile</th>
-<td headers="Suggested as General Self-efficacy stub_1_9 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.82</td>
-<td headers="Suggested as General Self-efficacy stub_1_9 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.02</td>
-<td headers="Suggested as General Self-efficacy stub_1_9 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.02</td>
-<td headers="Suggested as General Self-efficacy stub_1_9 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.76</td>
-<td headers="Suggested as General Self-efficacy stub_1_9 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.01</td></tr>
-    <tr><th id="stub_1_10" scope="row" class="gt_row gt_center gt_stub">J. Insert an image into a document/message</th>
-<td headers="Suggested as General Self-efficacy stub_1_10 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.72</td>
-<td headers="Suggested as General Self-efficacy stub_1_10 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.02</td>
-<td headers="Suggested as General Self-efficacy stub_1_10 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.14</td>
-<td headers="Suggested as General Self-efficacy stub_1_10 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.83</td>
-<td headers="Suggested as General Self-efficacy stub_1_10 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.01</td></tr>
-    <tr><th id="stub_1_11" scope="row" class="gt_row gt_center gt_stub">K. Install a program/app</th>
-<td headers="Suggested as General Self-efficacy stub_1_11 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.67</td>
-<td headers="Suggested as General Self-efficacy stub_1_11 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.00</td>
-<td headers="Suggested as General Self-efficacy stub_1_11 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.11</td>
-<td headers="Suggested as General Self-efficacy stub_1_11 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.75</td>
-<td headers="Suggested as General Self-efficacy stub_1_11 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.02</td></tr>
-    <tr><th id="stub_1_12" scope="row" class="gt_row gt_center gt_stub">L. Judge internet information veracity</th>
-<td headers="Suggested as General Self-efficacy stub_1_12 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.41</td>
-<td headers="Suggested as General Self-efficacy stub_1_12 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.17</td>
-<td headers="Suggested as General Self-efficacy stub_1_12 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.19</td>
-<td headers="Suggested as General Self-efficacy stub_1_12 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.57</td>
-<td headers="Suggested as General Self-efficacy stub_1_12 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.16</td></tr>
-  </tbody>
-  
-  
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-selfeff-items-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-selfeff-items" style="flex-basis: 100.0%;justify-content: center;">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>(b) Specialized ICT Self efficacy</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Label</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Valid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Create a database</td>
+<td style="text-align: left;">2972\ (96.1%)</td>
+<td style="text-align: left;">120\ (3.9%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Build a webpage</td>
+<td style="text-align: left;">2959\ (95.7%)</td>
+<td style="text-align: left;">133\ (4.3%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Create a computer program/app</td>
+<td style="text-align: left;">2960\ (95.7%)</td>
+<td style="text-align: left;">132\ (4.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Set up a local area network</td>
+<td style="text-align: left;">2938\ (95.0%)</td>
+<td style="text-align: left;">154\ (5.0%)</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+
+
 </div>
 </div>
-<p>Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.</p>
-<p><strong>Computer and Information Literacy</strong>: The CIL scale used in the analyses is based on a test applied by IEA. The test consists of a computer application with a set of five modules, in which each student has to respond to two randomly selected. Every module has 30 minutes of assessment. The structure of a module consisted of a set of questions and tasks based on a realistic theme and following a linear narrative structure. These modules have a series of small discrete tasks (typically taking less than a minute to complete) followed by a large task that typically took 15 to 20 minutes to complete. In total, the modules comprised 81 discrete questions that generated 102 score points. So, in total, an individual could reach a maximum score of 204 points.</p>
-<p>The five modules measured different Computer Abilities. The first one was oriented in website construction, while the second one in digital files managing and collection. The thirst challenged students to plan a school trip through database building and mapping tools. Another module included a school-based social network where students were encouraged to post and message their peers to join a board games interest group. The last module requested research information about recycling on the internet, and then designed infographics about carbon footprint awareness.</p>
-<p>The ICILS CIL reporting scale was established in ICILS 2013, with a mean of 500 (the average CIL scale score across countries in 2013) and a standard deviation of 100 for the equally weighted national samples that met IEA sample participation standards in the first cycle (2013). The ICILS database offers five possible values of the CIL score that were generated with full conditioning to derive summary student achievement statistics. Conventionally, papers based on this study usually occupy the first plausible value, which is coded “pv1cil”. This research is no exception. Due to the large magnitude of the figures for this variable, the scale had to be multiplied by 0.1 to make the results more intelligible. The higher the value of the scale, the higher the CIL of the student.</p>
+</div>
+<p>The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. A confirmatory factor analysis between the items above was carried out to validate the index at chilean sample scale<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-descriptives-selfeff" class="anchored">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Descriptives dependent variables</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Label</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stats / Values</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Valid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ICT self-efficacy regarding the use of general applications</td>
+<td style="text-align: left;">Mean (sd) : 52 (8.9)\ min &lt; med &lt; max:\ 13 &lt; 52 &lt; 61\ IQR (CV) : 16 (0.2)</td>
+<td style="text-align: left;">2999\ (97.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ICT self-efficacy regarding the use of specialist applications</td>
+<td style="text-align: left;">Mean (sd) : 51 (9.3)\ min &lt; med &lt; max:\ 30 &lt; 51 &lt; 71\ IQR (CV) : 8.2 (0.2)</td>
+<td style="text-align: left;">2996\ (96.9%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+</section>
+<section id="independent-variables" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="independent-variables"><span class="header-section-number">1.2.2</span> Independent variables</h3>
+<p><strong><em>Student level</em></strong></p>
+<p><strong>Student sex</strong>: Provided in the ICILS database as dichotomic, where Girl is 1 and Boy 0 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p><strong>Computer and Information Literacy</strong>: CIL scale is based on a computer application test with multi-answer questions and tasks based on a realistic theme and following a linear narrative structure. The test measure Computer Abilities as website construction, digital files managing database building, mapping tools, social media posting and internet search of information. CIL reporting scale was established with a mean of 500 (the average CIL scale score across countries) and a standard deviation of 100 for the equally weighted national samples that met ICILS 2013 (The first cycle of the study). Due to the large magnitude of this variable, the scale had to be multiplied by 0.1 to make the results more intelligible. The higher the value of the scale, the higher the CIL of the student <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <p><strong>Control variables</strong>: The analysis includes control variables that tend to be influential in studies of educational and technological inequalities. These variables encompass family socioeconomic status - by the highest level of parental education (ISCED Scale) - and the number of books in the household.</p>
 <p><a href="#tbl-individual-descriptives">Table&nbsp;3</a> displays key statistics of independent student-level vairables to explore.</p>
 <div class="cell">
@@ -986,9 +426,10 @@ IQR (CV) : 9.7 (0.1)</td>
 </div>
 </div>
 </section>
+</section>
 <section id="method" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="method"><span class="header-section-number">1.3</span> Method</h2>
-<p>The analysis consists of two stages. In the first exploratory stage, an exploration of differences in self-efficacy means by gender at both item and index level is carried out and correlations between constructs are displayed. In a second stage, due to the hierarchical structure of the data, as well as its representativeness at the student and school level, linear regression models are estimated from a multilevel perspective. This means that the models are oriented towards estimating both individual and contextual effects in a single analysis; capturing variation between groups and within groups <span class="citation" data-cites="vijverMultilevelAnalysisIndividuals2008 hoxMultilevelAnalysisTechniques2017">(<a href="#ref-hoxMultilevelAnalysisTechniques2017" role="doc-biblioref">Hox et al., 2017</a>; <a href="#ref-vijverMultilevelAnalysisIndividuals2008" role="doc-biblioref">Vijver et al., 2008</a>)</span>.</p>
+<p>The analysis start deploying bivariate and correlation exploration of the data, reaching gender differences in self-efficacy distribution and their determinants. Then, due to the hierarchical structure of the data, as well as its representativeness at the student and school level, linear regression models are estimated from a multilevel perspective. This means that the models are oriented towards estimating both individual and contextual effects in a single analysis; capturing variation between groups and within groups <span class="citation" data-cites="vijverMultilevelAnalysisIndividuals2008 hoxMultilevelAnalysisTechniques2017">(<a href="#ref-hoxMultilevelAnalysisTechniques2017" role="doc-biblioref">Hox et al., 2017</a>; <a href="#ref-vijverMultilevelAnalysisIndividuals2008" role="doc-biblioref">Vijver et al., 2008</a>)</span>.</p>
 <p>The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this <a href="https://osf.io/5qjsd">link</a>. The statistical analysis of this research was performed using the free software R version 4.3.0.</p>
 </section>
 </section>
@@ -1028,23 +469,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-indexes-gender" class="anchored">
 
-<div id="nchaziicps" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nchaziicps table {
+<div id="tphkffzwez" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tphkffzwez table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nchaziicps thead, #nchaziicps tbody, #nchaziicps tfoot, #nchaziicps tr, #nchaziicps td, #nchaziicps th {
+#tphkffzwez thead, #tphkffzwez tbody, #tphkffzwez tfoot, #tphkffzwez tr, #tphkffzwez td, #tphkffzwez th {
   border-style: none;
 }
 
-#nchaziicps p {
+#tphkffzwez p {
   margin: 0;
   padding: 0;
 }
 
-#nchaziicps .gt_table {
+#tphkffzwez .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1070,12 +511,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#nchaziicps .gt_caption {
+#tphkffzwez .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nchaziicps .gt_title {
+#tphkffzwez .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -1087,7 +528,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#nchaziicps .gt_subtitle {
+#tphkffzwez .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1099,7 +540,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#nchaziicps .gt_heading {
+#tphkffzwez .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1111,13 +552,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#nchaziicps .gt_bottom_border {
+#tphkffzwez .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nchaziicps .gt_col_headings {
+#tphkffzwez .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -1132,7 +573,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#nchaziicps .gt_col_heading {
+#tphkffzwez .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1152,7 +593,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#nchaziicps .gt_column_spanner_outer {
+#tphkffzwez .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1164,15 +605,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#nchaziicps .gt_column_spanner_outer:first-child {
+#tphkffzwez .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nchaziicps .gt_column_spanner_outer:last-child {
+#tphkffzwez .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nchaziicps .gt_column_spanner {
+#tphkffzwez .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -1184,11 +625,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#nchaziicps .gt_spanner_row {
+#tphkffzwez .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nchaziicps .gt_group_heading {
+#tphkffzwez .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1214,7 +655,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#nchaziicps .gt_empty_group_heading {
+#tphkffzwez .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1229,15 +670,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#nchaziicps .gt_from_md > :first-child {
+#tphkffzwez .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nchaziicps .gt_from_md > :last-child {
+#tphkffzwez .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nchaziicps .gt_row {
+#tphkffzwez .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,7 +697,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#nchaziicps .gt_stub {
+#tphkffzwez .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1269,7 +710,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#nchaziicps .gt_stub_row_group {
+#tphkffzwez .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1283,15 +724,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#nchaziicps .gt_row_group_first td {
+#tphkffzwez .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nchaziicps .gt_row_group_first th {
+#tphkffzwez .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nchaziicps .gt_summary_row {
+#tphkffzwez .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1301,16 +742,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#nchaziicps .gt_first_summary_row {
+#tphkffzwez .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nchaziicps .gt_first_summary_row.thick {
+#tphkffzwez .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nchaziicps .gt_last_summary_row {
+#tphkffzwez .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1320,7 +761,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#nchaziicps .gt_grand_summary_row {
+#tphkffzwez .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1330,7 +771,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#nchaziicps .gt_first_grand_summary_row {
+#tphkffzwez .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1340,7 +781,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#nchaziicps .gt_last_grand_summary_row_top {
+#tphkffzwez .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1350,11 +791,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#nchaziicps .gt_striped {
+#tphkffzwez .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nchaziicps .gt_table_body {
+#tphkffzwez .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1363,7 +804,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#nchaziicps .gt_footnotes {
+#tphkffzwez .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1377,7 +818,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#nchaziicps .gt_footnote {
+#tphkffzwez .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1386,7 +827,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#nchaziicps .gt_sourcenotes {
+#tphkffzwez .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1400,7 +841,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#nchaziicps .gt_sourcenote {
+#tphkffzwez .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1408,63 +849,63 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#nchaziicps .gt_left {
+#tphkffzwez .gt_left {
   text-align: left;
 }
 
-#nchaziicps .gt_center {
+#tphkffzwez .gt_center {
   text-align: center;
 }
 
-#nchaziicps .gt_right {
+#tphkffzwez .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nchaziicps .gt_font_normal {
+#tphkffzwez .gt_font_normal {
   font-weight: normal;
 }
 
-#nchaziicps .gt_font_bold {
+#tphkffzwez .gt_font_bold {
   font-weight: bold;
 }
 
-#nchaziicps .gt_font_italic {
+#tphkffzwez .gt_font_italic {
   font-style: italic;
 }
 
-#nchaziicps .gt_super {
+#tphkffzwez .gt_super {
   font-size: 65%;
 }
 
-#nchaziicps .gt_footnote_marks {
+#tphkffzwez .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nchaziicps .gt_asterisk {
+#tphkffzwez .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nchaziicps .gt_indent_1 {
+#tphkffzwez .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nchaziicps .gt_indent_2 {
+#tphkffzwez .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nchaziicps .gt_indent_3 {
+#tphkffzwez .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nchaziicps .gt_indent_4 {
+#tphkffzwez .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nchaziicps .gt_indent_5 {
+#tphkffzwez .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1514,26 +955,526 @@ IQR (CV) : 9.7 (0.1)</td>
 </div>
 </div>
 </div>
+<p><em>School Gender composition analysis</em></p>
+<p>At school level, <a href="#tbl-indexes-school">Table&nbsp;6</a> suggests the gender composition of school have not significant mean differences in Computer Literacy and ICT Self-efficacy in overall students.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-indexes-school" class="anchored">
+
+<div id="wadizcrfcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wadizcrfcw table {
+  font-family: 'Times New Roman';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wadizcrfcw thead, #wadizcrfcw tbody, #wadizcrfcw tfoot, #wadizcrfcw tr, #wadizcrfcw td, #wadizcrfcw th {
+  border-style: none;
+}
+
+#wadizcrfcw p {
+  margin: 0;
+  padding: 0;
+}
+
+#wadizcrfcw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFFFFF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wadizcrfcw .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wadizcrfcw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wadizcrfcw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wadizcrfcw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wadizcrfcw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wadizcrfcw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wadizcrfcw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #000000;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wadizcrfcw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wadizcrfcw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wadizcrfcw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wadizcrfcw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wadizcrfcw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wadizcrfcw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wadizcrfcw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wadizcrfcw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wadizcrfcw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wadizcrfcw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wadizcrfcw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wadizcrfcw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wadizcrfcw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wadizcrfcw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wadizcrfcw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+}
+
+#wadizcrfcw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wadizcrfcw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wadizcrfcw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wadizcrfcw .gt_left {
+  text-align: left;
+}
+
+#wadizcrfcw .gt_center {
+  text-align: center;
+}
+
+#wadizcrfcw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wadizcrfcw .gt_font_normal {
+  font-weight: normal;
+}
+
+#wadizcrfcw .gt_font_bold {
+  font-weight: bold;
+}
+
+#wadizcrfcw .gt_font_italic {
+  font-style: italic;
+}
+
+#wadizcrfcw .gt_super {
+  font-size: 65%;
+}
+
+#wadizcrfcw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wadizcrfcw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wadizcrfcw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wadizcrfcw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wadizcrfcw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wadizcrfcw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wadizcrfcw .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;6:  <p>Gender composition differences</p> </caption>
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Characteristic</strong>"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Masculinized school (0-33% girls)</strong>, N = 10<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Masculinized school (0-33% girls)</strong>, N = 10<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Mixed school (34%-66% girls)</strong>, N = 134<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Mixed school (34%-66% girls)</strong>, N = 134<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>Feminized school (67%-100% girls)</strong>, N = 19<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>"><strong>Feminized school (67%-100% girls)</strong>, N = 19<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="<strong>p-value</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">Computer Literacy</td>
+<td headers="stat_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">46.8 (7.1)</td>
+<td headers="stat_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">48.2 (5.7)</td>
+<td headers="stat_3" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">48.2 (6.0)</td>
+<td headers="p.value" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">&gt;0.9</td></tr>
+    <tr><td headers="label" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">ICT General Self Efficacy</td>
+<td headers="stat_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">50.92 (3.16)</td>
+<td headers="stat_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">51.43 (3.13)</td>
+<td headers="stat_3" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">52.86 (3.28)</td>
+<td headers="p.value" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.13</td></tr>
+    <tr><td headers="label" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">ICT Specialized Self Efficacy</td>
+<td headers="stat_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">49.83 (4.84)</td>
+<td headers="stat_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">51.42 (3.14)</td>
+<td headers="stat_3" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">51.05 (3.61)</td>
+<td headers="p.value" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.4</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Kruskal-Wallis rank sum test</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#fig-gender-school-mean">Figure&nbsp;3</a> plot gender mean by the Gender composition of the school. It shows that the type of school affects girls and boys differently. As more is the proportion of girls, boys score lower and girls higher in the CIL test. But conversely, as the school increases its female enrolment, girls have lower levels of specialized self-efficacy and males have higher levels of specialized self-efficacy. In general self-efficacy no differences of considerable magnitude can be observed. It is important to note that for all three variables, the gender gap decreases in mixed schools compared to their two counterparts.</p>
+<p>Contrary to what was hypothesised, the results would suggest that girls tend to underestimate their advanced skills to a greater extent when surrounded by a larger number of female peers. Contrary to what was hypothesised, the results would suggest that girls tend to underestimate their advanced skills to a greater extent when surrounded by a larger number of female peers. Whereas boys, the more they are surrounded by girls, the more they increase their overestimation of their specialized abilities.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-gender-school-mean" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="paper_files/figure-html/fig-gender-school-mean-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: ICT Self Efficacy and CIL by Student sex and School composition</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p><em>Correlations</em></p>
-<p>To provide an overview of the relationships between variables, a correlogram of all explored variables is presented in <a href="#fig-corrgram">Figure&nbsp;3</a>. The Key findings include a relatively intermediately-high positive effect size between both Self-efficacy indexes (0.44), a considerable positive effect size between General ICT Self-efficacy and the CIL score (0.33) and a counter-intuitively effect size between Specialized Self-efficacy and CIL Score, which is slightly negative (-0.11).</p>
+<p>To provide an overview of the relationships between variables, a correlogram of all explored variables is presented in <a href="#fig-corrgram">Figure&nbsp;4</a>. The Key findings include a relatively intermediately-high positive effect size between both Self-efficacy indexes (0.44), a considerable positive effect size between General ICT Self-efficacy and the CIL score (0.33) and a counter-intuitively effect size between Specialized Self-efficacy and CIL Score, which is slightly negative (-0.11).</p>
 <p>In essence, these results suggest that students reporting higher General Self-efficacy tend to have advantages on CIL test over those with lower scores in that index, but individuals with lower scores on the CIL test tend to report higher Specialized Self-efficacy. One possible explanation could be that as students progress beyond general ICT knowledge and delve into advanced topics, they become more aware of concepts and processes they do not know.* Consequently, they may rely less on their computer literacy. This phenomenon aligns with the notion of underestimation, rooted in the ‘I know that I don’t know’ logic.</p>
-<p>The sex of the student (managed as dummy) exhibits practically a neutral correlation with General ICT Self-efficay, but in the case of Specialized, the correlation is negative and with a considerable magnitude (-0.1). At school level, CIL mantains the relationship effect size and direction. No significant coefficients were found in Gender composition (treated as ordinal).</p>
+<p>The sex of the student (managed as dummy) exhibits practically a neutral correlation with General ICT Self-efficay, but in the case of Specialized, the correlation is negative and with a considerable magnitude (-0.1). At school level, CIL mantains effect size and direction. No significant coefficients were found in Gender composition (treated as ordinal).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-corrgram" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="paper_files/figure-html/fig-corrgram-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Corrplot principal variables</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4: Corrplot principal variables</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. <a href="#tbl-gender-reinforcement">Table&nbsp;6</a> indicate that boys tend to exhibit a more positive effect size in General Self-efficacy and CIL score and a more positive effect size than girls in Specialized self-efficacy (0.04 points and -0.05 ponits respectively). The result raises speculation about the impact of underestimation due to advanced knowledge (‘Know that I don’t know’), which seems to be more pronounced in females. Girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills.</p>
+<p>Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. <a href="#tbl-gender-reinforcement">Table&nbsp;7</a> indicate that boys tend to exhibit a more positive effect size in General Self-efficacy and CIL score and a more positive effect size than girls in Specialized self-efficacy (0.04 points and -0.05 ponits respectively). The result raises speculation about the impact of underestimation due to advanced knowledge (‘Know that I don’t know’), which seems to be more pronounced in females. Girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-gender-reinforcement" class="anchored">
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<caption>Table&nbsp;6: Gender CIL correlation differences</caption>
+<caption>Table&nbsp;7: Gender CIL correlation differences</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Sex</th>
@@ -1578,23 +1519,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-labels" class="anchored">
 
-<div id="pjedcjswpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pjedcjswpg table {
+<div id="zxpzgdhfhq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zxpzgdhfhq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pjedcjswpg thead, #pjedcjswpg tbody, #pjedcjswpg tfoot, #pjedcjswpg tr, #pjedcjswpg td, #pjedcjswpg th {
+#zxpzgdhfhq thead, #zxpzgdhfhq tbody, #zxpzgdhfhq tfoot, #zxpzgdhfhq tr, #zxpzgdhfhq td, #zxpzgdhfhq th {
   border-style: none;
 }
 
-#pjedcjswpg p {
+#zxpzgdhfhq p {
   margin: 0;
   padding: 0;
 }
 
-#pjedcjswpg .gt_table {
+#zxpzgdhfhq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1620,12 +1561,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_caption {
+#zxpzgdhfhq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pjedcjswpg .gt_title {
+#zxpzgdhfhq .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -1637,7 +1578,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#pjedcjswpg .gt_subtitle {
+#zxpzgdhfhq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1649,7 +1590,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#pjedcjswpg .gt_heading {
+#zxpzgdhfhq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1661,13 +1602,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_bottom_border {
+#zxpzgdhfhq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_col_headings {
+#zxpzgdhfhq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -1682,7 +1623,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_col_heading {
+#zxpzgdhfhq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1702,7 +1643,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#pjedcjswpg .gt_column_spanner_outer {
+#zxpzgdhfhq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1714,15 +1655,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#pjedcjswpg .gt_column_spanner_outer:first-child {
+#zxpzgdhfhq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pjedcjswpg .gt_column_spanner_outer:last-child {
+#zxpzgdhfhq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pjedcjswpg .gt_column_spanner {
+#zxpzgdhfhq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -1734,11 +1675,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#pjedcjswpg .gt_spanner_row {
+#zxpzgdhfhq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pjedcjswpg .gt_group_heading {
+#zxpzgdhfhq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1764,7 +1705,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#pjedcjswpg .gt_empty_group_heading {
+#zxpzgdhfhq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1779,15 +1720,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#pjedcjswpg .gt_from_md > :first-child {
+#zxpzgdhfhq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pjedcjswpg .gt_from_md > :last-child {
+#zxpzgdhfhq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pjedcjswpg .gt_row {
+#zxpzgdhfhq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1806,7 +1747,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#pjedcjswpg .gt_stub {
+#zxpzgdhfhq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1819,7 +1760,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pjedcjswpg .gt_stub_row_group {
+#zxpzgdhfhq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1833,15 +1774,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#pjedcjswpg .gt_row_group_first td {
+#zxpzgdhfhq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pjedcjswpg .gt_row_group_first th {
+#zxpzgdhfhq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pjedcjswpg .gt_summary_row {
+#zxpzgdhfhq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1851,16 +1792,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pjedcjswpg .gt_first_summary_row {
+#zxpzgdhfhq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_first_summary_row.thick {
+#zxpzgdhfhq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pjedcjswpg .gt_last_summary_row {
+#zxpzgdhfhq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1870,7 +1811,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_grand_summary_row {
+#zxpzgdhfhq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1880,7 +1821,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pjedcjswpg .gt_first_grand_summary_row {
+#zxpzgdhfhq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1890,7 +1831,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_last_grand_summary_row_top {
+#zxpzgdhfhq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1900,11 +1841,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_striped {
+#zxpzgdhfhq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pjedcjswpg .gt_table_body {
+#zxpzgdhfhq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1913,7 +1854,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#pjedcjswpg .gt_footnotes {
+#zxpzgdhfhq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1927,7 +1868,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_footnote {
+#zxpzgdhfhq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1936,7 +1877,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pjedcjswpg .gt_sourcenotes {
+#zxpzgdhfhq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1950,7 +1891,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pjedcjswpg .gt_sourcenote {
+#zxpzgdhfhq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1958,67 +1899,67 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pjedcjswpg .gt_left {
+#zxpzgdhfhq .gt_left {
   text-align: left;
 }
 
-#pjedcjswpg .gt_center {
+#zxpzgdhfhq .gt_center {
   text-align: center;
 }
 
-#pjedcjswpg .gt_right {
+#zxpzgdhfhq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pjedcjswpg .gt_font_normal {
+#zxpzgdhfhq .gt_font_normal {
   font-weight: normal;
 }
 
-#pjedcjswpg .gt_font_bold {
+#zxpzgdhfhq .gt_font_bold {
   font-weight: bold;
 }
 
-#pjedcjswpg .gt_font_italic {
+#zxpzgdhfhq .gt_font_italic {
   font-style: italic;
 }
 
-#pjedcjswpg .gt_super {
+#zxpzgdhfhq .gt_super {
   font-size: 65%;
 }
 
-#pjedcjswpg .gt_footnote_marks {
+#zxpzgdhfhq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pjedcjswpg .gt_asterisk {
+#zxpzgdhfhq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pjedcjswpg .gt_indent_1 {
+#zxpzgdhfhq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pjedcjswpg .gt_indent_2 {
+#zxpzgdhfhq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pjedcjswpg .gt_indent_3 {
+#zxpzgdhfhq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pjedcjswpg .gt_indent_4 {
+#zxpzgdhfhq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pjedcjswpg .gt_indent_5 {
+#zxpzgdhfhq .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;7:  <p>Change of labels in Self-efficacy items</p> </caption>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;8:  <p>Change of labels in Self-efficacy items</p> </caption>
   <thead>
     
     <tr class="gt_col_headings">
@@ -2229,7 +2170,7 @@ group    1    1.03   0.31
 <div class="cell-output-display">
 <div id="tbl-continous_corr_selfeff" class="anchored">
 <table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;8: Correlation matrix assuming continuous</caption>
+<caption>Table&nbsp;9: Correlation matrix assuming continuous</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2439,7 +2380,7 @@ group    1    1.03   0.31
 <div class="cell-output-display">
 <div id="tbl-categorical_corr_selfeff" class="anchored">
 <table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Table&nbsp;9: Correlation matrix assuming categorical</caption>
+<caption>Table&nbsp;10: Correlation matrix assuming categorical</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2646,8 +2587,8 @@ group    1    1.03   0.31
 </div>
 </div>
 </section>
-<section id="ict-self-efficacy-items-factorial-analysis" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="ict-self-efficacy-items-factorial-analysis"><span class="header-section-number">5.4</span> ICT Self-efficacy items Factorial Analysis</h2>
+<section id="fa-analysis" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="fa-analysis"><span class="header-section-number">5.4</span> ICT Self-efficacy items Factorial Analysis</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Parallel analysis suggests that the number of factors =  4  and the number of components =  NA </code></pre>
@@ -2656,7 +2597,7 @@ group    1    1.03   0.31
 <div id="fig-elbow" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="paper_files/figure-html/fig-elbow-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Paralel Analysis</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;5: Paralel Analysis</figcaption>
 </figure>
 </div>
 </div>
@@ -2664,20 +2605,571 @@ group    1    1.03   0.31
 <div id="fig-fa4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="paper_files/figure-html/fig-fa4-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Factorial Analysis Self-efficacy items. 4 factors.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;6: Factorial Analysis Self-efficacy items. 4 factors.</figcaption>
 </figure>
 </div>
 <div id="fig-fa3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="paper_files/figure-html/fig-fa3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;6: Factorial Analysis Self-efficacy items. 3 factors.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;7: Factorial Analysis Self-efficacy items. 3 factors.</figcaption>
 </figure>
 </div>
 <div id="fig-fa2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="paper_files/figure-html/fig-fa2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;7: Factorial Analysis Self-efficacy items. 2 factors.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;8: Factorial Analysis Self-efficacy items. 2 factors.</figcaption>
 </figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-fa" class="anchored">
+
+<div id="yhjzvbkdkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yhjzvbkdkz table {
+  font-family: 'Times New Roman';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yhjzvbkdkz thead, #yhjzvbkdkz tbody, #yhjzvbkdkz tfoot, #yhjzvbkdkz tr, #yhjzvbkdkz td, #yhjzvbkdkz th {
+  border-style: none;
+}
+
+#yhjzvbkdkz p {
+  margin: 0;
+  padding: 0;
+}
+
+#yhjzvbkdkz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFFFFF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yhjzvbkdkz .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yhjzvbkdkz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yhjzvbkdkz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yhjzvbkdkz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yhjzvbkdkz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yhjzvbkdkz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yhjzvbkdkz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-bottom-color: #000000;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yhjzvbkdkz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yhjzvbkdkz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yhjzvbkdkz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yhjzvbkdkz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yhjzvbkdkz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yhjzvbkdkz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yhjzvbkdkz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yhjzvbkdkz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yhjzvbkdkz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yhjzvbkdkz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yhjzvbkdkz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yhjzvbkdkz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yhjzvbkdkz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yhjzvbkdkz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yhjzvbkdkz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+}
+
+#yhjzvbkdkz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yhjzvbkdkz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yhjzvbkdkz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yhjzvbkdkz .gt_left {
+  text-align: left;
+}
+
+#yhjzvbkdkz .gt_center {
+  text-align: center;
+}
+
+#yhjzvbkdkz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yhjzvbkdkz .gt_font_normal {
+  font-weight: normal;
+}
+
+#yhjzvbkdkz .gt_font_bold {
+  font-weight: bold;
+}
+
+#yhjzvbkdkz .gt_font_italic {
+  font-style: italic;
+}
+
+#yhjzvbkdkz .gt_super {
+  font-size: 65%;
+}
+
+#yhjzvbkdkz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yhjzvbkdkz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yhjzvbkdkz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yhjzvbkdkz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yhjzvbkdkz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yhjzvbkdkz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yhjzvbkdkz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><caption>Table&nbsp;11:  <p>Factorial Analysis ICT Self-efficacy Results</p> </caption>
+  <thead>
+    
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id=""></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="3" scope="colgroup" id="Three factors model">
+        <span class="gt_column_spanner">Three factors model</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Two factors model">
+        <span class="gt_column_spanner">Two factors model</span>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 1">Factor 1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 2">Factor 2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 3">Factor 3</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 1">Factor 1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Factor 2">Factor 2</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Suggested as Specialized Self-efficacy">Suggested as Specialized Self-efficacy</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_center gt_stub">A. Create a database</th>
+<td headers="Suggested as Specialized Self-efficacy stub_1_1 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.20</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_1 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.49</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_1 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.47</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_1 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_1 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.49</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub">B. Build a webpage</th>
+<td headers="Suggested as Specialized Self-efficacy stub_1_2 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.09</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_2 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_2 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.07</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_2 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.13</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_2 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.67</td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub">C. Create a computer program/app</th>
+<td headers="Suggested as Specialized Self-efficacy stub_1_3 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.00</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_3 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.91</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_3 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.07</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_3 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.10</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_3 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.93</td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_center gt_stub">D. Set up a local area network</th>
+<td headers="Suggested as Specialized Self-efficacy stub_1_4 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.14</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_4 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_4 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.04</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_4 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.08</td>
+<td headers="Suggested as Specialized Self-efficacy stub_1_4 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Suggested as General Self-efficacy">Suggested as General Self-efficacy</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_5" scope="row" class="gt_row gt_center gt_stub">E. Edit graphic images</th>
+<td headers="Suggested as General Self-efficacy stub_1_5 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.15</td>
+<td headers="Suggested as General Self-efficacy stub_1_5 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td>
+<td headers="Suggested as General Self-efficacy stub_1_5 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.44</td>
+<td headers="Suggested as General Self-efficacy stub_1_5 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.54</td>
+<td headers="Suggested as General Self-efficacy stub_1_5 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.23</td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_center gt_stub">F. Write or edit text</th>
+<td headers="Suggested as General Self-efficacy stub_1_6 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.11</td>
+<td headers="Suggested as General Self-efficacy stub_1_6 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.04</td>
+<td headers="Suggested as General Self-efficacy stub_1_6 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.80</td>
+<td headers="Suggested as General Self-efficacy stub_1_6 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.83</td>
+<td headers="Suggested as General Self-efficacy stub_1_6 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.03</td></tr>
+    <tr><th id="stub_1_7" scope="row" class="gt_row gt_center gt_stub">G. Search and find information on internet</th>
+<td headers="Suggested as General Self-efficacy stub_1_7 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.24</td>
+<td headers="Suggested as General Self-efficacy stub_1_7 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.09</td>
+<td headers="Suggested as General Self-efficacy stub_1_7 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.66</td>
+<td headers="Suggested as General Self-efficacy stub_1_7 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.84</td>
+<td headers="Suggested as General Self-efficacy stub_1_7 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.09</td></tr>
+    <tr><th id="stub_1_8" scope="row" class="gt_row gt_center gt_stub">H. Create multi-media presentation</th>
+<td headers="Suggested as General Self-efficacy stub_1_8 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.46</td>
+<td headers="Suggested as General Self-efficacy stub_1_8 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.32</td>
+<td headers="Suggested as General Self-efficacy stub_1_8 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.09</td>
+<td headers="Suggested as General Self-efficacy stub_1_8 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.52</td>
+<td headers="Suggested as General Self-efficacy stub_1_8 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.30</td></tr>
+    <tr><th id="stub_1_9" scope="row" class="gt_row gt_center gt_stub">I. Upload multimedia to an online profile</th>
+<td headers="Suggested as General Self-efficacy stub_1_9 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.82</td>
+<td headers="Suggested as General Self-efficacy stub_1_9 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.02</td>
+<td headers="Suggested as General Self-efficacy stub_1_9 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.02</td>
+<td headers="Suggested as General Self-efficacy stub_1_9 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.76</td>
+<td headers="Suggested as General Self-efficacy stub_1_9 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.01</td></tr>
+    <tr><th id="stub_1_10" scope="row" class="gt_row gt_center gt_stub">J. Insert an image into a document/message</th>
+<td headers="Suggested as General Self-efficacy stub_1_10 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.72</td>
+<td headers="Suggested as General Self-efficacy stub_1_10 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.02</td>
+<td headers="Suggested as General Self-efficacy stub_1_10 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.14</td>
+<td headers="Suggested as General Self-efficacy stub_1_10 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.83</td>
+<td headers="Suggested as General Self-efficacy stub_1_10 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.01</td></tr>
+    <tr><th id="stub_1_11" scope="row" class="gt_row gt_center gt_stub">K. Install a program/app</th>
+<td headers="Suggested as General Self-efficacy stub_1_11 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.67</td>
+<td headers="Suggested as General Self-efficacy stub_1_11 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.00</td>
+<td headers="Suggested as General Self-efficacy stub_1_11 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.11</td>
+<td headers="Suggested as General Self-efficacy stub_1_11 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.75</td>
+<td headers="Suggested as General Self-efficacy stub_1_11 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">-0.02</td></tr>
+    <tr><th id="stub_1_12" scope="row" class="gt_row gt_center gt_stub">L. Judge internet information veracity</th>
+<td headers="Suggested as General Self-efficacy stub_1_12 A_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.41</td>
+<td headers="Suggested as General Self-efficacy stub_1_12 B_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.17</td>
+<td headers="Suggested as General Self-efficacy stub_1_12 C_1" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.19</td>
+<td headers="Suggested as General Self-efficacy stub_1_12 A_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; font-weight: bold; background-color: #FFFFFF;">0.57</td>
+<td headers="Suggested as General Self-efficacy stub_1_12 B_2" class="gt_row gt_center" style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: white; text-align: center; background-color: #FFFFFF;">0.16</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
 </div>
 
 </section>
@@ -2685,14 +3177,8 @@ group    1    1.03   0.31
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
-<div id="ref-claroEndEnlaces252020" class="csl-entry" role="listitem">
-Claro, M., &amp; Jara, I. (2020). <span>The end of Enlaces: 25 years of an ICT education policy in Chile</span>. <em>Digital Education Review</em>, (37), 96–108. <a href="https://doi.org/10.1344/der.2020.37.96-108">https://doi.org/10.1344/der.2020.37.96-108</a>
-</div>
 <div id="ref-hoxMultilevelAnalysisTechniques2017" class="csl-entry" role="listitem">
 Hox, J., Moerbeek, M., &amp; Schoot, R. van de. (2017). <em>Multilevel <span>Analysis</span>: <span>Techniques</span> and <span>Applications</span>, <span>Third Edition</span></em> (3rd ed.). New York: Routledge. <a href="https://doi.org/10.4324/9781315650982">https://doi.org/10.4324/9781315650982</a>
-</div>
-<div id="ref-punterGenderDifferencesComputer2017" class="csl-entry" role="listitem">
-Punter, R. A., Meelissen, M. R., &amp; Glas, C. A. (2017). Gender differences in computer and information literacy: <span>An</span> exploration of the performances of girls and boys in <span>ICILS</span> 2013. <em>European Educational Research Journal</em>, <em>16</em>(6), 762–780. <a href="https://doi.org/10.1177/1474904116672468">https://doi.org/10.1177/1474904116672468</a>
 </div>
 <div id="ref-vijverMultilevelAnalysisIndividuals2008" class="csl-entry" role="listitem">
 Vijver, F. J. R. van de, Hemert, D. A. van, &amp; Poortinga, Y. H. (Eds.). (2008). <em>Multilevel analysis of individuals and cultures</em>. New York: Lawrence Erlbaum Associates.
@@ -2700,8 +3186,10 @@ Vijver, F. J. R. van de, Hemert, D. A. van, &amp; Poortinga, Y. H. (Eds.). (2008
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>In <a href="#fig-elbow">Figure&nbsp;4</a> the reader can find information about correlation between all self-efficacy items and method to decide the number of factors.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Due to the extended length of the labels for items related to ICT self-efficacy, we truncated them in plots presentation. <a href="#tbl-labels">Table&nbsp;7</a> illustrates both the original and the summarized labels for the items comprising both indexes and includes missing values n and missing values proportion.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Due to the extended length of the labels for items related to ICT self-efficacy, we truncated them in plots presentation. <a href="#tbl-labels">Table&nbsp;8</a> illustrates both the original and the summarized labels for the items comprising both indexes and includes missing values n and missing values proportion.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See <span class="citation" data-cites="fa-analysis">(<a href="#ref-fa-analysis" role="doc-biblioref"><strong>fa-analysis?</strong></a>)</span> for more context<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We speak of student sex rather than gender because the ICILS study presents it as such.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>ICILS database offers five possible values of the CIL score that were generated with full conditioning to derive summary student achievement statistics. Conventionally, papers based on this study usually occupy the first plausible value, which is coded “pv1cil”. This research is no exception. For more information, read the ICILS 2018 User Guide.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

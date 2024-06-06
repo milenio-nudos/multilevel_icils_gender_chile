@@ -262,7 +262,7 @@ kable() |>
   kable_classic_2()
 ```
 
-## ICT Self-efficacy items Factorial Analysis
+## ICT Self-efficacy items Factorial Analysis {#fa-analysis}
 ```{r}
 #| label: fig-elbow
 #| fig-cap: "Paralel Analysis"
@@ -300,3 +300,134 @@ poly_model2 = fa(baserev, nfactor=2, cor="poly", fm="pa", rotate = "oblimin")
 fa.diagram(poly_model2)
 ```
 
+
+```{r}
+#| label: tbl-fa
+#| tbl-cap: "Factorial Analysis ICT Self-efficacy Results"
+
+cbind(
+  # Create the data frame
+  fa_3 <- data.frame(
+    Task = c("A. Create a database", "B. Build a webpage", "C. Create a computer program/app", 
+             "D. Set up a local area network", "E. Edit graphic images", "F. Write or edit text", 
+             "G. Search and find information on internet", "H. Create multi-media presentation", 
+             "I. Upload multimedia to an online profile", "J. Insert an image into a document/message", 
+             "K. Install a program/app", "L. Judge internet information veracity"),
+    A_1 = c(-0.20, 0.09, -0.00, 0.14, 0.15, 0.11, 0.24, 0.46, 0.82, 0.72, 0.67, 0.41),
+    B_1 = c(0.49, 0.66, 0.91, 0.66, 0.23, -0.04, -0.09, 0.32, 0.02, 0.02, 0.00, 0.17),
+    C_1 = c(0.47, 0.07, -0.07, -0.04, 0.44, 0.80, 0.66, 0.09, -0.02, 0.14, 0.11, 0.19)
+  ),
+  
+  fa_2 <-  data.frame(
+    A_2 = c(0.23, 0.13, -0.10, 0.08, 0.54, 0.83, 0.84, 0.52, 0.76, 0.83, 0.75, 0.57),
+    B_2 = c(0.49, 0.67, 0.93, 0.66, 0.23, -0.03, -0.09, 0.30, -0.01, -0.01, -0.02, 0.16)
+  )
+)|>
+  gt(rowname_col="Task")|>
+  tab_row_group(
+    label = "Suggested as General Self-efficacy",
+    rows = 5:12
+  )|>
+  tab_row_group(
+    label = "Suggested as Specialized Self-efficacy",
+    rows = 1:4
+  )|>
+  tab_spanner(
+    label = "Three factors model",
+    columns = ends_with("1")
+  )|>
+  tab_spanner(
+    label = "Two factors model",
+    columns = ends_with("2")
+  )|>
+  cols_label(
+    A_1 = "Factor 1",
+    B_1 = "Factor 2",
+    C_1 = "Factor 3",
+    A_2 = "Factor 1",
+    B_2 = "Factor 2"
+  )|>
+  tab_options(
+    table.font.names = "Times New Roman"
+  )|>
+  
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white"
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center",
+      ),
+      # remove row striping in Markdown documents
+      cell_fill(color = "white", alpha = NULL)
+    ),
+    #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 6,
+      rows = 1:4
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 5,
+      rows = 5:12
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 4,
+      rows = 5:7
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 3,
+      rows = 1:4
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 2,
+      rows = 8:12
+    )
+)
+```

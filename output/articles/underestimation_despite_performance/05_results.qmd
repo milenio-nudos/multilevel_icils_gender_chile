@@ -297,7 +297,12 @@ At school level, @tbl-indexes-school suggests the gender composition of school h
 #| label: tbl-indexes-school
 #| tbl-cap: "Gender composition differences"
 data |> 
-  mutate(c_gender_type = to_label(c_gender_type))|>
+  mutate(
+    c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+    c_gender_type = to_label(c_gender_type))|>
   drop_na(c_gender_type)|>
   group_by(idschool,c_gender_type)|>
   summarise(
@@ -371,7 +376,12 @@ Contrary to what was hypothesised, the results would suggest that girls tend to 
 
 data|>
   mutate(s_sex = to_label(s_sex),
-         c_gender_type = to_label(c_gender_type))|>
+         c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+         c_gender_type = to_label(c_gender_type)
+         )|>
   group_by(s_sex,c_gender_type)|>
   drop_na(c_gender_type)|>
   summarise(geneff = mean(s_geneff, na.rm = TRUE),
@@ -463,5 +473,220 @@ by="to_label(s_sex)"
 
 ## Models
 
+Null multilevel model for general self-efficacy revealed an Intraclass Correlation Coefficient[^icc] of 0.05, and 0.06 for specialized self-efficacy. 5% and 6% of the total variance in the dependent variables can be attributed to between-school differences. The remaining 95% or 96% of the variance is within-school variance, suggesting substantial variability at the student level. But since there is proportion of the variances associated with between schools differences, the decision to explore multilevel models is optimal.
+
+[^icc]: ICC for now.
+
+For reasons of parsimony, it was decided to work with fixed effects models rather than random effects. Verisimilitude tests were designed to compare fit between fixed-effects and random-effects models. The results show non significant differences between models and fixed-effects models fit a little better with data distribution (see @tbl-anova-general-test and @tbl-anova-specialized-test). Although there is a clear hierarchical structure of the data (which suggest to use random-effects models), low number of levels are explored (only two levels) and the number of cases nested at level two are few (none is greater than 20).
+
+@tbl-general-multilevel and @tbl-specialized-multilevel displays the results of the multilevel regression models hierarchically, adding first student level variables and interactions, then school level variables and moderations[^modelnote]. For gender, the reference category is Male, and for gender composition is Mixed schools.
+
+[^modelnote]: Control variables were omitted in the tables, but the estimation consider them.
+
+**General ICT Self efficacy**
+
+When the model have sex as the unique independent variable, in mean, girls score 0.75 points more than boys in the general self-efficacy index. This is a lower magnitude (less than one point), but statistically significant at a 95% level of confidence. When other factors as CIL score or school level characteristics enter as control variables, significant gender differences are lost. In this way, gender differences are not intrinsic, as can be explained by other elements of the analysis.
+
+As the opposite case, CIL score have a positive effect which maintains it statistical significance (at greater than 99.9% confidence level) controlling for all other variables used. The beta of scaled CIL score round between 0.34 and 0.37 around models.
+
+Model 3 suggest non-significant results in interaction between sex and CIL score of the student. Model 4 and 7 determines Gender composition have non-significant differences between schools. Controlling by all variables, Model 6 indicate when CIL of the school increase in one point, the general self-efficacy of the student decrease in more than 0.10. In other words, students rounded with pairs with more computer literacy will feel less capabilities with simple tasks using ICT. School CIL and gender moderation is non-significant.
+
+The explained variance of all models was estimated from two different methods. In both estimates, the explained part is less than 15%. Other elements need to be integrated to explain behaviour of general ICT self-efficacy.
+
+```{r}
+#| label: tbl-general-multilevel
+#| tbl-cap: "General Self-efficacy Fixed effect models"
+
+data_model <- data |> mutate(
+  s_sex=to_label(s_sex),
+  c_gender_type = to_label (c_gender_type)
+  ) 
+
+#Null model
+m0_geneff <- lmer(s_geneff ~ 1 + (1 | idschool), data=data_model)
+
+#Level 1 fixed effects
+m1_a_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex +
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model) 
+
+m1_b_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model) 
+
+m1_c_geneff <- lmer(s_geneff ~ 1 +
+                        s_sex + s_pv1cil +
+                        s_sex*s_pv1cil +
+                        s_hisced + s_homlit +
+                        (1 | idschool),  
+                      data=data_model) 
+
+
+# Level 2 fixed effects
+m2_a_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+
+m2_b_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil +
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+m2_c_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+m2_d_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_gender_type + 
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+m2_e_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_pv1cil + 
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
+          m2_a_geneff,m2_b_geneff,m2_c_geneff,m2_d_geneff,m2_e_geneff,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          rm.terms = c("s_hisced","s_homlit"),
+          pred.labels = c("Intercept",
+                          "Gender (Girl = 1)",
+                          "CIL score",
+                          "Int. Gender*CIL",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "School CIL",
+                          "Mod. Gender*Masculinized school",
+                          "Mod. Gender*Feminized school",
+                          "Mod. Gender*School CIL"),
+          dv.labels = c("Model 1","Model 2","Model 3",
+                        "Model 4", "Model 5", "Model 6", "Model 7","Model 8"))
+
+```
+
+**Specialized Self efficacy**
+
+About specialized self efficacy regressions, when gender is introduce as first independent variable, girl have 1.76 less coefficient, with a confidence level major than 99.9%. If other control variables are introduced, this result keeps with lower changes (less when it’s added an interaction effect between gender and CIL or a moderation between gender and schoo CIL). It could be said there’s advantages from boys over girls in specialized ICT self-efficacy that are intrinsic to gender condition of the students.
+
+Counter-intuitively, the score on CIL test have a significant negative effect of 0.09 when it’s added only with sex as independent variable. But as interaction effect or school level variables enter into the equation, the coefficient decrease and lose it significance. So, against expectations, students with more computer literacy will tend to have less expectations of self-efficacy in advanced tasks using ICT, but this finding is not consistent controlling by elements related with school composition.
+
+About school level variables, once again, women proportion of students didn’t show significant results. But last models show the student individual specialized self-efficacy decrease by 0.22 to 0.26 when the school increase CIL score aggregated mean by one point (p<0.001). Students have less expectations of self-efficacy in advanced tasks using ICT as their pairs have more Computer and Literacy. This effect have non-significant moderation with the type of school gender composition.
+
+The explained variance of all models in the table is lower than 10%. It’s necessary to keep exploring other hypothesis to reveal the reasons of the specialized ICT self-efficacy distribution.
+
+```{r}
+#| label: tbl-specialized-multilevel
+#| tbl-cap: "Specialized Self-efficacy Fixed effects models"
+
+# Null model
+m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data_model)
+
+# Level 1 fixed effects
+m1_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model) 
+
+m1_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model) 
+
+m1_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     s_sex*s_pv1cil +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model) 
+
+# Level 2 fixed effects
+m2_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_gender_type +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model)
+
+
+m2_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model)
+
+m2_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil+ c_gender_type +
+                     s_hisced + s_homlit +
+                     (1 | idschool),  
+                   data=data_model)
+
+m2_d_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_gender_type + 
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+m2_e_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_pv1cil + 
+                       s_hisced + s_homlit +
+                       (1 | idschool),  
+                     data=data_model)
+
+#Final table
+tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
+          m2_a_speceff,m2_b_speceff,m2_c_speceff,m2_d_speceff,m2_e_speceff,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          rm.terms = c("s_hisced","s_homlit"),
+          pred.labels = c("Intercept",
+                          "Gender (Girl = 1)",
+                          "CIL score",
+                          "Int. Gender*CIL",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "School CIL",
+                          "Mod. Gender*Masculinized school",
+                          "Mod. Gender*Feminized school",
+                          "Mod. Gender*School CIL"),
+          dv.labels = c("Model 1","Model 2","Model 3",
+                        "Model 4", "Model 5", "Model 6",
+                        "Model 7", "Model 8"))
+
+```
 
 

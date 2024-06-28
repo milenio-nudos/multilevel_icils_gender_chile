@@ -431,3 +431,34 @@ cbind(
     )
 )
 ```
+
+## Verisimilitude test Multilevel models
+
+```{r}
+#| label: tbl-anova-general-test
+#| tbl-cap: "Anova test General Self efficacy models"
+
+m3_c_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+anova(m2_c_geneff,m3_c_geneff)
+```
+
+```{r}
+#| label: tbl-anova-specialized-test
+#| tbl-cap: "Anova test Specalized Self efficacy models"
+
+m3_c_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+anova(m2_c_speceff,m3_c_speceff)
+```
+

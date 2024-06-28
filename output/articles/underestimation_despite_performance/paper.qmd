@@ -46,7 +46,8 @@ pacman::p_load(tidyverse, #Data manipulation
                car,
                haven, #Open data
                janitor, #Data process
-               Hmisc #Labels manipulation
+               Hmisc, #Labels manipulation
+               stringr #Label manipulation
                )
 
 # Open student and school raw data

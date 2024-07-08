@@ -3,6 +3,47 @@ editor: visual
 bibliography: "icils_nudos.bib"
 ---
 
+```{r setup two}
+options(scipen=999) #No scientific notation
+options(digits = 2) #Round results two decimals
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg, #Best fit model
+               responsePatterns, #Check items
+               ggrepel, #labels plots
+               ggpubr, #arrange plots
+               ggExtra, #marginal plots
+               scales,
+               summarytools, #descriptive tables
+               knitr, #Markdown
+               kableExtra, #Markdown
+               psych, #FA Analysis
+               car,
+               haven, #Open data
+               janitor, #Data process
+               Hmisc, #Labels manipulation
+               stringr #Label manipulation
+               )
+
+# Open student and school raw data
+bsgchli2 <- read_sav("../../../input/raw_data/2018/BSGCHLI2.sav")
+bcgchli2 <- read_sav("../../../input/raw_data/2018/BCGCHLI2.sav") 
+
+source("00_proccess.R")
+```
+
+
 # Results
 
 The analysys begins shwing descriptive results for the self-efficacy items, as displayed in @fig-barplot-general. Notably, across all tasks, a significant proportion of students ---no less than 65%--- expressed confidence in their ability to perform general tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy. In contrast, when it comes to specialized self-efficacy, less than 30% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program. This percentage increases a little when it comes to tasks like setting up a local area network (31%) or creating a database (35%). Therefore, and as it could be expected, students tend to perceive having less skills in advanced than in basic ICT tasks.
@@ -145,7 +186,7 @@ relative_freq_selfeff |>
   geom_text(aes(label = paste0(prop * 100, "%")), position = position_fill(vjust = 0.5))
 ```
 
-Turning now to geneder differences in self-efficacy, @fig-cleveland-gender presents a comparison of male and female students, displaying the  proportion of those answering "I know how to do this" in each gender group. Whereas girls outperform boys in most of the general self-efficacy items, the opposite occurs for the specialized one. While most of the differences are statistically significant, they tend to be larger for the specialized self-efficacy in favor of boys. 
+Turning now to geneder differences in self-efficacy, @fig-cleveland-gender presents a comparison of male and female students, displaying the proportion of those answering "I know how to do this" in each gender group. Whereas girls outperform boys in most of the general self-efficacy items, the opposite occurs for the specialized one. While most of the differences are statistically significant, they tend to be larger for the specialized self-efficacy in favor of boys.
 
 ```{r}
 #| label: fig-cleveland-gender
@@ -212,12 +253,11 @@ when using ICT?")+
     guides(shape=guide_legend(title="Gender"))
 ```
 
-
-@fig-gender-school-mean shows differences in general and specialized self-efficacy according to the geneder composition of the schools. Schools are classifyed here as masculinized when they have less than one third of girls, feminized when this proportion is more than two thirds, and mixed when the girls' proportion lies in between. Regarding general self-efficacy we observe that the outperformance of girls is larger in feminized schools, whereas the opposite occurs for specialized self-efficacy: girls underperform boys in feminized schools.  
+@fig-gender-school-mean shows differences in general and specialized self-efficacy according to the gender composition of the schools. Schools are classified here as masculinized when they have less than one third of girls, feminized when this proportion is more than two thirds, and mixed when the girls' proportion lies in between. Regarding general self-efficacy we observe that the outperformance of girls is larger in feminized schools, whereas the opposite occurs for specialized self-efficacy: girls underperform boys in feminized schools.
 
 ```{r}
 #| label: fig-gender-school-mean
-#| fig-cap: "ICT Self Efficacy and CIL by Student sex and School composition"
+#| fig-cap: "ICT Self Efficacy and CIL by Student sex and School composition. Data: ICILS Chile 2018"
 
 data|>
   mutate(s_sex = to_label(s_sex),
@@ -230,17 +270,15 @@ data|>
   group_by(s_sex,c_gender_type)|>
   drop_na(c_gender_type)|>
   summarise(geneff = mean(s_geneff, na.rm = TRUE),
-            speceff = mean(s_speceff, na.rm = TRUE),
-            cil = mean(s_pv1cil, na.rm = TRUE))|>
-  pivot_longer(cols = c(geneff, speceff,cil), names_to = "efficacy", values_to = "mean")|>
+            speceff = mean(s_speceff, na.rm = TRUE))|>
+  pivot_longer(cols = c(geneff, speceff), names_to = "efficacy", values_to = "mean")|>
   
   ggplot(aes(x = c_gender_type, y = mean)) +
   geom_point(aes(shape = s_sex, color = s_sex))+
   facet_wrap(~efficacy,
              labeller = labeller( efficacy = c(
                "geneff" = "General ICT Self efficacy",
-               "speceff" = "Specialized ICT Self efficacy",
-               "cil" = "Computer Literacy"))
+               "speceff" = "Specialized ICT Self efficacy"))
              )+
   scale_color_grey(start=.2,end = .6)+
   theme_minimal()+
@@ -252,15 +290,16 @@ data|>
 
 *Multilevel models*
 
-@tbl-general-multilevel and @tbl-specialized-multilevel displays the results of the multilevel regression models. Beggining with the results for the general self-efficacy, we observe in Model 1 that girls obtain better scores, but this is no longer significant when entering the Computer and Information Literacy (CIL) score in Model 2, with a positive significan association throughout the models. Regarding level 2 predictors, it is relevant to metion that the variance of self-efficacy that is related to the schools (intra-class correlation of the null model) is only 5%, therefore there is few variance left to find significant effects at this level. The only predictor that display a significant effect at this level is the average school CIL, wich, contrary to level 1, has a negative association with generalized self efficacy. Interactions effects are not significant in this case.
+@tbl-general-multilevel and @tbl-specialized-multilevel displays the results of the multilevel regression models. Beggining with the results for the general self-efficacy, we observe in Model 1 that girls obtain better scores, but this is no longer significant when entering the Computer and Information Literacy (CIL) score in Model 2, with a positive significant association throughout the models. Regarding level 2 predictors, it is relevant to mention that the variance of self-efficacy is related to the schools (intra-class correlation of the null model) is only 5%, therefore there is few variance left to find significant effects at this level. The only predictor that display a significant effect at this level is the average school CIL, which, contrary to level 1, has a negative association with generalized self efficacy. Interactions effects are not significant in this case.
 
 ```{r}
 #| label: tbl-general-multilevel
-#| tbl-cap: "General Self-efficacy Fixed effect models"
+#| tbl-cap: "General Self-efficacy Multilevel models"
 
 data_model <- data |> mutate(
   s_sex=to_label(s_sex),
-  c_gender_type = to_label (c_gender_type)
+  c_gender_type = to_label (c_gender_type),
+  c_gender_type = relevel(c_gender_type, "Mixed school (34%-66% girls)")
   ) 
 
 #Null model
@@ -270,20 +309,20 @@ m0_geneff <- lmer(s_geneff ~ 1 + (1 | idschool), data=data_model)
 m1_a_geneff  <- lmer(s_geneff ~ 1 +
                        s_sex +
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model) 
 
 m1_b_geneff  <- lmer(s_geneff ~ 1 +
                        s_sex + s_pv1cil +
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model) 
 
 m1_c_geneff <- lmer(s_geneff ~ 1 +
                         s_sex + s_pv1cil +
                         s_sex*s_pv1cil +
                         s_hisced + s_homlit +
-                        (1 | idschool),  
+                       (1 + s_sex| idschool),  
                       data=data_model) 
 
 
@@ -292,7 +331,7 @@ m2_a_geneff <- lmer(s_geneff ~ 1 +
                        s_sex + s_pv1cil +
                        c_gender_type +
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 
@@ -300,14 +339,14 @@ m2_b_geneff <- lmer(s_geneff ~ 1 +
                        s_sex + s_pv1cil +
                        c_pv1cil +
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 m2_c_geneff <- lmer(s_geneff ~ 1 +
                        s_sex + s_pv1cil +
                        c_pv1cil+ c_gender_type +
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 m2_d_geneff <- lmer(s_geneff ~ 1 +
@@ -315,7 +354,7 @@ m2_d_geneff <- lmer(s_geneff ~ 1 +
                        c_pv1cil+ c_gender_type +
                        s_sex * c_gender_type + 
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 m2_e_geneff <- lmer(s_geneff ~ 1 +
@@ -323,11 +362,12 @@ m2_e_geneff <- lmer(s_geneff ~ 1 +
                        c_pv1cil+ c_gender_type +
                        s_sex * c_pv1cil + 
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
-          m2_a_geneff,m2_b_geneff,m2_c_geneff,m2_d_geneff,m2_e_geneff,
+          m2_a_geneff,m2_b_geneff,m2_c_geneff,
+          m2_d_geneff,m2_e_geneff,
           show.ci = FALSE, auto.label = FALSE,
           p.style = "stars",collapse.se = TRUE,
           show.re.var = TRUE,show.icc = FALSE,
@@ -349,13 +389,11 @@ tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
 
 ```
 
-
-Turning now to specialized self-efficacy, tbl-specialized-multilevel follow the same structure than the previous table. In this case, and contrary to what was observed for general self-efficacy, girls consistently show a lower average score than boys, whereas the CIL score now is negative and its statistical significance dissapears when adding predictors. Despite having a low intra-class correlation (6%), in this case it is possible to detect some relevant effects in level 2 predictors. School CIL, as in general self-efficacy, displays a negative effect, and in Model 7 the gender composition appears to have a positive association with specialized self-efficacy for both masculinized and feminized schools (with mixed schools as the reference cathegory). Regarding interactions ... (completar luego de comprobar y corregir los modelos)
-
+Turning now to specialized self-efficacy, @tbl-specialized-multilevel follow the same structure than the previous table. In this case, and contrary to what was observed for general self-efficacy, girls consistently show a lower average score than boys, whereas the CIL score now is negative and its statistical significance dissappears when adding predictors. Despite having a low intra-class correlation (6%), in this case it is possible to detect some relevant effects in level 2 predictors. School CIL, as in general self-efficacy, displays a negative effect, and in Model 7 the gender composition appears to have a positive association with specialized self-efficacy for masculinized (with mixed schools as the reference category), but non-significant association for feminized school. Regarding interactions, effects are not significant.
 
 ```{r}
 #| label: tbl-specialized-multilevel
-#| tbl-cap: "Specialized Self-efficacy Fixed effects models"
+#| tbl-cap: "Specialized Self-efficacy Multilevel models"
 
 # Null model
 m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data_model)
@@ -364,20 +402,20 @@ m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data_model)
 m1_a_speceff <- lmer(s_speceff ~ 1 +
                      s_sex +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model) 
 
 m1_b_speceff <- lmer(s_speceff ~ 1 +
                      s_sex + s_pv1cil +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model) 
 
 m1_c_speceff <- lmer(s_speceff ~ 1 +
                      s_sex + s_pv1cil +
                      s_sex*s_pv1cil +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model) 
 
 # Level 2 fixed effects
@@ -385,7 +423,7 @@ m2_a_speceff <- lmer(s_speceff ~ 1 +
                      s_sex + s_pv1cil +
                      c_gender_type +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model)
 
 
@@ -393,14 +431,14 @@ m2_b_speceff <- lmer(s_speceff ~ 1 +
                      s_sex + s_pv1cil +
                      c_pv1cil +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model)
 
 m2_c_speceff <- lmer(s_speceff ~ 1 +
                      s_sex + s_pv1cil +
                      c_pv1cil+ c_gender_type +
                      s_hisced + s_homlit +
-                     (1 | idschool),  
+                       (1 + s_sex| idschool),  
                    data=data_model)
 
 m2_d_speceff <- lmer(s_speceff ~ 1 +
@@ -408,7 +446,7 @@ m2_d_speceff <- lmer(s_speceff ~ 1 +
                        c_pv1cil+ c_gender_type +
                        s_sex * c_gender_type + 
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 m2_e_speceff <- lmer(s_speceff ~ 1 +
@@ -416,12 +454,13 @@ m2_e_speceff <- lmer(s_speceff ~ 1 +
                        c_pv1cil+ c_gender_type +
                        s_sex * c_pv1cil + 
                        s_hisced + s_homlit +
-                       (1 | idschool),  
+                       (1 + s_sex| idschool),  
                      data=data_model)
 
 #Final table
 tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
-          m2_a_speceff,m2_b_speceff,m2_c_speceff,m2_d_speceff,m2_e_speceff,
+          m2_a_speceff,m2_b_speceff,m2_c_speceff,
+          m2_d_speceff,m2_e_speceff,
           show.ci = FALSE, auto.label = FALSE,
           p.style = "stars",collapse.se = TRUE,
           show.re.var = TRUE,show.icc = FALSE,
@@ -443,5 +482,3 @@ tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
                         "Model 7", "Model 8"))
 
 ```
-
-

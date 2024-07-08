@@ -96,62 +96,6 @@ data.frame(
   )
 ```
 
-
-## Test statistical significant differences
-
-*Testing Gender differences in ICT Self-efficacy items (Chi-square)*
-
-```{r}
-# Perform chi-squared test for each item individually
-chisq_test_a <- chisq.test(data$is2g27a, data$s_sex)
-chisq_test_b <- chisq.test(data$is2g27b, data$s_sex)
-chisq_test_c <- chisq.test(data$is2g27c, data$s_sex)
-chisq_test_d <- chisq.test(data$is2g27d, data$s_sex)
-chisq_test_e <- chisq.test(data$is2g27e, data$s_sex)
-chisq_test_g <- chisq.test(data$is2g27g, data$s_sex)
-chisq_test_h <- chisq.test(data$is2g27h, data$s_sex)
-chisq_test_i <- chisq.test(data$is2g27i, data$s_sex)
-chisq_test_j <- chisq.test(data$is2g27j, data$s_sex)
-chisq_test_k <- chisq.test(data$is2g27k, data$s_sex)
-chisq_test_l <- chisq.test(data$is2g27l, data$s_sex)
-chisq_test_m <- chisq.test(data$is2g27m, data$s_sex)
-
-# Print the results
-print(chisq_test_a)
-print(chisq_test_b)
-print(chisq_test_c)
-print(chisq_test_d)
-print(chisq_test_e)
-print(chisq_test_g)
-print(chisq_test_h)
-print(chisq_test_i)
-print(chisq_test_j)
-print(chisq_test_k)
-print(chisq_test_l)
-print(chisq_test_m)
-
-```
-
-
-*Checking normal distribution and variance homogeneity in ICT Self-efficacy indexes and CIL*
-
-Self-efficacy indexes and CIL score gender mean differences have a normal distribution. General self-efficacy have homogeneity variance distribution, but Specialiazed self-efficacy and CIL have not a homogeneity variance distribution by gender.
-
-```{r, echo=TRUE,results='markup'}
-#| label: check-selfeff
-#| tbl-cap: "Check"
-shapiro.test(data$s_speceff[data$s_sex == 1])
-shapiro.test(data$s_geneff[data$s_sex == 0])
-shapiro.test(data$s_pv1cil[data$s_sex == 0])
-
-leveneTest(s_geneff ~ to_label(s_sex), data = data)
-leveneTest(s_speceff ~ to_label(s_sex), data = data)
-leveneTest(s_pv1cil ~ to_label(s_sex), data = data)
-
-```
-
-
-
 ## ICT Self-efficacy items correlation
 
 ```{r , echo=FALSE}
@@ -302,7 +246,7 @@ fa.diagram(poly_model2)
 
 
 ```{r}
-#| label: tbl-fa
+#| label: tbl-factorial
 #| tbl-cap: "Factorial Analysis ICT Self-efficacy Results"
 
 cbind(
@@ -432,39 +376,7 @@ cbind(
 )
 ```
 
-## Verisimilitude test Multilevel models
-
-```{r}
-#| label: tbl-anova-general-test
-#| tbl-cap: "Anova test General Self efficacy models"
-
-m3_c_geneff <- lmer(s_geneff ~ 1 +
-                       s_sex + s_pv1cil +
-                       c_pv1cil+ c_gender_type +
-                       s_hisced + s_homlit +
-                       (1 + s_sex| idschool),  
-                     data=data_model)
-
-anova(m2_c_geneff,m3_c_geneff)
-```
-
-```{r}
-#| label: tbl-anova-specialized-test
-#| tbl-cap: "Anova test Specalized Self efficacy models"
-
-m3_c_speceff <- lmer(s_speceff ~ 1 +
-                       s_sex + s_pv1cil +
-                       c_pv1cil+ c_gender_type +
-                       s_hisced + s_homlit +
-                       (1 + s_sex| idschool),  
-                     data=data_model)
-
-anova(m2_c_speceff,m3_c_speceff)
-```
-
-
-
-----
+## Descriptive Results
 
 @tbl-indexes-gender explores the distribution of the key variables utilized in this study based on gender. The results indicate that girls exhibit a significant mean advantage over boys in the Computer Literacy test. Conversely, boys demonstrate a significant mean advantage in specialized self-efficacy. Notably, there are no significant differences in general ICT self-efficacy. This allow to speculate that the overestimation of boys and underestimation of girls is primarily occurring in specialized ICT tasks.
 
@@ -668,5 +580,39 @@ by="to_label(s_sex)"
   kable(
     col.names = c("Sex", "General self efficacy", "Specialized self efficacy")
   )
+```
+
+## Checking Multilevel Models results
+
+While the correlation between school CIL and overall self-efficacy is positive, in the models explored, the effect of CIL appears negative. A check was made to reveal which variables modify the direction of the effect. The @tbl-cil-geneff shows that the introduction of CIL at the individual level reverses the composition effect of school CIL.
+
+```{r check CIL geneff}
+#| label: tbl-cil-geneff
+#| tbl-cap: "Multilevel models to check School level CIL effect"
+
+geneff_c_cil_1 <- lmer(s_geneff ~ 1 + c_pv1cil +
+                      (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_2 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex +
+                         (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_3 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex + c_gender_type +
+                         (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_4 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex + c_gender_type +
+                         s_pv1cil + 
+                         (1 + s_sex| idschool), data=data_model)
+
+tab_model(geneff_c_cil_1,geneff_c_cil_2,geneff_c_cil_3,geneff_c_cil_4,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          pred.labels = c("Intercept",
+                          "School CIL",
+                          "Gender (Girl = 1)",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "CIL score"),
+          dv.labels = c("Model 1","Model 2","Model 3","Model 4")
+          )
 ```
 

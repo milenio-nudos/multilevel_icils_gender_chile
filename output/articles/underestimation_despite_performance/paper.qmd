@@ -15,6 +15,10 @@ execute:
   warning: false
 ---
 
+This document was last modified at {{< modified >}}
+and it was last rendered at {{< now >}}.
+
+
 # Underestimation despite better performance? Gender differences in general and specialized digital self-efficacy at school {.unnumbered}
 
 ```{r setup}
@@ -65,4 +69,6 @@ Abstract
 
 {{< include 06_discussion.qmd >}}
 
-{{< include 07_appendix.qmd >}}
+{{< include 07_conclusion.qmd >}}
+
+{{< include 08_appendix.qmd >}}

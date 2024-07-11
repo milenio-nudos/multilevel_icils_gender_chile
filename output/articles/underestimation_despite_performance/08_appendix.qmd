@@ -534,7 +534,8 @@ The sex of the student (managed as dummy) exhibits practically a neutral correla
 data_corr <- data |> select(s_sex,
                             s_geneff,s_speceff,s_pv1cil,
                             s_hisced,s_homlit,
-                            c_pv1cil,c_gender_type
+                            c_pv1cil, c_pv1cil_var,
+                            c_gender_type
                             )
 
 data_corr <- rcorr(as.matrix(data_corr))
@@ -547,10 +548,11 @@ rownames(data_corr$r)<-c(
   "E. Parents HISCED",
   "F. Home literacy",
   "G. CIL school mean",
-  "H. Gender composition (Feminized=3)"
+  "H. CIL school variance",
+  "I. Gender composition (Feminized=3)"
 )
 
-colnames(data_corr$r) <-c("Gender (Girl=1)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)")
+colnames(data_corr$r) <-c("Gender (Girl=1)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)", "(I)")
 
 corrplot(data_corr$r, p.mat = data_corr$P, method = 'color', type = 'lower', insig='blank',
          tl.col = "black",bg="white",na.label="-",
@@ -614,5 +616,72 @@ tab_model(geneff_c_cil_1,geneff_c_cil_2,geneff_c_cil_3,geneff_c_cil_4,
                           "CIL score"),
           dv.labels = c("Model 1","Model 2","Model 3","Model 4")
           )
+```
+
+## CIL as variance
+
+The correlation is between cil mean and cil variance of the school, but only with school level data (n = 178).
+```{r variance}
+
+cor_cil <- data|> select(idschool,c_pv1cil,c_pv1cil_var)|> 
+  distinct(idschool,.keep_all = TRUE)
+
+cor(cor_cil$c_pv1cil,cor_cil$c_pv1cil_var)
+
+geneff_cil_var <- lmer(s_geneff ~ 1 + c_pv1cil_var + (1 + s_sex| idschool),
+                       data = data_model)
+
+geneff_cil_var_complete <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       c_pv1cil_var +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+geneff_cil_var_int <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       c_pv1cil_var +
+                       c_pv1cil_var * s_sex + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+speceff_cil_var <- lmer(s_speceff ~ 1 + c_pv1cil_var + (1 + s_sex| idschool),
+                       data = data_model)
+
+speceff_cil_var_complete <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       c_pv1cil_var +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+speceff_cil_var_int <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       c_pv1cil_var +
+                       c_pv1cil_var * s_sex + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+tab_model(geneff_cil_var,geneff_cil_var_complete,geneff_cil_var_int,
+          speceff_cil_var,speceff_cil_var_complete,speceff_cil_var_int,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE, rm.terms = c("s_hisced","s_homlit"),
+          pred.labels = c("Intercept",
+                          "School CIL variance",
+                          "Sex: Girl",
+                          "Student CIL",
+                          "School CIL mean",
+                          "Gender comp: Masculinized School",
+                          "Gender comp: Feminized School",
+                          "Int. Sex*School CIL variance"))
 ```
 

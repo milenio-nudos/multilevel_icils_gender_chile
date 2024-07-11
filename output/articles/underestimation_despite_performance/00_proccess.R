@@ -37,7 +37,8 @@ base <- merge(student_data, school_data, by = "idschool", all.x = TRUE)
 base <- base|>
   group_by(idschool)|>
   mutate(
-  c_pv1cil = round(mean(s_pv1cil, na.rm=TRUE), 2),
+  c_pv1cil = round(mean(s_pv1cil, na.rm = TRUE), 2),
+  c_pv1cil_var = var(s_pv1cil, na.rm = TRUE),
   ip2g04a = ifelse(is.na(ip2g04a), 0, ip2g04a),
   ip2g04b = ifelse(is.na(ip2g04b), 0, ip2g04b),
   c_total_eight_grade = ip2g04a + ip2g04b,
@@ -111,11 +112,13 @@ base <- base |>
 # Recode CIL (*0.1)
 base <- base |>
   mutate(s_pv1cil=s_pv1cil*0.1,
-         c_pv1cil=c_pv1cil*0.1)
+         c_pv1cil=c_pv1cil*0.1,
+         c_pv1cil_var=c_pv1cil_var*0.1)
 
 label(base[["s_pv1cil"]]) <- "Computer and Information Literacy Score"
 label(base[["c_pv1cil"]]) <- "School mean score CIL test"
 label(base[["c_gender_type"]]) <- "School gender composition"
+label(base[["c_pv1cil_var"]]) <- "School variance score CIL test"
 
 #Create definitive object
 data <- base |>
@@ -134,7 +137,6 @@ data <- base |>
     # Specialized self-efficacy items
     is2g27b,is2g27e,is2g27g,is2g27h,
     # Level 2
-    ## CIL mean and Gender composition
-    c_pv1cil,c_gender_type
+    ## CIL mean, CIL variance, Gender composition
+    c_pv1cil,c_pv1cil_var,c_gender_type
   )
-

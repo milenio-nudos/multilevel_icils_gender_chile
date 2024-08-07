@@ -19,7 +19,20 @@ This document was last modified at {{< modified >}}
 and it was last rendered at {{< now >}}.
 
 
-# Underestimation despite better performance? Gender differences in general and specialized digital self-efficacy at school {.unnumbered}
+# Gender differences in digital self-efficacy at school {.unnumbered}
+
+Juan Carlos Castillo[^jc], Daniel Miranda[^damiran], Teresa Correa[^tere], Nicolás Tobar[^nico] and Ingrid Bachmann[^ingrid]
+
+[^jc]: Sociology Department, University of Chile. Principal researcher on Millennium Nucleus on Digital Inequalities and Opportunities (NUDOS) and at the Center of Social Cohesion and Conflict studies (COES). [juancastillov@uchile.cl](mailto:juancastillov@uchile.cl) - [jc-castillo.com](jc-castillo.com)
+
+[^damiran]: Psychology Department, University of Chile. Associate researcher at Center of Social Cohesion and Conflict studies (COES). Adjunct researcher on NUDOS. [damiran1@uc.cl](mailto:damiran1@uc.cl).
+
+[^tere]: School of Communication, Universidad Diego Portales. Alternate director of NUDOS. [teresa.correa@udp.cl](mailto:teresa.correa@udp.cl)
+
+[^nico]: Research Assistant on NUDOS. Sociologist from University of Chile. [nicolas.tobar@ug.uchile.cl.](mailto:nicolas.tobar@ug.uchile.cl)
+
+[^ingrid]: School of Comunicaciones, Pontificia Universidad Católica de Chile. Director of NUDOS. [ibachmann@uc.cl](mailto:ibachmann@uc.cl).
+
 
 ```{r setup}
 options(scipen=999) #No scientific notation
@@ -61,14 +74,24 @@ bcgchli2 <- read_sav("../../../input/raw_data/2018/BCGCHLI2.sav")
 source("00_proccess.R")
 ```
 
-Abstract
+**Abstract**
 
-{{< include 04_method.qmd >}}
+A series of studies reveal that, in the majority of secondary school systems, male students consistently demonstrate higher technological self-efficacy than their female counterparts. Paradoxically, female students achieve significantly higher scores in international standardized tests of computer literacy, raising up the question:  Do girls underestimate their digital abilities? This study focuses on gender differences in digital self-efficacy in three main aspects: a) a contrast between general and specialized self-efficacy, b) control gender differences in self-efficacy by performance in a digital abilities test, and c) gender composition effects, this is, whether the proportion of females in the classroom affects girls (and boys) self-efficacy. We estimate a series of multilevel models (random effects) using data from the Chilean ICILS (International Computer and Information Literacy Study) 2018 database, comprising 178 schools and 3092 students. Our results suggest that women exhibit lower self-efficacy for the use of advanced technological applications, even under control of performance in a digital literacy standardized test. However, and contrary to our initial hypothesis, female students show less confidence when surrounded by a larger proportion of girls in the classroom.
 
-{{< include 05_results.qmd >}}
+{{< include 01_intro.qmd >}}
 
-{{< include 06_discussion.qmd >}}
+{{< include 02_selfeff.qmd >}}
 
-{{< include 07_conclusion.qmd >}}
+{{< include 03_genderselfeff.qmd >}}
 
-{{< include 08_appendix.qmd >}}
+{{< include 04_composition.qmd >}}
+
+{{< include 05_method.qmd >}}
+
+{{< include 06_results.qmd >}}
+
+{{< include 07_discussion.qmd >}}
+
+{{< include 08_conclusion.qmd >}}
+
+{{< include 09_appendix.qmd >}}

@@ -89,7 +89,6 @@ div.csl-indent {
   <li><a href="#fa-analysis" id="toc-fa-analysis" class="nav-link" data-scroll-target="#fa-analysis"><span class="header-section-number">9.3</span> ICT Self-efficacy items Factorial Analysis</a></li>
   <li><a href="#descriptive-results" id="toc-descriptive-results" class="nav-link" data-scroll-target="#descriptive-results"><span class="header-section-number">9.4</span> Descriptive Results</a></li>
   <li><a href="#checking-multilevel-models-results" id="toc-checking-multilevel-models-results" class="nav-link" data-scroll-target="#checking-multilevel-models-results"><span class="header-section-number">9.5</span> Checking Multilevel Models results</a></li>
-  <li><a href="#cil-as-variance" id="toc-cil-as-variance" class="nav-link" data-scroll-target="#cil-as-variance"><span class="header-section-number">9.6</span> CIL as variance</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -162,160 +161,78 @@ div.csl-indent {
 <section id="variables" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="variables"><span class="header-section-number">5.2</span> Variables</h2>
 <p><strong><em>Student level</em></strong></p>
-<p><strong>General and Specialized ICT Self-efficacy</strong>: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question <em>How well can you do this tasks when using ICT?</em>.The items can be examined in <a href="#tbl-selfeff-items">Table&nbsp;1</a>.</p>
+<p><strong>General and Specialized ICT Self-efficacy</strong>: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question <em>How well can you do this tasks when using ICT?</em>, and the answers: <em>1. I know how to do this, 2. I have never done this but I can work out how to do this and 3. I do not think I could do this.</em> The items missings values distribution can be examined in <a href="#tbl-selfeff-items">Table&nbsp;1</a>. Distribution is on <a href="#fig-barplot-general">Figure&nbsp;2</a>.</p>
 <div class="cell">
+<div class="cell-output-display">
 <div id="tbl-selfeff-items" class="anchored">
-<table class="table table-sm table-striped small">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <caption>Table&nbsp;1: ICT Self-efficacy items (Dependent variables)</caption>
-<colgroup>
-<col style="width: 40%">
-<col style="width: 30%">
-<col style="width: 19%">
-<col style="width: 9%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Label</th>
-<th style="text-align: left;">Stats / Values</th>
-<th style="text-align: left;">Freqs (% of Valid)</th>
-<th style="text-align: left;">Valid</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Label</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Valid</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">Edit graphic images (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2273 (76.0%)<br>
-571 (19.1%)<br>
-146 ( 4.9%)</td>
-<td style="text-align: left;">2990<br>
-(96.7%)</td>
+<tr class="odd" data-grouplength="8">
+<td colspan="2" style="border-bottom: 1px solid"><strong>Suggested as General ICT Self-efficacy</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Write or edit text (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2592 (87.5%)<br>
-295 (10.0%)<br>
-74 ( 2.5%)</td>
-<td style="text-align: left;">2961<br>
-(95.8%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Edit graphic images</td>
+<td style="text-align: left;">2990\ (96.7%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Search and find information on internet (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2584 (87.4%)<br>
-291 ( 9.8%)<br>
-81 ( 2.7%)</td>
-<td style="text-align: left;">2956<br>
-(95.6%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Write or edit text</td>
+<td style="text-align: left;">2961\ (95.8%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Create multi-media presentation (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">1983 (67.2%)<br>
-772 (26.2%)<br>
-195 ( 6.6%)</td>
-<td style="text-align: left;">2950<br>
-(95.4%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Search and find information on internet</td>
+<td style="text-align: left;">2956\ (95.6%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Upload multimedia to an online profile (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2377 (80.9%)<br>
-419 (14.3%)<br>
-141 ( 4.8%)</td>
-<td style="text-align: left;">2937<br>
-(95.0%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Create multi-media presentation</td>
+<td style="text-align: left;">2950\ (95.4%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Insert an image into a document/message (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2441 (84.1%)<br>
-345 (11.9%)<br>
-115 ( 4.0%)</td>
-<td style="text-align: left;">2901<br>
-(93.8%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Upload multimedia to an online profile</td>
+<td style="text-align: left;">2937\ (95.0%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Install a program/app (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2440 (84.2%)<br>
-332 (11.5%)<br>
-127 ( 4.4%)</td>
-<td style="text-align: left;">2899<br>
-(93.8%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Insert an image into a document/message</td>
+<td style="text-align: left;">2901\ (93.8%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Judge internet information veracity (Suggested as General ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">2043 (71.2%)<br>
-679 (23.7%)<br>
-146 ( 5.1%)</td>
-<td style="text-align: left;">2868<br>
-(92.8%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Install a program/app</td>
+<td style="text-align: left;">2899\ (93.8%)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Create a database (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">1040 (35.0%)<br>
-1475 (49.6%)<br>
-457 (15.4%)</td>
-<td style="text-align: left;">2972<br>
-(96.1%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Judge internet information veracity</td>
+<td style="text-align: left;">2868\ (92.8%)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Build a webpage (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">838 (28.3%)<br>
-1514 (51.2%)<br>
-607 (20.5%)</td>
-<td style="text-align: left;">2959<br>
-(95.7%)</td>
+<tr class="even" data-grouplength="4">
+<td colspan="2" style="border-bottom: 1px solid"><strong>Suggested as Specialized ICT Self-efficacy</strong></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Create a computer program/app (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">469 (15.8%)<br>
-1527 (51.6%)<br>
-964 (32.6%)</td>
-<td style="text-align: left;">2960<br>
-(95.7%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Create a database</td>
+<td style="text-align: left;">2972\ (96.1%)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Set up a local area network (Suggested as Specialized ICT Self-efficacy)</td>
-<td style="text-align: left;">1. I know how to do this.<br>
-2. I have never done this bu<br>
-3. I do not think I could do</td>
-<td style="text-align: left;">906 (30.8%)<br>
-1263 (43.0%)<br>
-769 (26.2%)</td>
-<td style="text-align: left;">2938<br>
-(95.0%)</td>
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Build a webpage</td>
+<td style="text-align: left;">2959\ (95.7%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Create a computer program/app</td>
+<td style="text-align: left;">2960\ (95.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding-left: 2em;" data-indentlevel="1">Set up a local area network</td>
+<td style="text-align: left;">2938\ (95.0%)</td>
 </tr>
 </tbody>
 </table>
+</div>
+
+
 </div>
 </div>
 <p>The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. To establish the measurement validity of these indexes we performed a confirmatory factor analysis with supporting results for the bi-dimensional structure of self-efficacy (generalized and specific)(see <a href="#tbl-factorial">Table&nbsp;9</a> in the appendix). Based on this results, we decided to continue working with the two indices provided by the IEA. Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.</p>
@@ -555,7 +472,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9">0.36 <sup>***</sup><br>(0.02)</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Int. Gender*CIL</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*CIL</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.07 <sup></sup><br>(0.04)</td>
@@ -599,7 +516,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9">-0.06 <sup></sup><br>(0.06)</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*Masculinized school</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*Masculinized school</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -610,7 +527,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9"></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*Feminized school</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*Feminized school</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -621,7 +538,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9"></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*School CIL</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">MGender*School CIL</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -794,7 +711,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9">-0.04 <sup></sup><br>(0.03)</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Int. Gender*CIL</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*CIL</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.05 <sup></sup><br>(0.04)</td>
@@ -838,7 +755,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9">-0.22 <sup>***</sup><br>(0.06)</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*Masculinized school</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*Masculinized school</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -849,7 +766,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9"></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*Feminized school</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*Feminized school</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -860,7 +777,7 @@ IQR (CV) : 9.7 (0.1)</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; modelcolumn8 col9"></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Mod. Gender*School CIL</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender*School CIL</td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
@@ -995,23 +912,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-labels" class="anchored">
 
-<div id="ohsrjzfrwh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ohsrjzfrwh table {
+<div id="hktyiqocar" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hktyiqocar table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ohsrjzfrwh thead, #ohsrjzfrwh tbody, #ohsrjzfrwh tfoot, #ohsrjzfrwh tr, #ohsrjzfrwh td, #ohsrjzfrwh th {
+#hktyiqocar thead, #hktyiqocar tbody, #hktyiqocar tfoot, #hktyiqocar tr, #hktyiqocar td, #hktyiqocar th {
   border-style: none;
 }
 
-#ohsrjzfrwh p {
+#hktyiqocar p {
   margin: 0;
   padding: 0;
 }
 
-#ohsrjzfrwh .gt_table {
+#hktyiqocar .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1037,12 +954,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_caption {
+#hktyiqocar .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ohsrjzfrwh .gt_title {
+#hktyiqocar .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -1054,7 +971,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#ohsrjzfrwh .gt_subtitle {
+#hktyiqocar .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1066,7 +983,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#ohsrjzfrwh .gt_heading {
+#hktyiqocar .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1078,13 +995,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_bottom_border {
+#hktyiqocar .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_col_headings {
+#hktyiqocar .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -1099,7 +1016,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_col_heading {
+#hktyiqocar .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1119,7 +1036,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#ohsrjzfrwh .gt_column_spanner_outer {
+#hktyiqocar .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1131,15 +1048,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#ohsrjzfrwh .gt_column_spanner_outer:first-child {
+#hktyiqocar .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ohsrjzfrwh .gt_column_spanner_outer:last-child {
+#hktyiqocar .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ohsrjzfrwh .gt_column_spanner {
+#hktyiqocar .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -1151,11 +1068,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#ohsrjzfrwh .gt_spanner_row {
+#hktyiqocar .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ohsrjzfrwh .gt_group_heading {
+#hktyiqocar .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1181,7 +1098,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#ohsrjzfrwh .gt_empty_group_heading {
+#hktyiqocar .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1196,15 +1113,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#ohsrjzfrwh .gt_from_md > :first-child {
+#hktyiqocar .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ohsrjzfrwh .gt_from_md > :last-child {
+#hktyiqocar .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ohsrjzfrwh .gt_row {
+#hktyiqocar .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1223,7 +1140,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#ohsrjzfrwh .gt_stub {
+#hktyiqocar .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1236,7 +1153,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ohsrjzfrwh .gt_stub_row_group {
+#hktyiqocar .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1250,15 +1167,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#ohsrjzfrwh .gt_row_group_first td {
+#hktyiqocar .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ohsrjzfrwh .gt_row_group_first th {
+#hktyiqocar .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ohsrjzfrwh .gt_summary_row {
+#hktyiqocar .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1268,16 +1185,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ohsrjzfrwh .gt_first_summary_row {
+#hktyiqocar .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_first_summary_row.thick {
+#hktyiqocar .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ohsrjzfrwh .gt_last_summary_row {
+#hktyiqocar .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1287,7 +1204,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_grand_summary_row {
+#hktyiqocar .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1297,7 +1214,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ohsrjzfrwh .gt_first_grand_summary_row {
+#hktyiqocar .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1307,7 +1224,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_last_grand_summary_row_top {
+#hktyiqocar .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1317,11 +1234,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_striped {
+#hktyiqocar .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ohsrjzfrwh .gt_table_body {
+#hktyiqocar .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1330,7 +1247,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#ohsrjzfrwh .gt_footnotes {
+#hktyiqocar .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1344,7 +1261,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_footnote {
+#hktyiqocar .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1353,7 +1270,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ohsrjzfrwh .gt_sourcenotes {
+#hktyiqocar .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1367,7 +1284,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ohsrjzfrwh .gt_sourcenote {
+#hktyiqocar .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1375,63 +1292,63 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ohsrjzfrwh .gt_left {
+#hktyiqocar .gt_left {
   text-align: left;
 }
 
-#ohsrjzfrwh .gt_center {
+#hktyiqocar .gt_center {
   text-align: center;
 }
 
-#ohsrjzfrwh .gt_right {
+#hktyiqocar .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ohsrjzfrwh .gt_font_normal {
+#hktyiqocar .gt_font_normal {
   font-weight: normal;
 }
 
-#ohsrjzfrwh .gt_font_bold {
+#hktyiqocar .gt_font_bold {
   font-weight: bold;
 }
 
-#ohsrjzfrwh .gt_font_italic {
+#hktyiqocar .gt_font_italic {
   font-style: italic;
 }
 
-#ohsrjzfrwh .gt_super {
+#hktyiqocar .gt_super {
   font-size: 65%;
 }
 
-#ohsrjzfrwh .gt_footnote_marks {
+#hktyiqocar .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ohsrjzfrwh .gt_asterisk {
+#hktyiqocar .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ohsrjzfrwh .gt_indent_1 {
+#hktyiqocar .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ohsrjzfrwh .gt_indent_2 {
+#hktyiqocar .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ohsrjzfrwh .gt_indent_3 {
+#hktyiqocar .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ohsrjzfrwh .gt_indent_4 {
+#hktyiqocar .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ohsrjzfrwh .gt_indent_5 {
+#hktyiqocar .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1957,23 +1874,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-factorial" class="anchored">
 
-<div id="esyvjeyhar" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#esyvjeyhar table {
+<div id="yiiusyylud" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yiiusyylud table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#esyvjeyhar thead, #esyvjeyhar tbody, #esyvjeyhar tfoot, #esyvjeyhar tr, #esyvjeyhar td, #esyvjeyhar th {
+#yiiusyylud thead, #yiiusyylud tbody, #yiiusyylud tfoot, #yiiusyylud tr, #yiiusyylud td, #yiiusyylud th {
   border-style: none;
 }
 
-#esyvjeyhar p {
+#yiiusyylud p {
   margin: 0;
   padding: 0;
 }
 
-#esyvjeyhar .gt_table {
+#yiiusyylud .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1999,12 +1916,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_caption {
+#yiiusyylud .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#esyvjeyhar .gt_title {
+#yiiusyylud .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -2016,7 +1933,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#esyvjeyhar .gt_subtitle {
+#yiiusyylud .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2028,7 +1945,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#esyvjeyhar .gt_heading {
+#yiiusyylud .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2040,13 +1957,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_bottom_border {
+#yiiusyylud .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_col_headings {
+#yiiusyylud .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -2061,7 +1978,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_col_heading {
+#yiiusyylud .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2081,7 +1998,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#esyvjeyhar .gt_column_spanner_outer {
+#yiiusyylud .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2093,15 +2010,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#esyvjeyhar .gt_column_spanner_outer:first-child {
+#yiiusyylud .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#esyvjeyhar .gt_column_spanner_outer:last-child {
+#yiiusyylud .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#esyvjeyhar .gt_column_spanner {
+#yiiusyylud .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -2113,11 +2030,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#esyvjeyhar .gt_spanner_row {
+#yiiusyylud .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#esyvjeyhar .gt_group_heading {
+#yiiusyylud .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2143,7 +2060,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#esyvjeyhar .gt_empty_group_heading {
+#yiiusyylud .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2158,15 +2075,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#esyvjeyhar .gt_from_md > :first-child {
+#yiiusyylud .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#esyvjeyhar .gt_from_md > :last-child {
+#yiiusyylud .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#esyvjeyhar .gt_row {
+#yiiusyylud .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2185,7 +2102,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#esyvjeyhar .gt_stub {
+#yiiusyylud .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2198,7 +2115,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#esyvjeyhar .gt_stub_row_group {
+#yiiusyylud .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2212,15 +2129,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#esyvjeyhar .gt_row_group_first td {
+#yiiusyylud .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#esyvjeyhar .gt_row_group_first th {
+#yiiusyylud .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#esyvjeyhar .gt_summary_row {
+#yiiusyylud .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2230,16 +2147,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#esyvjeyhar .gt_first_summary_row {
+#yiiusyylud .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_first_summary_row.thick {
+#yiiusyylud .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#esyvjeyhar .gt_last_summary_row {
+#yiiusyylud .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2249,7 +2166,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_grand_summary_row {
+#yiiusyylud .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2259,7 +2176,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#esyvjeyhar .gt_first_grand_summary_row {
+#yiiusyylud .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2269,7 +2186,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_last_grand_summary_row_top {
+#yiiusyylud .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2279,11 +2196,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_striped {
+#yiiusyylud .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#esyvjeyhar .gt_table_body {
+#yiiusyylud .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2292,7 +2209,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#esyvjeyhar .gt_footnotes {
+#yiiusyylud .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2306,7 +2223,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_footnote {
+#yiiusyylud .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2315,7 +2232,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#esyvjeyhar .gt_sourcenotes {
+#yiiusyylud .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2329,7 +2246,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#esyvjeyhar .gt_sourcenote {
+#yiiusyylud .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2337,63 +2254,63 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#esyvjeyhar .gt_left {
+#yiiusyylud .gt_left {
   text-align: left;
 }
 
-#esyvjeyhar .gt_center {
+#yiiusyylud .gt_center {
   text-align: center;
 }
 
-#esyvjeyhar .gt_right {
+#yiiusyylud .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#esyvjeyhar .gt_font_normal {
+#yiiusyylud .gt_font_normal {
   font-weight: normal;
 }
 
-#esyvjeyhar .gt_font_bold {
+#yiiusyylud .gt_font_bold {
   font-weight: bold;
 }
 
-#esyvjeyhar .gt_font_italic {
+#yiiusyylud .gt_font_italic {
   font-style: italic;
 }
 
-#esyvjeyhar .gt_super {
+#yiiusyylud .gt_super {
   font-size: 65%;
 }
 
-#esyvjeyhar .gt_footnote_marks {
+#yiiusyylud .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#esyvjeyhar .gt_asterisk {
+#yiiusyylud .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#esyvjeyhar .gt_indent_1 {
+#yiiusyylud .gt_indent_1 {
   text-indent: 5px;
 }
 
-#esyvjeyhar .gt_indent_2 {
+#yiiusyylud .gt_indent_2 {
   text-indent: 10px;
 }
 
-#esyvjeyhar .gt_indent_3 {
+#yiiusyylud .gt_indent_3 {
   text-indent: 15px;
 }
 
-#esyvjeyhar .gt_indent_4 {
+#yiiusyylud .gt_indent_4 {
   text-indent: 20px;
 }
 
-#esyvjeyhar .gt_indent_5 {
+#yiiusyylud .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2512,23 +2429,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-indexes-gender" class="anchored">
 
-<div id="pihceipnrz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pihceipnrz table {
+<div id="eofgtdlbmu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eofgtdlbmu table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pihceipnrz thead, #pihceipnrz tbody, #pihceipnrz tfoot, #pihceipnrz tr, #pihceipnrz td, #pihceipnrz th {
+#eofgtdlbmu thead, #eofgtdlbmu tbody, #eofgtdlbmu tfoot, #eofgtdlbmu tr, #eofgtdlbmu td, #eofgtdlbmu th {
   border-style: none;
 }
 
-#pihceipnrz p {
+#eofgtdlbmu p {
   margin: 0;
   padding: 0;
 }
 
-#pihceipnrz .gt_table {
+#eofgtdlbmu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2554,12 +2471,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_caption {
+#eofgtdlbmu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pihceipnrz .gt_title {
+#eofgtdlbmu .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -2571,7 +2488,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#pihceipnrz .gt_subtitle {
+#eofgtdlbmu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2583,7 +2500,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#pihceipnrz .gt_heading {
+#eofgtdlbmu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2595,13 +2512,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_bottom_border {
+#eofgtdlbmu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_col_headings {
+#eofgtdlbmu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -2616,7 +2533,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_col_heading {
+#eofgtdlbmu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2636,7 +2553,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#pihceipnrz .gt_column_spanner_outer {
+#eofgtdlbmu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2648,15 +2565,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#pihceipnrz .gt_column_spanner_outer:first-child {
+#eofgtdlbmu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pihceipnrz .gt_column_spanner_outer:last-child {
+#eofgtdlbmu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pihceipnrz .gt_column_spanner {
+#eofgtdlbmu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -2668,11 +2585,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#pihceipnrz .gt_spanner_row {
+#eofgtdlbmu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pihceipnrz .gt_group_heading {
+#eofgtdlbmu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2698,7 +2615,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#pihceipnrz .gt_empty_group_heading {
+#eofgtdlbmu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2713,15 +2630,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#pihceipnrz .gt_from_md > :first-child {
+#eofgtdlbmu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pihceipnrz .gt_from_md > :last-child {
+#eofgtdlbmu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pihceipnrz .gt_row {
+#eofgtdlbmu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2740,7 +2657,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#pihceipnrz .gt_stub {
+#eofgtdlbmu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2753,7 +2670,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pihceipnrz .gt_stub_row_group {
+#eofgtdlbmu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2767,15 +2684,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#pihceipnrz .gt_row_group_first td {
+#eofgtdlbmu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pihceipnrz .gt_row_group_first th {
+#eofgtdlbmu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pihceipnrz .gt_summary_row {
+#eofgtdlbmu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2785,16 +2702,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pihceipnrz .gt_first_summary_row {
+#eofgtdlbmu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_first_summary_row.thick {
+#eofgtdlbmu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pihceipnrz .gt_last_summary_row {
+#eofgtdlbmu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2804,7 +2721,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_grand_summary_row {
+#eofgtdlbmu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2814,7 +2731,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pihceipnrz .gt_first_grand_summary_row {
+#eofgtdlbmu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2824,7 +2741,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_last_grand_summary_row_top {
+#eofgtdlbmu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2834,11 +2751,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_striped {
+#eofgtdlbmu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pihceipnrz .gt_table_body {
+#eofgtdlbmu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2847,7 +2764,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#pihceipnrz .gt_footnotes {
+#eofgtdlbmu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2861,7 +2778,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_footnote {
+#eofgtdlbmu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2870,7 +2787,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pihceipnrz .gt_sourcenotes {
+#eofgtdlbmu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2884,7 +2801,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#pihceipnrz .gt_sourcenote {
+#eofgtdlbmu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2892,63 +2809,63 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#pihceipnrz .gt_left {
+#eofgtdlbmu .gt_left {
   text-align: left;
 }
 
-#pihceipnrz .gt_center {
+#eofgtdlbmu .gt_center {
   text-align: center;
 }
 
-#pihceipnrz .gt_right {
+#eofgtdlbmu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pihceipnrz .gt_font_normal {
+#eofgtdlbmu .gt_font_normal {
   font-weight: normal;
 }
 
-#pihceipnrz .gt_font_bold {
+#eofgtdlbmu .gt_font_bold {
   font-weight: bold;
 }
 
-#pihceipnrz .gt_font_italic {
+#eofgtdlbmu .gt_font_italic {
   font-style: italic;
 }
 
-#pihceipnrz .gt_super {
+#eofgtdlbmu .gt_super {
   font-size: 65%;
 }
 
-#pihceipnrz .gt_footnote_marks {
+#eofgtdlbmu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pihceipnrz .gt_asterisk {
+#eofgtdlbmu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pihceipnrz .gt_indent_1 {
+#eofgtdlbmu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pihceipnrz .gt_indent_2 {
+#eofgtdlbmu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pihceipnrz .gt_indent_3 {
+#eofgtdlbmu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pihceipnrz .gt_indent_4 {
+#eofgtdlbmu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pihceipnrz .gt_indent_5 {
+#eofgtdlbmu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3004,23 +2921,23 @@ IQR (CV) : 9.7 (0.1)</td>
 <div class="cell-output-display">
 <div id="tbl-indexes-school" class="anchored">
 
-<div id="ydcsutumkt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ydcsutumkt table {
+<div id="mwveklfyoo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwveklfyoo table {
   font-family: 'Times New Roman';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ydcsutumkt thead, #ydcsutumkt tbody, #ydcsutumkt tfoot, #ydcsutumkt tr, #ydcsutumkt td, #ydcsutumkt th {
+#mwveklfyoo thead, #mwveklfyoo tbody, #mwveklfyoo tfoot, #mwveklfyoo tr, #mwveklfyoo td, #mwveklfyoo th {
   border-style: none;
 }
 
-#ydcsutumkt p {
+#mwveklfyoo p {
   margin: 0;
   padding: 0;
 }
 
-#ydcsutumkt .gt_table {
+#mwveklfyoo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3046,12 +2963,12 @@ IQR (CV) : 9.7 (0.1)</td>
   border-left-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_caption {
+#mwveklfyoo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ydcsutumkt .gt_title {
+#mwveklfyoo .gt_title {
   color: #333333;
   font-size: 16px;
   font-weight: initial;
@@ -3063,7 +2980,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-width: 0;
 }
 
-#ydcsutumkt .gt_subtitle {
+#mwveklfyoo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3075,7 +2992,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-width: 0;
 }
 
-#ydcsutumkt .gt_heading {
+#mwveklfyoo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3087,13 +3004,13 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_bottom_border {
+#mwveklfyoo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_col_headings {
+#mwveklfyoo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -3108,7 +3025,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_col_heading {
+#mwveklfyoo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3128,7 +3045,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#ydcsutumkt .gt_column_spanner_outer {
+#mwveklfyoo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3140,15 +3057,15 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 4px;
 }
 
-#ydcsutumkt .gt_column_spanner_outer:first-child {
+#mwveklfyoo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ydcsutumkt .gt_column_spanner_outer:last-child {
+#mwveklfyoo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ydcsutumkt .gt_column_spanner {
+#mwveklfyoo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
@@ -3160,11 +3077,11 @@ IQR (CV) : 9.7 (0.1)</td>
   width: 100%;
 }
 
-#ydcsutumkt .gt_spanner_row {
+#mwveklfyoo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ydcsutumkt .gt_group_heading {
+#mwveklfyoo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3190,7 +3107,7 @@ IQR (CV) : 9.7 (0.1)</td>
   text-align: left;
 }
 
-#ydcsutumkt .gt_empty_group_heading {
+#mwveklfyoo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3205,15 +3122,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: middle;
 }
 
-#ydcsutumkt .gt_from_md > :first-child {
+#mwveklfyoo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ydcsutumkt .gt_from_md > :last-child {
+#mwveklfyoo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ydcsutumkt .gt_row {
+#mwveklfyoo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3232,7 +3149,7 @@ IQR (CV) : 9.7 (0.1)</td>
   overflow-x: hidden;
 }
 
-#ydcsutumkt .gt_stub {
+#mwveklfyoo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3245,7 +3162,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ydcsutumkt .gt_stub_row_group {
+#mwveklfyoo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3259,15 +3176,15 @@ IQR (CV) : 9.7 (0.1)</td>
   vertical-align: top;
 }
 
-#ydcsutumkt .gt_row_group_first td {
+#mwveklfyoo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ydcsutumkt .gt_row_group_first th {
+#mwveklfyoo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ydcsutumkt .gt_summary_row {
+#mwveklfyoo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3277,16 +3194,16 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ydcsutumkt .gt_first_summary_row {
+#mwveklfyoo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_first_summary_row.thick {
+#mwveklfyoo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ydcsutumkt .gt_last_summary_row {
+#mwveklfyoo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3296,7 +3213,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_grand_summary_row {
+#mwveklfyoo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3306,7 +3223,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ydcsutumkt .gt_first_grand_summary_row {
+#mwveklfyoo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3316,7 +3233,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-top-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_last_grand_summary_row_top {
+#mwveklfyoo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3326,11 +3243,11 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_striped {
+#mwveklfyoo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ydcsutumkt .gt_table_body {
+#mwveklfyoo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3339,7 +3256,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-bottom-color: #000000;
 }
 
-#ydcsutumkt .gt_footnotes {
+#mwveklfyoo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3353,7 +3270,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_footnote {
+#mwveklfyoo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3362,7 +3279,7 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ydcsutumkt .gt_sourcenotes {
+#mwveklfyoo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3376,7 +3293,7 @@ IQR (CV) : 9.7 (0.1)</td>
   border-right-color: #D3D3D3;
 }
 
-#ydcsutumkt .gt_sourcenote {
+#mwveklfyoo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3384,63 +3301,63 @@ IQR (CV) : 9.7 (0.1)</td>
   padding-right: 5px;
 }
 
-#ydcsutumkt .gt_left {
+#mwveklfyoo .gt_left {
   text-align: left;
 }
 
-#ydcsutumkt .gt_center {
+#mwveklfyoo .gt_center {
   text-align: center;
 }
 
-#ydcsutumkt .gt_right {
+#mwveklfyoo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ydcsutumkt .gt_font_normal {
+#mwveklfyoo .gt_font_normal {
   font-weight: normal;
 }
 
-#ydcsutumkt .gt_font_bold {
+#mwveklfyoo .gt_font_bold {
   font-weight: bold;
 }
 
-#ydcsutumkt .gt_font_italic {
+#mwveklfyoo .gt_font_italic {
   font-style: italic;
 }
 
-#ydcsutumkt .gt_super {
+#mwveklfyoo .gt_super {
   font-size: 65%;
 }
 
-#ydcsutumkt .gt_footnote_marks {
+#mwveklfyoo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ydcsutumkt .gt_asterisk {
+#mwveklfyoo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ydcsutumkt .gt_indent_1 {
+#mwveklfyoo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ydcsutumkt .gt_indent_2 {
+#mwveklfyoo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ydcsutumkt .gt_indent_3 {
+#mwveklfyoo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ydcsutumkt .gt_indent_4 {
+#mwveklfyoo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ydcsutumkt .gt_indent_5 {
+#mwveklfyoo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3665,189 +3582,6 @@ IQR (CV) : 9.7 (0.1)</td>
 </div>
 </div>
 </div>
-</section>
-<section id="cil-as-variance" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="cil-as-variance"><span class="header-section-number">9.6</span> CIL as variance</h2>
-<p>The correlation is between cil mean and cil variance of the school, but only with school level data (n = 178). ::: {.cell} ::: {.cell-output .cell-output-stdout}</p>
-<pre><code>[1] -0.43</code></pre>
-<p>:::</p>
-<div class="cell-output-display">
-
-<table style="border-collapse:collapse; border:none;">
-<tbody><tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_geneff</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_geneff</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_geneff</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_speceff</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_speceff</th>
-<th colspan="1" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">s_speceff</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">Estimates</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Intercept</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">53.33 <sup>***</sup><br>(0.52)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">38.82 <sup>***</sup><br>(2.52)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">39.22 <sup>***</sup><br>(2.54)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">49.91 <sup>***</sup><br>(0.45)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">65.98 <sup>***</sup><br>(2.93)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">66.23 <sup>***</sup><br>(2.95)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">School CIL variance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.00 <sup>***</sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.00 <sup></sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.00 <sup></sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00 <sup>***</sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.00 <sup></sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">-0.00 <sup></sup><br>(0.00)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Sex: Girl</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.50 <sup></sup><br>(0.33)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.32 <sup></sup><br>(0.78)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-1.66 <sup>***</sup><br>(0.36)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">-2.23 <sup>**</sup><br>(0.85)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Student CIL</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.36 <sup>***</sup><br>(0.02)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.36 <sup>***</sup><br>(0.02)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.04 <sup></sup><br>(0.03)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">-0.04 <sup></sup><br>(0.03)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">School CIL mean</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.12 <sup>*</sup><br>(0.05)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.12 <sup>*</sup><br>(0.05)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-0.27 <sup>***</sup><br>(0.06)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">-0.27 <sup>***</sup><br>(0.06)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender comp: Masculinized School</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.08 <sup></sup><br>(0.90)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.06 <sup></sup><br>(0.90)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">-1.81 <sup></sup><br>(1.03)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">-1.83 <sup></sup><br>(1.03)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Gender comp: Feminized School</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.97 <sup></sup><br>(0.64)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.02 <sup></sup><br>(0.64)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.09 <sup></sup><br>(0.77)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.13 <sup></sup><br>(0.77)</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">Int. Sex*School CIL variance</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00 <sup></sup><br>(0.00)</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">0.00 <sup></sup><br>(0.00)</td>
-</tr>
-<tr>
-<td colspan="7" style="font-weight:bold; text-align:left; padding-top:.8em;">Random Effects</td>
-</tr>
-
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">σ<sup>2</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">74.50</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">66.91</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">66.89</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">83.29</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">80.21</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">80.23</td>
-</tr>
-
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">τ<sub>00</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">4.59 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">2.92 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">2.93 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.00 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">3.72 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">3.72 <sub>idschool</sub></td>
-
-</tr><tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">τ<sub>11</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.18 <sub>idschool.s_sexGirl</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.11 <sub>idschool.s_sexGirl</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.11 <sub>idschool.s_sexGirl</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">5.44 <sub>idschool.s_sexGirl</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.01 <sub>idschool.s_sexGirl</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.01 <sub>idschool.s_sexGirl</sub></td>
-
-</tr><tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">ρ<sub>01</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">-1.00 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">-1.00 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">-1.00 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">&nbsp;</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">1.00 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">1.00 <sub>idschool</sub></td>
-
-</tr><tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">178 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">163 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">163 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">178 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">163 <sub>idschool</sub></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">163 <sub>idschool</sub></td>
-</tr><tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2999</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2746</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2746</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2996</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2743</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="1">2743</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup></td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.007 / NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.116 / NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.113 / 0.144</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.006 / NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.035 / NA</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">0.033 / 0.078</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">AIC</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">21570.199</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">19453.202</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">19464.995</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">21851.939</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">19948.104</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="1">19960.513</td>
-</tr>
-<tr>
-<td colspan="7" style="font-style:italic; border-top:double black; text-align:right;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
-</tr>
-
-</tbody></table>
-
-</div>
-<p>:::</p>
 
 </section>
 </section>

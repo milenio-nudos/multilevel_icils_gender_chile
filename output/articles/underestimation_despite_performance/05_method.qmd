@@ -14,7 +14,7 @@ ICILS employed various instruments to collect data. Participants first took a Co
 
 ***Student level***
 
-**General and Specialized ICT Self-efficacy**: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question *How well can you do this tasks when using ICT?*.The items can be examined in @tbl-selfeff-items.
+**General and Specialized ICT Self-efficacy**: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question *How well can you do this tasks when using ICT?*, and the answers: *1. I know how to do this, 2. I have never done this but I can work out how to do this and 3. I do not think I could do this.* The items missings values distribution can be examined in @tbl-selfeff-items. Distribution is on @fig-barplot-general.
 
 ```{r, results='asis', echo=FALSE}
 #| tbl-cap: "ICT Self-efficacy items (Dependent variables)"
@@ -29,27 +29,7 @@ selfeff_items <- data |>
     )|>
   to_label()
 
-current_labels_first_8 <- var_label(selfeff_items)[1:8]
 
-# Append the specified text to the current labels of the first 8 columns
-new_labels_first_8 <- sapply(current_labels_first_8, function(label) {
-  paste0(label, " (Suggested as General ICT Self-efficacy)")
-})
-
-# Set the new labels to the first 8 columns
-var_label(selfeff_items)[1:8] <- new_labels_first_8
-
-# Get the current labels of the last 4 columns
-current_labels_last_4 <- var_label(selfeff_items)[9:12]
-
-# Append the specified text to the current labels of the last 4 columns
-new_labels_last_4 <- sapply(current_labels_last_4, function(label) {
-  paste0(label, " (Suggested as Specialized ICT Self-efficacy)")
-})
-
-# Set the new labels to the last 4 columns
-var_label(selfeff_items)[9:12] <- new_labels_last_4
-    
 
 selfeff_tbl<-dfSummary(selfeff_items,
                plain.ascii = FALSE,
@@ -65,8 +45,13 @@ selfeff_tbl<-dfSummary(selfeff_items,
                col.widths = c(30,10,10,10))
 
 selfeff_tbl$Variable <- NULL # delete variable column
+selfeff_tbl$"Stats / Values" <- NULL # delete variable column
+selfeff_tbl$"Freqs (% of Valid)" <- NULL # delete variable column
 
-print(selfeff_tbl)
+selfeff_tbl|>
+  kable()|>
+  pack_rows("Suggested as General ICT Self-efficacy", 1, 8)|>
+  pack_rows("Suggested as Specialized ICT Self-efficacy", 9, 12)
 ```
 
 The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. To establish the measurement validity of these indexes we performed a confirmatory factor analysis with supporting results for the bi-dimensional structure of self-efficacy (generalized and specific)(see @tbl-factorial in the appendix). Based on this results, we decided to continue working with the two indices provided by the IEA. Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.

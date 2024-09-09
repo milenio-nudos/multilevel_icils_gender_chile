@@ -43,7 +43,6 @@ bcgchli2 <- read_sav("../../../input/raw_data/2018/BCGCHLI2.sav")
 source("00_proccess.R")
 ```
 
-
 # Results
 
 The analysys begins shwing descriptive results for the self-efficacy items, as displayed in @fig-barplot-general. Notably, across all tasks, a significant proportion of students ---no less than 65%--- expressed confidence in their ability to perform general tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy. In contrast, when it comes to specialized self-efficacy, less than 30% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program. This percentage increases a little when it comes to tasks like setting up a local area network (31%) or creating a database (35%). Therefore, and as it could be expected, students tend to perceive having less skills in advanced than in basic ICT tasks.
@@ -150,19 +149,18 @@ relative_freq_selfeff <- relative_freq_selfeff |>
       "Build a webpage",
       "Create a computer program/app")),
     variable = factor(variable, levels = c(
-      "I do not think I could do this.",
+      "I know how to do this.",
       "I have never done this but I could work out how to do this.",
-      "I know how to do this."
+      "I do not think I could do this."
     )),
     prop = round(prop, 2)
   )
 
 relative_freq_selfeff |>
-  ggplot(aes(x = name, y = prop, fill = variable)) +
+  ggplot(aes(x = prop, y = name, fill = variable)) +
   geom_bar(position = "fill", stat = "identity", color = "black") +
   facet_wrap(~type,ncol=1,scales = "free_y") +
-  coord_flip() +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 42)) +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 42)) +
   labs(
     title = "How well can you do each of these tasks when using ICT?",
     x = "", y = "", fill = "",
@@ -174,15 +172,15 @@ relative_freq_selfeff |>
     panel.spacing = unit(1, "lines")
   ) +
   scale_fill_grey(
-    start = 1, end = 0.5,
+    start = 0.5, end = 1,
     limits = c(
-      "I know how to do this.",
+      "I do not think I could do this.",
       "I have never done this but I could work out how to do this.",
-      "I do not think I could do this."
+      "I know how to do this."
     ),
     labels = ~ stringr::str_wrap(.x, width = 30)
   ) +
-  scale_y_continuous(labels = scales::percent) +
+  scale_x_continuous(labels = scales::percent) +
   geom_text(aes(label = paste0(prop * 100, "%")), position = position_fill(vjust = 0.5))
 ```
 
@@ -274,8 +272,9 @@ data|>
   pivot_longer(cols = c(geneff, speceff), names_to = "efficacy", values_to = "mean")|>
   
   ggplot(aes(x = c_gender_type, y = mean)) +
-  geom_point(aes(shape = s_sex, color = s_sex))+
+  geom_point(aes(shape = s_sex, color = s_sex), size = 3.5)+
   facet_wrap(~efficacy,
+             nrow = 2,
              labeller = labeller( efficacy = c(
                "geneff" = "General ICT Self efficacy",
                "speceff" = "Specialized ICT Self efficacy"))
@@ -285,6 +284,7 @@ data|>
   labs(shape = "Gender", color = "Gender",
        y = "Mean score", x= "",
        title = "Gender CIL and ICT Self-efficacy by type of School")+
+  theme(legend.position = "top")+
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
 ```
 
@@ -377,13 +377,13 @@ tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
           pred.labels = c("Intercept",
                           "Gender (Girl = 1)",
                           "CIL score",
-                          "Int. Gender*CIL",
+                          "Gender*CIL",
                           "Gender composition: Masculinized school",
                           "Gender composition: Feminized school",
                           "School CIL",
-                          "Mod. Gender*Masculinized school",
-                          "Mod. Gender*Feminized school",
-                          "Mod. Gender*School CIL"),
+                          "Gender*Masculinized school",
+                          "Gender*Feminized school",
+                          "MGender*School CIL"),
           dv.labels = c("Model 1","Model 2","Model 3",
                         "Model 4", "Model 5", "Model 6", "Model 7","Model 8"))
 
@@ -470,13 +470,13 @@ tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
           pred.labels = c("Intercept",
                           "Gender (Girl = 1)",
                           "CIL score",
-                          "Int. Gender*CIL",
+                          "Gender*CIL",
                           "Gender composition: Masculinized school",
                           "Gender composition: Feminized school",
                           "School CIL",
-                          "Mod. Gender*Masculinized school",
-                          "Mod. Gender*Feminized school",
-                          "Mod. Gender*School CIL"),
+                          "Gender*Masculinized school",
+                          "Gender*Feminized school",
+                          "Gender*School CIL"),
           dv.labels = c("Model 1","Model 2","Model 3",
                         "Model 4", "Model 5", "Model 6",
                         "Model 7", "Model 8"))

@@ -29,4 +29,4 @@ This repository contains all the analyses and processing done by the NUDOS socia
 
 [XII Congreso chileno de Sociología 2024. ¿Las estudiantes subestiman sus habilidades tecnológicas? Diferencias de género en autoeficacia digital en contextos escolares chilenos](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/presentations/pre_alas_2024/docs.html)
 
-[IX Seminar Data of and for the Educational System: Tools for Research and Teaching- Rome, 17 – 18 – 19 October 2024: Do female students underestimate their technological skills?. ](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/presentations/invalsi2024/docs.html)
+[IX Seminar Data of and for the Educational System: Tools for Research and Teaching- Rome, 17 – 18 – 19 October 2024: Do female students underestimate their digital skills?. ](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/presentations/invalsi2024/docs.html)

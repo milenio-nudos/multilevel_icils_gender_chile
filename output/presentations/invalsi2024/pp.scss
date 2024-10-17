@@ -74,6 +74,15 @@ $selectionColor: #fff;
 }
 
 
+.highlight-last  {
+  color: grey;
+  .current-fragment {
+    color: #AA301C;
+  }
+}
+
+
+
 .pull-left {
   float: left;
   width: 47%;

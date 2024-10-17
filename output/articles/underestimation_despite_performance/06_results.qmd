@@ -296,10 +296,29 @@ data|>
 #| label: tbl-general-multilevel
 #| tbl-cap: "General Self-efficacy Multilevel models"
 
+pacman::p_load(sjlabelled)
+get_label(data_model$s_geneff)
+
+data_model$s_geneff <- set_label(data_model$s_geneff, label = "Basic self-efficacy")
+
+data_model <- data|>
+  mutate(s_sex = to_label(s_sex),
+         c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+         c_gender_type = to_label(c_gender_type)
+
+
+
 data_model <- data |> mutate(
   s_sex=to_label(s_sex),
+  c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
   c_gender_type = to_label (c_gender_type),
-  c_gender_type = relevel(c_gender_type, "Mixed school (34%-66% girls)")
+  c_gender_type = relevel(c_gender_type, "Mixed school")
   ) 
 
 #Null model
@@ -395,6 +414,9 @@ Turning now to specialized self-efficacy, @tbl-specialized-multilevel follow the
 #| label: tbl-specialized-multilevel
 #| tbl-cap: "Specialized Self-efficacy Multilevel models"
 
+
+data_model$s_speceff <- set_label(data_model$s_speceff, label = "Advanced self-efficacy")
+
 # Null model
 m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data_model)
 
@@ -480,5 +502,15 @@ tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
           dv.labels = c("Model 1","Model 2","Model 3",
                         "Model 4", "Model 5", "Model 6",
                         "Model 7", "Model 8"))
+
+
+
+sjPlot::plot_models(m2_d_geneff,m2_d_speceff,
+                    wrap.labels = 20,
+                    show.p = T,
+                    show.values = T,
+                    show.intercept = F,
+                    colors = c("#5f5758","#ff3057")) +
+  theme_minimal()
 
 ```

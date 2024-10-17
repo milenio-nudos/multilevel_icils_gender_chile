@@ -186,6 +186,55 @@ relative_freq_selfeff |>
 
 Turning now to geneder differences in self-efficacy, @fig-cleveland-gender presents a comparison of male and female students, displaying the proportion of those answering "I know how to do this" in each gender group. Whereas girls outperform boys in most of the general self-efficacy items, the opposite occurs for the specialized one. While most of the differences are statistically significant, they tend to be larger for the specialized self-efficacy in favor of boys.
 
+
+```{r}
+summary_stats <- data_model %>%
+  group_by(s_sex) %>%
+  summarise(
+    mean_pv1cil = mean(s_pv1cil, na.rm = TRUE),
+    se_pv1cil = sd(s_pv1cil, na.rm = TRUE) / sqrt(n())
+  )
+
+# Create a bar plot with error bars
+ggplot(summary_stats, aes(x = s_sex, y = mean_pv1cil, fill = s_sex)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean_pv1cil - se_pv1cil, ymax = mean_pv1cil + se_pv1cil), width = 0.2) +
+  labs(x = "Sex", y = "Mean of s_pv1cil", title = "Comparison of Means with Error Bars") +
+  theme_minimal()
+
+
+ggplot(data_model, aes(x = s_sex, y = s_pv1cil, fill = s_sex)) +
+  geom_boxplot() +
+  labs(x = "Sex", y = "s_pv1cil", title = "Box Plot of s_pv1cil by Sex") +
+  theme_minimal()
+
+# Perform t-test
+t_test_result <- t.test(s_pv1cil ~ s_sex, data = data_model)
+
+# Extract p-value and test statistic
+p_value <- t_test_result$p.value
+t_statistic <- t_test_result$statistic
+
+library(ggplot2)
+library(dplyr)
+
+# Create the box plot
+ggplot(data_model, aes(x = s_sex, y = s_pv1cil, fill = s_sex)) +
+  geom_boxplot() +
+  labs(x = "Sex", y = "s_pv1cil", title = "Information and Computer Literacy Test by Sex") +
+  theme_minimal() +
+  
+  # Add annotation for the t-test results
+  annotate("text", x = 2, y = min(data_model$s_pv1cil, na.rm = TRUE), 
+           label = paste("t =", round(t_statistic, 2), "\n", "p =", round(p_value, 4)),
+           size = 5, hjust = -0.2, vjust = -1, color = "red")
+
+
+
+
+```
+
+
 ```{r}
 #| label: fig-cleveland-gender
 #| fig-cap: "General and specialized ICT Self-efficacy by gender. Data: ICILS Chile 2018"

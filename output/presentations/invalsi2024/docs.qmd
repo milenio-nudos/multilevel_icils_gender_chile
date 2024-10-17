@@ -297,6 +297,11 @@ Answers: 1. I know how to do it. 2. I don't know how to do it but I feel capable
 
 # Results  {data-background-color="#5f5758"}
 
+##
+
+![](images/CIL_dif.png)
+
+
 ## {.scrollable}
 ![](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/articles/underestimation_despite_performance/paper_files/figure-html/fig-barplot-general-1.png)
 
@@ -327,7 +332,7 @@ Answers: 1. I know how to do it. 2. I don't know how to do it but I feel capable
 - Higher specialized self-efficacy for girls in masculinized schools (?)
 :::
 
-# Take-home-message
+# Take-home-message {data-background-color="orange"}
 
 ::: { .incremental .highlight-last style="font-size: 200%;"}
 
@@ -338,7 +343,7 @@ Answers: 1. I know how to do it. 2. I don't know how to do it but I feel capable
 
 # Future research: {data-background-color="black"}
 
-::: {style="font-size: 220%;"}
+::: {style="font-size: 180%;"}
 
 - Time comparison ICILS 2013-2018-2023
     

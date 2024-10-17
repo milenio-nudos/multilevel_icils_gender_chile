@@ -182,6 +182,9 @@ data <- data |>
 ![](images/invalsi.png)
 
 ![](images/datinvalsi.png)
+
+![](images/qr.png)
+
 :::
 
 ::: {.column .column-right width="85%"}

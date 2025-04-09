@@ -1,0 +1,141 @@
+---
+editor: visual
+---
+
+# Data, variables and methods
+
+## Data and sample
+
+The database used is the International Computer and Information Literacy Study (ICILS), conducted by the International Association for the Evaluation of Educational Achievement (IEA) in 2018. The study sampled eighth-grade students using a random multistage stratified cluster design to ensure representativeness at the school and student/teacher levels across all participating countries. Schools serve as the primary sampling units, while teachers and students are the secondary sampling units. The analysis focuses exclusively on the Chilean subset of the ICILS 2018. The sample comprised 3,092 students (1519 boys and 1573 girls) distributed across 178 schools. Both levels are representative of the broader Chilean student and school population.
+
+ICILS employed various instruments to collect data. Participants first took a Computer Literacy test with multiple-choice items, assigning each student a Computer and Information Literacy (CIL) score based on their responses. Next, students completed a questionnaire about their home background, values, beliefs, attitudes, and behaviors related to Computer and Information technologies. Additionally, teachers completed a questionnaire assessing their values, beliefs, attitudes, and behaviors related to Computer and Information technologies and their teaching roles. Principals and ICT managers provided information on the school's social characteristics and ICT infrastructure through surveys.
+
+## Variables
+
+***Student level***
+
+**General and Specialized ICT Self-efficacy**: The ICILS student data encompasses two indices of digital self-efficacy: one for general or basic applications and the other for advanced or specialized tasks. Both indices were constructed using a same battery with the question *How well can you do this tasks when using ICT?*, and the answers: *1. I know how to do this, 2. I have never done this but I can work out how to do this and 3. I do not think I could do this.* The items missings values distribution can be examined in @tbl-selfeff-items. Distribution is on @fig-barplot-general.
+
+```{r, results='asis', echo=FALSE}
+#| tbl-cap: "ICT Self-efficacy items (Dependent variables)"
+#| label: tbl-selfeff-items
+
+# Open student and school raw data
+data_model <- readRDS("../../../input/proc_data/05_student_proc_2023.rds")
+
+
+selfeff_items <- data_model |>
+  select(
+    #Specialized self-efficacy items
+    is3g24d,is3g24k,is3g24l,
+    #General self-efficacy items
+    is3g24a,is3g24b,is3g24c,is3g24e,is3g24f,
+    is3g24g,is3g24h,is3g24i,is3g24j,is3g24m,
+  )
+
+
+
+selfeff_tbl<-dfSummary(selfeff_items,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+selfeff_tbl$Variable <- NULL # delete variable column
+selfeff_tbl$"Stats / Values" <- NULL # delete variable column
+selfeff_tbl$"Freqs (% of Valid)" <- NULL # delete variable column
+
+selfeff_tbl|>
+  kable()|>
+  pack_rows("Suggested as General ICT Self-efficacy", 1, 8)|>
+  pack_rows("Suggested as Specialized ICT Self-efficacy", 9, 12)
+```
+
+The construction of both self-efficacy indices suggested by IEA were validated at international level, with a comparative approach between countries. To establish the measurement validity of these indexes we performed a confirmatory factor analysis with supporting results for the bi-dimensional structure of self-efficacy (generalized and specific)(see @tbl-factorial in the appendix). Based on this results, we decided to continue working with the two indices provided by the IEA. Both indexes were constructed by the IEA using the Weighted Likelihood Estimation Method, where scores have a mean of 50 and a standard deviation of 10, based on equal weights for all countries. A higher index value indicates a higher level of self-efficacy.
+
+**Computer and Information Literacy**: The CIL scale used in the analyses is based on a test applied by IEA. The test consists of a computer application with a set of five modules, in which each student has to respond to two randomly selected. Every module has 30 minutes of assessment. The structure of a module consisted of a set of questions and tasks based on a realistic theme and following a linear narrative structure. These modules have a series of small discrete tasks (typically taking less than a minute to complete) followed by a large task that typically took 15 to 20 minutes to complete. In total, the modules comprised 81 discrete questions that generated 102 score points. So, in total, an individual could reach a maximum score of 204 points.
+
+The five modules measured different Computer Abilities. The first one was oriented in website construction, while the second one in digital files managing and collection. The thirst challenged students to plan a school trip through database building and mapping tools. Another module included a school-based social network where students were encouraged to post and message their peers to join a board games interest group. The last module requested research information about recycling on the internet, and then designed infographics about carbon footprint awareness.
+
+The ICILS CIL reporting scale was established in ICILS 2013, with a mean of 500 (the average CIL scale score across countries in 2013) and a standard deviation of 100 for the equally weighted national samples that met IEA sample participation standards in the first cycle (2013). The ICILS database offers five possible values of the CIL score that were generated with full conditioning to derive summary student achievement statistics. Conventionally, papers based on this study usually occupy the first plausible value, which is coded "pv1cil". This research is no exception. Due to the large magnitude of the figures for this variable, the scale had to be multiplied by 0.1 to make the results more intelligible. The higher the value of the scale, the higher the CIL of the student.
+
+**Control variables**: The analysis includes control variables that tend to be influential in studies of educational and technological inequalities. These variables encompass family socioeconomic status - by the highest level of parental education (ISCED Scale) - and the number of books in the household.
+
+@tbl-individual-descriptives displays key statistics of independent student-level vairables to explore.
+
+```{r, results='asis', echo=FALSE}
+#| label: tbl-individual-descriptives
+#| tbl-cap: "Individual Variables Descriptives"
+
+independent_student <- data|>
+  select(
+    s_sex,s_pv1cil,
+    s_hisced,s_homlit
+  )|>
+  mutate(
+    s_sex=to_label(s_sex),
+    s_hisced=to_label(s_hisced),
+    s_homlit=to_label(s_homlit)
+  )
+
+tbl_individual<-dfSummary(independent_student,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+tbl_individual$Variable <- NULL # delete variable column
+
+print(tbl_individual)
+```
+
+***School level***
+
+The study took into account two contextual variables to develop multilevel analyses. The first is the average score on the Computer and Information Literacy test at school, which was estimated by aggregating students' scores by mean. The second is the gender composition of the school, which is estimated by dividing the total number of female students by the total number of eighth grade students in the school. According to the resulting ratio of female students, schools were classified into three categories. @tbl-school-descriptives details frequencies and descriptive statistics of these variables.
+
+```{r, results='asis', echo=FALSE}
+#| label: tbl-school-descriptives
+#| tbl-cap: "School Variables Descriptives"
+
+independent_school <- data|>
+  mutate(c_gender_type=to_label(c_gender_type))|>
+  distinct(idschool, .keep_all = TRUE)|>
+  select(c_pv1cil,c_gender_type)
+
+tbl_school<-dfSummary(independent_school,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+tbl_school$Variable <- NULL # delete variable column
+
+print(tbl_school)
+```
+
+## Methods
+
+The analysis consists of two stages. The first one explores differences in self-efficacy by gender as well as their correlations with the key variables of the study. The second stage shows the estimation of a series of multilevel (random-effects) models [@vijverMultilevelAnalysisIndividuals2008; @hoxMultilevelAnalysisTechniques2017].
+
+The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this [link](https://osf.io/5qjsd). The statistical analysis of this research was performed using the free software R version 4.3.0.

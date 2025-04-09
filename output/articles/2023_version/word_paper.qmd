@@ -1,0 +1,14 @@
+---
+editor: visual
+bibliography: "icils_nudos.bib"
+csl: "apa6.csl"
+format: docx
+---
+
+{{< include 01_intro.qmd >}}
+
+{{< include 02_selfeff.qmd >}}
+
+{{< include 03_genderselfeff.qmd >}}
+
+{{< include 04_composition.qmd >}}

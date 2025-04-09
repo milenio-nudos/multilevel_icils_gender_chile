@@ -186,7 +186,6 @@ relative_freq_selfeff |>
 
 Turning now to geneder differences in self-efficacy, @fig-cleveland-gender presents a comparison of male and female students, displaying the proportion of those answering "I know how to do this" in each gender group. Whereas girls outperform boys in most of the general self-efficacy items, the opposite occurs for the specialized one. While most of the differences are statistically significant, they tend to be larger for the specialized self-efficacy in favor of boys.
 
-
 ```{r}
 summary_stats <- data_model %>%
   group_by(s_sex) %>%
@@ -233,7 +232,6 @@ ggplot(data_model, aes(x = s_sex, y = s_pv1cil, fill = s_sex)) +
 
 
 ```
-
 
 ```{r}
 #| label: fig-cleveland-gender

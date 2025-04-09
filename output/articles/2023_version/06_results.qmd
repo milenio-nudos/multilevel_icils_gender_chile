@@ -1,0 +1,579 @@
+---
+editor: visual
+bibliography: "icils_nudos.bib"
+---
+
+```{r setup two}
+options(scipen=999) #No scientific notation
+options(digits = 2) #Round results two decimals
+
+pacman::p_load(tidyverse, #Data manipulation
+               gt, #Tables 
+               gtsummary, #Descriptive table
+               sjmisc, #Label manipulation
+               labelled, #Label manipulation
+               skimr, #Data manipulation
+               sjPlot, #Correlation
+               corrplot, #Correlation
+               Hmisc, #Correlation
+               lme4, #Multilevel modeling
+               reghelper, #Get ICC
+               texreg, #View models
+               AICcmodavg, #Best fit model
+               responsePatterns, #Check items
+               ggrepel, #labels plots
+               ggpubr, #arrange plots
+               ggExtra, #marginal plots
+               scales,
+               summarytools, #descriptive tables
+               knitr, #Markdown
+               kableExtra, #Markdown
+               psych, #FA Analysis
+               car,
+               haven, #Open data
+               janitor, #Data process
+               Hmisc, #Labels manipulation
+               stringr #Label manipulation
+               )
+
+# Open student and school raw data
+data_model <- readRDS("../../../input/proc_data/05_student_proc_2023.rds")
+
+data_model <- data_model|>
+  mutate(s_sex = to_label(s_sex))
+```
+
+# Results
+
+The analysys begins shwing descriptive results for the self-efficacy items, as displayed in @fig-barplot-general. Notably, across all tasks, a significant proportion of students ---no less than 65%--- expressed confidence in their ability to perform general tasks, while fewer than 10% reported an inability to do so. On the whole, participants demonstrated a high level of general self-efficacy. In contrast, when it comes to specialized self-efficacy, less than 30% of students confidently state their proficiency in tasks such as building a webpage or creating a computer program. This percentage increases a little when it comes to tasks like setting up a local area network (31%) or creating a database (35%). Therefore, and as it could be expected, students tend to perceive having less skills in advanced than in basic ICT tasks.
+
+```{r}
+#| label: fig-barplot-general
+#| fig-cap: "General and specialized ICT self-efficacy. Data: ICILS Chile 2023"
+
+selfeff_items <- data_model|>
+  select(
+    #Specialized self-efficacy items
+    is3g24d,is3g24k,is3g24l,
+    #General self-efficacy items
+    is3g24a,is3g24b,is3g24c,is3g24e,is3g24f,
+    is3g24g,is3g24h,is3g24i,is3g24j,is3g24m,
+  )
+
+relative_freq_selfeff <- rbind(
+  selfeff_items |>
+    drop_na(is3g24a) |>
+    count(variable = is3g24a) |>
+    mutate(prop = n / sum(n), name = "Edit graphic images",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24b) |>
+    count(variable = is3g24b) |>
+    mutate(prop = n / sum(n), name = "Write or edit text",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24c) |>
+    count(variable = is3g24c) |>
+    mutate(prop = n / sum(n), name = "Search and find information on internet",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24e) |>
+    count(variable = is3g24e) |>
+    mutate(prop = n / sum(n), name = "Change a device settings",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24f) |>
+    count(variable = is3g24f) |>
+    mutate(prop = n / sum(n), name = "Create a multi-media presentation",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24g) |>
+    count(variable = is3g24g) |>
+    mutate(prop = n / sum(n), name = "Upload content to an online profile",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24h) |>
+    count(variable = is3g24h) |>
+    mutate(prop = n / sum(n), name = "Insert an image into a document",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24i) |>
+    count(variable = is3g24i) |>
+    mutate(prop = n / sum(n), name = "Install a program",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24j) |>
+    count(variable = is3g24j) |>
+    mutate(prop = n / sum(n), name = "Judge information find on the internet",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24m) |>
+    count(variable = is3g24m) |>
+    mutate(prop = n / sum(n), name = "Find original source of an article in the internet",
+           type = "General Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24d) |>
+    count(variable = is3g24d) |>
+    mutate(prop = n / sum(n), name = "Build a webpage",
+           type = "Specialized Self-efficacy"),
+  
+  selfeff_items |>
+    drop_na(is3g24k) |>
+    count(variable = is3g24k) |>
+    mutate(prop = n / sum(n), name = "Use a text-based programming language",
+           type = "Specialized Self-efficacy"),
+  
+    selfeff_items |>
+    drop_na(is3g24l) |>
+    count(variable = is3g24l) |>
+    mutate(prop = n / sum(n), name = "Use visual coding",
+           type = "Specialized Self-efficacy")
+)
+
+relative_freq_selfeff <- relative_freq_selfeff |>
+  mutate(
+    name = factor(name, levels = c(
+      "Write or edit text",
+      "Search and find information on internet",
+      "Insert an image into a document",
+      "Install a program",
+      "Upload content to an online profile",
+      "Edit graphic images",
+      "Judge information find on the internet",
+      "Create a multi-media presentation",
+      "Change a device settings",
+      "Find original source of an article in the internet",
+      "Build a webpage",
+      "Use a text-based programming language",
+      "Use visual coding"
+    )),
+    variable = dplyr::recode(variable, 
+    "3" = "Very well",
+    "2" = "Moderately very well",
+    "1" = "I have never done this, but I could work out how to do this",
+    "0" = "I do not think I could do this"),
+    variable = factor(variable, 
+    levels = c(
+      "Very well",
+      "Moderately very well",
+      "I have never done this, but I could work out how to do this",
+      "I do not think I could do this")),
+    prop = round(prop, 2)
+  )
+
+relative_freq_selfeff |>
+  ggplot(aes(x = prop, y = name, fill = variable)) +
+  geom_bar(position = "fill", stat = "identity", color = "black") +
+  facet_wrap(~type,ncol=1,scales = "free_y") +
+  scale_y_discrete(labels = function(x) str_wrap(x, width = 42)) +
+  labs(
+    title = "How well can you do each of these tasks when using ICT?",
+    x = "", y = "", fill = "",
+    caption = "Missing values where deleted to calculate proportions"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.spacing = unit(1, "lines")
+  ) +
+  scale_fill_grey(
+    start = 0.5, end = 1,
+    limits = c(
+      "Very well",
+      "Moderately very well",
+      "I have never done this, but I could work out how to do this",
+      "I do not think I could do this"
+    ),
+    labels = ~ stringr::str_wrap(.x, width = 30)
+  ) +
+  scale_x_continuous(labels = scales::percent) +
+  geom_text(aes(label = paste0(prop * 100, "%")), position = position_fill(vjust = 0.5))
+```
+
+Turning now to geneder differences in self-efficacy, @fig-cleveland-gender presents a comparison of male and female students, displaying the proportion of those answering "I know how to do this" in each gender group. Whereas girls outperform boys in most of the general self-efficacy items, the opposite occurs for the specialized one. While most of the differences are statistically significant, they tend to be larger for the specialized self-efficacy in favor of boys.
+
+```{r}
+summary_stats <- data_model %>%
+  group_by(s_sex) %>%
+  summarise(
+    mean_pv1cil = mean(s_pv1cil, na.rm = TRUE),
+    se_pv1cil = sd(s_pv1cil, na.rm = TRUE) / sqrt(n())
+  )
+
+# Create a bar plot with error bars
+ggplot(summary_stats, aes(x = s_sex, y = mean_pv1cil, fill = s_sex)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(ymin = mean_pv1cil - se_pv1cil, ymax = mean_pv1cil + se_pv1cil), width = 0.2) +
+  labs(x = "Sex", y = "Mean of s_pv1cil", title = "Comparison of Means with Error Bars") +
+  theme_minimal()
+
+
+ggplot(data_model, aes(x = s_sex, y = s_pv1cil, fill = s_sex)) +
+  geom_boxplot() +
+  labs(x = "Sex", y = "s_pv1cil", title = "Box Plot of s_pv1cil by Sex") +
+  theme_minimal()
+
+# Perform t-test
+t_test_result <- t.test(s_pv1cil ~ s_sex, data = data_model)
+
+# Extract p-value and test statistic
+p_value <- t_test_result$p.value
+t_statistic <- t_test_result$statistic
+
+library(ggplot2)
+library(dplyr)
+
+# Create the box plot
+ggplot(data_model, aes(x = s_sex, y = s_pv1cil, fill = s_sex)) +
+  geom_boxplot() +
+  labs(x = "Sex", y = "s_pv1cil", title = "Information and Computer Literacy Test by Sex") +
+  theme_minimal() +
+  
+  # Add annotation for the t-test results
+  annotate("text", x = 2, y = min(data_model$s_pv1cil, na.rm = TRUE), 
+           label = paste("t =", round(t_statistic, 2), "\n", "p =", round(p_value, 4)),
+           size = 5, hjust = -0.2, vjust = -1, color = "red")
+
+
+
+
+```
+
+```{r}
+#| label: fig-cleveland-gender
+#| fig-cap: "General and specialized ICT Self-efficacy by gender. Data: ICILS Chile 2018"
+
+data_model |>
+  mutate(s_sex=to_label(s_sex))|>
+  mutate_at(vars(starts_with("is2g")), ~ 
+            ifelse(.==1,1,0)) |> #Dummy
+  rename(gender=s_sex)|>
+  group_by(gender) |>
+  summarise(across(starts_with("is2g"),
+                 mean, na.rm = TRUE)) |>
+  pivot_longer(cols = starts_with(c("is2g")),
+               names_to = "items",
+               values_to = "puntaje") |>
+  mutate(type=ifelse(items%in%c("is2g27b","is2g27e",
+                                "is2g27g","is2g27h"),
+                                "Specialized ICT self-efficacy",
+                                "General ICT self-efficacy")) |>
+
+  mutate(items=
+  factor(items,
+  levels=c(
+  "is2g27b",
+  "is2g27h",
+  "is2g27e",
+  "is2g27g",
+  "is2g27c",
+  "is2g27d",
+  "is2g27k",
+  "is2g27l",
+  "is2g27j",
+  "is2g27a",
+  "is2g27m",
+  "is2g27i"),
+  labels=c(
+  "Create a database",
+  "Set up a local area network***",
+  "Build a webpage*",
+  "Create a computer program/app***",
+  "Write or edit text***",
+  "Search and find information on internet*",
+  "Insert an image into a document/message**",
+  "Install a program/app",
+  "Upload multimedia to an online profile**",
+  "Edit graphic images***",
+  "Judge internet information veracity***",
+  "Create multi-media presentation**"
+  )))|>
+
+  ggplot(aes(x=to_label(puntaje),y=to_label(items)))+
+    geom_line(aes(group=to_label(items)),color="#E7E7E7",linewidth=2.0)+
+    geom_point(aes(shape=gender,color=gender),size=4)+
+    theme_minimal()+
+    labs(x="Proportion of 'I know how to do this'",y="",color="Gender",
+         caption= "Signif. codes Chi-square test: <0.001 = ***, <0.01 = **, <0.05 = *")+
+    scale_color_grey(start=.2,end = .6)+
+    theme(legend.position = "top")+
+    scale_y_discrete(labels=function(x) str_wrap(x,width = 50))+
+    facet_wrap(~type,ncol=1,scales="free_y")+
+    labs(title="How well can you do each of these tasks 
+when using ICT?")+
+    guides(shape=guide_legend(title="Gender"))
+```
+
+@fig-gender-school-mean shows differences in general and specialized self-efficacy according to the gender composition of the schools. Schools are classified here as masculinized when they have less than one third of girls, feminized when this proportion is more than two thirds, and mixed when the girls' proportion lies in between. Regarding general self-efficacy we observe that the outperformance of girls is larger in feminized schools, whereas the opposite occurs for specialized self-efficacy: girls underperform boys in feminized schools.
+
+```{r}
+#| label: fig-gender-school-mean
+#| fig-cap: "ICT Self Efficacy and CIL by Student sex and School composition. Data: ICILS Chile 2018"
+
+data|>
+  mutate(s_sex = to_label(s_sex),
+         c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+         c_gender_type = to_label(c_gender_type)
+         )|>
+  group_by(s_sex,c_gender_type)|>
+  drop_na(c_gender_type)|>
+  summarise(geneff = mean(s_geneff, na.rm = TRUE),
+            speceff = mean(s_speceff, na.rm = TRUE))|>
+  pivot_longer(cols = c(geneff, speceff), names_to = "efficacy", values_to = "mean")|>
+  
+  ggplot(aes(x = c_gender_type, y = mean)) +
+  geom_point(aes(shape = s_sex, color = s_sex), size = 3.5)+
+  facet_wrap(~efficacy,
+             nrow = 2,
+             labeller = labeller( efficacy = c(
+               "geneff" = "General ICT Self efficacy",
+               "speceff" = "Specialized ICT Self efficacy"))
+             )+
+  scale_color_grey(start=.2,end = .6)+
+  theme_minimal()+
+  labs(shape = "Gender", color = "Gender",
+       y = "Mean score", x= "",
+       title = "Gender CIL and ICT Self-efficacy by type of School")+
+  theme(legend.position = "top")+
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+```
+
+*Multilevel models*
+
+@tbl-general-multilevel and @tbl-specialized-multilevel displays the results of the multilevel regression models. Beggining with the results for the general self-efficacy, we observe in Model 1 that girls obtain better scores, but this is no longer significant when entering the Computer and Information Literacy (CIL) score in Model 2, with a positive significant association throughout the models. Regarding level 2 predictors, it is relevant to mention that the variance of self-efficacy is related to the schools (intra-class correlation of the null model) is only 5%, therefore there is few variance left to find significant effects at this level. The only predictor that display a significant effect at this level is the average school CIL, which, contrary to level 1, has a negative association with generalized self efficacy. Interactions effects are not significant in this case.
+
+```{r}
+#| label: tbl-general-multilevel
+#| tbl-cap: "General Self-efficacy Multilevel models"
+
+pacman::p_load(sjlabelled)
+get_label(data_model$s_geneff)
+
+data_model$s_geneff <- set_label(data_model$s_geneff, label = "Basic self-efficacy")
+
+data_model <- data|>
+  mutate(s_sex = to_label(s_sex),
+         c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+         c_gender_type = to_label(c_gender_type)
+
+
+
+data_model <- data |> mutate(
+  s_sex=to_label(s_sex),
+  c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+  c_gender_type = to_label (c_gender_type),
+  c_gender_type = relevel(c_gender_type, "Mixed school")
+  ) 
+
+#Null model
+m0_geneff <- lmer(s_geneff ~ 1 + (1 | idschool), data=data_model)
+
+#Level 1 fixed effects
+m1_a_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model) 
+
+m1_b_geneff  <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model) 
+
+m1_c_geneff <- lmer(s_geneff ~ 1 +
+                        s_sex + s_pv1cil +
+                        s_sex*s_pv1cil +
+                        s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                      data=data_model) 
+
+
+# Level 2 fixed effects
+m2_a_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+
+m2_b_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+m2_c_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+m2_d_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_gender_type + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+m2_e_geneff <- lmer(s_geneff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_pv1cil + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+tab_model(m1_a_geneff,m1_b_geneff,m1_c_geneff,
+          m2_a_geneff,m2_b_geneff,m2_c_geneff,
+          m2_d_geneff,m2_e_geneff,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          rm.terms = c("s_hisced","s_homlit"),
+          pred.labels = c("Intercept",
+                          "Gender (Girl = 1)",
+                          "CIL score",
+                          "Gender*CIL",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "School CIL",
+                          "Gender*Masculinized school",
+                          "Gender*Feminized school",
+                          "MGender*School CIL"),
+          dv.labels = c("Model 1","Model 2","Model 3",
+                        "Model 4", "Model 5", "Model 6", "Model 7","Model 8"))
+
+```
+
+Turning now to specialized self-efficacy, @tbl-specialized-multilevel follow the same structure than the previous table. In this case, and contrary to what was observed for general self-efficacy, girls consistently show a lower average score than boys, whereas the CIL score now is negative and its statistical significance dissappears when adding predictors. Despite having a low intra-class correlation (6%), in this case it is possible to detect some relevant effects in level 2 predictors. School CIL, as in general self-efficacy, displays a negative effect, and in Model 7 the gender composition appears to have a positive association with specialized self-efficacy for masculinized (with mixed schools as the reference category), but non-significant association for feminized school. Regarding interactions, effects are not significant.
+
+```{r}
+#| label: tbl-specialized-multilevel
+#| tbl-cap: "Specialized Self-efficacy Multilevel models"
+
+
+data_model$s_speceff <- set_label(data_model$s_speceff, label = "Advanced self-efficacy")
+
+# Null model
+m0_speceff <- lmer(s_speceff ~ 1 + (1 | idschool), data=data_model)
+
+# Level 1 fixed effects
+m1_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model) 
+
+m1_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model) 
+
+m1_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     s_sex*s_pv1cil +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model) 
+
+# Level 2 fixed effects
+m2_a_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_gender_type +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model)
+
+
+m2_b_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model)
+
+m2_c_speceff <- lmer(s_speceff ~ 1 +
+                     s_sex + s_pv1cil +
+                     c_pv1cil+ c_gender_type +
+                     s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                   data=data_model)
+
+m2_d_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_gender_type + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+m2_e_speceff <- lmer(s_speceff ~ 1 +
+                       s_sex + s_pv1cil +
+                       c_pv1cil+ c_gender_type +
+                       s_sex * c_pv1cil + 
+                       s_hisced + s_homlit +
+                       (1 + s_sex| idschool),  
+                     data=data_model)
+
+#Final table
+tab_model(m1_a_speceff,m1_b_speceff,m1_c_speceff,
+          m2_a_speceff,m2_b_speceff,m2_c_speceff,
+          m2_d_speceff,m2_e_speceff,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          rm.terms = c("s_hisced","s_homlit"),
+          pred.labels = c("Intercept",
+                          "Gender (Girl = 1)",
+                          "CIL score",
+                          "Gender*CIL",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "School CIL",
+                          "Gender*Masculinized school",
+                          "Gender*Feminized school",
+                          "Gender*School CIL"),
+          dv.labels = c("Model 1","Model 2","Model 3",
+                        "Model 4", "Model 5", "Model 6",
+                        "Model 7", "Model 8"))
+
+
+
+sjPlot::plot_models(m2_d_geneff,m2_d_speceff,
+                    wrap.labels = 20,
+                    show.p = T,
+                    show.values = T,
+                    show.intercept = F,
+                    colors = c("#5f5758","#ff3057")) +
+  theme_minimal()
+
+```

@@ -176,7 +176,6 @@ data <- data |>
 
 ```
 
-
 ::::: columns
 ::: {.column width="10%"}
 ![](images/invalsi.png)
@@ -184,7 +183,6 @@ data <- data |>
 ![](images/datinvalsi.png)
 
 ![](images/qr.png)
-
 :::
 
 ::: {.column .column-right width="85%"}
@@ -204,31 +202,29 @@ IX Seminar Data of and for the Educational System: Tools for Research and Teachi
 :::
 :::::
 
-::: {.notes}
+::: notes
 This paper is mainly about digital inequalities in education, it is a sort of different agenda from the one I have been participating with other people in this room in the area of citizenship education, but I think that the digital dimension is increasingly penetrating different domains of our social life and at different stages, and I hope in the future to keep strengthening the link between the civic and the digital in educational research.
-::: 
+:::
 
 ## NUDOS {.scrollable}
 
 ```{=html}
 <iframe width="1000" height="500" src="https://www.nudos.cl/en/about-nudos/" title="Webpage example"></iframe>
-```  
+```
 
 [More information: nudos.cl](https://www.nudos.cl/sobre-nudos/)
 
 ![](images/banner_nudos.jpg){width="80%" fig-align="center"}
 
-![](images/lines-of-research.png) 
+![](images/lines-of-research.png)
 
-::: {.notes}
+::: notes
 Some context: this research is part of a research project on Digital Inequalities and Oportunities (project NUDOS) were we are coverig areas such as connectivity, education and political with a large team of researchers, more information in our web
-::: 
-
-
+:::
 
 # Starting point
 
-::: { .incremental .highlight-last style="font-size: 130%;"}
+::: {.incremental .highlight-last style="font-size: 130%;"}
 -   Gender inequalities and prejudices, reproduced at school level [@vekiriGenderIssuesTechnology2008].
 
 -   Female Technological Stereotype Threat [@turnerSocialIdentityTheory2004; @steeleStereotypeThreatIntellectual1995]. Does it persist as women increase literacy?
@@ -238,9 +234,8 @@ Some context: this research is part of a research project on Digital Inequalitie
 
 ## Underestimating girls' digital skills?
 
-::: { .incremental .highlight-last style="font-size: 130%;"}
-
--   Gender differences in the use of Information and Communication Thechnologies (ICTs) has **attenuated** over time  [@hargittaiDifferencesActualPerceived2006].
+::: {.incremental .highlight-last style="font-size: 130%;"}
+-   Gender differences in the use of Information and Communication Thechnologies (ICTs) has **attenuated** over time [@hargittaiDifferencesActualPerceived2006].
 
 -   Female students have higher literacy rates but less confidence in their abilities than male students [@punterGenderDifferencesComputer2017].
 
@@ -250,8 +245,7 @@ Some context: this research is part of a research project on Digital Inequalitie
 ##  {data-background-color="#5f5758"}
 
 ::: {style="font-size: 250%; display: flex; justify-content: center; align-items: center"}
-</br>
-_Do girls show lower digital self-efficacy despite better digital knowledge and skills?_
+</br> *Do girls show lower digital self-efficacy despite better digital knowledge and skills?*
 :::
 
 ## Hypotheses
@@ -298,67 +292,59 @@ Answers: 1. I know how to do it. 2. I don't know how to do it but I feel capable
 :::
 :::::
 
-# Results  {data-background-color="#5f5758"}
+# Results {data-background-color="#5f5758"}
 
-##
+## 
 
 ![](images/CIL_dif.png)
 
+##  {.scrollable}
 
-## {.scrollable}
 ![](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/articles/underestimation_despite_performance/paper_files/figure-html/fig-barplot-general-1.png)
-
 
 ## Self-efficacy by gender {.small}
 
 ![](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/articles/underestimation_despite_performance/paper_files/figure-html/fig-cleveland-gender-1.png)
 
-##
+## 
 
 ![](https://milenio-nudos.github.io/multilevel_icils_gender_chile/output/articles/underestimation_despite_performance/paper_files/figure-html/fig-gender-school-mean-1.png)
 
-
 ## Multilevel regression models
-
 
 ![](images/multilevel_forest.png)
 
+# Discussion
 
-# Discussion 
+::: {.incremental .highlight-last style="font-size: 130%;"}
+-   Girls show lower advanced self-efficacy (controlling for literacy)
 
-::: { .incremental .highlight-last style="font-size: 130%;"}
+-   Students from schools with larger average score in computer literacy show less self-efficacy (both types)
 
-- Girls show lower advanced self-efficacy (controlling for literacy)
-
-- Students from schools with larger average score in computer literacy show less self-efficacy (both types)
-
-- Higher specialized self-efficacy for girls in masculinized schools (?)
+-   Higher specialized self-efficacy for girls in masculinized schools (?)
 :::
 
 # Take-home-message {data-background-color="orange"}
 
-::: { .incremental .highlight-last style="font-size: 200%;"}
+::: {.incremental .highlight-last style="font-size: 200%;"}
+-   Gender differences in self-efficacy at school?
 
-- Gender differences in self-efficacy at school? 
-
-  - Yes, but: depends on the kind of self-efficacy and on the gender composition of the classroom
+    -   Yes, but: depends on the kind of self-efficacy and on the gender composition of the classroom
 :::
 
 # Future research: {data-background-color="black"}
 
 ::: {style="font-size: 180%;"}
+-   Time comparison ICILS 2013-2018-2023
 
-- Time comparison ICILS 2013-2018-2023
-    
-- International comparison
-    
-- PISA data
+-   International comparison
+
+-   PISA data
 :::
 
 # Thanks!
 
 -   **NUDOS website:** [www.nudos.cl](https://www.nudos.cl/)
 -   **Github repository of the project:** <https://github.com/milenio-nudos/multilevel_icils_gender_chile>
-
 
 ## References

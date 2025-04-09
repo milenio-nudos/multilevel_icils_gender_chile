@@ -1,0 +1,5 @@
+# Papelera
+
+According to the theory and evidence [@banduraSelfefficacyExerciseControl1997;@usherSelfefficacySelfregulatedLearning2008], there are four sources of self-efficacy, which can be grouped into individual factors (mastery experience and emotional states)  and social comparative factors (vicarious experiences and social model) considered sources of self-efficacy. Mastery experience refers to people’s previous interpretations and evaluations of their successes and failures completing similar or related tasks. Experienced mastery (or previous skills) has a strong effect on people’s self-efficacy. Also, negative emotional states such as anxiety and stress undermine self-efficacy. 
+
+An important aspect to consider is that computer literacy also shows gender gaps. Cross-national results from international studies show that girls tend to achieve higher proficiency levels than boys in computer literacy [@fraillonPreparingLifeDigital2014]. -> esto refiere a género y está en la seccion de self-efficacy, ver si se puede relocalizar

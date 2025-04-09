@@ -1,0 +1,619 @@
+# Appendix
+
+## Data manipulation
+
+```{r}
+#| label: tbl-labels
+#| tbl-cap: "Change of labels in Self-efficacy items"
+
+rbind(
+data.frame(
+  item=c("is2g27a","is2g27c","is2g27d","is2g27i","is2g27j","is2g27k",
+         "is2g27l","is2g27m"),
+  old_label=c(
+  "Edit digital photographs or other graphic images",
+  "Write or edit text for a school assignment",
+  "Search for and find relevant information for a school project	
+  on the Internet",
+  "Create a multi-media presentation (with sound, pictures, or video)",
+  "Upload text, images, or video to an online profile",
+  "Insert an image into a document or message",
+  "Install a program or [app]",
+  "Judge whether you can trust information you find on the Internet"),
+  new_label=c(
+    "Edit graphic images",
+    "Write or edit text",
+    "Search and find information on internet",
+    "Create multi-media presentation",
+    "Upload multimedia to an online profile",
+    "Insert an image into a document/message",
+    "Install a program/app",
+    "Judge internet information veracity")
+),
+
+data.frame(
+  item=c("is2g27b","is2g27e","is2g27g","is2g27h"),
+  old_label=c(
+  "Create a database (e.g. using [Microsoft Access ®])",
+  "Build or edit a webpage",
+  "Create a computer program, macro, or [app]",
+  "Set up a local area network of computers or other ICT"),
+  new_label=c(
+  "Create a database",
+  "Build a webpage",
+  "Create a computer program/app",
+  "Set up a local area network")
+)
+) |>
+  gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 10
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center"
+      ),
+    # remove row striping in Markdown documents
+    cell_fill(color = "white", alpha = NULL)
+      ),
+      #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )) |>
+    tab_row_group(
+   label = md("*Specialized Self-efficacy*"),
+   rows = 9:12
+     ) |>
+  tab_row_group(
+    label = md("*General Self-efficacy*"),
+    rows = 1:8
+  )|>
+  cols_label(
+    item=md("**Item**"),
+    old_label=md("**Original label**"),
+    new_label=md("**Summarised label**")
+  )
+```
+
+## ICT Self-efficacy items correlation
+
+```{r , echo=FALSE}
+baserev <- data |> 
+  select(#s_sex,
+         #s_speceff,s_geneff,
+         #Items specific self-efficacy
+         is2g27b,is2g27e,is2g27g,is2g27h,
+         #Items general self-efficacy
+         is2g27a,is2g27c,is2g27d,is2g27i,is2g27j,is2g27k,is2g27l,is2g27m)|> 
+  mutate_at(vars(starts_with("is2g")),~4-.)
+
+#variables
+baserev=baserev |>
+  mutate(database=is2g27b,
+         webpage=is2g27e,
+         app=is2g27g,
+         network=is2g27h,
+         editphoto=is2g27a,
+         edittext=is2g27c,
+         findinfo=is2g27d,
+         multimedia=is2g27i,
+         uploadfile=is2g27j,
+         insertimage=is2g27k,
+         install=is2g27l,
+         judgeinfo=is2g27m
+         ) |>
+  select(database, webpage, app, network, editphoto, edittext, findinfo, multimedia, uploadfile, insertimage, install, judgeinfo)
+
+```
+
+```{r, results='asis'}
+#| label: tbl-continous_corr_selfeff
+#| tbl-cap: Correlation matrix assuming continuous
+
+colnames(baserev)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
+#Test correlation (Now is positive between items and index, and negativa between items and cil)
+mat = round(cor(baserev, use="complete.obs"),3)
+#mat
+
+
+colnames(mat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
+
+#Hide lower triangle
+lower<-mat
+lower[lower.tri(mat, diag=TRUE)]<-""
+lower<-as.data.frame(lower)
+
+#Table using kableExtra
+lower |>
+  kable() |>
+#kbl(caption = "Recreating booktabs style table") |>
+  kable_classic()
+
+```
+
+
+```{r, results='asis'}
+#| label: tbl-categorical_corr_selfeff
+#| tbl-cap: Correlation matrix assuming categorical 
+
+#Polychoric correlations
+m=psych::polychoric(baserev)
+polmat=m$rho
+
+rownames(polmat)<-c(
+  "A. Create a database",
+  "B. Build a webpage",
+  "C. Create a computer program/app",
+  "D. Set up a local area network",
+  "E. Edit graphic images",
+  "F. Write or edit text",
+  "G. Search and find information on internet",
+  "H. Create multi-media presentation",
+  "I. Upload multimedia to an online profile",
+  "J. Insert an image into a document/message",
+  "K. Install a program/app",
+  "L. Judge internet information veracity"
+)
+
+colnames(polmat) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)",
+                    "(I)","(J)","(K)","(L)")
+
+#Hide lower triangle
+lowerpol<-round(polmat, 3)
+lowerpol[lower.tri(polmat, diag=TRUE)]<-""
+lowerpol<-as.data.frame(lowerpol)
+
+
+#Table using kableExtra
+lowerpol |>
+kable() |>
+  kable_classic_2()
+```
+
+## ICT Self-efficacy items Factorial Analysis {#fa-analysis}
+```{r}
+#| label: fig-elbow
+#| fig-cap: "Paralel Analysis"
+
+save(polmat, file = "polychoric")
+  
+# Factor analyses: 3 factors
+load("polychoric")
+fa.parallel(polmat, fm="pa", fa="fa", main = "Scree Plot", n.obs=3092)
+```
+
+
+```{r, results='asis'}
+#| label: fig-fa4
+#| fig-cap: "Factorial Analysis Self-efficacy items. 4 factors."
+
+poly_model4 = fa(baserev, nfactor=4, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model4)
+```
+
+
+```{r, results='asis'}
+#| label: fig-fa3
+#| fig-cap: "Factorial Analysis Self-efficacy items. 3 factors."
+poly_model3 = fa(baserev, nfactor=3, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model3)
+
+```
+
+```{r, results='asis'}
+#| label: fig-fa2
+#| fig-cap: "Factorial Analysis Self-efficacy items. 2 factors."
+
+poly_model2 = fa(baserev, nfactor=2, cor="poly", fm="pa", rotate = "oblimin")
+fa.diagram(poly_model2)
+```
+
+
+```{r}
+#| label: tbl-factorial
+#| tbl-cap: "Factorial Analysis ICT Self-efficacy Results"
+
+cbind(
+  # Create the data frame
+  fa_3 <- data.frame(
+    Task = c("A. Create a database", "B. Build a webpage", "C. Create a computer program/app", 
+             "D. Set up a local area network", "E. Edit graphic images", "F. Write or edit text", 
+             "G. Search and find information on internet", "H. Create multi-media presentation", 
+             "I. Upload multimedia to an online profile", "J. Insert an image into a document/message", 
+             "K. Install a program/app", "L. Judge internet information veracity"),
+    A_1 = c(-0.20, 0.09, -0.00, 0.14, 0.15, 0.11, 0.24, 0.46, 0.82, 0.72, 0.67, 0.41),
+    B_1 = c(0.49, 0.66, 0.91, 0.66, 0.23, -0.04, -0.09, 0.32, 0.02, 0.02, 0.00, 0.17),
+    C_1 = c(0.47, 0.07, -0.07, -0.04, 0.44, 0.80, 0.66, 0.09, -0.02, 0.14, 0.11, 0.19)
+  ),
+  
+  fa_2 <-  data.frame(
+    A_2 = c(0.23, 0.13, -0.10, 0.08, 0.54, 0.83, 0.84, 0.52, 0.76, 0.83, 0.75, 0.57),
+    B_2 = c(0.49, 0.67, 0.93, 0.66, 0.23, -0.03, -0.09, 0.30, -0.01, -0.01, -0.02, 0.16)
+  )
+)|>
+  gt(rowname_col="Task")|>
+  tab_row_group(
+    label = "Suggested as General Self-efficacy",
+    rows = 5:12
+  )|>
+  tab_row_group(
+    label = "Suggested as Specialized Self-efficacy",
+    rows = 1:4
+  )|>
+  tab_spanner(
+    label = "Three factors model",
+    columns = ends_with("1")
+  )|>
+  tab_spanner(
+    label = "Two factors model",
+    columns = ends_with("2")
+  )|>
+  cols_label(
+    A_1 = "Factor 1",
+    B_1 = "Factor 2",
+    C_1 = "Factor 3",
+    A_2 = "Factor 1",
+    B_2 = "Factor 2"
+  )|>
+  tab_options(
+    table.font.names = "Times New Roman"
+  )|>
+  
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white"
+  ) |>
+  # center column text
+  cols_align(align="center")|>
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      #center text
+      cell_text(
+        align="center",
+      ),
+      # remove row striping in Markdown documents
+      cell_fill(color = "white", alpha = NULL)
+    ),
+    #do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    ))|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 6,
+      rows = 1:4
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 5,
+      rows = 5:12
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 4,
+      rows = 5:7
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 3,
+      rows = 1:4
+    )
+  )|>
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = 2,
+      rows = 8:12
+    )
+)
+```
+
+## Descriptive Results
+
+@tbl-indexes-gender explores the distribution of the key variables utilized in this study based on gender. The results indicate that girls exhibit a significant mean advantage over boys in the Computer Literacy test. Conversely, boys demonstrate a significant mean advantage in specialized self-efficacy. Notably, there are no significant differences in general ICT self-efficacy. This allow to speculate that the overestimation of boys and underestimation of girls is primarily occurring in specialized ICT tasks.
+
+```{r}
+#| label: tbl-indexes-gender
+#| tbl-cap: "Table of gender indexes differences"
+
+data |> 
+  mutate(s_sex = to_label(s_sex)) |>
+  tbl_summary(
+    include = c(s_pv1cil, s_geneff, s_speceff),
+    by = s_sex,
+    missing = "no",
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    )
+  ) |>
+  add_p(test = list(
+    s_pv1cil ~ "t.test",
+    s_geneff ~ "t.test",
+    s_speceff ~ "t.test"
+  )) |>
+  add_n() |>
+  modify_header(label = "**Variables**") |>
+  add_overall() |>
+  as_gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15,
+    table.font.names = "Times New Roman"
+  ) |>
+  # Center column text
+  cols_align(align = "center") |>
+  tab_style(
+    style = list(
+      # Remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      # Center text
+      cell_text(
+        align = "center"
+      ),
+      # Remove row striping in Markdown documents
+      cell_fill(color = "white", alpha = NULL)
+    ),
+    # Do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )
+  )
+```
+
+*School Gender composition analysis*
+
+At school level, @tbl-indexes-school suggests the gender composition of school have not significant mean differences in Computer Literacy and ICT Self-efficacy in overall students.
+
+```{r}
+#| label: tbl-indexes-school
+#| tbl-cap: "Gender composition differences"
+data |> 
+  mutate(
+    c_gender_type = labelled(c_gender_type,
+                             labels = c("Masculinized school" = 1, 
+                                        "Mixed school" = 2, 
+                                        "Feminized school" = 3)),
+    c_gender_type = to_label(c_gender_type))|>
+  drop_na(c_gender_type)|>
+  group_by(idschool,c_gender_type)|>
+  summarise(
+    cil = mean(s_pv1cil, na.rm = TRUE),
+    geneff = mean(s_geneff, na.rm = TRUE),
+    speceff = mean(s_speceff, na.rm = TRUE)
+    )|>
+  tbl_summary(
+    include = c(cil, geneff, speceff),
+    by = c_gender_type,
+    missing = "no",
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    label = list(
+      cil ~ "Computer Literacy",
+      geneff ~ "ICT General Self Efficacy",
+      speceff ~ "ICT Specialized Self Efficacy"
+    )
+  ) |>
+  add_p()|>
+  as_gt() |>
+  tab_options(
+    table.border.top.color = "white",
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.color = "white",
+    table.width = pct(100),
+    table.background.color = "white",
+    table.font.size = 15,
+    table.font.names = "Times New Roman"
+  ) |>
+  # Center column text
+  cols_align(align = "center") |>
+  tab_style(
+    style = list(
+      # Remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom"),
+        color = "white",
+        weight = px(1)
+      ),
+      # Center text
+      cell_text(
+        align = "center"
+      ),
+      # Remove row striping in Markdown documents
+      cell_fill(color = "white", alpha = NULL)
+    ),
+    # Do this for all columns and rows
+    locations = cells_body(
+      columns = everything(),
+      rows = everything()
+    )
+  )
+
+```
+
+*Correlations*
+
+To provide an overview of the relationships between variables, a correlogram of all explored variables is presented in @fig-corrgram. The Key findings include a relatively intermediately-high positive effect size between both Self-efficacy indexes (0.44), a considerable positive effect size between General ICT Self-efficacy and the CIL score (0.33) and a counter-intuitively effect size between Specialized Self-efficacy and CIL Score, which is slightly negative (-0.11).
+
+In essence, these results suggest that students reporting higher General Self-efficacy tend to have advantages on CIL test over those with lower scores in that index, but individuals with lower scores on the CIL test tend to report higher Specialized Self-efficacy. One possible explanation could be that as students progress beyond general ICT knowledge and delve into advanced topics, they become more aware of concepts and processes they do not know.\* Consequently, they may rely less on their computer literacy. This phenomenon aligns with the notion of underestimation, rooted in the 'I know that I don't know' logic.
+
+The sex of the student (managed as dummy) exhibits practically a neutral correlation with General ICT Self-efficay, but in the case of Specialized, the correlation is negative and with a considerable magnitude (-0.1). At school level, CIL mantains effect size and direction. No significant coefficients were found in Gender composition (treated as ordinal).
+
+```{r}
+#| label: fig-corrgram
+#| fig-cap: "Corrplot principal variables"
+
+data_corr <- data |> select(s_sex,
+                            s_geneff,s_speceff,s_pv1cil,
+                            s_hisced,s_homlit,
+                            c_pv1cil, c_pv1cil_var,
+                            c_gender_type
+                            )
+
+data_corr <- rcorr(as.matrix(data_corr))
+
+rownames(data_corr$r)<-c(
+  "A. Sex (1=Women)",
+  "B. General ICT Self-efficacy",
+  "C. Specialized ICT Self-efficacy",
+  "D. Computer Literacy",
+  "E. Parents HISCED",
+  "F. Home literacy",
+  "G. CIL school mean",
+  "H. CIL school variance",
+  "I. Gender composition (Feminized=3)"
+)
+
+colnames(data_corr$r) <-c("Gender (Girl=1)", "(B)","(C)","(D)","(E)","(F)","(G)","(H)", "(I)")
+
+corrplot(data_corr$r, p.mat = data_corr$P, method = 'color', type = 'lower', insig='blank',
+         tl.col = "black",bg="white",na.label="-",
+         addCoef.col ='black', number.cex = 0.8, diag=FALSE,
+         sig.level = 0.05)
+```
+
+Contrary to the initial proposal and the mentioned expectations, the effect size of gender appears to be quite limited when assessed as a continuous variable. However, when gender is cross-checked as a categorical variable, intriguing tendencies emerge. @tbl-gender-reinforcement indicate that boys tend to exhibit a more positive effect size in General Self-efficacy and CIL score and a more positive effect size than girls in Specialized self-efficacy (0.04 points and -0.05 ponits respectively). The result raises speculation about the impact of underestimation due to advanced knowledge ('Know that I don't know'), which seems to be more pronounced in females. Girls with specialized technological skills may perceive their abilities as lower than boys with similar specialized technological skills.
+
+```{r}
+#| label: tbl-gender-reinforcement
+#| tbl-cap: "Gender CIL correlation differences"
+
+merge(
+  
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_geneff,s_pv1cil,use="complete.obs")|>
+                     round(3)),
+data |>
+  group_by(to_label(s_sex)) |>
+  dplyr::summarize(corr=cor(s_speceff,s_pv1cil,use="complete.obs")|>
+                     round(2)),
+by="to_label(s_sex)"
+) |>
+  
+  kable(
+    col.names = c("Sex", "General self efficacy", "Specialized self efficacy")
+  )
+```
+
+## Checking Multilevel Models results
+
+While the correlation between school CIL and overall self-efficacy is positive, in the models explored, the effect of CIL appears negative. A check was made to reveal which variables modify the direction of the effect. The @tbl-cil-geneff shows that the introduction of CIL at the individual level reverses the composition effect of school CIL.
+
+```{r check CIL geneff}
+#| label: tbl-cil-geneff
+#| tbl-cap: "Multilevel models to check School level CIL effect"
+
+geneff_c_cil_1 <- lmer(s_geneff ~ 1 + c_pv1cil +
+                      (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_2 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex +
+                         (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_3 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex + c_gender_type +
+                         (1 + s_sex | idschool), data=data_model)
+geneff_c_cil_4 <- lmer(s_geneff ~ 1 + c_pv1cil + s_sex + c_gender_type +
+                         s_pv1cil + 
+                         (1 + s_sex| idschool), data=data_model)
+
+tab_model(geneff_c_cil_1,geneff_c_cil_2,geneff_c_cil_3,geneff_c_cil_4,
+          show.ci = FALSE, auto.label = FALSE,
+          p.style = "stars",collapse.se = TRUE,
+          show.re.var = TRUE,show.icc = FALSE,
+          show.obs = TRUE,show.ngroups = TRUE,
+          show.aic = TRUE,
+          pred.labels = c("Intercept",
+                          "School CIL",
+                          "Gender (Girl = 1)",
+                          "Gender composition: Masculinized school",
+                          "Gender composition: Feminized school",
+                          "CIL score"),
+          dv.labels = c("Model 1","Model 2","Model 3","Model 4")
+          )
+```
